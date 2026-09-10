@@ -17,6 +17,64 @@ themselves — a local `node_modules`, a global install, or `PLAYWRIGHT_BROWSERS
 in an environment that already ships one. There is no `package.json` here and
 none is needed.
 
+`RUNBOOK.md` is the step-by-step for auditing a new site end to end.
+
+## Known environment issue: Chromium and TLS 1.3 in a Claude Code web session
+
+Hit on 10 Sep 2026 and worth twenty minutes to anyone who meets it cold.
+
+**Symptom.** Every page load fails with `net::ERR_CONNECTION_RESET`, on every
+external host, while `curl` to the same host through the same proxy returns
+200. `collect-perf.mjs` reports it as a finding per page:
+
+```
+[high] Page could not be loaded (mobile profile)
+        page.goto: net::ERR_CONNECTION_RESET at https://example.com/
+```
+
+**Cause.** Outbound HTTPS in a Claude Code web session goes through an
+intercepting agent proxy. It cannot complete Chromium's TLS 1.3 handshake:
+the ClientHello (~1.7 kB, enlarged by the post-quantum key share) goes out,
+39 bytes come back, and the tunnel closes after 6s. `curl` negotiates
+differently and is unaffected, which is what makes this confusing — the host
+is plainly reachable. Check `curl -sS "$HTTPS_PROXY/__agentproxy/status"` and
+look for `ws_closed_mid_exchange` against your target host.
+
+**Fix.** Cap the browser at TLS 1.2. The scripts hardcode their launch args,
+so rather than editing them, put a wrapper where `findChromium()` looks —
+it scans `$PLAYWRIGHT_BROWSERS_PATH` for `chromium*/chrome-linux/chrome`:
+
+```bash
+mkdir -p /tmp/pw-shim/chromium/chrome-linux
+cat > /tmp/pw-shim/chromium/chrome-linux/chrome <<'EOF'
+#!/bin/bash
+exec /opt/pw-browsers/chromium-1194/chrome-linux/chrome --ssl-version-max=tls1.2 "$@"
+EOF
+chmod +x /tmp/pw-shim/chromium/chrome-linux/chrome
+
+PLAYWRIGHT_BROWSERS_PATH=/tmp/pw-shim node $SKILL/scripts/collect-perf.mjs ...
+```
+
+Check the real Chromium's version directory first — `chromium-1194` is what
+that sandbox shipped, not a constant. This changes nothing about certificate
+verification.
+
+**Two things this environment makes untrue, even once loads succeed.** Both
+are the auditor's problem, not the script's:
+
+- **The TLS certificate in `security.json` is the proxy's, not the site's.**
+  Look at `pages[].tls.issuer` — if it does not name a real CA, discard every
+  certificate and expiry finding rather than reporting it. The report
+  generator's "certificate is valid for another N days" line has to come out
+  by hand.
+- **Timings are measured from the sandbox's data centre**, which may sit next
+  to the target's CDN edge (`x-vercel-id: iad1`, `x-vercel-cache: HIT` is the
+  tell). Page-to-page comparison stays sound; the absolute LCP and TTFB
+  flatter the site. Say so in the report's limits section.
+
+If either matters to the deliverable, run the two live collectors from a
+normal machine instead and generate the report from that JSON.
+
 ## The four scripts
 
 Three collect, one writes up. Each collector writes one JSON file into the
