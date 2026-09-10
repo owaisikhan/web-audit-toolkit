@@ -155,7 +155,9 @@ Dated, so two audits of the same site months apart sit side by side. The
 before/after is the most persuasive thing this toolkit produces and it costs
 nothing to keep.
 
-**`audits/` is gitignored, and stays that way.** This repo is public; an audit
-directory holds unfixed security findings about somebody else's live site.
-Keep the runs locally or somewhere private, and send the client their report
-directly. See `audits/README.md`.
+**Audit runs are committed to this repo, which means this repo must stay
+private.** A run directory holds unfixed security findings about a live site,
+described in enough detail to act on. Before adding a client, check the repo is
+still private. Note that changing visibility later does not undo it: git
+history keeps whatever was public while it was public. See `audits/README.md`
+for the full convention, and `RUNBOOK.md` for how to produce a run.

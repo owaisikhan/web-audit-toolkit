@@ -1,0 +1,612 @@
+<title>Saam's Store — website audit</title>
+<style>
+:root {
+  --ink: #14181f; --muted: #5b6472; --line: #e3e7ee; --bg: #ffffff; --panel: #f7f8fb;
+  --critical: #a1122b; --high: #b4451a; --medium: #8a6410; --low: #3f5b7a; --info: #5b6472;
+  --critical-bg: #fdeef1; --high-bg: #fdf1ea; --medium-bg: #fbf5e6; --low-bg: #eff3f8; --info-bg: #f2f4f7;
+  --good: #1c6b45; --good-bg: #e9f5ee;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%; }
+.wrap { max-width: 46rem; margin: 0 auto; padding-block: 3rem 4rem; padding-left: 20px; padding-right: 20px; }
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .35rem; letter-spacing: -.02em; }
+h2 { font-size: 1.3rem; margin: 3rem 0 1rem; padding-top: 1.2rem; border-top: 2px solid var(--ink); letter-spacing: -.01em; }
+h3 { font-size: 1.05rem; margin: 0 0 .1rem; letter-spacing: -.005em; }
+p { margin: 0 0 1rem; }
+.lede { color: var(--muted); font-size: .95rem; margin-bottom: 2rem; }
+.lede strong { color: var(--ink); }
+.todo { background: #fff8e1; border: 1px dashed #b8860b; color: #6b4d00;
+  padding: 1rem 1.1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: .9rem; }
+.todo code { background: #0000000d; padding: .1em .35em; border-radius: 3px; }
+
+.counts { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 2rem; padding: 0; list-style: none; }
+.counts li { display: flex; align-items: baseline; gap: .45rem;
+  border: 1px solid var(--line); border-radius: 999px; padding: .3rem .85rem; font-size: .85rem; }
+.counts b { font-size: 1.05rem; }
+
+.finding { border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem 1.4rem;
+  margin-bottom: 1.1rem; break-inside: avoid; }
+.finding.critical { border-left: 5px solid var(--critical); }
+.finding.high { border-left: 5px solid var(--high); }
+.finding.medium { border-left: 5px solid var(--medium); }
+.finding.low { border-left: 5px solid var(--low); }
+.finding.info { border-left: 5px solid var(--info); }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .55rem 0 1rem; }
+.tag { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+  padding: .2rem .55rem; border-radius: 4px; background: var(--info-bg); color: var(--info); }
+.tag.critical { background: var(--critical-bg); color: var(--critical); }
+.tag.high { background: var(--high-bg); color: var(--high); }
+.tag.medium { background: var(--medium-bg); color: var(--medium); }
+.tag.low { background: var(--low-bg); color: var(--low); }
+.tag.plain { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.finding h4 { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); margin: 1.1rem 0 .3rem; font-weight: 600; }
+.finding h4:first-of-type { margin-top: 0; }
+pre { background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+  padding: .8rem .9rem; overflow-x: auto; font: 12.5px/1.55 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  margin: 0 0 1rem; white-space: pre-wrap; word-break: break-word; }
+code { font: .9em ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+
+.tablewrap { overflow-x: auto; margin-bottom: 1.5rem; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--line); }
+th { font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rate { font-weight: 600; }
+.rate.good { color: var(--good); }
+.rate.needs-work { color: var(--medium); }
+.rate.poor { color: var(--critical); }
+.rate::before { content: "● "; font-size: .8em; }
+
+.good-list { background: var(--good-bg); border-radius: 10px; padding: 1.1rem 1.4rem 1.1rem 2.6rem;
+  margin-bottom: 1.5rem; }
+.good-list li { margin-bottom: .35rem; }
+.unconfirmed { background: var(--medium-bg); color: var(--medium); border-radius: 6px;
+  padding: .55rem .8rem; font-size: .85rem; margin-bottom: 1rem; }
+footer { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: .82rem; }
+
+@media (max-width: 560px) {
+  .wrap { padding-block: 2rem 3rem; }
+  h1 { font-size: 1.5rem; }
+}
+@media print {
+  .todo { display: none; }
+  .wrap { max-width: none; padding: 0; }
+  h2 { break-after: avoid; }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e8ecf2; --muted: #98a2b3; --line: #2a3140; --bg: #12151b; --panel: #1a1f28;
+    --critical: #ff8fa3; --high: #ffb083; --medium: #e8c46a; --low: #9fc0e0; --info: #98a2b3;
+    --critical-bg: #2a1219; --high-bg: #2a1a10; --medium-bg: #2a2210; --low-bg: #16202b; --info-bg: #1a1f28;
+    --good: #7fd6a6; --good-bg: #10231a;
+  }
+}
+</style>
+<div class="wrap">
+<h1>Website audit: Saam's Store</h1>
+<p class="lede">10 September 2026 · prepared by Owais Khan<br>
+Pages tested: <strong>https://saam-s-store.vercel.app/</strong>, <strong>https://saam-s-store.vercel.app/shop</strong>, <strong>https://saam-s-store.vercel.app/products/apple</strong>, <strong>https://saam-s-store.vercel.app/cart</strong></p>
+
+<h2>Summary</h2>
+<p>We looked at four pages of Saam's Store on 10 September 2026 — the home page, the shop
+listing, a product page and the cart — testing how they load on a typical mobile phone,
+what the site tells the public internet about itself, and how the code behind it is put
+together.</p>
+
+<p>The good news first, because it is most of the story: this is a well-built site. It loads
+quickly on a phone, it does not jump around while loading, and the parts that usually go
+wrong on a shop of this kind — the admin area, the checkout, the handling of passwords —
+are done properly. <strong>Nothing we found suggests the site has been attacked, and no
+customer data was exposed to us at any point.</strong></p>
+
+<p>The one item we would want looked at this week is in the shopping assistant. It is allowed
+to answer questions by reading the product catalogue, and the code that keeps it to the
+catalogue can be talked around. Whether that matters depends on a single database setting
+we cannot see from outside, and checking it takes about a minute — that check is the first
+thing on the plan below. If the setting is right, this is a tidy-up. If it is not, it is
+the most important thing in this document.</p>
+
+<p>Beyond that: one thing on the shop page that is quietly costing sales on phones, one
+protection worth adding before the assistant gets busy, and a short list of standard
+hardening. In total: <strong>1 high, 3 medium and 1 low-severity item</strong>, plus a
+hygiene list at the end.</p>
+
+<ul class="counts">
+<li><b>1</b> high</li>
+<li><b>3</b> medium</li>
+<li><b>1</b> low</li>
+</ul>
+
+<h2>What we measured</h2>
+<p>Pages were loaded in a real browser with an empty cache, 3 times each, on a Moto G-class Android, 4G profile; the figures below are medians.
+Security checks were <strong>passive</strong>: the site was loaded as an ordinary visitor's browser loads it, and the conclusions come from what the server sent back. Nothing was submitted, guessed or probed.</p>
+
+<div class="tablewrap"><table>
+<thead><tr><th>Page</th><th>Profile</th><th class="num">LCP</th><th class="num">CLS</th>
+<th class="num">TBT</th><th class="num">TTFB</th><th class="num">Downloaded</th><th class="num">Requests</th></tr></thead>
+<tbody>
+<tr>
+  <td>/</td>
+  <td>mobile</td>
+  <td class="num"><span class="rate good">2.06 s</span></td>
+  <td class="num"><span class="rate good">0.001</span></td>
+  <td class="num"><span class="rate good">155 ms</span></td>
+  <td class="num"><span class="rate good">54 ms</span></td>
+  <td class="num">778 kB</td>
+  <td class="num">58</td>
+</tr>
+<tr>
+  <td>/</td>
+  <td>desktop</td>
+  <td class="num"><span class="rate good">696 ms</span></td>
+  <td class="num"><span class="rate good">0.001</span></td>
+  <td class="num"><span class="rate good">0 ms</span></td>
+  <td class="num"><span class="rate good">55 ms</span></td>
+  <td class="num">979 kB</td>
+  <td class="num">67</td>
+</tr>
+<tr>
+  <td>/shop</td>
+  <td>mobile</td>
+  <td class="num"><span class="rate good">1.89 s</span></td>
+  <td class="num"><span class="rate good">0.000</span></td>
+  <td class="num"><span class="rate good">141 ms</span></td>
+  <td class="num"><span class="rate good">48 ms</span></td>
+  <td class="num">744 kB</td>
+  <td class="num">97</td>
+</tr>
+<tr>
+  <td>/shop</td>
+  <td>desktop</td>
+  <td class="num"><span class="rate good">1.83 s</span></td>
+  <td class="num"><span class="rate good">0.000</span></td>
+  <td class="num"><span class="rate good">0 ms</span></td>
+  <td class="num"><span class="rate good">43 ms</span></td>
+  <td class="num">670 kB</td>
+  <td class="num">121</td>
+</tr>
+<tr>
+  <td>/products/apple</td>
+  <td>mobile</td>
+  <td class="num"><span class="rate good">1.86 s</span></td>
+  <td class="num"><span class="rate good">0.000</span></td>
+  <td class="num"><span class="rate good">142 ms</span></td>
+  <td class="num"><span class="rate good">47 ms</span></td>
+  <td class="num">372 kB</td>
+  <td class="num">47</td>
+</tr>
+<tr>
+  <td>/products/apple</td>
+  <td>desktop</td>
+  <td class="num"><span class="rate good">1.41 s</span></td>
+  <td class="num"><span class="rate good">0.000</span></td>
+  <td class="num"><span class="rate good">0 ms</span></td>
+  <td class="num"><span class="rate good">44 ms</span></td>
+  <td class="num">356 kB</td>
+  <td class="num">49</td>
+</tr>
+<tr>
+  <td>/cart</td>
+  <td>mobile</td>
+  <td class="num"><span class="rate needs-work">2.75 s</span></td>
+  <td class="num"><span class="rate good">0.000</span></td>
+  <td class="num"><span class="rate good">136 ms</span></td>
+  <td class="num"><span class="rate good">54 ms</span></td>
+  <td class="num">328 kB</td>
+  <td class="num">39</td>
+</tr>
+<tr>
+  <td>/cart</td>
+  <td>desktop</td>
+  <td class="num"><span class="rate good">744 ms</span></td>
+  <td class="num"><span class="rate good">0.001</span></td>
+  <td class="num"><span class="rate good">0 ms</span></td>
+  <td class="num"><span class="rate good">45 ms</span></td>
+  <td class="num">323 kB</td>
+  <td class="num">39</td>
+</tr>
+</tbody></table></div>
+<p class="lede">LCP is when the main content finishes drawing, CLS is how much the page moves while loading,
+TBT is how long it is frozen to taps, TTFB is the server's own response time.
+Green is within Google's "good" range, amber needs work, red is poor.</p>
+
+<h2>What is working well</h2>
+<ul class="good-list">
+<li><strong>Speed is genuinely good.</strong> Every page we tested is inside Google's "good"
+range on all four of its measures, on a mid-range Android phone over 4G. Most shops we
+look at are not.</li>
+<li><strong>The page does not shift while it loads.</strong> Layout movement measured
+0.000–0.001 across every page; anything under 0.1 is considered good. That is the
+difference between tapping "add to cart" and tapping an advert by accident.</li>
+<li><strong>The admin area is properly locked.</strong> Both the pages and the actions
+behind them independently check that the signed-in user is the owner, so knowing the
+address of an admin page is not enough to reach it. This is the single most common
+serious flaw in shops built on this stack, and it is absent here.</li>
+<li><strong>HTTPS is set up correctly and strictly</strong>, including the header that tells
+browsers never to try the unencrypted version, with the strongest setting.</li>
+<li><strong>No secrets are exposed in the code sent to visitors.</strong> The one key-shaped
+value in the JavaScript is Supabase's public "anon" key, which is designed to be there.
+We decoded it to confirm.</li>
+<li><strong>Pages are compressed and cached at the edge</strong>, which is why the server
+responds as quickly as it does.</li>
+</ul>
+
+<h2>Findings</h2>
+
+<article class="finding high">
+  <h3>The shopping assistant can be talked into reading tables it was never meant to see</h3>
+  <div class="tags">
+    <span class="tag high">High</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">security</span>
+  </div>
+
+  <h4>What we found</h4>
+  <p>The chat assistant answers product questions by writing a database query and running it.
+  That is a sound design, and it is deliberately fenced in: a list of three tables it is
+  allowed to touch, and a check that refuses anything else. The check reads the table name
+  that follows each <code>FROM</code> or <code>JOIN</code>, but SQL allows several tables to be
+  listed after a single <code>FROM</code>, separated by commas — and only the first one is
+  ever checked. We ran the site's own safety check against a set of queries to confirm
+  exactly where the line falls:</p>
+<pre>SELECT * FROM products JOIN orders ON true   -&gt; blocked
+SELECT * FROM products WHERE id IN
+  (SELECT product_id FROM orders)            -&gt; blocked
+
+SELECT * FROM products, orders               -&gt; ALLOWED
+SELECT * FROM products, pg_stat_activity     -&gt; ALLOWED
+SELECT pg_sleep(30)                          -&gt; ALLOWED
+
+(“blocked” is the site’s own error: Table not allowed: orders)</pre>
+  <p>The chat box is open to anyone, with no sign-in, and the queries it runs are written by
+  an AI model from whatever a visitor types. So the way in is persuasion, not a crafted
+  request.</p>
+
+  <h4>Why it matters</h4>
+  <p>This is the layer meant to stop the assistant wandering outside the product catalogue,
+  and it can be stepped around. <strong>Whether anything actually escapes depends on one
+  thing we cannot see from outside: what the database account behind the assistant is
+  allowed to read.</strong> The design notes in the codebase are careful and correct that
+  this account cannot <em>write</em> anything — that part holds, and it rules out a whole
+  class of damage. But read permission is a separate setting, and nothing in the code
+  records how it was granted. If it can only read the three catalogue tables, this is a
+  broken lock on an interior door and the fix below is a tidy-up. If it can read the tables
+  holding orders, addresses or customer profiles, then a determined visitor could coax
+  customer details out of the chat box, and it becomes the most urgent item here.</p>
+
+  <h4>How to check which one it is</h4>
+  <p>Run this as the assistant's own database user. It takes about a minute and settles the
+  severity:</p>
+<pre>SELECT table_schema, table_name, privilege_type
+FROM information_schema.role_table_grants
+WHERE grantee = 'chatbot_readonly'
+ORDER BY table_schema, table_name;</pre>
+
+  <h4>How to fix it</h4>
+  <p>Two changes, and we would do both regardless of what the check above returns:</p>
+  <ol>
+    <li><strong>Make the database enforce it, not the text check.</strong> Grant the
+    assistant's account <code>SELECT</code> on exactly the three catalogue tables and nothing
+    else. Then a query that reaches for another table fails in the database itself, whatever
+    wording gets past the application. This is the real fix — the one that does not depend on
+    anticipating every way SQL can be written.</li>
+    <li><strong>Tighten the check in <code>app/_lib/chatbot/sqlGuard.js</code></strong> so it
+    reads every table in a comma-separated list rather than only the first, and rejects a
+    query with no <code>FROM</code> at all. Keep it — defence in depth is why the two-table
+    trick was the only thing we found — but treat it as the second line, not the first.</li>
+  </ol>
+
+  <h4>Effort</h4>
+  <p>Quick. The permission change is a few lines of SQL; the code change is one function.
+  Budget an afternoon including testing that ordinary product questions still work.</p>
+
+  <h4>Where</h4><p><code>app/_lib/chatbot/sqlGuard.js</code> · <code>app/api/chat/route.js</code></p>
+</article>
+
+<article class="finding medium">
+  <h3>On phones, the chat button sits on top of the "add to cart" control</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">usability</span>
+  </div>
+
+  <h4>What we found</h4>
+  <p>The chat bubble is pinned to the bottom-right corner of the screen. On the shop listing
+  at phone width the products are laid out two to a row, each with a round "add to cart"
+  button in its own bottom-right corner — so the chat bubble covers the add-to-cart button of
+  whichever product is at the bottom right of the screen. As the customer scrolls, that is a
+  different product every time. This is visible in the screenshot taken during testing
+  (<code>screenshots/saam-s-store-vercel-app-shop-mobile-above-fold.png</code>): the chat
+  bubble overlaps the cart button on the fourth product tile.</p>
+
+  <h4>Why it matters</h4>
+  <p>It sits on the one control that starts a purchase, on the page customers browse most, on
+  the device most of them use. A shopper who taps it gets a chat window instead of a product
+  in their basket. Nothing errors, nothing gets logged, and the sale quietly does not happen —
+  which is why this kind of thing survives for months.</p>
+
+  <h4>How to fix it</h4>
+  <p>Either lift the chat button above the product grid's own controls on small screens, or
+  give the listing extra bottom padding so no tile's cart button lands under it, or hide the
+  bubble while the customer is scrolling the grid. The first is the smallest change.</p>
+
+  <h4>Effort</h4>
+  <p>Quick. A styling change and a look at it on a real phone.</p>
+
+  <h4>Where</h4><p><code>https://saam-s-store.vercel.app/shop</code> — phone widths only</p>
+</article>
+
+<article class="finding medium">
+  <h3>Main content takes too long to appear (LCP 2.75 s)</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">performance</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>LCP 2.75 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for &quot;good&quot; is 2.50 s.</pre>
+  <h4>Why it matters</h4>
+  <p>On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.75 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.</p>
+  <h4>How to fix it</h4>
+  <p>Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.</p>
+  <h4>Where</h4><p><code>https://saam-s-store.vercel.app/cart</code></p>
+</article>
+
+<article class="finding medium">
+  <h3>Nothing limits how often the chat assistant can be used</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Moderate</span>
+    <span class="tag plain">security</span>
+  </div>
+
+  <h4>What we found</h4>
+  <p>Every message sent to the assistant runs a chain of paid AI calls — working out what was
+  asked, writing a database query, writing the answer, and reading it aloud if voice is
+  switched on. We searched the application for any per-visitor or per-address ceiling on this
+  and found none. There is also no sign-in required to use it.</p>
+
+  <h4>Why it matters</h4>
+  <p>Two consequences, both about cost rather than data. The first is the bill: anyone can
+  script a loop against the chat box and every message is charged to the store's AI account,
+  with nothing to stop it before the invoice arrives. The second is availability: the
+  assistant holds a pool of five database connections, and the safety check permits a query
+  that simply tells the database to wait. A handful of those in parallel and the assistant
+  stops answering for real customers — the shop itself keeps working, which is why this is
+  medium rather than high.</p>
+
+  <h4>How to fix it</h4>
+  <p>Add a per-address and per-session rate limit in front of the chat route — Redis is already
+  in the stack for session memory, so the counter has somewhere to live. Pair it with a daily
+  spending cap on the AI account, which is the backstop that works even if the limiter is
+  wrong. Setting a statement timeout on the assistant's database account closes the waiting-query
+  case at the same time.</p>
+
+  <h4>Effort</h4>
+  <p>Moderate. The limiter is half a day; agreeing the right thresholds takes longer than
+  building it.</p>
+
+  <h4>Where</h4><p><code>app/api/chat/route.js</code></p>
+</article>
+
+<h2>What we would do first</h2>
+<p><strong>Before anything else — the one-minute check.</strong> Run the permissions query from
+the first finding. Everything below assumes the answer comes back clean; if it does not, that
+finding stops being a tidy-up and the order changes, so it is worth knowing before any work is
+scheduled.</p>
+
+<p><strong>This week.</strong> Lock the assistant's database account down to the three catalogue
+tables, and fix the comma case in the safety check. These belong together — the first makes the
+rule real, the second keeps the friendly error message — and between them they close the only
+item here we would call urgent. Add a statement timeout on that same account while it is open;
+it is one line and it removes the waiting-query trick at the same time. Then move the chat
+bubble off the add-to-cart button: it is a styling change, and it is the only item in this
+report that is plausibly costing sales today.</p>
+
+<p><strong>Next.</strong> Rate-limit the chat route and put a daily cap on the AI account. This
+is not urgent while the assistant is quiet, but it wants to be in place <em>before</em> the store
+is busy rather than after the first surprising invoice — and the cap is worth setting today even
+if the limiter waits. Alongside it, the four security headers: half an hour of configuration
+applied once at the edge, and the kind of thing that is easiest to do while nobody is under
+pressure.</p>
+
+<p><strong>Later, if worth it.</strong> The cart page is a quarter of a second outside Google's
+"good" range on a phone, and everything else is inside it. That is a genuine finding and a small
+one; it is worth an hour when someone is already in that code, not a scheduled piece of work. The
+dependency updates in the hygiene list are the same shape — routine maintenance, no known
+exposure on this site.</p>
+
+<p>The two items in the first paragraph are, together, an afternoon. We would rather do that
+afternoon and tell you the rest can wait than turn a short list into a long one.</p>
+
+<h2>What we did not test</h2>
+<p>We tested the public storefront and read the source code. We did not sign in as a customer,
+so the account pages, order history and the checkout beyond its first step are unexamined — on a
+shop, that is where a meaningful amount of the code lives and we would expect to have more to say
+about it. We did not attempt any active testing: nothing was submitted to a form, no address was
+guessed at, and the assistant was not actually prompted into running the queries described above
+— the safety check was tested directly, in isolation, against the site's own code. Two figures
+that a report like this often quotes are deliberately absent: we could not verify the HTTPS
+certificate itself, because our testing setup inspects its own certificate rather than the
+server's, and the response times below were measured from a data centre close to where the site
+is hosted, so treat them as a floor rather than as what a customer in Pakistan or Australia
+experiences. The comparison between pages is sound; the absolute numbers flatter the site.</p>
+
+<h2>Appendix: hygiene</h2>
+<p class="lede">True, worth doing, not urgent. These are listed for completeness rather than because they need attention this month.</p>
+
+<article class="finding low">
+  <h3>4 standard security header(s) are not set</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">security</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>Content-Security-Policy — not present
+X-Content-Type-Options — not present
+X-Frame-Options / frame-ancestors — not present
+Referrer-Policy — not present
+
+Present: HSTS</pre>
+  <h4>Why it matters</h4>
+  <p>These headers are the browser-side defences a site opts into. Individually none of them is a vulnerability; together their absence means a bug elsewhere has nothing standing in its way.</p>
+  <h4>How to fix it</h4>
+  <p>Set them once at the edge or in middleware so every response carries them: Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust. Send `X-Content-Type-Options: nosniff` on all responses. Send `X-Frame-Options: SAMEORIGIN`, or `frame-ancestors 'self'` in the Content-Security-Policy. Send `Referrer-Policy: strict-origin-when-cross-origin`.</p>
+  <h4>Where</h4><p><code>https://saam-s-store.vercel.app/</code></p>
+</article>
+
+<article class="finding low">
+  <h3>Dependency updates — routine, with one worth reading twice</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">maintenance</span>
+  </div>
+
+  <h4>What we found</h4>
+  <p>A dependency scan reports eight packages with published advisories, one of them marked
+  critical. We checked each against how this site is actually built and deployed, because that
+  headline number is misleading on its own:</p>
+<pre>next 16.2.12   "critical" — unauthenticated code execution ... on Windows-hosted servers.
+               This site runs on Vercel (Linux). Does not apply.
+
+next 16.2.12   "critical" — code execution in image handling when AVIF is enabled.
+               AVIF is not enabled (no `formats` set, so the default WebP applies).
+               Does not apply as configured — but do not switch AVIF on before upgrading.
+
+sharp         libvips image-processing advisories. Worth the upgrade: the image
+               optimiser accepts images from lh3.googleusercontent.com with no path
+               restriction, and that host serves user-uploaded content.
+
+brace-expansion, browserslist, js-yaml, nanoid, postcss
+               Build-time and indirect. No path to them from anything a visitor loads.</pre>
+
+  <h4>Why it matters</h4>
+  <p>Not much, today — which is the point of saying so plainly. The two frightening-sounding
+  entries do not apply to this deployment, and reporting them as critical would misrepresent
+  the site. The real content of this item is: upgrade on the normal cycle, and tighten the
+  image-optimiser host list while doing it.</p>
+
+  <h4>How to fix it</h4>
+  <p>Upgrade <code>next</code> and <code>sharp</code> at the next maintenance window. Add a
+  <code>pathname</code> restriction to each entry in <code>next.config.mjs</code>'s
+  <code>remotePatterns</code> so only the store's own image paths can be fetched and resized.</p>
+
+  <h4>Where</h4><p><code>package.json</code> · <code>next.config.mjs</code></p>
+</article>
+
+<article class="finding low">
+  <h3>Text is invisible for a moment while the fonts load</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">performance</span>
+  </div>
+
+  <h4>What we found</h4>
+  <p>Three font files totalling 89 kB on the home page (37 kB on the others) are loaded in a way
+  that leaves the text they style blank until they arrive, rather than showing the text
+  immediately in a fallback face.</p>
+
+  <h4>Why it matters</h4>
+  <p>On a good connection nobody notices. On a slow one the headings are briefly missing on a
+  page that is otherwise already drawn. It is listed here rather than above because the site's
+  measured speed is good and this is at the margin.</p>
+
+  <h4>How to fix it</h4>
+  <p>Next.js sets <code>font-display: swap</code> by default with <code>next/font</code>;
+  confirm the fonts are loaded through it rather than by a plain stylesheet rule.</p>
+
+  <h4>Where</h4><p>All tested pages</p>
+</article>
+
+<article class="finding low">
+  <h3>No robots.txt and no sitemap</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">discoverability</span>
+  </div>
+
+  <h4>What we found</h4>
+  <p>Both <code>/robots.txt</code> and <code>/sitemap.xml</code> return the site's 404 page. The
+  home page itself is indexable — we checked that it carries no instruction telling search
+  engines to skip it — so this is an omission rather than a block.</p>
+
+  <h4>Why it matters</h4>
+  <p>Search engines will still find the shop by following links, but a sitemap is how a store
+  tells them about every product page directly, including ones nothing links to yet. On a
+  catalogue that grows, this is the difference between new products appearing in search in days
+  rather than eventually.</p>
+
+  <h4>How to fix it</h4>
+  <p>Next.js generates both from a file: add <code>app/sitemap.js</code> that lists the product
+  and category pages from the database, and <code>app/robots.js</code>. An afternoon, and it
+  keeps itself current after that.</p>
+
+  <h4>Where</h4><p><code>https://saam-s-store.vercel.app/robots.txt</code>, <code>/sitemap.xml</code></p>
+</article>
+
+<article class="finding low">
+  <h3>Some catalogue entries still hold placeholder content</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">content</span>
+  </div>
+
+  <h4>What we found</h4>
+  <p>On the shop listing, the product named "Apple" shows a photograph of a jar of cashew cacao
+  spread and has "Apple" as its entire description; "Chips" shows a bag of chocolate coins;
+  "Neutella Jug" appears to be a misspelling. Screenshots of both pages are in the folder
+  accompanying this report.</p>
+
+  <h4>Why it matters</h4>
+  <p>This is not an engineering fault and we would normally leave it out — but a shopper cannot
+  tell the difference between test data and a mistake, and mismatched pictures on a shop page
+  cost trust faster than a slow load does. Mentioned once, here, in case the live catalogue was
+  not meant to still hold these.</p>
+
+  <h4>How to fix it</h4>
+  <p>Review the catalogue in the admin area and remove or complete the sample rows.</p>
+
+  <h4>Where</h4><p><code>https://saam-s-store.vercel.app/shop</code></p>
+</article>
+
+<h2>Appendix: how to reproduce these figures</h2>
+<p>Every number in this report came from these commands, run on 10 September 2026. Re-running them will produce the same measurements, allowing for normal network variation.</p>
+<pre>SKILL=.claude/skills/web-audit
+OUT=audits/saam-s-store/2026-09-10
+
+node $SKILL/scripts/collect-perf.mjs \
+  https://saam-s-store.vercel.app/ \
+  https://saam-s-store.vercel.app/shop \
+  https://saam-s-store.vercel.app/products/apple \
+  https://saam-s-store.vercel.app/cart \
+  --out $OUT --runs 3 --all-profiles
+
+node $SKILL/scripts/check-headers.mjs \
+  https://saam-s-store.vercel.app/ \
+  https://saam-s-store.vercel.app/shop \
+  https://saam-s-store.vercel.app/cart \
+  --out $OUT
+
+node $SKILL/scripts/scan-source.mjs &lt;path-to-repo&gt; --out $OUT</pre>
+<p class="lede">The SQL safety check in the first finding was tested separately, by importing
+<code>app/_lib/chatbot/sqlGuard.js</code> from the repository and calling it directly with the
+queries shown. Nothing in that test reached the live site or its database.</p>
+
+<footer>
+<p>Testing was limited to publicly reachable pages plus a review of the source code provided.
+
+Sites change: this report describes Saam's Store as it was on 10 September 2026.</p>
+</footer>
+</div>

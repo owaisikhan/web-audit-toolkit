@@ -1,0 +1,246 @@
+{
+  "tool": "scan-source",
+  "collectedAt": "2026-09-10T19:33:59.516Z",
+  "command": "node scan-source.mjs /home/user/ammar-sagheer/saam-s-store",
+  "repo": "/home/user/ammar-sagheer/saam-s-store",
+  "filesScanned": 134,
+  "routes": [
+    {
+      "file": "app/_lib/actions.js",
+      "guarded": true,
+      "serverAction": true,
+      "client": false
+    },
+    {
+      "file": "app/about/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/account/page.js",
+      "guarded": true,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/addresses/page.js",
+      "guarded": true,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/categories/[id]/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/categories/new/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/categories/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/login/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": true
+    },
+    {
+      "file": "app/admin/messages/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/orders/[id]/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/orders/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/products/[id]/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/products/import/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/products/new/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/admin/products/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/api/chat/route.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/auth/callback/route.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/cart/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": true
+    },
+    {
+      "file": "app/checkout/page.js",
+      "guarded": true,
+      "serverAction": false,
+      "client": true
+    },
+    {
+      "file": "app/contact/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/order-confirmation/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/orders/page.js",
+      "guarded": true,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/privacy-policy/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/products/[slug]/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/refund-policy/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/settings/page.js",
+      "guarded": true,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/shop/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/terms/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/track-order/page.js",
+      "guarded": false,
+      "serverAction": false,
+      "client": false
+    },
+    {
+      "file": "app/wishlist/page.js",
+      "guarded": true,
+      "serverAction": false,
+      "client": false
+    }
+  ],
+  "notes": [],
+  "audit": {
+    "metadata": {
+      "vulnerabilities": {
+        "info": 0,
+        "low": 0,
+        "moderate": 1,
+        "high": 6,
+        "critical": 1,
+        "total": 8
+      },
+      "dependencies": {
+        "prod": 176,
+        "dev": 319,
+        "optional": 87,
+        "peer": 9,
+        "peerOptional": 0,
+        "total": 566
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "src-unguarded-endpoints",
+      "title": "1 server endpoint(s) show no authorisation check",
+      "severity": "high",
+      "category": "security",
+      "evidence": "app/api/chat/route.js\n\nSearched for: require(Role|Auth|User|PageRole)|getServerSession|auth\\(\\)|getUser\\(\\)|authorize|isAdmin|withAuth|ensureUser\nLogin, registration and root pages are excluded as public by design.\nThis is a text search. Confirm each one by reading it — a guard applied in middleware or a shared wrapper will not match here.",
+      "impact": "An endpoint that does not check who is calling can be called by anyone who knows the address. The common form of this bug is a route that confirms you are signed in but not that the record belongs to you, so changing an id in the URL returns another customer's data.",
+      "fix": "For each endpoint, establish what stops one signed-in user reading or changing another's data. Enforce it on the server — in the database with row-level security where the database supports it — not by hiding the link in the interface.",
+      "effort": "moderate",
+      "unconfirmed": true
+    },
+    {
+      "id": "src-dependency-vulns",
+      "title": "7 dependency advisories at high or critical severity",
+      "severity": "high",
+      "category": "security",
+      "evidence": "brace-expansion (high) — brace-expansion: DoS via exponential-time expansion of consecutive non-expanding {} groups\nbrowserslist (high) — Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM\njs-yaml (high) — JS-YAML: Quadratic CPU consumption in !!omap resolution (3.x and 4.x) — CVE-2026-59870 fix not backported\nnanoid (high) — nanoid: non-secure generators can loop indefinitely with negative size\nnext (critical) — Next.js: Unauthenticated Remote Code Execution on windows-hosted servers\npostcss (high) — PostCSS has XSS via Unescaped </style> in its CSS Stringify Output\nsharp (high) — sharp inherited vulnerabilities in libvips: CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, CVE-2026-35591\n\nTotals: 1 critical, 6 high, 1 moderate, 0 low across 8 package(s).\nBefore reporting: separate production from development dependencies, and check whether the vulnerable code path is reachable from anything the site serves. An advisory in a build-only package is not a vulnerability in the website.",
+      "impact": "Published vulnerabilities in libraries the site depends on are the easiest thing for an attacker to find, because the advisory tells them exactly what to look for.",
+      "fix": "Run `npm audit fix` for the ones that resolve cleanly, upgrade the rest deliberately, and record a decision for any that cannot be upgraded yet.",
+      "effort": "moderate",
+      "unconfirmed": true
+    }
+  ]
+}

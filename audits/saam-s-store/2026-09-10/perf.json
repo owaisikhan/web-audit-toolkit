@@ -1,0 +1,688 @@
+{
+  "tool": "collect-perf",
+  "collectedAt": "2026-09-10T20:08:58.210Z",
+  "command": "node collect-perf.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart --runs 3 --profile mobile,desktop",
+  "urls": [
+    "https://saam-s-store.vercel.app/",
+    "https://saam-s-store.vercel.app/shop",
+    "https://saam-s-store.vercel.app/products/apple",
+    "https://saam-s-store.vercel.app/cart"
+  ],
+  "runs": 3,
+  "profiles": [
+    "mobile",
+    "desktop"
+  ],
+  "pages": [
+    {
+      "url": "https://saam-s-store.vercel.app/",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 2064,
+            "fcp": 1644,
+            "ttfb": 53.79999999998836,
+            "tbt": 155,
+            "cls": 0.0007,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 14131,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 15,
+                "transfer": 254629,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 17,
+                "transfer": 406629,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11034,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 3,
+                "transfer": 91427,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 21,
+                "transfer": 18648,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 58,
+            "totalTransfer": 796498,
+            "thirdPartyTransfer": 0,
+            "thirdPartyHosts": []
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "3 web font file(s), 89 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://saam-s-store.vercel.app/",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 696,
+            "fcp": 656,
+            "ttfb": 54.69999999998254,
+            "tbt": 0,
+            "cls": 0.0005,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 14131,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 22,
+                "transfer": 616332,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11084,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 15,
+                "transfer": 254450,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 3,
+                "transfer": 91306,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 25,
+                "transfer": 15324,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 67,
+            "totalTransfer": 1002627,
+            "thirdPartyTransfer": 0,
+            "thirdPartyHosts": []
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "3 web font file(s), 89 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://saam-s-store.vercel.app/",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://saam-s-store.vercel.app/shop",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 1888,
+            "fcp": 1604,
+            "ttfb": 48,
+            "tbt": 141,
+            "cls": 0.0003,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "script": {
+                "count": 17,
+                "transfer": 258793,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 24,
+                "transfer": 402558,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11035,
+                "thirdPartyTransfer": 0
+              },
+              "document": {
+                "count": 1,
+                "transfer": 15550,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 1,
+                "transfer": 37815,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 53,
+                "transfer": 36254,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 97,
+            "totalTransfer": 762005,
+            "thirdPartyTransfer": 0,
+            "thirdPartyHosts": []
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 37 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://saam-s-store.vercel.app/shop",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 1828,
+            "fcp": 672,
+            "ttfb": 43.09999999997672,
+            "tbt": 0,
+            "cls": 0,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "font": {
+                "count": 1,
+                "transfer": 37813,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 17,
+                "transfer": 258757,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11035,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 36,
+                "transfer": 345952,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 65,
+                "transfer": 16934,
+                "thirdPartyTransfer": 0
+              },
+              "document": {
+                "count": 1,
+                "transfer": 15568,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 121,
+            "totalTransfer": 686059,
+            "thirdPartyTransfer": 0,
+            "thirdPartyHosts": []
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 37 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://saam-s-store.vercel.app/shop",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://saam-s-store.vercel.app/products/apple",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 1856,
+            "fcp": 1580,
+            "ttfb": 47.40000000002328,
+            "tbt": 142,
+            "cls": 0,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "script": {
+                "count": 17,
+                "transfer": 259405,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 7,
+                "transfer": 44333,
+                "thirdPartyTransfer": 0
+              },
+              "document": {
+                "count": 1,
+                "transfer": 10231,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11035,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 1,
+                "transfer": 37814,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 20,
+                "transfer": 18228,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 47,
+            "totalTransfer": 381046,
+            "thirdPartyTransfer": 0,
+            "thirdPartyHosts": []
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 37 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://saam-s-store.vercel.app/products/apple",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 1412,
+            "fcp": 556,
+            "ttfb": 44.20000000001164,
+            "tbt": 0,
+            "cls": 0,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11034,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 1,
+                "transfer": 37815,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 7,
+                "transfer": 30373,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 17,
+                "transfer": 259335,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 22,
+                "transfer": 15402,
+                "thirdPartyTransfer": 0
+              },
+              "document": {
+                "count": 1,
+                "transfer": 10230,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 49,
+            "totalTransfer": 364189,
+            "thirdPartyTransfer": 0,
+            "thirdPartyHosts": []
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 37 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://saam-s-store.vercel.app/products/apple",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://saam-s-store.vercel.app/cart",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 2752,
+            "fcp": 1408,
+            "ttfb": 53.90000000002328,
+            "tbt": 136,
+            "cls": 0.0001,
+            "rating": {
+              "lcp": "needs-work",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 5081,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 16,
+                "transfer": 257060,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11035,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 1,
+                "transfer": 37808,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 2,
+                "transfer": 7738,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 18,
+                "transfer": 17191,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 39,
+            "totalTransfer": 335913,
+            "thirdPartyTransfer": 0,
+            "thirdPartyHosts": []
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 2.75 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "LCP 2.75 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.75 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://saam-s-store.vercel.app/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 37 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://saam-s-store.vercel.app/cart",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 744,
+            "fcp": 576,
+            "ttfb": 44.79999999998836,
+            "tbt": 0,
+            "cls": 0.0005,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 5088,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11060,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 1,
+                "transfer": 37783,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 16,
+                "transfer": 257082,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 2,
+                "transfer": 5037,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 18,
+                "transfer": 15017,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 39,
+            "totalTransfer": 331067,
+            "thirdPartyTransfer": 0,
+            "thirdPartyHosts": []
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 37 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://saam-s-store.vercel.app/cart",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 2.75 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "LCP 2.75 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.75 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/cart",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "3 web font file(s), 89 kB, text hidden while they load",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "1 web font file(s), 37 kB, text hidden while they load",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/shop",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "1 web font file(s), 37 kB, text hidden while they load",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/products/apple",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "1 web font file(s), 37 kB, text hidden while they load",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/cart",
+      "unconfirmed": false
+    }
+  ]
+}

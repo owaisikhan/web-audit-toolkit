@@ -1,8 +1,10 @@
-# Audit outputs. This repo is public; audit runs contain unfixed security
-# findings about other people's live sites. They stay on disk, never here.
-audits/*
-!audits/.gitkeep
-!audits/README.md
+# Audit runs ARE tracked in this repo — see audits/README.md.
+#
+# This was deliberately reversed on 10 Sep 2026: the repo is a working
+# archive of client audits, and a before/after across two dated runs is the
+# most useful thing in it. Keep the repo PRIVATE. A run directory describes
+# unfixed findings on somebody's live site, and that is not something to
+# publish while it is still unfixed.
 
 node_modules/
 *.local/
