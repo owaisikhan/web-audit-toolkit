@@ -1,0 +1,12 @@
+# Audit outputs. This repo is public; audit runs contain unfixed security
+# findings about other people's live sites. They stay on disk, never here.
+audits/*
+!audits/.gitkeep
+!audits/README.md
+
+node_modules/
+*.local/
+
+# Incidental
+.DS_Store
+npm-debug.log*
