@@ -6,12 +6,18 @@ One directory per client, one dated directory per run:
 audits/
     saam-s-store/
         2026-09-10/          first audit
-            report.html      the deliverable, self-contained, prints to PDF
-            perf.json        Core Web Vitals, waterfall, transfer sizes
-            security.json    headers, cookies, TLS, tech disclosure
-            source.json      dependency + code scan (when the repo was in hand)
-            screenshots/     phone and laptop width, every page tested
-            TRIAGE.md        what was kept, what was dropped, and why
+            report-client.html  what you send. Print to PDF
+            report.html         your worklist: evidence, measurements, commands
+            report.md           the same as report.html, for diffing
+            narrative.md        the summary and the plan, written once by hand
+            TRIAGE.md           what was kept, what was dropped, and why
+            pages.json          which pages were probed, and why these were chosen
+            perf.json           Core Web Vitals, waterfall, transfer sizes
+            seo.json            indexability, head tags, headings, links
+            security.json       headers, cookies, TLS, tech disclosure
+            source.json         dependency + code scan (when the repo was in hand)
+            screenshots/        phone and laptop width, plus the JPEG thumbnails
+                                the reports embed
         2027-01-xx/          after the fixes, the before/after
     another-client/
         2026-07-02/
@@ -21,8 +27,14 @@ audits/
   `Saam's Store (new)`.
 - **Date**: `YYYY-MM-DD`, the day the collectors ran, not the day the report
   went out. Sorts correctly and matches the timestamps inside the JSON.
+- **`narrative.md` is the one file you write by hand.** It holds the summary
+  and the plan under `## Summary` and `## Plan` headings, and every report
+  reads it, so the prose is written once rather than pasted into each.
+- **Only `report-client.html` goes to the client.** `report.html` carries the
+  evidence and the reproduction commands, and `TRIAGE.md` records what you
+  threw out, which is the last thing you want forwarded.
 - Everything in a run directory comes from `--out` pointing at it. Point all
-  four scripts at the same directory and `report.mjs` picks up whatever is
+  the scripts at the same directory and `report.mjs` picks up whatever is
   there.
 - Never overwrite an old run to "refresh" it. A new date is a new directory,
   and that is the whole point of the layout.

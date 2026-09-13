@@ -5,6 +5,27 @@ person will re-run it on their laptop, on fibre, with a warm cache, get a
 different answer, and say your report is wrong. Everything here exists to
 make sure you win that exchange.
 
+## Choose the pages before you measure them
+
+A throttled browser load costs 10 to 20 seconds, so measuring a whole site is
+hours: 33 pages on two profiles at three runs each is 198 loads. An HTTP
+request costs milliseconds. `scripts/pick-pages.mjs` probes every page the
+sitemap publishes, or the links a page serves when there is no sitemap, and
+ranks them by what the server does before a browser is involved.
+
+Read its table, then decide. It cannot know that the checkout matters more
+than a privacy policy, and it says so. On one real shop it ranked thirty pages
+in seconds and found no slow route at all, but the discovery pass surfaced a
+checkout that four previous audits had never measured, which was worth more
+than the ranking.
+
+**It probes each page twice, and the two numbers mean different things.** The
+warm figure is what a page costs in the normal case and is what ranks. The gap
+to the cold figure is what the first visitor after a quiet spell waits. On
+serverless hosting that gap is often a second, and a single request cannot
+tell a cold start from a genuinely slow route: three pages of one shop read
+about a second on one pass and 120 ms on the next.
+
 ## Measure the condition your visitors are actually in
 
 The default in `scripts/collect-perf.mjs` is a throttled mobile profile,

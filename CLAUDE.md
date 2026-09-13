@@ -64,6 +64,10 @@ that ships with its TODO markers still in it is worse than no report.
 - `report-client.html` is theirs. Same findings, no apparatus. Print to PDF.
 - `report.md` mirrors `report.html`.
 
+All three are self-contained, with the screenshots embedded as data URIs, so
+they survive being emailed and print cleanly. The screenshots come from
+`collect-perf`, so a run without it has no pictures.
+
 **If you re-run a collector after writing the narrative, re-check every number
 in it.** The generated sections follow the JSON; the prose does not. Speed
 figures move on every run even when the site has not changed, and severity

@@ -156,18 +156,44 @@ rather than a pitch.
 
 ## The generator
 
-`scripts/report.mjs` reads the collectors' JSON and writes `report.html` and
-`report.md` with the structure above, the findings sorted, the evidence
-tables filled in and the reproduction commands appended. What it cannot write
-is the summary, the "what we would do first" plan, or the judgement about
-which findings are real. Those are the sections it leaves marked
-`<!-- TODO -->`, and a report that goes out with those still in it is worse
-than no report.
+`scripts/report.mjs` reads the collectors' JSON and writes three files with
+the structure above, the findings sorted, the evidence tables filled in and
+the reproduction commands appended.
 
-Two practical notes:
+| File | Who it is for |
+|---|---|
+| `report-client.html` | Them. The same findings and the same claims, banded by when you would act rather than by severity, with the evidence blocks, metric tables and reproduction commands removed. This is the one you send. |
+| `report.html` | You. Every finding with its quoted evidence, the measurements, and the commands that reproduce them. The worklist you fix from. |
+| `report.md` | The same content as `report.html`, for diffing and for pasting into email. |
 
-- **`report.html` is self-contained**, with styles inline and no external
-  requests, so it survives being emailed and prints to PDF cleanly.
-  Owners overwhelmingly prefer a PDF.
+**Two documents, one argument.** The split above is between a client report
+and your worklist, not between a simple version and a real one. The client
+edition keeps every claim and every fix; what it drops is the apparatus. That
+matters because of reader two: the developer the owner forwards it to is
+looking for a reason you are wrong, and a report that hides its evidence hands
+them one. Its footer says the working notes exist and are available on request,
+so they have somewhere to go.
+
+### The summary and the plan come from `narrative.md`
+
+Those two sections cannot be generated. Write them once in `narrative.md` in
+the output directory, under `## Summary` and `## Plan` headings, and every
+report picks them up. Without that file all three carry `<!-- TODO -->`
+markers, **and a report that goes out with those still in it is worse than no
+report.**
+
+Writing them in one place is not tidiness. Pasting the same prose into two
+files means correcting it in two places, and the numbers in it go stale every
+time a collector is re-run.
+
+Three practical notes:
+
+- **Every report is self-contained**, with styles inline, screenshots embedded
+  as data URIs and no external requests, so they survive being emailed and
+  print to PDF cleanly. Owners overwhelmingly prefer a PDF.
+- **Re-running a collector silently ages the prose.** The generated sections
+  follow the JSON; `narrative.md` does not. Speed figures move on every run
+  even when the site has not changed, and severity counts move with them.
+  `RUNBOOK.md` §7 has the check.
 - **Put a date and the tested URLs on the front page.** Sites change. A report
   without a date will be argued with in three months when the finding is gone.
