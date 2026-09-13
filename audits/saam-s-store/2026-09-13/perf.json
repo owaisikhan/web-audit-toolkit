@@ -1,7 +1,7 @@
 {
   "tool": "collect-perf",
-  "collectedAt": "2026-09-13T11:02:16.377Z",
-  "command": "node collect-perf.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart --runs 3 --profile mobile,desktop",
+  "collectedAt": "2026-09-13T12:45:13.753Z",
+  "command": "node collect-perf.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart --runs 3 --all-profiles",
   "urls": [
     "https://saam-s-store.vercel.app/",
     "https://saam-s-store.vercel.app/shop",
@@ -19,11 +19,11 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 2084,
-            "fcp": 1644,
-            "ttfb": 37.29999999998836,
-            "tbt": 262,
-            "cls": 0.0026,
+            "lcp": 2012,
+            "fcp": 1628,
+            "ttfb": 43.39999999999418,
+            "tbt": 327,
+            "cls": 0.0007,
             "rating": {
               "lcp": "good",
               "fcp": "good",
@@ -39,37 +39,37 @@
             "byKind": {
               "document": {
                 "count": 1,
-                "transfer": 14166,
+                "transfer": 14150,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 15,
-                "transfer": 254649,
+                "transfer": 254587,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 17,
-                "transfer": 406732,
+                "transfer": 406630,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
                 "count": 1,
-                "transfer": 11036,
+                "transfer": 11037,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 3,
-                "transfer": 91406,
+                "transfer": 91437,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 21,
-                "transfer": 18441,
+                "transfer": 18730,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 58,
-            "totalTransfer": 796430,
+            "totalTransfer": 796571,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -77,11 +77,11 @@
           "findings": [
             {
               "id": "perf-tbt-mobile",
-              "title": "Page freezes while scripts run (TBT 262 ms)",
+              "title": "Page freezes while scripts run (TBT 327 ms)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "TBT 262 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-              "impact": "The page is unresponsive to taps and clicks for about 262 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "evidence": "TBT 327 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 327 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
               "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/",
@@ -92,7 +92,7 @@
               "title": "3 web font file(s), 89 kB, text hidden while they load",
               "severity": "low",
               "category": "performance",
-              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
               "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
@@ -103,9 +103,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 536,
-            "fcp": 524,
-            "ttfb": 35,
+            "lcp": 892,
+            "fcp": 572,
+            "ttfb": 35.69999999999709,
             "tbt": 0,
             "cls": 0.0005,
             "rating": {
@@ -123,37 +123,37 @@
             "byKind": {
               "document": {
                 "count": 1,
-                "transfer": 14167,
+                "transfer": 14151,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 22,
-                "transfer": 616341,
+                "transfer": 616399,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
                 "count": 1,
-                "transfer": 11087,
+                "transfer": 11037,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 3,
-                "transfer": 91386,
+                "transfer": 91379,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 15,
-                "transfer": 254664,
+                "transfer": 254543,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 25,
-                "transfer": 16204,
+                "transfer": 16364,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 67,
-            "totalTransfer": 1003849,
+            "totalTransfer": 1003873,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -180,10 +180,10 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 1856,
-            "fcp": 1524,
+            "lcp": 1720,
+            "fcp": 1716,
             "ttfb": 34.70000000001164,
-            "tbt": 290,
+            "tbt": 274,
             "cls": 0.0003,
             "rating": {
               "lcp": "good",
@@ -200,37 +200,37 @@
             "byKind": {
               "script": {
                 "count": 17,
-                "transfer": 258882,
+                "transfer": 258849,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 24,
-                "transfer": 402290,
+                "transfer": 402398,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
                 "count": 1,
-                "transfer": 11069,
+                "transfer": 11037,
                 "thirdPartyTransfer": 0
               },
               "document": {
                 "count": 1,
-                "transfer": 15580,
+                "transfer": 15530,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 1,
-                "transfer": 37785,
+                "transfer": 37817,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 53,
-                "transfer": 37389,
+                "transfer": 34530,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 97,
-            "totalTransfer": 762995,
+            "totalTransfer": 760161,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -238,11 +238,11 @@
           "findings": [
             {
               "id": "perf-tbt-mobile",
-              "title": "Page freezes while scripts run (TBT 290 ms)",
+              "title": "Page freezes while scripts run (TBT 274 ms)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "TBT 290 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-              "impact": "The page is unresponsive to taps and clicks for about 290 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "evidence": "TBT 274 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 274 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
               "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/shop",
@@ -264,9 +264,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 972,
-            "fcp": 556,
-            "ttfb": 36.69999999998254,
+            "lcp": 1152,
+            "fcp": 636,
+            "ttfb": 35,
             "tbt": 0,
             "cls": 0,
             "rating": {
@@ -282,39 +282,39 @@
           },
           "resourceSummary": {
             "byKind": {
-              "stylesheet": {
-                "count": 1,
-                "transfer": 11069,
-                "thirdPartyTransfer": 0
-              },
               "font": {
                 "count": 1,
-                "transfer": 37784,
+                "transfer": 37817,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 36,
-                "transfer": 346060,
+                "transfer": 345864,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 17,
-                "transfer": 258787,
+                "transfer": 258878,
                 "thirdPartyTransfer": 0
               },
-              "document": {
+              "stylesheet": {
                 "count": 1,
-                "transfer": 15580,
+                "transfer": 11037,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 65,
-                "transfer": 20796,
+                "transfer": 20241,
+                "thirdPartyTransfer": 0
+              },
+              "document": {
+                "count": 1,
+                "transfer": 15579,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 121,
-            "totalTransfer": 690076,
+            "totalTransfer": 689416,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -341,10 +341,10 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 1500,
-            "fcp": 1468,
-            "ttfb": 35.39999999999418,
-            "tbt": 250,
+            "lcp": 1524,
+            "fcp": 1516,
+            "ttfb": 36.70000000001164,
+            "tbt": 281,
             "cls": 0.001,
             "rating": {
               "lcp": "good",
@@ -361,12 +361,12 @@
             "byKind": {
               "script": {
                 "count": 17,
-                "transfer": 259367,
+                "transfer": 259405,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 7,
-                "transfer": 44361,
+                "transfer": 44370,
                 "thirdPartyTransfer": 0
               },
               "document": {
@@ -376,22 +376,22 @@
               },
               "stylesheet": {
                 "count": 1,
-                "transfer": 11036,
+                "transfer": 11037,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 1,
-                "transfer": 37816,
+                "transfer": 37817,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 20,
-                "transfer": 18227,
+                "transfer": 17547,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 47,
-            "totalTransfer": 381039,
+            "totalTransfer": 380408,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -399,11 +399,11 @@
           "findings": [
             {
               "id": "perf-tbt-mobile",
-              "title": "Page freezes while scripts run (TBT 250 ms)",
+              "title": "Page freezes while scripts run (TBT 281 ms)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "TBT 250 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-              "impact": "The page is unresponsive to taps and clicks for about 250 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "evidence": "TBT 281 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 281 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
               "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/products/apple",
@@ -425,11 +425,11 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 1296,
-            "fcp": 516,
-            "ttfb": 36.20000000001164,
+            "lcp": 1574,
+            "fcp": 514,
+            "ttfb": 38.94999999999709,
             "tbt": 0,
-            "cls": 0.0005,
+            "cls": 0,
             "rating": {
               "lcp": "good",
               "fcp": "good",
@@ -437,7 +437,7 @@
               "tbt": "good",
               "cls": "good"
             },
-            "runs": 3,
+            "runs": 2,
             "profile": "desktop",
             "profileLabel": "Desktop, unthrottled"
           },
@@ -445,27 +445,27 @@
             "byKind": {
               "stylesheet": {
                 "count": 1,
-                "transfer": 11068,
+                "transfer": 11036,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 1,
-                "transfer": 37785,
-                "thirdPartyTransfer": 0
-              },
-              "script": {
-                "count": 17,
-                "transfer": 259402,
+                "transfer": 37817,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 7,
-                "transfer": 30419,
+                "transfer": 30427,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 17,
+                "transfer": 259434,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 22,
-                "transfer": 15049,
+                "transfer": 16033,
                 "thirdPartyTransfer": 0
               },
               "document": {
@@ -475,7 +475,7 @@
               }
             },
             "totalRequests": 49,
-            "totalTransfer": 363954,
+            "totalTransfer": 364978,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -502,10 +502,10 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 2920,
-            "fcp": 1340,
-            "ttfb": 42.90000000002328,
-            "tbt": 263,
+            "lcp": 2964,
+            "fcp": 1304,
+            "ttfb": 38.89999999999418,
+            "tbt": 272,
             "cls": 0.0001,
             "rating": {
               "lcp": "needs-work",
@@ -522,12 +522,12 @@
             "byKind": {
               "document": {
                 "count": 1,
-                "transfer": 5081,
+                "transfer": 5082,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 16,
-                "transfer": 257091,
+                "transfer": 257093,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
@@ -537,7 +537,7 @@
               },
               "font": {
                 "count": 1,
-                "transfer": 37808,
+                "transfer": 37810,
                 "thirdPartyTransfer": 0
               },
               "image": {
@@ -547,12 +547,12 @@
               },
               "other": {
                 "count": 18,
-                "transfer": 17251,
+                "transfer": 17228,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 39,
-            "totalTransfer": 336044,
+            "totalTransfer": 336026,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -560,11 +560,11 @@
           "findings": [
             {
               "id": "perf-lcp-mobile",
-              "title": "Main content takes too long to appear (LCP 2.92 s)",
+              "title": "Main content takes too long to appear (LCP 2.96 s)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "LCP 2.92 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
-              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.92 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "evidence": "LCP 2.96 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.96 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
               "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/cart",
@@ -572,11 +572,11 @@
             },
             {
               "id": "perf-tbt-mobile",
-              "title": "Page freezes while scripts run (TBT 263 ms)",
+              "title": "Page freezes while scripts run (TBT 272 ms)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "TBT 263 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-              "impact": "The page is unresponsive to taps and clicks for about 263 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "evidence": "TBT 272 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 272 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
               "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/cart",
@@ -598,9 +598,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 676,
-            "fcp": 480,
-            "ttfb": 36.100000000034925,
+            "lcp": 724,
+            "fcp": 528,
+            "ttfb": 36.60000000000582,
             "tbt": 0,
             "cls": 0.0005,
             "rating": {
@@ -621,19 +621,19 @@
                 "transfer": 5082,
                 "thirdPartyTransfer": 0
               },
+              "script": {
+                "count": 16,
+                "transfer": 257092,
+                "thirdPartyTransfer": 0
+              },
               "font": {
                 "count": 1,
-                "transfer": 37810,
+                "transfer": 37785,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
                 "count": 1,
                 "transfer": 11037,
-                "thirdPartyTransfer": 0
-              },
-              "script": {
-                "count": 16,
-                "transfer": 257102,
                 "thirdPartyTransfer": 0
               },
               "image": {
@@ -643,12 +643,12 @@
               },
               "other": {
                 "count": 18,
-                "transfer": 15091,
+                "transfer": 16024,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 39,
-            "totalTransfer": 331167,
+            "totalTransfer": 332065,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -674,11 +674,11 @@
   "findings": [
     {
       "id": "perf-tbt-mobile",
-      "title": "Page freezes while scripts run (TBT 262 ms)",
+      "title": "Page freezes while scripts run (TBT 327 ms)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "TBT 262 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-      "impact": "The page is unresponsive to taps and clicks for about 262 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "evidence": "TBT 327 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 327 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
       "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/",
@@ -686,11 +686,11 @@
     },
     {
       "id": "perf-tbt-mobile",
-      "title": "Page freezes while scripts run (TBT 290 ms)",
+      "title": "Page freezes while scripts run (TBT 274 ms)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "TBT 290 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-      "impact": "The page is unresponsive to taps and clicks for about 290 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "evidence": "TBT 274 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 274 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
       "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/shop",
@@ -698,11 +698,11 @@
     },
     {
       "id": "perf-tbt-mobile",
-      "title": "Page freezes while scripts run (TBT 250 ms)",
+      "title": "Page freezes while scripts run (TBT 281 ms)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "TBT 250 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-      "impact": "The page is unresponsive to taps and clicks for about 250 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "evidence": "TBT 281 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 281 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
       "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/products/apple",
@@ -710,11 +710,11 @@
     },
     {
       "id": "perf-lcp-mobile",
-      "title": "Main content takes too long to appear (LCP 2.92 s)",
+      "title": "Main content takes too long to appear (LCP 2.96 s)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "LCP 2.92 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
-      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.92 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "evidence": "LCP 2.96 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.96 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
       "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/cart",
@@ -722,11 +722,11 @@
     },
     {
       "id": "perf-tbt-mobile",
-      "title": "Page freezes while scripts run (TBT 263 ms)",
+      "title": "Page freezes while scripts run (TBT 272 ms)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "TBT 263 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-      "impact": "The page is unresponsive to taps and clicks for about 263 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "evidence": "TBT 272 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 272 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
       "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/cart",
@@ -737,7 +737,7 @@
       "title": "3 web font file(s), 89 kB, text hidden while they load",
       "severity": "low",
       "category": "performance",
-      "evidence": "https://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
       "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
       "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
       "effort": "quick",

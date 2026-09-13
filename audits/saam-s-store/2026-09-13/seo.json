@@ -1,7 +1,7 @@
 {
   "tool": "check-seo",
   "mode": "passive",
-  "collectedAt": "2026-09-13T10:58:29.039Z",
+  "collectedAt": "2026-09-13T12:41:57.491Z",
   "command": "node check-seo.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart",
   "urls": [
     "https://saam-s-store.vercel.app/",
@@ -16,6 +16,7 @@
     "sitemaps": []
   },
   "linksChecked": 30,
+  "sitemapUrlCount": 0,
   "pages": [
     {
       "url": "https://saam-s-store.vercel.app/",
@@ -118,7 +119,10 @@
           "https://saam-s-store.vercel.app/terms",
           "https://saam-s-store.vercel.app/refund-policy",
           "https://saam-s-store.vercel.app/privacy-policy"
-        ]
+        ],
+        "textHash": "28b2e466fa1ce8ae",
+        "textSample": "Everyday Products. Everyday Value.SAAM'SWhere smart choices, quality products, and everyday value come together.SHOP NOW",
+        "headerCanonicals": []
       }
     },
     {
@@ -237,7 +241,10 @@
           "https://saam-s-store.vercel.app/terms",
           "https://saam-s-store.vercel.app/refund-policy",
           "https://saam-s-store.vercel.app/privacy-policy"
-        ]
+        ],
+        "textHash": "f4c5dedd95ceb74c",
+        "textSample": "Showing 20 productsDefault SortingPrice: Low to HighPrice: High to LowNewest First-80%Only 1 left!Add to CartNeutella Ju",
+        "headerCanonicals": []
       }
     },
     {
@@ -310,7 +317,10 @@
           "https://saam-s-store.vercel.app/terms",
           "https://saam-s-store.vercel.app/refund-policy",
           "https://saam-s-store.vercel.app/privacy-policy"
-        ]
+        ],
+        "textHash": "17cd10ea7ca0b8bf",
+        "textSample": "Free Shipping On Orders Over $500HomeCategoriesBaby CareBeauty & Personal CareGrocery & GourmetHardware & ToolsHealth & ",
+        "headerCanonicals": []
       }
     },
     {
@@ -348,21 +358,36 @@
           "image": null
         },
         "jsonLd": 0,
-        "words": 7,
+        "words": 28,
         "images": {
-          "total": 0,
+          "total": 2,
           "missingAlt": []
         },
         "links": [
-          "https://saam-s-store.vercel.app/account",
+          "https://saam-s-store.vercel.app/",
+          "https://saam-s-store.vercel.app/shop?category=baby-care",
+          "https://saam-s-store.vercel.app/shop?category=beauty-personal-care",
+          "https://saam-s-store.vercel.app/shop?category=grocery-gourmet",
+          "https://saam-s-store.vercel.app/shop?category=hardware-tools",
+          "https://saam-s-store.vercel.app/shop?category=health-household",
+          "https://saam-s-store.vercel.app/shop?category=home-kitchen",
+          "https://saam-s-store.vercel.app/shop?category=office-stationary",
+          "https://saam-s-store.vercel.app/shop?category=pet-care",
+          "https://saam-s-store.vercel.app/shop?category=toys-games",
           "https://saam-s-store.vercel.app/shop",
+          "https://saam-s-store.vercel.app/track-order",
+          "https://saam-s-store.vercel.app/contact",
+          "https://saam-s-store.vercel.app/about",
+          "https://saam-s-store.vercel.app/account",
           "https://saam-s-store.vercel.app/cart",
           "https://saam-s-store.vercel.app/checkout",
-          "https://saam-s-store.vercel.app/track-order",
           "https://saam-s-store.vercel.app/terms",
           "https://saam-s-store.vercel.app/refund-policy",
           "https://saam-s-store.vercel.app/privacy-policy"
-        ]
+        ],
+        "textHash": "d8ed09d6d85132ee",
+        "textSample": "Free Shipping On Orders Over $500HomeCategoriesBaby CareBeauty & Personal CareGrocery & GourmetHardware & ToolsHealth & ",
+        "headerCanonicals": []
       }
     }
   ],
@@ -398,6 +423,18 @@
       "evidence": "11 characters on https://saam-s-store.vercel.app/:\n    \"Saamj Store\"",
       "impact": "A short title gives searchers little reason to click and gives search engines little to match a query against.",
       "fix": "Expand to roughly 50–60 characters describing what the page offers.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-meta-description-short",
+      "title": "The search-result description is very short",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "34 characters on https://saam-s-store.vercel.app/:\n    \"Everyday Products. Everyday Value.\"",
+      "impact": "A description this brief leaves most of the space Google gives it unused, and gives a searcher little reason to choose this result over the one above it. Under roughly 50 characters, Google is also more likely to discard it and pull its own sentence from the page instead.",
+      "fix": "Expand to 50–160 characters, describing what the page offers as a sentence a customer would read.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/",
       "unconfirmed": false
@@ -451,11 +488,10 @@
     }
   ],
   "positives": [
-    "Pages carry their own search-result descriptions.",
-    "Each page has exactly one main heading.",
-    "The site is configured to display properly on phones.",
-    "Every image carries a text alternative.",
-    "Page titles are present and sized to display fully in search results.",
-    "Every internal link followed resolved without an error or a redirect chain."
+    "Every page is set up to display properly on phones.",
+    "Every page declares the language it is written in.",
+    "All 78 images we saw carry a text alternative.",
+    "Nothing on the site tells search engines to stay away — every page tested is free to be listed.",
+    "All 30 internal links we followed resolved without an error or a redirect chain."
   ]
 }
