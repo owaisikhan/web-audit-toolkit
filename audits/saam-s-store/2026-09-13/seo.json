@@ -1,0 +1,461 @@
+{
+  "tool": "check-seo",
+  "mode": "passive",
+  "collectedAt": "2026-09-13T10:58:29.039Z",
+  "command": "node check-seo.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart",
+  "urls": [
+    "https://saam-s-store.vercel.app/",
+    "https://saam-s-store.vercel.app/shop",
+    "https://saam-s-store.vercel.app/products/apple",
+    "https://saam-s-store.vercel.app/cart"
+  ],
+  "robots": {
+    "url": "https://saam-s-store.vercel.app/robots.txt",
+    "present": false,
+    "disallow": [],
+    "sitemaps": []
+  },
+  "linksChecked": 30,
+  "pages": [
+    {
+      "url": "https://saam-s-store.vercel.app/",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Saamj Store"
+        ],
+        "descriptions": [
+          "Everyday Products. Everyday Value."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "SAAM'S"
+          },
+          {
+            "level": 3,
+            "text": "Free Shipping"
+          },
+          {
+            "level": 3,
+            "text": "Dedicated Support"
+          },
+          {
+            "level": 3,
+            "text": "Money-Back Guarantee"
+          },
+          {
+            "level": 2,
+            "text": "Shop by Category"
+          },
+          {
+            "level": 2,
+            "text": "Featured Products"
+          },
+          {
+            "level": 2,
+            "text": "What Our Customers Say"
+          },
+          {
+            "level": 3,
+            "text": "Shop"
+          },
+          {
+            "level": 3,
+            "text": "Support"
+          },
+          {
+            "level": 3,
+            "text": "Newsletter"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 153,
+        "images": {
+          "total": 33,
+          "missingAlt": []
+        },
+        "links": [
+          "https://saam-s-store.vercel.app/",
+          "https://saam-s-store.vercel.app/shop?category=baby-care",
+          "https://saam-s-store.vercel.app/shop?category=beauty-personal-care",
+          "https://saam-s-store.vercel.app/shop?category=grocery-gourmet",
+          "https://saam-s-store.vercel.app/shop?category=hardware-tools",
+          "https://saam-s-store.vercel.app/shop?category=health-household",
+          "https://saam-s-store.vercel.app/shop?category=home-kitchen",
+          "https://saam-s-store.vercel.app/shop?category=office-stationary",
+          "https://saam-s-store.vercel.app/shop?category=pet-care",
+          "https://saam-s-store.vercel.app/shop?category=toys-games",
+          "https://saam-s-store.vercel.app/shop",
+          "https://saam-s-store.vercel.app/track-order",
+          "https://saam-s-store.vercel.app/contact",
+          "https://saam-s-store.vercel.app/about",
+          "https://saam-s-store.vercel.app/account",
+          "https://saam-s-store.vercel.app/shop?category=clothing",
+          "https://saam-s-store.vercel.app/shop?category=test",
+          "https://saam-s-store.vercel.app/shop?category=test-category-2",
+          "https://saam-s-store.vercel.app/products/neutella-jug",
+          "https://saam-s-store.vercel.app/products/chips",
+          "https://saam-s-store.vercel.app/products/apple",
+          "https://saam-s-store.vercel.app/products/ammar",
+          "https://saam-s-store.vercel.app/products/snacks",
+          "https://saam-s-store.vercel.app/products/baby-calming-comfort-bath-lotion-set",
+          "https://saam-s-store.vercel.app/products/baby-nail-kit",
+          "https://saam-s-store.vercel.app/products/kitchen-blender",
+          "https://saam-s-store.vercel.app/products/hardware-tool-set",
+          "https://saam-s-store.vercel.app/cart",
+          "https://saam-s-store.vercel.app/checkout",
+          "https://saam-s-store.vercel.app/terms",
+          "https://saam-s-store.vercel.app/refund-policy",
+          "https://saam-s-store.vercel.app/privacy-policy"
+        ]
+      }
+    },
+    {
+      "url": "https://saam-s-store.vercel.app/shop",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Shop | Saamj Store"
+        ],
+        "descriptions": [
+          "Browse all products at Saamj Store"
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Shop"
+          },
+          {
+            "level": 3,
+            "text": "Search Products"
+          },
+          {
+            "level": 3,
+            "text": "Categories"
+          },
+          {
+            "level": 3,
+            "text": "Price Range"
+          },
+          {
+            "level": 2,
+            "text": "Filters"
+          },
+          {
+            "level": 3,
+            "text": "Search Products"
+          },
+          {
+            "level": 3,
+            "text": "Categories"
+          },
+          {
+            "level": 3,
+            "text": "Price Range"
+          },
+          {
+            "level": 3,
+            "text": "Shop"
+          },
+          {
+            "level": 3,
+            "text": "Support"
+          },
+          {
+            "level": 3,
+            "text": "Newsletter"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 98,
+        "images": {
+          "total": 36,
+          "missingAlt": []
+        },
+        "links": [
+          "https://saam-s-store.vercel.app/",
+          "https://saam-s-store.vercel.app/shop?category=baby-care",
+          "https://saam-s-store.vercel.app/shop?category=beauty-personal-care",
+          "https://saam-s-store.vercel.app/shop?category=grocery-gourmet",
+          "https://saam-s-store.vercel.app/shop?category=hardware-tools",
+          "https://saam-s-store.vercel.app/shop?category=health-household",
+          "https://saam-s-store.vercel.app/shop?category=home-kitchen",
+          "https://saam-s-store.vercel.app/shop?category=office-stationary",
+          "https://saam-s-store.vercel.app/shop?category=pet-care",
+          "https://saam-s-store.vercel.app/shop?category=toys-games",
+          "https://saam-s-store.vercel.app/shop",
+          "https://saam-s-store.vercel.app/track-order",
+          "https://saam-s-store.vercel.app/contact",
+          "https://saam-s-store.vercel.app/about",
+          "https://saam-s-store.vercel.app/account",
+          "https://saam-s-store.vercel.app/shop?category=clothing",
+          "https://saam-s-store.vercel.app/shop?category=test",
+          "https://saam-s-store.vercel.app/shop?category=test-category-2",
+          "https://saam-s-store.vercel.app/products/neutella-jug",
+          "https://saam-s-store.vercel.app/products/ice-cream-1",
+          "https://saam-s-store.vercel.app/products/chips",
+          "https://saam-s-store.vercel.app/products/apple",
+          "https://saam-s-store.vercel.app/products/bulk-test-product-4",
+          "https://saam-s-store.vercel.app/products/bulk-test-product-2",
+          "https://saam-s-store.vercel.app/products/bulk-test-product-1",
+          "https://saam-s-store.vercel.app/products/ammar",
+          "https://saam-s-store.vercel.app/products/reas",
+          "https://saam-s-store.vercel.app/products/test",
+          "https://saam-s-store.vercel.app/products/league-of-legend-cards",
+          "https://saam-s-store.vercel.app/products/vitamin-e-pills",
+          "https://saam-s-store.vercel.app/products/snacks",
+          "https://saam-s-store.vercel.app/products/baby-nail-kit",
+          "https://saam-s-store.vercel.app/products/pet-care-grooming-kit",
+          "https://saam-s-store.vercel.app/products/kitchen-blender",
+          "https://saam-s-store.vercel.app/products/hardware-tool-set",
+          "https://saam-s-store.vercel.app/products/baby-conditioner-cleansing-shampoo",
+          "https://saam-s-store.vercel.app/products/baby-calming-comfort-bath-lotion-set",
+          "https://saam-s-store.vercel.app/products/baby-care-essentials-gift-set",
+          "https://saam-s-store.vercel.app/cart",
+          "https://saam-s-store.vercel.app/checkout",
+          "https://saam-s-store.vercel.app/terms",
+          "https://saam-s-store.vercel.app/refund-policy",
+          "https://saam-s-store.vercel.app/privacy-policy"
+        ]
+      }
+    },
+    {
+      "url": "https://saam-s-store.vercel.app/products/apple",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Saamj Store"
+        ],
+        "descriptions": [
+          "Everyday Products. Everyday Value."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Apple"
+          },
+          {
+            "level": 2,
+            "text": "Related Products"
+          },
+          {
+            "level": 3,
+            "text": "Shop"
+          },
+          {
+            "level": 3,
+            "text": "Support"
+          },
+          {
+            "level": 3,
+            "text": "Newsletter"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 45,
+        "images": {
+          "total": 7,
+          "missingAlt": []
+        },
+        "links": [
+          "https://saam-s-store.vercel.app/",
+          "https://saam-s-store.vercel.app/shop?category=baby-care",
+          "https://saam-s-store.vercel.app/shop?category=beauty-personal-care",
+          "https://saam-s-store.vercel.app/shop?category=grocery-gourmet",
+          "https://saam-s-store.vercel.app/shop?category=hardware-tools",
+          "https://saam-s-store.vercel.app/shop?category=health-household",
+          "https://saam-s-store.vercel.app/shop?category=home-kitchen",
+          "https://saam-s-store.vercel.app/shop?category=office-stationary",
+          "https://saam-s-store.vercel.app/shop?category=pet-care",
+          "https://saam-s-store.vercel.app/shop?category=toys-games",
+          "https://saam-s-store.vercel.app/shop",
+          "https://saam-s-store.vercel.app/track-order",
+          "https://saam-s-store.vercel.app/contact",
+          "https://saam-s-store.vercel.app/about",
+          "https://saam-s-store.vercel.app/account",
+          "https://saam-s-store.vercel.app/products/vitamin-e-pills",
+          "https://saam-s-store.vercel.app/cart",
+          "https://saam-s-store.vercel.app/checkout",
+          "https://saam-s-store.vercel.app/terms",
+          "https://saam-s-store.vercel.app/refund-policy",
+          "https://saam-s-store.vercel.app/privacy-policy"
+        ]
+      }
+    },
+    {
+      "url": "https://saam-s-store.vercel.app/cart",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Saamj Store"
+        ],
+        "descriptions": [
+          "Everyday Products. Everyday Value."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 3,
+            "text": "Shop"
+          },
+          {
+            "level": 3,
+            "text": "Support"
+          },
+          {
+            "level": 3,
+            "text": "Newsletter"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 7,
+        "images": {
+          "total": 0,
+          "missingAlt": []
+        },
+        "links": [
+          "https://saam-s-store.vercel.app/account",
+          "https://saam-s-store.vercel.app/shop",
+          "https://saam-s-store.vercel.app/cart",
+          "https://saam-s-store.vercel.app/checkout",
+          "https://saam-s-store.vercel.app/track-order",
+          "https://saam-s-store.vercel.app/terms",
+          "https://saam-s-store.vercel.app/refund-policy",
+          "https://saam-s-store.vercel.app/privacy-policy"
+        ]
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "seo-h1-missing",
+      "title": "The page has no main heading",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "No <h1> found on https://saam-s-store.vercel.app/cart. First heading is an <h3>: \"Shop\".",
+      "impact": "The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing — only the markup is read.",
+      "fix": "Mark the page’s main heading as `<h1>`. One per page.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/cart",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-duplicate-title",
+      "title": "Several pages share the same title",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "\"Saamj Store\" is the title of 3 pages:\n    https://saam-s-store.vercel.app/\n    https://saam-s-store.vercel.app/products/apple\n    https://saam-s-store.vercel.app/cart",
+      "impact": "Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.",
+      "fix": "Give each page a title naming what is specific to it — the product, the category, the location — before the business name.",
+      "effort": "moderate",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-title-short",
+      "title": "The page title is very short",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "11 characters on https://saam-s-store.vercel.app/:\n    \"Saamj Store\"",
+      "impact": "A short title gives searchers little reason to click and gives search engines little to match a query against.",
+      "fix": "Expand to roughly 50–60 characters describing what the page offers.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-heading-skip",
+      "title": "Heading levels skip a step",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "On https://saam-s-store.vercel.app/, an <h3> follows an <h1>:\n    \"Free Shipping\"",
+      "impact": "Headings are the document outline. Skipping a level breaks how screen readers let a user jump through the page, and muddies which sections belong to which.",
+      "fix": "Choose heading levels by position in the outline, not by how large you want the text to look. Set size with CSS.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-open-graph-missing",
+      "title": "Links to this site look plain when shared",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "Missing og:title, og:description, og:image on https://saam-s-store.vercel.app/",
+      "impact": "When someone shares the link on WhatsApp, Facebook or LinkedIn, these tags decide whether it appears as a picture with a headline or as a bare URL. A bare URL gets noticeably fewer clicks.",
+      "fix": "Add `og:title`, `og:description` and an `og:image` of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own.",
+      "effort": "quick",
+      "url": "https://saam-s-store.vercel.app/",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-duplicate-meta",
+      "title": "Several pages share the same search-result description",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "\"Everyday Products. Everyday Value.…\" appears on 3 pages:\n    https://saam-s-store.vercel.app/\n    https://saam-s-store.vercel.app/products/apple\n    https://saam-s-store.vercel.app/cart",
+      "impact": "Identical descriptions make every result look the same in a list, so searchers cannot tell which page answers their question.",
+      "fix": "Write a description per page, or generate one from the page’s own content.",
+      "effort": "moderate",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-thin-content",
+      "title": "A page has very little text",
+      "severity": "info",
+      "category": "seo",
+      "evidence": "About 153 words of body text on https://saam-s-store.vercel.app/",
+      "impact": "Pages with little text rarely rank for anything beyond the business name, because there is nothing for a search engine to match a query against. Legitimate for a contact or login page; a problem for a page meant to attract visitors.",
+      "fix": "If this page is meant to bring in search traffic, expand it to answer the questions a customer would actually ask. If it is not, no action needed.",
+      "effort": "involved",
+      "url": "https://saam-s-store.vercel.app/",
+      "unconfirmed": true
+    }
+  ],
+  "positives": [
+    "Pages carry their own search-result descriptions.",
+    "Each page has exactly one main heading.",
+    "The site is configured to display properly on phones.",
+    "Every image carries a text alternative.",
+    "Page titles are present and sized to display fully in search results.",
+    "Every internal link followed resolved without an error or a redirect chain."
+  ]
+}
