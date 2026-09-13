@@ -15,6 +15,7 @@ could not see three days ago?
 |---|---|
 | `perf-tbt-mobile`, "Page freezes while scripts run" | **Measurement artifact, not a site regression. The final run produced none at all, so nothing was dropped from the shipped report.** TBT roughly doubled against 10 September (155 to 244, 141 to 283, 142 to 252, 136 to 250) while the site served byte-identical JavaScript: same script count, same script bytes, same total transfer on all four pages. LCP, CLS and TTFB are flat across the same interval. Measured five times on 13 September against a byte-identical payload every time, it swung by a factor of two. The home page read 262, 327, 244, 179 and 163; the shop 290, 274, 283, 202 and 173, against 155 and 141 on 10 September. The fourth run crossed the 200 ms threshold on one page by 2 ms; the fifth crossed it nowhere. Same site, same JavaScript, same day. That is the machine, not the shop. Dropped via `--drop perf-tbt-mobile`, per the rule now written into `README.md`. |
 | "The HTTPS certificate is valid for another 30 days." | Recorded issuer is `Anthropic`, the sandbox's intercepting proxy, not the site's CA. `README.md` says to discard every certificate and expiry finding when this happens. |
+| `seo-duplicate-content`, "Several pages show word-for-word the same content" | **Artifact of how the audit was run, not a site defect.** `/cart` and `/checkout` return identical body text, 28 words on the same hash. Both render "Your cart is empty. Continue Shopping", confirmed in the screenshots, because the audit runs as an anonymous visitor with nothing in the basket. With items in the cart the two pages would differ. The duplicate **titles** on those pages are real and are reported separately. |
 
 The three contradictory positives this run originally produced, claiming every
 page had a title, a description and one main heading while the findings said
@@ -118,6 +119,32 @@ One unreproducible occurrence is not a finding and it is not in the report. It
 is recorded here because an intermittent failure of the product data fetch on a
 shop's product page costs sales silently and shows up in no metric. Worth
 watching on the next run rather than raising now.
+
+## The URL set changed, and why
+
+Earlier runs measured four pages: the home page, the shop, `/products/apple`
+and the cart. This one adds `/checkout`, so the 10 September comparison stays
+exact on the original four and the checkout starts its history today.
+
+It was added on evidence rather than a hunch. `pick-pages.mjs` found the site
+publishes no sitemap, fell back to the links the home page serves, and turned
+one URL into thirty. Among them were `/checkout`, `/account` and `/track-order`,
+none of which four previous audits had touched, on a site where `SKILL.md` says
+the money is in the checkout.
+
+The probe's speed ranking was not what decided it. Measured warm, nothing on
+this site is a slow route: 30 pages sit around a 126 ms median and only `/shop`
+stands out, on weight rather than time, at 214 kB. Three pages did read about a
+second on a first pass and roughly 120 ms on the next, which is serverless cold
+start and the reason `pick-pages` now probes twice. So the checkout earned its
+place by being commercially important, exactly as the tool's own output tells
+you to decide.
+
+**What the checkout measurement is worth.** At 2.80 s on a phone it is the
+slowest page in the set, ahead of the cart at 2.73 s. But it was measured with
+an empty basket, so it rendered "Your cart is empty" rather than an order. That
+figure is a floor. A real checkout carrying line items, totals and a payment
+form will be slower, and reaching one needs a session we do not have.
 
 ## Method note
 

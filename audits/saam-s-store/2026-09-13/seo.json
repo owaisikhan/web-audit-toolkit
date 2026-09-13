@@ -1,13 +1,14 @@
 {
   "tool": "check-seo",
   "mode": "passive",
-  "collectedAt": "2026-09-13T14:13:42.895Z",
-  "command": "node check-seo.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart",
+  "collectedAt": "2026-09-13T15:33:17.748Z",
+  "command": "node check-seo.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart https://saam-s-store.vercel.app/checkout",
   "urls": [
     "https://saam-s-store.vercel.app/",
     "https://saam-s-store.vercel.app/shop",
     "https://saam-s-store.vercel.app/products/apple",
-    "https://saam-s-store.vercel.app/cart"
+    "https://saam-s-store.vercel.app/cart",
+    "https://saam-s-store.vercel.app/checkout"
   ],
   "robots": {
     "url": "https://saam-s-store.vercel.app/robots.txt",
@@ -389,6 +390,73 @@
         "textSample": "Free Shipping On Orders Over $500HomeCategoriesBaby CareBeauty & Personal CareGrocery & GourmetHardware & ToolsHealth & ",
         "headerCanonicals": []
       }
+    },
+    {
+      "url": "https://saam-s-store.vercel.app/checkout",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Saamj Store"
+        ],
+        "descriptions": [
+          "Everyday Products. Everyday Value."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 3,
+            "text": "Shop"
+          },
+          {
+            "level": 3,
+            "text": "Support"
+          },
+          {
+            "level": 3,
+            "text": "Newsletter"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 28,
+        "images": {
+          "total": 2,
+          "missingAlt": []
+        },
+        "links": [
+          "https://saam-s-store.vercel.app/",
+          "https://saam-s-store.vercel.app/shop?category=baby-care",
+          "https://saam-s-store.vercel.app/shop?category=beauty-personal-care",
+          "https://saam-s-store.vercel.app/shop?category=grocery-gourmet",
+          "https://saam-s-store.vercel.app/shop?category=hardware-tools",
+          "https://saam-s-store.vercel.app/shop?category=health-household",
+          "https://saam-s-store.vercel.app/shop?category=home-kitchen",
+          "https://saam-s-store.vercel.app/shop?category=office-stationary",
+          "https://saam-s-store.vercel.app/shop?category=pet-care",
+          "https://saam-s-store.vercel.app/shop?category=toys-games",
+          "https://saam-s-store.vercel.app/shop",
+          "https://saam-s-store.vercel.app/track-order",
+          "https://saam-s-store.vercel.app/contact",
+          "https://saam-s-store.vercel.app/about",
+          "https://saam-s-store.vercel.app/account",
+          "https://saam-s-store.vercel.app/cart",
+          "https://saam-s-store.vercel.app/checkout",
+          "https://saam-s-store.vercel.app/terms",
+          "https://saam-s-store.vercel.app/refund-policy",
+          "https://saam-s-store.vercel.app/privacy-policy"
+        ],
+        "textHash": "d8ed09d6d85132ee",
+        "textSample": "Free Shipping On Orders Over $500HomeCategoriesBaby CareBeauty & Personal CareGrocery & GourmetHardware & ToolsHealth & ",
+        "headerCanonicals": []
+      }
     }
   ],
   "findings": [
@@ -409,10 +477,21 @@
       "title": "Several pages share the same title",
       "severity": "medium",
       "category": "seo",
-      "evidence": "\"Saamj Store\" is the title of 3 pages:\n    https://saam-s-store.vercel.app/\n    https://saam-s-store.vercel.app/products/apple\n    https://saam-s-store.vercel.app/cart",
+      "evidence": "\"Saamj Store\" is the title of 4 pages:\n    https://saam-s-store.vercel.app/\n    https://saam-s-store.vercel.app/products/apple\n    https://saam-s-store.vercel.app/cart\n    https://saam-s-store.vercel.app/checkout",
       "impact": "Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.",
       "fix": "Give each page a title naming what is specific to it, such as the product, the category or the location, before the business name.",
       "effort": "moderate",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-duplicate-content",
+      "title": "Several pages show word-for-word the same content",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "2 pages have identical body text:\n    https://saam-s-store.vercel.app/cart\n    https://saam-s-store.vercel.app/checkout\n    beginning \"Free Shipping On Orders Over $500HomeCategoriesBaby CareBeauty & Personal CareGr…\"",
+      "impact": "When the same text is published at more than one address, search engines pick one to show and largely ignore the rest, and the choice is theirs rather than yours. Any links pointing at the copies count for less than they would if everything pointed at one page.",
+      "fix": "Keep one address as the real one and either remove the duplicates or add a canonical link on each copy pointing at it. Where the pages are meant to differ, the shared text is the thing to change.",
+      "effort": "involved",
       "unconfirmed": false
     },
     {
@@ -468,7 +547,7 @@
       "title": "Several pages share the same search-result description",
       "severity": "low",
       "category": "seo",
-      "evidence": "\"Everyday Products. Everyday Value.…\" appears on 3 pages:\n    https://saam-s-store.vercel.app/\n    https://saam-s-store.vercel.app/products/apple\n    https://saam-s-store.vercel.app/cart",
+      "evidence": "\"Everyday Products. Everyday Value.…\" appears on 4 pages:\n    https://saam-s-store.vercel.app/\n    https://saam-s-store.vercel.app/products/apple\n    https://saam-s-store.vercel.app/cart\n    https://saam-s-store.vercel.app/checkout",
       "impact": "Identical descriptions make every result look the same in a list, so searchers cannot tell which page answers their question.",
       "fix": "Write a description per page, or generate one from the page’s own content.",
       "effort": "moderate",
@@ -490,7 +569,7 @@
   "positives": [
     "Every page is set up to display properly on phones.",
     "Every page declares the language it is written in.",
-    "All 78 images we saw carry a text alternative.",
+    "All 80 images we saw carry a text alternative.",
     "Nothing on the site tells search engines to stay away, so every page tested is free to be listed.",
     "All 30 internal links we followed resolved without an error or a redirect chain."
   ]
