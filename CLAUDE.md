@@ -33,6 +33,7 @@ scripts are passive by default. **Do not add an active mode to any of them.**
 SKILL=.claude/skills/web-audit
 OUT=audits/<client-slug>/$(date +%F)      # lowercase-hyphenated slug, run date
 
+node $SKILL/scripts/pick-pages.mjs    <sitemap-url|URL...> --top 5   # which pages deserve a browser
 node $SKILL/scripts/collect-perf.mjs  URL... --out $OUT --runs 3 --all-profiles
 node $SKILL/scripts/check-headers.mjs URL... --out $OUT
 node $SKILL/scripts/check-seo.mjs     URL... --out $OUT
@@ -41,7 +42,10 @@ node $SKILL/scripts/report.mjs --out $OUT --site "Their Co" --url https://… [-
 ```
 
 Audit more than the homepage. It is the most optimised page on almost every
-site and the money is in the listing, the product page or the checkout. Give
+site and the money is in the listing, the product page or the checkout. On a
+site with more pages than you can measure, run `pick-pages.mjs` over the
+sitemap first: a browser load costs 10 to 20 seconds and an HTTP probe costs
+milliseconds, so it narrows the list on evidence in seconds. Give
 `check-seo` the **same URL list** as `collect-perf`: duplicate titles and
 descriptions can only be found by comparing pages against each other.
 

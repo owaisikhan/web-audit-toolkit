@@ -85,14 +85,15 @@ are the auditor's problem, not the script's:
 If either matters to the deliverable, run the two live collectors from a
 normal machine instead and generate the report from that JSON.
 
-## The five scripts
+## The six scripts
 
-Four collect, one writes up. Each collector writes one JSON file into the
-output directory and prints a summary; nothing interprets anything until the
-report step.
+One chooses which pages to spend time on, four collect, one writes up. Each
+collector writes one JSON file into the output directory and prints a summary;
+nothing interprets anything until the report step.
 
 | Script | Run it on | Writes |
 |---|---|---|
+| `pick-pages.mjs` | a sitemap URL, or a list of URLs | `pages.json` (with `--out`) and a ranked table on stdout: status, server response time and transfer size per page, with anything much slower or heavier than that site's median flagged. Costs seconds where a browser run costs hours, so it decides which pages `collect-perf` is worth spending on. Passive only. |
 | `collect-perf.mjs` | one or more live URLs | `perf.json`: LCP/CLS/TBT/TTFB/FCP per page per profile (median of N cold loads, Moto G-class 4G and/or desktop), request waterfall, transfer sizes, render-blocking assets, image and font waste, plus findings. Also `screenshots/` at phone and laptop width. |
 | `check-headers.mjs` | one or more live URLs | `security.json`: response headers, cookie flags, TLS certificate, framework/version disclosure, exposed source maps, secrets found in the JavaScript the site itself serves, `robots.txt`/`sitemap.xml`/`security.txt`. Passive only. |
 | `check-seo.mjs` | one or more live URLs | `seo.json`: indexability (`noindex` meta and header, `robots.txt`), canonicals including ones declared in the HTTP `Link` header, titles, descriptions, heading outline, viewport, `lang`, image alt text, Open Graph, HTTP status, thin and duplicate content, dead-end pages, orphan pages found by comparing the sitemap against the link graph, plus broken internal links and redirect chains. Passive only. |
@@ -107,6 +108,10 @@ still be unusable on a phone. Look at them.
 ```bash
 SKILL=.claude/skills/web-audit
 OUT=audits/bloomfield/2026-09-10          # client slug, then the date of the run
+
+# 0. Which pages are worth a browser. Seconds, against hours for a full
+#    perf run over a big site. Read its table, then edit the list it prints.
+node $SKILL/scripts/pick-pages.mjs https://example.com/sitemap.xml --top 5 --out $OUT
 
 # 1. Performance. More than one page, more than one run, because first loads are
 #    noisy and --runs takes the median. The homepage is the most optimised

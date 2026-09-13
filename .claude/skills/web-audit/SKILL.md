@@ -67,6 +67,10 @@ interprets anything yet.
 SKILL=.claude/skills/web-audit
 OUT=/tmp/audit/example.com
 
+# Which pages are worth a browser at all. One HTTP request each, so it costs
+# seconds where a full performance run over a large site costs hours.
+node $SKILL/scripts/pick-pages.mjs https://example.com/sitemap.xml --top 5
+
 # Performance: real Chromium, cold cache, mobile and desktop profiles
 node $SKILL/scripts/collect-perf.mjs https://example.com --out $OUT
 
@@ -84,6 +88,12 @@ Each writes `<out>/<name>.json` and prints a short summary. `collect-perf`
 also writes screenshots at a laptop and a phone width. **Look at them.** A
 site can pass every metric and still be unusable on a phone, and that is a
 finding you can only make with your eyes.
+
+On a site with more pages than you can measure, let `pick-pages.mjs` narrow the
+list before you commit a browser to it. It ranks every page the sitemap
+publishes by what the server does before rendering starts, which finds the slow
+ones without loading any of them. Treat its shortlist as evidence rather than a
+decision: it cannot know that the checkout matters more than a policy page.
 
 Run the performance collector **more than once**. First loads are noisy;
 `--runs 3` takes the median. A single run that happened to hit a cold CDN

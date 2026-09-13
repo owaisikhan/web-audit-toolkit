@@ -45,6 +45,25 @@ The homepage is the most optimised page on almost every site. Get the real
 ones, such as a listing, a product, the cart or a search result, from the links the
 site itself serves. This is passive: you are reading what it hands you.
 
+**If the site publishes a sitemap, probe the whole thing first.** A throttled
+browser load costs 10 to 20 seconds, so measuring 33 pages on two profiles at
+three runs each is 198 loads and several hours. One HTTP request costs
+milliseconds, so probing every page takes seconds and tells you which handful
+are worth the browser:
+
+```bash
+node $SKILL/scripts/pick-pages.mjs https://example.com/sitemap.xml --top 5 --out $OUT
+```
+
+It ranks by what the server does before a browser is involved, flags anything
+much slower or heavier than that site's own median, lists the pages that did
+not return a usable response, and prints a `collect-perf` command to start
+from. **It is evidence, not a decision.** A slow page nobody visits matters
+less than a fast one every customer lands on, and no probe knows which is
+which, so swap in the listing, the product page and the checkout by hand.
+
+Without a sitemap, read the links the site serves:
+
 ```bash
 curl -s https://example.com/ -o /tmp/home.html \
   -w "status=%{http_code} bytes=%{size_download}\n"
