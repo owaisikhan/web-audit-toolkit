@@ -19,6 +19,33 @@ There is no `package.json` here and none is needed.
 
 `RUNBOOK.md` is the step-by-step for auditing a new site end to end.
 
+## Starting an audit
+
+Open a session in this repo and paste this:
+
+```
+audit https://theirsite.com, public site, no permission, passive only.
+Client slug: their-co
+```
+
+`CLAUDE.md` loads on entry and points at the skill, so nothing else needs
+explaining. `audit https://theirsite.com` on its own works too; the rest of
+that line just pre-answers the scope question the skill otherwise stops to ask,
+and fixes the output directory at `audits/their-co/<today>/` rather than
+leaving it to guess the slug.
+
+Add either of these only when it is true:
+
+- `I have written permission and the repo is at /path/to/repo`, which is what
+  unlocks `scan-source.mjs`. Without it the source scan must not run.
+- `most of the app is behind a login`, so it knows upfront that a passive pass
+  sees only the shell and says so in the report's limits section.
+
+In a fresh Claude Code web session the TLS 1.2 shim below has to be rebuilt
+before a single page will load, and it lives in `/tmp`, so a new container has
+lost it. If page loads fail with `ERR_CONNECTION_RESET`, that is what happened:
+point the session at the next section.
+
 ## Known environment issue: Chromium and TLS 1.3 in a Claude Code web session
 
 Hit on 10 Sep 2026 and worth twenty minutes to anyone who meets it cold.
