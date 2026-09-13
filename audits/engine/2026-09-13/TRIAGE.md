@@ -141,3 +141,48 @@ the network throttle together, so it cannot separate "slow because the phone is
 weak" from "slow because the connection is weak", and neither profile shows
 what the site does on a phone on wifi, which is what the client will test. Run
 the unthrottled phone case as a third measurement before writing the headline.
+
+## Second challenge: "it takes 1 second on my friend's mobile"
+
+Also correct, and the cause is the cache. Every figure measured up to this
+point was a cold first visit. Loading `/collections/new-arrivals` repeatedly in
+one browser, good connection, no throttling, phone viewport:
+
+  visit 1 (cold)   LCP 4.98 s   FCP 2.82 s   3143 kB fetched, 4 of 259 cached
+  visit 2 (warm)   LCP 3.42 s   FCP 1.96 s    106 kB fetched, 197 of 284 cached
+  visit 3 (warm)   LCP 3.33 s   FCP 1.87 s     13 kB fetched, 232 of 288 cached
+  visit 4 (warm)   LCP 1.74 s   FCP 0.30 s     11 kB fetched, 233 of 287 cached
+
+A returning visitor gets 1.7 s and, on first paint, 0.30 s. Someone watching a
+page and saying "one second" is describing first paint on a warm cache, which
+is exactly what a friend who has opened the shop before would see. Nothing is
+wrong with their observation and nothing is wrong with the caching, which is
+working correctly.
+
+**The finding stands, and the cache data strengthens it.** The audience for
+this finding is the first-time visitor arriving from a paid advert or a search
+result, who always has a cold cache. The reports now say so explicitly, and
+carry the returning-visitor figure beside it, because the contrast is the
+persuasive part: the shop feels fast to the owner, the staff and anyone who has
+used it before, and slow to the customer they paid to acquire. That is the
+single most useful sentence in the report and it only exists because the client
+pushed back twice.
+
+Attempted Chrome UX Report field data to settle it with real visitors rather
+than lab simulation. It needs an API key this environment does not have, and
+guessing one is not an option. **Next run: ask the client to send a PageSpeed
+Insights result for the category page.** It is free, it needs no access to
+anything, and its field section reports what their actual visitors experienced
+over the last 28 days, which beats every lab number in this directory.
+
+### Standing lesson
+
+Three numbers, all correct, all measuring different visitors:
+
+  14 s   cold cache, weak mobile signal, throttled CPU  (the PageSpeed preset)
+   4 s   cold cache, good connection                    (a new customer)
+   1.7 s warm cache, good connection                    (a returning visitor)
+
+Never report one of these without naming the visitor it describes. The first
+draft of this report named none of them and would have been dismissed as padded
+the moment anyone loaded the site on their own phone.

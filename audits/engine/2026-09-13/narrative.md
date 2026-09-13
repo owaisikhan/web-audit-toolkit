@@ -5,12 +5,14 @@ laptop would load them: the home page, two category pages, a product page and
 the cart. Nothing suggests the site has been attacked or that customer data is
 exposed, and the security settings Shopify gives you are switched on and working.
 The problem is speed, and it is concentrated exactly where it costs you money.
-The category pages are the slowest thing on the site: on a good connection they
-take about four seconds to show their main content, against about one and a
-half seconds for the home page and a product page, and on a mid-range Android
-phone over a weak mobile signal that stretches to about fourteen. Those
-category pages are where a shopper arriving from an ad or a search decides
-whether to keep going. The cause is not your photographs, which
+The category pages are the slowest thing on the site for a first-time visitor:
+on a good connection they take about four seconds to show their main content,
+against about one and a half seconds for the home page and a product page, and
+on a mid-range Android phone over a weak mobile signal that stretches to about
+fourteen. Come back a second time and the same page returns in about one and a
+half seconds, so the shop feels quick to anyone who has used it before and slow
+to the new customer you paid to bring there. Those category pages are where a
+shopper arriving from an ad or a search decides whether to keep going. The cause is not your photographs, which
 are handled well: every page loads roughly 2.2 megabytes of code before it can
 finish, and more than half of that is advertising and analytics tags rather than
 anything belonging to the shop. We found four separate Google tracking
