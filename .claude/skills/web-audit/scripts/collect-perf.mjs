@@ -513,7 +513,10 @@ async function main() {
   const findings = allFindings.sort(bySeverityThenEffort);
   const file = writeJson(outDir, 'perf', {
     tool: 'collect-perf', collectedAt: new Date().toISOString(),
-    command: `node collect-perf.mjs ${urls.join(' ')} --runs ${runCount} --profile ${profiles.join(',')}`,
+    // Must be a command this script would actually accept: `--profile` takes one
+    // name, so two profiles is `--all-profiles`. Emitting `--profile a,b` here
+    // produced a reproduction line that failed with "unknown profile".
+    command: `node collect-perf.mjs ${urls.join(' ')} --runs ${runCount} ${profiles.length > 1 ? '--all-profiles' : `--profile ${profiles[0]}`}`,
     urls, runs: runCount, profiles, pages, findings,
   });
 

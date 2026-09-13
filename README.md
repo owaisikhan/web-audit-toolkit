@@ -71,6 +71,16 @@ are the auditor's problem, not the script's:
   to the target's CDN edge (`x-vercel-id: iad1`, `x-vercel-cache: HIT` is the
   tell). Page-to-page comparison stays sound; the absolute LCP and TTFB
   flatter the site. Say so in the report's limits section.
+- **TBT is unreliable in absolute terms here, and it errs the other way.**
+  Total Blocking Time measures main-thread work, so it tracks the CPU this
+  container was given rather than the visitor's phone. The same site measured
+  three days apart went from 136–155 ms to 250–290 ms on every mobile page
+  while serving byte-identical JavaScript — same script count, same bytes,
+  same total transfer — with LCP and CLS flat. That produced four false
+  `medium` findings. **Before reporting a TBT finding, compare
+  `resourceSummary.byKind.script` against the previous run.** If the payload
+  did not change, the machine did, and the finding is an artifact: drop it
+  with `--drop perf-tbt-mobile` and say so in the triage notes.
 
 If either matters to the deliverable, run the two live collectors from a
 normal machine instead and generate the report from that JSON.

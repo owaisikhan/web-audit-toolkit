@@ -4,19 +4,22 @@
 // directives, and the links the page publishes.
 //
 //   node check-seo.mjs <url...> --out DIR [--timeout 30000] [--max-links 30] [--no-links]
+//                       [--no-sitemap]
 //
 // PASSIVE ONLY, BY DESIGN — the same boundary the other collectors keep. It
-// requests the URLs given, `/robots.txt`, and (unless --no-links) the
-// same-origin URLs those pages themselves link to, honouring robots.txt as it
-// goes. It does not guess paths, submit forms or send payloads. Following a
-// link the site publishes is what every crawler and every visitor does;
-// guessing one is not. Do not add an active mode to this script.
+// requests the URLs given, `/robots.txt`, the sitemap those declare (unless
+// --no-sitemap), and (unless --no-links) the same-origin URLs those pages
+// themselves link to, honouring robots.txt as it goes. It does not guess
+// paths, submit forms or send payloads. Following a link the site publishes is
+// what every crawler and every visitor does; guessing one is not, and neither
+// is reading a sitemap the site advertises. Do not add an active mode here.
 //
 // Severity here follows SKILL.md §2 — consequence to the business, not rule
 // count. A live page carrying `noindex` is critical because it is invisible in
 // search; a title three characters over the truncation point is low.
 
 import path from 'node:path';
+import { createHash } from 'node:crypto';
 import {
   parseArgs, writeJson, finding, findChromium, assertPassiveTarget, loadPlaywright,
   summarise, bySeverityThenEffort,
@@ -101,7 +104,8 @@ async function collectPage(browser, url, timeout) {
     const main = document.querySelector('main, article, [role="main"]') || document.body;
     const clone = main.cloneNode(true);
     for (const el of clone.querySelectorAll('script,style,nav,footer,header,aside,noscript,template')) el.remove();
-    const words = (clone.textContent || '').trim().split(/\s+/).filter(Boolean).length;
+    const bodyText = (clone.textContent || '').replace(/\s+/g, ' ').trim();
+    const words = bodyText ? bodyText.split(' ').filter(Boolean).length : 0;
 
     const imgs = [...document.querySelectorAll('img')];
 
@@ -122,6 +126,7 @@ async function collectPage(browser, url, timeout) {
       },
       jsonLd: [...document.querySelectorAll('script[type="application/ld+json"]')].length,
       words,
+      bodyText,
       images: {
         total: imgs.length,
         // `alt=""` is correct for decorative images. Only a MISSING attribute
@@ -137,15 +142,45 @@ async function collectPage(browser, url, timeout) {
   const headers = {};
   for (const [k, v] of Object.entries(response?.headers() || {})) headers[k.toLowerCase()] = v;
 
+  // Keep a fingerprint of the body text for cross-page duplicate detection, but
+  // not the text itself — it would multiply the size of seo.json for no gain.
+  facts.textHash = facts.bodyText ? createHash('sha1').update(facts.bodyText).digest('hex').slice(0, 16) : null;
+  facts.textSample = (facts.bodyText || '').slice(0, 120);
+  delete facts.bodyText;
+
+  // A canonical can also be declared in the HTTP Link header, which is
+  // invisible in the page source. Collect those alongside the DOM ones so a
+  // disagreement between the two is visible rather than silently ignored.
+  facts.headerCanonicals = parseLinkHeaderCanonicals(headers.link, url);
+
   await context.close();
   return { url, loadError: null, status: response?.status() ?? null, headers, facts };
+}
+
+/**
+ * Pull `rel=canonical` targets out of an HTTP Link header.
+ * Format is RFC 8288: `<url>; rel="canonical", <url2>; rel="next"`.
+ */
+function parseLinkHeaderCanonicals(headerValue, base) {
+  if (!headerValue) return [];
+  const out = [];
+  // Split on commas that separate entries, not commas inside <...>.
+  for (const part of String(headerValue).split(/,(?=\s*<)/)) {
+    const m = part.match(/<([^>]*)>(.*)$/);
+    if (!m) continue;
+    const rel = m[2].match(/rel\s*=\s*"?([^";]+)"?/i);
+    if (!rel || !rel[1].trim().toLowerCase().split(/\s+/).includes('canonical')) continue;
+    try {
+      out.push(new URL(m[1].trim(), base).href);
+    } catch {}
+  }
+  return out;
 }
 
 /* ---------------------------------------------------------- per-page rules */
 
 function analysePage(page, robots) {
   const findings = [];
-  const positives = [];
   const f = page.facts;
   const at = page.url;
   const add = (o) => findings.push(finding({ category: 'seo', url: at, ...o }));
@@ -159,7 +194,39 @@ function analysePage(page, robots) {
       fix: 'Open the URL in a browser. If it loads normally, re-run the collector from a different network before including this.',
       unconfirmed: true,
     });
-    return { findings, positives };
+    return { findings };
+  }
+
+  /* --- what the server actually answered --- */
+
+  // A page that renders HTML can still be an error to a crawler: the status
+  // line is what decides whether it is indexed, not whether it looks fine.
+  const status = page.status;
+  if (status && status >= 500) {
+    add({
+      id: 'seo-status-server-error', severity: 'high', effort: 'moderate',
+      title: 'A page answers with a server error',
+      evidence: `GET ${at}\n    HTTP ${status}`,
+      impact: 'Visitors reaching this address see an error rather than the page. Search engines drop a page that answers this way, and if it happens across many addresses they slow down crawling the whole site. The page may still render something, which is why this is easy to miss by eye.',
+      fix: 'Find why the server is failing for this address and fix it. If the page has genuinely been removed, answer 404 or 410 deliberately rather than 5xx.',
+    });
+  } else if (status === 404 || status === 410) {
+    add({
+      id: 'seo-status-not-found', severity: 'medium', effort: 'quick',
+      title: 'A page we were asked to check does not exist',
+      evidence: `GET ${at}\n    HTTP ${status}`,
+      impact: 'This address returns "not found". If it is linked from anywhere, or was previously indexed, visitors following those links reach nothing and any ranking it held is lost.',
+      fix: 'Restore the page, or redirect the address to whatever replaced it with a 301 so existing links and bookmarks keep working.',
+    });
+  } else if (status === 401 || status === 403) {
+    add({
+      id: 'seo-status-blocked', severity: 'medium', effort: 'quick',
+      title: 'A page refuses access',
+      evidence: `GET ${at}\n    HTTP ${status}`,
+      impact: 'The server refused to serve this address to an ordinary visitor, so a search engine cannot read it either and it will not be listed. Correct for an admin or account page; a mistake for anything meant to be public.',
+      fix: 'If the page is meant to be public, remove whatever is refusing it — an access rule, a password, or a firewall. If it is not, no action is needed and this can be ignored.',
+      unconfirmed: true,
+    });
   }
 
   /* --- indexability: the findings worth the whole audit --- */
@@ -197,14 +264,19 @@ function analysePage(page, robots) {
     });
   }
 
-  const canon = f.canonicals.filter(Boolean);
+  const domCanon = f.canonicals.filter(Boolean);
+  const hdrCanon = (f.headerCanonicals || []).filter(Boolean);
+  const canon = [...domCanon, ...hdrCanon];
   if (canon.length > 1 && new Set(canon).size > 1) {
     add({
       id: 'seo-canonical-conflict', severity: 'high', effort: 'quick',
       title: 'The page names more than one "official" address for itself',
-      evidence: canon.map((c) => `<link rel="canonical" href="${c}">`).join('\n    ') + `\n    on ${at}`,
+      evidence: [
+        ...domCanon.map((c) => `<link rel="canonical" href="${c}">`),
+        ...hdrCanon.map((c) => `Link: <${c}>; rel="canonical"   (HTTP header, not visible in the page source)`),
+      ].join('\n    ') + `\n    on ${at}`,
       impact: 'A canonical tag tells search engines which address is the real one when several show the same content. Two conflicting tags is a contradiction, so search engines ignore both and guess — which can split the page’s ranking across duplicate addresses.',
-      fix: 'Emit exactly one canonical link per page. Two usually means a layout and a page template are both adding one.',
+      fix: 'Emit exactly one canonical link per page, in one place. Two usually means a layout and a page template are each adding one — or, as here is possible, that one is in the HTML and another is set as an HTTP header at the server or CDN.',
     });
   } else if (canon.length === 1) {
     const here = new URL(at);
@@ -214,7 +286,7 @@ function analysePage(page, robots) {
       add({
         id: 'seo-canonical-elsewhere', severity: 'medium', effort: 'quick',
         title: 'This page points search engines at a different address',
-        evidence: `Requested: ${at}\n    <link rel="canonical" href="${canon[0]}">`,
+        evidence: `Requested: ${at}\n    ${hdrCanon.length ? `Link: <${canon[0]}>; rel="canonical"   (HTTP header)` : `<link rel="canonical" href="${canon[0]}">`}`,
         impact: 'Search engines will show the other address instead of this one, and any links earned by this page are credited there. Correct when the pages really are duplicates; a mistake when they are not.',
         fix: 'Confirm the target is genuinely the same content. If it is not, point the canonical at this page’s own address.',
         unconfirmed: true,
@@ -275,6 +347,14 @@ function analysePage(page, robots) {
       evidence: `${desc.length} characters on ${at}:\n    "${desc.slice(0, 180)}…"`,
       impact: `Anything past roughly ${META_MAX} characters is replaced with an ellipsis, so a call to action at the end is never seen.`,
       fix: `Trim to under ${META_MAX} characters.`,
+    });
+  } else if (desc.length < META_MIN) {
+    add({
+      id: 'seo-meta-description-short', severity: 'low', effort: 'quick',
+      title: 'The search-result description is very short',
+      evidence: `${desc.length} characters on ${at}:\n    "${desc}"`,
+      impact: `A description this brief leaves most of the space Google gives it unused, and gives a searcher little reason to choose this result over the one above it. Under roughly ${META_MIN} characters, Google is also more likely to discard it and pull its own sentence from the page instead.`,
+      fix: `Expand to ${META_MIN}–${META_MAX} characters, describing what the page offers as a sentence a customer would read.`,
     });
   }
 
@@ -362,17 +442,70 @@ function analysePage(page, robots) {
     });
   }
 
-  /* --- positives: SKILL.md §"What is working well" --- */
-  if (title && title.length <= TITLE_MAX && title.length >= TITLE_MIN) positives.push('Page titles are present and sized to display fully in search results.');
-  if (desc) positives.push('Pages carry their own search-result descriptions.');
-  if (h1s.length === 1) positives.push('Each page has exactly one main heading.');
-  if (f.viewport) positives.push('The site is configured to display properly on phones.');
-  if (f.jsonLd) positives.push('The site publishes structured data, which helps search engines understand what it offers.');
-  if (f.images.total && !f.images.missingAlt.length) positives.push('Every image carries a text alternative.');
-  if (robots.present) positives.push('A robots.txt is published.');
-  if (robots.sitemaps.length) positives.push('A sitemap is declared in robots.txt, which helps search engines find every page.');
+  // A dead end is not only a page with zero links out. A page whose single
+  // link is a footer link to the privacy policy is just as much the end of the
+  // path, so the threshold is "one or fewer", not "none".
+  const sameOriginOut = [...new Set((f.links || [])
+    .map((h) => h.split('#')[0])
+    .filter((h) => {
+      try { return new URL(h).origin === new URL(at).origin && h !== at.split('#')[0]; } catch { return false; }
+    }))];
+  if (sameOriginOut.length <= 1) {
+    add({
+      id: 'seo-no-outgoing-links', severity: 'low', effort: 'quick',
+      title: 'A page leads nowhere else on the site',
+      evidence: sameOriginOut.length
+        ? `${at}\n    links to exactly one other page of this site: ${sameOriginOut[0]}`
+        : `No links to other pages of this site were found on ${at}`,
+      impact: 'A visitor who lands here from search has nowhere relevant to go next, so they leave. For a search engine it is the end of a path, which means any page reachable only from here is reachable from nowhere at all.',
+      fix: 'Add links onward that suit the page — the section it belongs to, related items, or the next step in whatever the visitor came to do. Site-wide navigation counts, but only if it is actually rendered on this page.',
+    });
+  }
 
-  return { findings, positives };
+  return { findings };
+}
+
+/**
+ * Positives are worked out across the whole corpus, never per page.
+ *
+ * Gathering them per page and unioning produces claims the report's own
+ * findings disprove — one page with a good title emits "titles are present and
+ * sized to display fully" even when another page has none. A positive is only
+ * honest if it holds for every page tested, so each of these is the absence of
+ * its corresponding failure.
+ */
+function corpusPositives(pages, robots, findings) {
+  const live = pages.filter((p) => p.facts);
+  if (!live.length) return [];
+  const ids = new Set(findings.map((f) => f.id));
+  const none = (...bad) => !bad.some((id) => ids.has(id));
+  const every = (fn) => live.every(fn);
+  const out = [];
+
+  if (every((p) => p.facts.titles[0]) && none('seo-title-missing', 'seo-title-short', 'seo-title-long', 'seo-title-multiple', 'seo-duplicate-title')) {
+    out.push('Every page has its own title, sized to display in full in search results.');
+  }
+  if (every((p) => p.facts.descriptions[0]) && none('seo-meta-description-missing', 'seo-meta-description-long', 'seo-meta-description-short', 'seo-duplicate-meta')) {
+    out.push('Every page has its own search-result description.');
+  }
+  if (none('seo-h1-missing', 'seo-h1-multiple', 'seo-heading-skip')) {
+    out.push('Every page has exactly one main heading, and the heading levels run in order.');
+  }
+  if (every((p) => p.facts.viewport)) out.push('Every page is set up to display properly on phones.');
+  if (every((p) => p.facts.lang)) out.push('Every page declares the language it is written in.');
+  if (every((p) => p.facts.jsonLd)) out.push('The site publishes structured data, which helps search engines understand what it offers.');
+
+  const imgs = live.reduce((a, p) => a + p.facts.images.total, 0);
+  if (imgs && none('seo-images-missing-alt')) {
+    out.push(`All ${imgs} images we saw carry a text alternative.`);
+  }
+  if (none('seo-noindex-meta', 'seo-noindex-header', 'seo-robots-disallow-all')) {
+    out.push('Nothing on the site tells search engines to stay away — every page tested is free to be listed.');
+  }
+  if (robots.present) out.push('A robots.txt is published.');
+  if (robots.sitemaps.length) out.push('A sitemap is declared in robots.txt, which helps search engines find every page.');
+
+  return out;
 }
 
 /* ----------------------------------------------------- cross-page findings */
@@ -415,7 +548,71 @@ function analyseCorpus(pages) {
     break;
   }
 
+  // Duplicate body text. Matched on a hash of the visible text, so this is an
+  // exact match rather than a similarity score — it does not guess.
+  for (const [, urls] of group((p) => (p.facts.words >= 25 ? p.facts.textHash : ''))) {
+    const sample = live.find((p) => urls.includes(p.url))?.facts.textSample || '';
+    findings.push(finding({
+      id: 'seo-duplicate-content', category: 'seo', severity: 'medium', effort: 'involved',
+      title: 'Several pages show word-for-word the same content',
+      evidence: `${urls.length} pages have identical body text:\n    ` + urls.slice(0, 5).join('\n    ') + `\n    beginning "${sample.slice(0, 80)}…"`,
+      impact: 'When the same text is published at more than one address, search engines pick one to show and largely ignore the rest, and the choice is theirs rather than yours. Any links pointing at the copies count for less than they would if everything pointed at one page.',
+      fix: 'Keep one address as the real one and either remove the duplicates or add a canonical link on each copy pointing at it. Where the pages are meant to differ, the shared text is the thing to change.',
+    }));
+    break;
+  }
+
   return findings;
+}
+
+/* ------------------------------------------------------------------ orphans */
+
+/** Fetch a sitemap and return the URLs it lists. Nested sitemap indexes are followed one level. */
+async function fetchSitemapUrls(sitemapUrls, origin, timeout) {
+  const candidates = sitemapUrls.length ? sitemapUrls : [new URL('/sitemap.xml', origin).href];
+  const found = new Set();
+  const seenMaps = new Set();
+  const queue = [...candidates];
+  while (queue.length && seenMaps.size < 5) {
+    const url = queue.shift();
+    if (seenMaps.has(url)) continue;
+    seenMaps.add(url);
+    try {
+      const res = await fetch(url, { signal: AbortSignal.timeout(timeout), redirect: 'follow' });
+      if (!res.ok) continue;
+      const xml = (await res.text()).slice(0, 2_000_000);
+      const isIndex = /<sitemapindex/i.test(xml);
+      for (const m of xml.matchAll(/<loc>\s*([^<\s]+)\s*<\/loc>/gi)) {
+        if (isIndex) queue.push(m[1]);
+        else found.add(m[1]);
+      }
+    } catch {}
+  }
+  return [...found];
+}
+
+/**
+ * A page listed in the sitemap that nothing we saw links to. Reported
+ * `unconfirmed` and only when enough of the sitemap was audited to make the
+ * comparison meaningful — following links from four pages of a 400-page site
+ * would call almost everything an orphan.
+ */
+function analyseOrphans(pages, sitemapUrls, linkTargets) {
+  if (!sitemapUrls.length) return [];
+  const norm = (u) => { try { const x = new URL(u); return x.origin + x.pathname.replace(/\/$/, ''); } catch { return u; } };
+  const reachable = new Set([...pages.map((p) => p.url), ...linkTargets].map(norm));
+  const orphans = sitemapUrls.filter((u) => !reachable.has(norm(u)));
+  // Below this the audit simply did not look at enough of the site to tell.
+  const coverage = (sitemapUrls.length - orphans.length) / sitemapUrls.length;
+  if (!orphans.length || coverage < 0.5) return [];
+  return [finding({
+    id: 'seo-orphan-pages', category: 'seo', severity: 'low', effort: 'quick', url: orphans[0],
+    title: 'Some pages are listed in the sitemap but nothing links to them',
+    evidence: `${orphans.length} of ${sitemapUrls.length} sitemap entries were not linked from any page we looked at:\n    ` + orphans.slice(0, 5).join('\n    '),
+    impact: 'A page nothing links to is reachable only by knowing its address. Search engines will usually still index it because the sitemap names it, but it receives none of the standing the rest of the site has earned, so it ranks far below where it could.',
+    fix: 'Link each of these from somewhere it belongs — a navigation menu, a category listing, or a related-items block. If a page is deliberately unlisted, remove it from the sitemap so the two agree.',
+    unconfirmed: true,
+  })];
 }
 
 /* -------------------------------------------------------------- link check */
@@ -514,7 +711,7 @@ async function main() {
   const args = parseArgs(process.argv.slice(2));
   const urls = args._.map(assertPassiveTarget).map(String);
   if (!urls.length) {
-    console.error('usage: check-seo.mjs <url...> --out DIR [--max-links 30] [--no-links]');
+    console.error('usage: check-seo.mjs <url...> --out DIR [--max-links 30] [--no-links] [--no-sitemap]');
     process.exit(1);
   }
   const outDir = args.out || path.join(process.cwd(), 'audit-out');
@@ -528,14 +725,11 @@ async function main() {
 
   const pages = [];
   const findings = [];
-  const positives = new Set();
   try {
     for (const url of urls) {
       process.stderr.write(`  ${url} … `);
       const page = await collectPage(browser, url, timeout);
-      const a = analysePage(page, robots);
-      findings.push(...a.findings);
-      for (const p of a.positives) positives.add(p);
+      findings.push(...analysePage(page, robots).findings);
       pages.push(page);
       process.stderr.write(page.loadError ? 'failed\n' : 'done\n');
     }
@@ -546,14 +740,23 @@ async function main() {
   findings.push(...analyseCorpus(pages));
 
   let linksChecked = 0;
+  let linksClean = false;
   if (!args['no-links']) {
     process.stderr.write(`  following up to ${maxLinks} internal links … `);
     const l = await checkLinks(pages, robots, { max: maxLinks, timeout });
     findings.push(...l.findings);
     linksChecked = l.checked;
+    linksClean = Boolean(linksChecked && !l.findings.length);
     process.stderr.write(`${linksChecked} checked\n`);
-    if (linksChecked && !l.findings.length) positives.add('Every internal link followed resolved without an error or a redirect chain.');
   }
+
+  // Orphan pages need the sitemap: a page nothing links to cannot, by
+  // definition, be found by following links.
+  const sitemapUrls = args['no-sitemap'] ? [] : await fetchSitemapUrls(robots.sitemaps, new URL(urls[0]).origin, timeout);
+  findings.push(...analyseOrphans(pages, sitemapUrls, pages.flatMap((p) => p.facts?.links || [])));
+
+  const positives = new Set(corpusPositives(pages, robots, findings));
+  if (linksClean) positives.add(`All ${linksChecked} internal links we followed resolved without an error or a redirect chain.`);
 
   // The same defect usually appears on every page; report each once, keeping
   // the first page it was seen on as the example.
@@ -566,6 +769,7 @@ async function main() {
     urls,
     robots: { url: robots.url, present: robots.present, disallow: robots.disallow, sitemaps: robots.sitemaps },
     linksChecked,
+    sitemapUrlCount: sitemapUrls.length,
     pages: pages.map((p) => ({ url: p.url, status: p.status, loadError: p.loadError, facts: p.facts })),
     findings: unique,
     positives: [...positives],

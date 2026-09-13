@@ -36,7 +36,9 @@ scopes the next conversation — which is where the ongoing work lives.
 **Tier 1 — indexability. The site is invisible.** A `noindex` meta tag, an
 `X-Robots-Tag: noindex` header, or `Disallow: /` in robots.txt. Any of these
 means the page is not in Google at all, and will not be, no matter what else is
-fixed. These are `critical` regardless of what a scoring tool says, and they are
+fixed. The status line belongs in this tier too: a page that answers 404, 403
+or 500 is not indexed whatever it renders, and a page can look completely
+normal in a browser while answering 500 to everything that reads the header. These are `critical` regardless of what a scoring tool says, and they are
 almost always a mistake rather than a decision — a staging configuration that
 shipped, a pre-launch block nobody removed.
 
@@ -92,10 +94,26 @@ Five minutes of looking, after the collectors run:
 - **A canonical pointing elsewhere is often deliberate** — a print view, a
   paginated set, a syndicated post. It is reported `unconfirmed`; verify before
   it goes in the report.
+- **Canonicals can be declared in an HTTP header as well as the HTML**, and the
+  two can disagree. The collector reads both and compares them, because a
+  header canonical is invisible in "view source" and is the harder of the two
+  to find by eye. When a conflict is reported, check the server or CDN config
+  as well as the template.
 - **Redirect chains are a performance finding as much as an SEO one.** Each hop
   is a round trip before anything renders, which on a phone on 4G is the part
   the owner can actually feel. Present it that way.
 - **Link checking follows only same-origin links the pages publish**, capped by
-  `--max-links` (default 30). It is not a crawler and will not find an orphan
-  page — nothing linked from anywhere is, by definition, not reachable by
-  following links. Finding those needs the sitemap or their repo.
+  `--max-links` (default 30). It is not a crawler. What it finds also depends
+  sharply on the URLs you give it: every input URL is already "seen", so
+  passing a site's whole sitemap can leave almost nothing left to follow. If
+  the link findings look thin, re-run against two or three pages rather than
+  thirty.
+- **Orphan pages are found by comparing the sitemap against the link graph**,
+  since a page nothing links to cannot be reached by following links. The check
+  only runs when at least half the sitemap was reachable from the pages
+  audited — below that the audit has not seen enough of the site to tell an
+  orphan from a page it simply did not visit — and it is always reported
+  `unconfirmed`. Widen the URL list before believing it.
+- **Duplicate content is matched exactly**, on a hash of the visible text, not
+  by a similarity score. Two pages that merely read alike will not be flagged;
+  two that are word-for-word identical will be.
