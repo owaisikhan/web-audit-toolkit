@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>badseo.dev: website audit</title>
 <style>
 :root {
@@ -62,15 +67,18 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: now
 .rate.poor { color: var(--critical); }
 .rate::before { content: "● "; font-size: .8em; }
 
-.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem; margin-bottom: 1.5rem; }
-.shots figure { margin: 0; }
-.shots img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px;
-  background: var(--panel); display: block; }
-.shots figcaption { font-size: .8rem; color: var(--muted); margin-top: .4rem;
-  word-break: break-word; }
-.shots figcaption span { display: block; font-size: .74rem; text-transform: uppercase;
-  letter-spacing: .05em; }
+.shots-label { font-size: .74rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); font-weight: 600; margin: 1.2rem 0 .5rem; }
+.shots { display: grid; gap: .9rem; margin-bottom: 1.2rem; }
+.shots.tall { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); }
+.shots.wide { grid-template-columns: repeat(auto-fill, minmax(248px, 1fr)); }
+.shots figure { margin: 0; break-inside: avoid; }
+.shots img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--panel); object-fit: cover; object-position: top center; }
+.shots.tall img { aspect-ratio: 9 / 16; }
+.shots.wide img { aspect-ratio: 16 / 10; }
+.shots figcaption { font-size: .78rem; color: var(--muted); margin-top: .35rem;
+  word-break: break-word; line-height: 1.35; }
 
 .good-list { background: var(--good-bg); border-radius: 10px; padding: 1.1rem 1.4rem 1.1rem 2.6rem;
   margin-bottom: 1.5rem; }
@@ -98,6 +106,8 @@ footer { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--li
   }
 }
 </style>
+</head>
+<body>
 <div class="wrap">
 <h1>Website audit: badseo.dev</h1>
 <p class="lede">13 September 2026<br>
@@ -653,3 +663,5 @@ The signed-in part of the site was not tested, as we did not have access to it.
 Sites change: this report describes badseo.dev as it was on 13 September 2026.</p>
 </footer>
 </div>
+</body>
+</html>

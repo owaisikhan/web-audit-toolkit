@@ -60,6 +60,11 @@ that ships with its TODO markers still in it is worse than no report.
 - `report-client.html` is theirs. Same findings, no apparatus. Print to PDF.
 - `report.md` mirrors `report.html`.
 
+**If you re-run a collector after writing the narrative, re-check every number
+in it.** The generated sections follow the JSON; the prose does not. Speed
+figures move on every run even when the site has not changed, and severity
+counts move with them. `RUNBOOK.md` §7 has the check.
+
 Record what you dropped and why in `$OUT/TRIAGE.md`. **`TRIAGE.md` and the raw
 JSON never go to the client.** Read the finished report end to end before it
 leaves; the generator does not know which findings you decided were not real.

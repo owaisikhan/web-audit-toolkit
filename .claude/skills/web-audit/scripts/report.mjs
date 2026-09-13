@@ -337,7 +337,12 @@ function rich(s = '') {
 // findings are banded by when you would do them rather than by what a scanner
 // scored them.
 const CLIENT_CSS = `
-:root { --ink:#1a1a1a; --soft:#5b5b5b; --line:#e4e0d8; --paper:#fffdf9; --accent:#7a5c2e; --good:#2f6b41; }
+:root { --ink:#1a1a1a; --soft:#5b5b5b; --line:#e4e0d8; --paper:#fffdf9; --accent:#7a5c2e; --good:#2f6b41;
+  /* One colour per band, so urgency reads before the words do. Each is dark
+     enough on the paper ground to pass contrast as body-weight text, and the
+     band is never signalled by colour alone: the heading says it too. */
+  --now:#a1122b; --now-bg:#fbeef0; --soon:#8a6410; --soon-bg:#fbf5e6;
+  --minor:#4a5568; --minor-bg:#f1f3f6; }
 * { box-sizing: border-box; }
 body { margin:0; background:var(--paper); color:var(--ink);
   font:17px/1.65 Georgia, "Iowan Old Style", "Times New Roman", serif; }
@@ -353,9 +358,16 @@ p { margin:0 0 1rem; }
 ul { padding-left:1.2rem; }
 .band { margin:2.5rem 0 0; }
 .band-head { font:600 .8rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.09em;
-  text-transform:uppercase; color:var(--accent); margin:0 0 .3rem; }
-.band-note { color:var(--soft); font-size:.9rem; margin:0 0 1.2rem; }
+  text-transform:uppercase; margin:0 0 .3rem; display:inline-block;
+  padding:.35rem .6rem; border-radius:4px; }
+.band-note { color:var(--soft); font-size:.9rem; margin:.5rem 0 1.2rem; }
+.band.now   .band-head { color:var(--now);   background:var(--now-bg); }
+.band.soon  .band-head { color:var(--soon);  background:var(--soon-bg); }
+.band.minor .band-head { color:var(--minor); background:var(--minor-bg); }
 .item { border-left:3px solid var(--line); padding:.1rem 0 .1rem 1.1rem; margin:0 0 1.8rem; }
+.band.now   .item { border-left-color:var(--now); }
+.band.soon  .item { border-left-color:var(--soon); }
+.band.minor .item { border-left-color:var(--minor); }
 .item h3 { margin-top:0; }
 .item p { margin-bottom:.5rem; }
 .effort { font:600 .75rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.05em;
@@ -460,8 +472,19 @@ Group into "this week", "next", and "later, if worth it", and say for each group
 order and roughly what it costs. This is the section that turns a report into an engagement.
 Write it once in <code>narrative.md</code> under a <code>## Plan</code> heading.</div>`;
 
-  const html = `<title>${esc(site)}: website audit</title>
+  // A real document head. Without a charset the browser guesses, and on a
+  // local file it commonly falls back to Latin-1, which turns every curly
+  // quote, en dash and middle dot into mojibake on the one copy the client
+  // actually opens.
+  const html = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(site)}: website audit</title>
 <style>${CSS}</style>
+</head>
+<body>
 <div class="wrap">
 <h1>Website audit: ${esc(site)}</h1>
 <p class="lede">${esc(date)}${args.by ? ` · prepared by ${esc(args.by)}` : ''}<br>
@@ -505,7 +528,9 @@ ${hygiene.map(findingHtml).join('\n')}` : ''}
 ${parts.source ? '' : 'The signed-in part of the site was not tested, as we did not have access to it.'}
 Sites change: this report describes ${esc(site)} as it was on ${esc(date)}.</p>
 </footer>
-</div>`;
+</div>
+</body>
+</html>`;
 
   const md = `# Website audit: ${site}
 
@@ -554,8 +579,15 @@ ${commands.join('\n')}
     .map((b) => ({ ...b, items: findings.filter((f) => b.sev.includes(f.severity)) }))
     .filter((b) => b.items.length);
 
-  const clientHtml = `<title>${esc(site)}: website review</title>
+  const clientHtml = `<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${esc(site)}: website review</title>
 <style>${CLIENT_CSS}</style>
+</head>
+<body>
 <div class="wrap">
 <h1>${esc(site)}</h1>
 <p class="lede">Website review, ${esc(date)}${args.by ? `, by ${esc(args.by)}` : ''}<br>
@@ -577,7 +609,7 @@ scrolling. Nothing has been staged or edited.</p>
 ${shotsHtml(clientShots, 'shots-client')}` : ''}
 
 <h2>Everything we found</h2>
-${bands.map((b) => `<section class="band">
+${bands.map((b) => `<section class="band ${b.key}">
   <p class="band-head">${esc(b.head)}</p>
   <p class="band-note">${esc(b.note)}</p>
   ${b.items.map(clientItem).join('\n')}
@@ -590,7 +622,9 @@ version of this report and are available on request.</p>
 <p>Testing covered publicly reachable pages${parts.source ? ' plus a review of the source code provided' : ' only, without signing in'}.
 Websites change, so this describes ${esc(site)} as it was on ${esc(date)}.</p>
 </footer>
-</div>`;
+</div>
+</body>
+</html>`;
 
   fs.writeFileSync(path.join(outDir, 'report.html'), html);
   fs.writeFileSync(path.join(outDir, 'report.md'), md);

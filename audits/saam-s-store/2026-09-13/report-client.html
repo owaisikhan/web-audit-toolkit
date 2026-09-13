@@ -1,6 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Saam's Store: website review</title>
 <style>
-:root { --ink:#1a1a1a; --soft:#5b5b5b; --line:#e4e0d8; --paper:#fffdf9; --accent:#7a5c2e; --good:#2f6b41; }
+:root { --ink:#1a1a1a; --soft:#5b5b5b; --line:#e4e0d8; --paper:#fffdf9; --accent:#7a5c2e; --good:#2f6b41;
+  /* One colour per band, so urgency reads before the words do. Each is dark
+     enough on the paper ground to pass contrast as body-weight text, and the
+     band is never signalled by colour alone: the heading says it too. */
+  --now:#a1122b; --now-bg:#fbeef0; --soon:#8a6410; --soon-bg:#fbf5e6;
+  --minor:#4a5568; --minor-bg:#f1f3f6; }
 * { box-sizing: border-box; }
 body { margin:0; background:var(--paper); color:var(--ink);
   font:17px/1.65 Georgia, "Iowan Old Style", "Times New Roman", serif; }
@@ -16,9 +26,16 @@ p { margin:0 0 1rem; }
 ul { padding-left:1.2rem; }
 .band { margin:2.5rem 0 0; }
 .band-head { font:600 .8rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.09em;
-  text-transform:uppercase; color:var(--accent); margin:0 0 .3rem; }
-.band-note { color:var(--soft); font-size:.9rem; margin:0 0 1.2rem; }
+  text-transform:uppercase; margin:0 0 .3rem; display:inline-block;
+  padding:.35rem .6rem; border-radius:4px; }
+.band-note { color:var(--soft); font-size:.9rem; margin:.5rem 0 1.2rem; }
+.band.now   .band-head { color:var(--now);   background:var(--now-bg); }
+.band.soon  .band-head { color:var(--soon);  background:var(--soon-bg); }
+.band.minor .band-head { color:var(--minor); background:var(--minor-bg); }
 .item { border-left:3px solid var(--line); padding:.1rem 0 .1rem 1.1rem; margin:0 0 1.8rem; }
+.band.now   .item { border-left-color:var(--now); }
+.band.soon  .item { border-left-color:var(--soon); }
+.band.minor .item { border-left-color:var(--minor); }
 .item h3 { margin-top:0; }
 .item p { margin-bottom:.5rem; }
 .effort { font:600 .75rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.05em;
@@ -46,6 +63,8 @@ footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
 @media print { body { background:#fff; } .wrap { padding:0; max-width:none; } h2 { break-after:avoid; } .item { break-inside:avoid; } }
 @media (max-width:480px) { .wrap { padding:2rem 1rem 3rem; } h1 { font-size:1.6rem; } }
 </style>
+</head>
+<body>
 <div class="wrap">
 <h1>Saam's Store</h1>
 <p class="lede">Website review, 13 September 2026<br>
@@ -93,7 +112,7 @@ scrolling. Nothing has been staged or edited.</p>
 </figure></div>
 
 <h2>Everything we found</h2>
-<section class="band">
+<section class="band soon">
   <p class="band-head">Worth fixing soon</p>
   <p class="band-note">Real problems, but none of them is an emergency. Sensible to bundle into the next piece of work.</p>
   <div class="item">
@@ -112,7 +131,7 @@ scrolling. Nothing has been staged or edited.</p>
   <p class="fix"><b>What to change:</b> Give each page a title naming what is specific to it, such as the product, the category or the location, before the business name. <span class="effort">· Moderate</span></p>
 </div>
 </section>
-<section class="band">
+<section class="band minor">
   <p class="band-head">Minor, whenever you are next in there</p>
   <p class="band-note">True and worth doing, but nobody is losing a sale over them. Listed so the picture is complete.</p>
   <div class="item">
@@ -185,3 +204,5 @@ version of this report and are available on request.</p>
 Websites change, so this describes Saam's Store as it was on 13 September 2026.</p>
 </footer>
 </div>
+</body>
+</html>

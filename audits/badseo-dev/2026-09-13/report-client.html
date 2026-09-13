@@ -1,6 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>badseo.dev: website review</title>
 <style>
-:root { --ink:#1a1a1a; --soft:#5b5b5b; --line:#e4e0d8; --paper:#fffdf9; --accent:#7a5c2e; --good:#2f6b41; }
+:root { --ink:#1a1a1a; --soft:#5b5b5b; --line:#e4e0d8; --paper:#fffdf9; --accent:#7a5c2e; --good:#2f6b41;
+  /* One colour per band, so urgency reads before the words do. Each is dark
+     enough on the paper ground to pass contrast as body-weight text, and the
+     band is never signalled by colour alone: the heading says it too. */
+  --now:#a1122b; --now-bg:#fbeef0; --soon:#8a6410; --soon-bg:#fbf5e6;
+  --minor:#4a5568; --minor-bg:#f1f3f6; }
 * { box-sizing: border-box; }
 body { margin:0; background:var(--paper); color:var(--ink);
   font:17px/1.65 Georgia, "Iowan Old Style", "Times New Roman", serif; }
@@ -16,9 +26,16 @@ p { margin:0 0 1rem; }
 ul { padding-left:1.2rem; }
 .band { margin:2.5rem 0 0; }
 .band-head { font:600 .8rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.09em;
-  text-transform:uppercase; color:var(--accent); margin:0 0 .3rem; }
-.band-note { color:var(--soft); font-size:.9rem; margin:0 0 1.2rem; }
+  text-transform:uppercase; margin:0 0 .3rem; display:inline-block;
+  padding:.35rem .6rem; border-radius:4px; }
+.band-note { color:var(--soft); font-size:.9rem; margin:.5rem 0 1.2rem; }
+.band.now   .band-head { color:var(--now);   background:var(--now-bg); }
+.band.soon  .band-head { color:var(--soon);  background:var(--soon-bg); }
+.band.minor .band-head { color:var(--minor); background:var(--minor-bg); }
 .item { border-left:3px solid var(--line); padding:.1rem 0 .1rem 1.1rem; margin:0 0 1.8rem; }
+.band.now   .item { border-left-color:var(--now); }
+.band.soon  .item { border-left-color:var(--soon); }
+.band.minor .item { border-left-color:var(--minor); }
 .item h3 { margin-top:0; }
 .item p { margin-bottom:.5rem; }
 .effort { font:600 .75rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.05em;
@@ -30,17 +47,24 @@ code { font:.88em ui-monospace,Menlo,Consolas,monospace; background:#f2ede4;
 .plan p { margin-bottom:1.1rem; }
 footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
   color:var(--soft); font-size:.9rem; }
-.shots-client { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
-  gap:1.2rem; margin:1.5rem 0 0; }
-.shots-client figure { margin:0; }
-.shots-client img { width:100%; height:auto; border:1px solid var(--line);
-  border-radius:4px; display:block; }
-.shots-client figcaption { font:.85rem/1.4 ui-sans-serif,system-ui,sans-serif;
-  color:var(--soft); margin-top:.45rem; word-break:break-word; }
-.shots-client figcaption span { display:block; font-size:.75rem; }
+.shots-client-label { font:600 .75rem/1 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--soft);
+  margin:1.5rem 0 .6rem; }
+.shots-client { display:grid; gap:1rem; margin:0 0 .5rem; }
+.shots-client.tall { grid-template-columns:repeat(auto-fill, minmax(124px,1fr)); }
+.shots-client.wide { grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); }
+.shots-client figure { margin:0; break-inside:avoid; }
+.shots-client img { width:100%; display:block; border:1px solid var(--line);
+  border-radius:4px; object-fit:cover; object-position:top center; }
+.shots-client.tall img { aspect-ratio: 9 / 16; }
+.shots-client.wide img { aspect-ratio: 16 / 10; }
+.shots-client figcaption { font:.8rem/1.35 ui-sans-serif,system-ui,sans-serif;
+  color:var(--soft); margin-top:.4rem; word-break:break-word; }
 @media print { body { background:#fff; } .wrap { padding:0; max-width:none; } h2 { break-after:avoid; } .item { break-inside:avoid; } }
 @media (max-width:480px) { .wrap { padding:2rem 1rem 3rem; } h1 { font-size:1.6rem; } }
 </style>
+</head>
+<body>
 <div class="wrap">
 <h1>badseo.dev</h1>
 <p class="lede">Website review, 13 September 2026<br>
@@ -58,7 +82,7 @@ footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
 
 
 <h2>Everything we found</h2>
-<section class="band">
+<section class="band now">
   <p class="band-head">Worth fixing now</p>
   <p class="band-note">These cost you something today, whether that is visitors, search visibility or safety.</p>
   <div class="item">
@@ -97,7 +121,7 @@ footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
   <p class="fix"><b>What to change:</b> Find why the server is failing for this address and fix it. If the page has genuinely been removed, answer 404 or 410 deliberately rather than 5xx. <span class="effort">· Moderate</span></p>
 </div>
 </section>
-<section class="band">
+<section class="band soon">
   <p class="band-head">Worth fixing soon</p>
   <p class="band-note">Real problems, but none of them is an emergency. Sensible to bundle into the next piece of work.</p>
   <div class="item">
@@ -136,7 +160,7 @@ footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
   <p class="fix"><b>What to change:</b> Keep one address as the real one and either remove the duplicates or add a canonical link on each copy pointing at it. Where the pages are meant to differ, the shared text is the thing to change. <span class="effort">· Involved</span></p>
 </div>
 </section>
-<section class="band">
+<section class="band minor">
   <p class="band-head">Minor, whenever you are next in there</p>
   <p class="band-note">True and worth doing, but nobody is losing a sale over them. Listed so the picture is complete.</p>
   <div class="item">
@@ -219,3 +243,5 @@ version of this report and are available on request.</p>
 Websites change, so this describes badseo.dev as it was on 13 September 2026.</p>
 </footer>
 </div>
+</body>
+</html>

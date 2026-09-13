@@ -238,6 +238,35 @@ What always needs hand-work:
 - **"What we did not test."** One honest paragraph. It scopes the next
   engagement better than any pitch.
 
+### If you re-run a collector, re-read the narrative
+
+This one bites every time. The generated sections track the JSON
+automatically, so re-running a collector updates the findings, the tables and
+the counts without you doing anything. **The prose in `narrative.md` does
+not.** Every number you typed there by hand is now a claim about a measurement
+that no longer exists.
+
+Speed figures move on every run even when the site has not changed. One page
+of one site, measured five times in an afternoon against byte-for-byte
+identical JavaScript, gave an LCP of 2.75, 2.92, 2.90, 2.86 and 2.69 seconds,
+and a TBT anywhere from 155 to 327 ms. Severity counts move too, as a finding
+crosses a threshold in one direction or the other.
+
+So after any re-collection, before you send anything:
+
+```bash
+# Every number the narrative claims, against what was actually measured.
+grep -oE '[0-9]+([.,][0-9]+)? ?(s|ms|kB|%|seconds|characters)' $OUT/narrative.md
+node -e 'const j=require("./'$OUT'/perf.json");
+  for (const p of j.pages) for (const [k,v] of Object.entries(p.profiles||{}))
+    console.log(p.url, k, "LCP", Math.round(v.metrics.lcp)+"ms", "TBT", v.metrics.tbt);'
+```
+
+Check the severity counts in the summary against what the run printed, and the
+screenshots against what the pages actually look like now. A number in the
+prose that contradicts the table beside it is the single fastest way to lose
+the technical reader.
+
 ```bash
 grep -c TODO $OUT/report.html $OUT/report-client.html $OUT/report.md   # all 0
 ```
