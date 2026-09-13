@@ -49,6 +49,35 @@ async function fromSitemap(url, timeout) {
 }
 
 /**
+ * When there is no sitemap, take the links the page itself publishes.
+ *
+ * Plenty of small sites have no sitemap, and probing the single URL you were
+ * given answers nothing. This reads one page and keeps its same-origin links,
+ * which is the same boundary check-seo keeps: following a link the site
+ * publishes is what every visitor does, guessing a path is not.
+ */
+async function fromLinks(url, timeout, max = 40) {
+  const found = new Set([url]);
+  try {
+    const res = await fetch(url, { signal: AbortSignal.timeout(timeout), redirect: 'follow' });
+    if (!res.ok) return [...found];
+    const html = (await res.text()).slice(0, 2_000_000);
+    const origin = new URL(url).origin;
+    for (const m of html.matchAll(/<a\b[^>]*\bhref=["']([^"'#]+)["']/gi)) {
+      if (found.size >= max) break;
+      try {
+        const abs = new URL(m[1], url);
+        if (abs.origin !== origin) continue;
+        if (!/^https?:$/.test(abs.protocol)) continue;
+        abs.hash = '';
+        found.add(abs.href);
+      } catch {}
+    }
+  } catch {}
+  return [...found];
+}
+
+/**
  * One GET per URL, measuring what the server did rather than what the page
  * then does with it. Time to first byte is the part a browser cannot improve
  * on, so a page slow here is slow for everyone however well it is built.
@@ -81,20 +110,38 @@ async function probe(url, timeout) {
   }
 }
 
-/** Run the probes a few at a time, so a big sitemap does not become a flood. */
+/**
+ * Probe each URL twice and keep both.
+ *
+ * One request per page cannot tell a consistently slow route from a cold
+ * start, and on serverless hosting the first hit to an idle route is often a
+ * second slower than the next. Measured once, three pages of a real shop
+ * looked slow at ~1 s and read ~120 ms on the very next pass.
+ *
+ * Both numbers matter and they mean different things. The warm figure is what
+ * a page costs in the normal case, so it is what ranks. The gap between cold
+ * and warm is what the unlucky first visitor after a quiet spell actually
+ * waits, which on a low-traffic shop is a lot of visitors, so it is reported
+ * rather than averaged away.
+ */
 async function probeAll(urls, { concurrency, timeout }) {
-  const out = [];
+  const byUrl = new Map();
   let i = 0;
+  const total = urls.length * 2;
+  let done = 0;
   const workers = Array.from({ length: Math.min(concurrency, urls.length) }, async () => {
     while (i < urls.length) {
       const mine = urls[i++];
-      out.push(await probe(mine, timeout));
-      if (process.stderr.isTTY) process.stderr.write(`\r  probed ${out.length}/${urls.length}`);
+      const cold = await probe(mine, timeout); done++;
+      const warm = await probe(mine, timeout); done++;
+      if (process.stderr.isTTY) process.stderr.write(`\r  probed ${done}/${total}`);
+      // Take the warm pass as the record, keeping the cold reading beside it.
+      byUrl.set(mine, { ...(warm.error ? cold : warm), coldTtfb: cold.ttfb, warmTtfb: warm.ttfb });
     }
   });
   await Promise.all(workers);
-  process.stderr.write(process.stderr.isTTY ? '\n' : `  probed ${out.length} page(s)\n`);
-  return out;
+  process.stderr.write(process.stderr.isTTY ? '\n' : `  probed ${urls.length} page(s) twice\n`);
+  return [...byUrl.values()];
 }
 
 function main_(results, top) {
@@ -104,20 +151,26 @@ function main_(results, top) {
   const ttfbs = ok.map((r) => r.ttfb).sort((a, b) => a - b);
   const median = ttfbs.length ? ttfbs[ttfbs.length >> 1] : 0;
 
-  // Worth a browser if the server is slow relative to the rest of this site,
-  // or the page is heavy. Both are things a browser run would then explain.
+  // Worth a browser if the server is consistently slow relative to the rest of
+  // this site, or the page is heavy. A cold start is called out separately: it
+  // is real for the visitor who meets it, but it is not the page being slow.
   const scored = ok.map((r) => ({
     ...r,
     slow: median > 0 && r.ttfb > Math.max(median * 2, median + 300),
     heavy: r.bytes > 150 * 1024,
+    cold: r.coldTtfb != null && r.warmTtfb != null &&
+          r.coldTtfb > Math.max(r.warmTtfb * 3, r.warmTtfb + 400),
   })).sort((a, b) => b.ttfb - a.ttfb || b.bytes - a.bytes);
 
-  console.log(`\n${results.length} page(s) probed. Median server response ${ms(median)}.\n`);
-  console.log('  ' + 'TTFB'.padStart(8) + '  ' + 'SIZE'.padStart(9) + '  STATUS  URL');
+  console.log(`\n${results.length} page(s) probed twice. Median warm response ${ms(median)}.`);
+  console.log('WARM is the normal case and is what ranks. COLD is the same page on the');
+  console.log('first request, which is what a visitor meets after a quiet spell.\n');
+  console.log('  ' + 'WARM'.padStart(8) + '  ' + 'COLD'.padStart(8) + '  ' + 'SIZE'.padStart(9) + '  URL');
   for (const r of scored.slice(0, 25)) {
-    const flag = r.slow ? ' SLOW' : r.heavy ? ' HEAVY' : '';
-    console.log('  ' + ms(r.ttfb).padStart(8) + '  ' + kb(r.bytes).padStart(9) +
-      '  ' + String(r.status).padStart(6) + '  ' + r.url.replace(/^https?:\/\/[^/]+/, '') + flag);
+    const flag = [r.slow && 'SLOW', r.heavy && 'HEAVY', r.cold && 'COLD-START'].filter(Boolean).join(' ');
+    console.log('  ' + ms(r.warmTtfb ?? r.ttfb).padStart(8) + '  ' + ms(r.coldTtfb ?? r.ttfb).padStart(8) +
+      '  ' + kb(r.bytes).padStart(9) + '  ' + r.url.replace(/^https?:\/\/[^/]+/, '') +
+      (flag ? ' ' + flag : ''));
   }
   if (scored.length > 25) console.log(`  ... ${scored.length - 25} more, all faster`);
 
@@ -139,6 +192,7 @@ function main_(results, top) {
   if (home) picks.push(home.url);
   for (const r of scored) if (r.slow && !picks.includes(r.url) && picks.length < top) picks.push(r.url);
   for (const r of scored) if (r.heavy && !picks.includes(r.url) && picks.length < top) picks.push(r.url);
+  for (const r of scored) if (r.cold && !picks.includes(r.url) && picks.length < top) picks.push(r.url);
   // Anything beyond this point is filler, so say how much of the list is
   // evidence and how much is padding rather than implying it is all signal.
   const flagged = picks.length - (home ? 1 : 0);
@@ -175,13 +229,18 @@ async function main() {
     urls = await fromSitemap(inputs[0], timeout);
     process.stderr.write(`${urls.length} URL(s)\n`);
   } else if (inputs.length === 1) {
-    // A bare origin: try the sitemap it advertises before falling back to the
-    // single page, since one page is rarely what anybody wants ranked.
+    // A bare origin: try the sitemap it advertises, then the links the page
+    // itself publishes. One page is never what anybody wanted ranked.
     const origin = new URL(inputs[0]).origin;
     const guess = await fromSitemap(new URL('/sitemap.xml', origin).href, timeout);
     if (guess.length > 1) {
       process.stderr.write(`  found /sitemap.xml with ${guess.length} URL(s)\n`);
       urls = guess;
+    } else {
+      urls = await fromLinks(inputs[0], timeout);
+      process.stderr.write(urls.length > 1
+        ? `  no sitemap; following ${urls.length - 1} link(s) the page publishes\n`
+        : '  no sitemap and no links found; probing the one page given\n');
     }
   }
   if (!urls.length) { console.error('No URLs to probe.'); process.exit(1); }
