@@ -1,7 +1,7 @@
 {
   "tool": "check-headers",
   "mode": "passive",
-  "collectedAt": "2026-09-13T14:15:07.093Z",
+  "collectedAt": "2026-09-13T14:39:05.224Z",
   "command": "node check-headers.mjs https://badseo.dev/ https://badseo.dev/kitchen-sink https://badseo.dev/index/noindex-header",
   "urls": [
     "https://badseo.dev/",
@@ -15,14 +15,14 @@
       "status": 200,
       "headers": {
         "alt-svc": "h3=\":443\"; ma=86400",
-        "cf-ray": "a3a7c2ded91257fc-IAD",
+        "cf-ray": "a3a7e5fbfc95c59a-IAD",
         "content-encoding": "zstd",
         "content-type": "text/html; charset=utf-8",
-        "date": "Sun, 13 Sep 2026 14:14:57 GMT",
+        "date": "Sun, 13 Sep 2026 14:38:55 GMT",
         "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
-        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=AG%2B%2BGJK2c9cFy2efnFRHiEuOOoNp21r76ybgptBDAvqXQctNoXn20PzVIbS5cv2vU2DrtFFMzuZT0fMqn7PfmSBS4y9Xrxz%2FCfsTRVlds8q0MurfHSdWhBjiLN%2Ff\"}]}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=4pi3SuGUvmoJUXHsuoGaBLgiy1g47lzGNuyjaRu9zfc1igSivPOn%2FaiSNHSa7QzWxfHLN0bm01rXAsHo6W5TNl6YYdy9qRr65FuIw2F3eE2q69ed3ZqcivQmUqZl\"}]}",
         "server": "cloudflare",
-        "server-timing": "cfEdge;dur=5,cfOrigin;dur=0,cfWorker;dur=27"
+        "server-timing": "cfEdge;dur=26,cfOrigin;dur=0,cfWorker;dur=54"
       },
       "allResponses": [
         {
@@ -34,11 +34,11 @@
           "status": 200
         },
         {
-          "url": "https://badseo.dev/assets/index-fSuvSEGj.js",
+          "url": "https://badseo.dev/assets/site-layout-BSb4LTMU.js",
           "status": 200
         },
         {
-          "url": "https://badseo.dev/assets/site-layout-BSb4LTMU.js",
+          "url": "https://badseo.dev/assets/index-fSuvSEGj.js",
           "status": 200
         },
         {
@@ -58,15 +58,15 @@
           "status": 200
         },
         {
-          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
-          "status": 200
-        },
-        {
           "url": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2",
           "status": 200
         },
         {
           "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
           "status": 200
         },
         {
@@ -108,8 +108,8 @@
       "tls": {
         "subject": "badseo.dev",
         "issuer": "Anthropic",
-        "validFrom": "Sep 13 14:13:01 2026 GMT",
-        "validTo": "Oct 13 14:14:01 2026 GMT",
+        "validFrom": "Sep 13 14:37:53 2026 GMT",
+        "validTo": "Oct 13 14:38:53 2026 GMT",
         "daysRemaining": 30,
         "protocol": "TLSv1.3",
         "altNames": "DNS:badseo.dev",
@@ -125,14 +125,14 @@
       "headers": {
         "alt-svc": "h3=\":443\"; ma=86400",
         "cache-control": "no-store",
-        "cf-ray": "a3a7c2f019738de6-IAD",
+        "cf-ray": "a3a7e60f2af1a476-IAD",
         "content-encoding": "zstd",
         "content-type": "text/html; charset=utf-8",
-        "date": "Sun, 13 Sep 2026 14:15:01 GMT",
+        "date": "Sun, 13 Sep 2026 14:39:00 GMT",
         "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
-        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=QhKnMa7vekshoGBroGojak6FhPFWTAAPmw6Pqx%2F%2FV7NWKbSdf3OrhGkia2qgTWIYIlA43EH9v8Fu8Mx1tqUbp2MkefyHMysD5mMmzXq2qkDzGk4YLXEMuddA0z8Y\"}]}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=b%2FSUcgfuqDulsLEqlrDMQwXmQM68%2BAdXEU0%2BJx5vMbwCGUjyJViwpp4deU9gHdYLrYKy1l5TePhzlM6DMvXRovEmBnA9wMaUI600BaOCP4kQjYS7dQ0Qmo4KQr7d\"}]}",
         "server": "cloudflare",
-        "server-timing": "cfEdge;dur=11,cfOrigin;dur=0,cfWorker;dur=1700"
+        "server-timing": "cfEdge;dur=4,cfOrigin;dur=0,cfWorker;dur=1700"
       },
       "allResponses": [
         {
@@ -152,11 +152,11 @@
           "status": 200
         },
         {
-          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "url": "https://plausible.io/js/pa-Cr442m-9lp6sEF3_GhWNS.js",
           "status": 200
         },
         {
-          "url": "https://plausible.io/js/pa-Cr442m-9lp6sEF3_GhWNS.js",
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
           "status": 200
         },
         {
@@ -164,11 +164,7 @@
           "status": 200
         },
         {
-          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
-          "status": 200
-        },
-        {
-          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2",
+          "url": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2",
           "status": 200
         },
         {
@@ -176,7 +172,11 @@
           "status": 200
         },
         {
-          "url": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2",
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
           "status": 200
         },
         {
@@ -214,8 +214,8 @@
       "tls": {
         "subject": "badseo.dev",
         "issuer": "Anthropic",
-        "validFrom": "Sep 13 14:14:05 2026 GMT",
-        "validTo": "Oct 13 14:15:05 2026 GMT",
+        "validFrom": "Sep 13 14:37:53 2026 GMT",
+        "validTo": "Oct 13 14:38:53 2026 GMT",
         "daysRemaining": 30,
         "protocol": "TLSv1.3",
         "altNames": "DNS:badseo.dev",
@@ -231,14 +231,14 @@
       "headers": {
         "alt-svc": "h3=\":443\"; ma=86400",
         "cache-control": "no-store",
-        "cf-ray": "a3a7c31298823011-IAD",
+        "cf-ray": "a3a7e6302bbe8224-IAD",
         "content-encoding": "zstd",
         "content-type": "text/html; charset=utf-8",
-        "date": "Sun, 13 Sep 2026 14:15:05 GMT",
+        "date": "Sun, 13 Sep 2026 14:39:03 GMT",
         "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
-        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=Lt%2BZ8h1wl3KctTM9V3PVO8QyhmIY1fL%2Bb02S6wW5uv22tim%2BxaRctl9xFP8OICKAqtk6IRu8sIWqqaRXmLNbZkOdGQA5RH2b3wvtHmAzHAXbT1RIDVqrXvImrpsK\"}]}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=q8mKVxZa4X7IgH0vmaIi2Ljhx%2F3dgbNi%2Fw3uJWbwbIdfZ%2BIxoY2y%2BFOUvmli1vRzZd1Pl4MinOn7uimZU%2FMyykSjDIUjSZKpo8%2FHBpEttL7%2BHAuXhIBf8Ftk82qV\"}]}",
         "server": "cloudflare",
-        "server-timing": "cfEdge;dur=17,cfOrigin;dur=0,cfWorker;dur=1",
+        "server-timing": "cfEdge;dur=22,cfOrigin;dur=0,cfWorker;dur=1",
         "x-robots-tag": "noindex"
       },
       "allResponses": [
@@ -259,15 +259,19 @@
           "status": 200
         },
         {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap",
+          "status": 200
+        },
+        {
           "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
           "status": 200
         },
         {
-          "url": "https://plausible.io/js/pa-Cr442m-9lp6sEF3_GhWNS.js",
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
           "status": 200
         },
         {
-          "url": "https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap",
+          "url": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2",
           "status": 200
         },
         {
@@ -279,15 +283,11 @@
           "status": 200
         },
         {
-          "url": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2",
-          "status": 200
-        },
-        {
-          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
-          "status": 200
-        },
-        {
           "url": "https://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://plausible.io/js/pa-Cr442m-9lp6sEF3_GhWNS.js",
           "status": 200
         },
         {
@@ -321,8 +321,8 @@
       "tls": {
         "subject": "badseo.dev",
         "issuer": "Anthropic",
-        "validFrom": "Sep 13 14:14:05 2026 GMT",
-        "validTo": "Oct 13 14:15:05 2026 GMT",
+        "validFrom": "Sep 13 14:37:53 2026 GMT",
+        "validTo": "Oct 13 14:38:53 2026 GMT",
         "daysRemaining": 30,
         "protocol": "TLSv1.3",
         "altNames": "DNS:badseo.dev",

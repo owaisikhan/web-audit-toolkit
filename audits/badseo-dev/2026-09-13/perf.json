@@ -1,0 +1,814 @@
+{
+  "tool": "collect-perf",
+  "collectedAt": "2026-09-13T14:41:19.492Z",
+  "command": "node collect-perf.mjs https://badseo.dev/ https://badseo.dev/kitchen-sink https://badseo.dev/perf/slow-response https://badseo.dev/content/images-missing-alt --runs 3 --all-profiles",
+  "urls": [
+    "https://badseo.dev/",
+    "https://badseo.dev/kitchen-sink",
+    "https://badseo.dev/perf/slow-response",
+    "https://badseo.dev/content/images-missing-alt"
+  ],
+  "runs": 3,
+  "profiles": [
+    "mobile",
+    "desktop"
+  ],
+  "pages": [
+    {
+      "url": "https://badseo.dev/",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 1052,
+            "fcp": 1052,
+            "ttfb": 81.1999999997206,
+            "tbt": 41,
+            "cls": 0.003,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 3887,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 6,
+                "transfer": 144008,
+                "thirdPartyTransfer": 13608
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 5188,
+                "thirdPartyTransfer": 1574
+              },
+              "font": {
+                "count": 4,
+                "transfer": 201911,
+                "thirdPartyTransfer": 201911
+              },
+              "other": {
+                "count": 3,
+                "transfer": 857,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 16,
+            "totalTransfer": 355851,
+            "thirdPartyTransfer": 217093,
+            "thirdPartyHosts": [
+              "fonts.googleapis.com",
+              "static.cloudflareinsights.com",
+              "plausible.io",
+              "fonts.gstatic.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "4 web font file(s), 197 kB",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2: 10 kB\nhttps://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2: 19 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2: 39 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2: 129 kB",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://badseo.dev/",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 824,
+            "fcp": 824,
+            "ttfb": 75,
+            "tbt": 0,
+            "cls": 0.0022,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 3917,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 6,
+                "transfer": 144091,
+                "thirdPartyTransfer": 13610
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 5168,
+                "thirdPartyTransfer": 1531
+              },
+              "font": {
+                "count": 4,
+                "transfer": 212093,
+                "thirdPartyTransfer": 212093
+              },
+              "other": {
+                "count": 1,
+                "transfer": 341,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 14,
+            "totalTransfer": 365610,
+            "thirdPartyTransfer": 227234,
+            "thirdPartyHosts": [
+              "static.cloudflareinsights.com",
+              "fonts.googleapis.com",
+              "plausible.io",
+              "fonts.gstatic.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "4 web font file(s), 207 kB",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2: 19 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2: 14 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2: 45 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2: 129 kB",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://badseo.dev/",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://badseo.dev/kitchen-sink",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 2616,
+            "fcp": 2616,
+            "ttfb": 1755.0999999996275,
+            "tbt": 0,
+            "cls": 0.0015,
+            "rating": {
+              "lcp": "needs-work",
+              "fcp": "needs-work",
+              "ttfb": "needs-work",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 3091,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 1,
+                "transfer": 631,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 3,
+                "transfer": 15325,
+                "thirdPartyTransfer": 13608
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 5149,
+                "thirdPartyTransfer": 1574
+              },
+              "font": {
+                "count": 5,
+                "transfer": 212136,
+                "thirdPartyTransfer": 212136
+              },
+              "other": {
+                "count": 1,
+                "transfer": 363,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 13,
+            "totalTransfer": 236695,
+            "thirdPartyTransfer": 227318,
+            "thirdPartyHosts": [
+              "plausible.io",
+              "fonts.googleapis.com",
+              "static.cloudflareinsights.com",
+              "fonts.gstatic.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 2.62 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "LCP 2.62 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.62 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://badseo.dev/kitchen-sink",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-ttfb-mobile",
+              "title": "Server is slow to respond (TTFB 1.76 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "TTFB 1.76 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 800 ms.",
+              "impact": "The server takes 1.76 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+              "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+              "effort": "moderate",
+              "url": "https://badseo.dev/kitchen-sink",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "5 web font file(s), 207 kB",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2: 10 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2: 10 kB\nhttps://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2: 18 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2: 39 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2: 129 kB",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://badseo.dev/kitchen-sink",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 2476,
+            "fcp": 2476,
+            "ttfb": 1755.5,
+            "tbt": 0,
+            "cls": 0.0011,
+            "rating": {
+              "lcp": "good",
+              "fcp": "needs-work",
+              "ttfb": "needs-work",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 3085,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 5145,
+                "thirdPartyTransfer": 1529
+              },
+              "image": {
+                "count": 1,
+                "transfer": 595,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 3,
+                "transfer": 15321,
+                "thirdPartyTransfer": 13611
+              },
+              "font": {
+                "count": 5,
+                "transfer": 227913,
+                "thirdPartyTransfer": 227913
+              },
+              "other": {
+                "count": 1,
+                "transfer": 366,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 13,
+            "totalTransfer": 252425,
+            "thirdPartyTransfer": 243053,
+            "thirdPartyHosts": [
+              "fonts.googleapis.com",
+              "plausible.io",
+              "fonts.gstatic.com",
+              "static.cloudflareinsights.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-ttfb-desktop",
+              "title": "Server is slow to respond (TTFB 1.76 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "TTFB 1.76 s, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 800 ms.",
+              "impact": "The server takes 1.76 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+              "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+              "effort": "moderate",
+              "url": "https://badseo.dev/kitchen-sink",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "5 web font file(s), 223 kB",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2: 19 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2: 14 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2: 15 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2: 45 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2: 129 kB",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://badseo.dev/kitchen-sink",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://badseo.dev/perf/slow-response",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 2616,
+            "fcp": 2616,
+            "ttfb": 1756.0999999996275,
+            "tbt": 0,
+            "cls": 0.0261,
+            "rating": {
+              "lcp": "needs-work",
+              "fcp": "needs-work",
+              "ttfb": "needs-work",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 2363,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 1,
+                "transfer": 596,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 3,
+                "transfer": 15322,
+                "thirdPartyTransfer": 13608
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 5264,
+                "thirdPartyTransfer": 1574
+              },
+              "font": {
+                "count": 5,
+                "transfer": 212158,
+                "thirdPartyTransfer": 212158
+              },
+              "other": {
+                "count": 1,
+                "transfer": 366,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 13,
+            "totalTransfer": 236069,
+            "thirdPartyTransfer": 227340,
+            "thirdPartyHosts": [
+              "plausible.io",
+              "fonts.googleapis.com",
+              "static.cloudflareinsights.com",
+              "fonts.gstatic.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 2.62 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "LCP 2.62 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.62 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://badseo.dev/perf/slow-response",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-ttfb-mobile",
+              "title": "Server is slow to respond (TTFB 1.76 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "TTFB 1.76 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 800 ms.",
+              "impact": "The server takes 1.76 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+              "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+              "effort": "moderate",
+              "url": "https://badseo.dev/perf/slow-response",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "5 web font file(s), 207 kB",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2: 10 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2: 10 kB\nhttps://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2: 19 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2: 39 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2: 129 kB",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://badseo.dev/perf/slow-response",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 2444,
+            "fcp": 2444,
+            "ttfb": 1768.2999999998137,
+            "tbt": 0,
+            "cls": 0.0006,
+            "rating": {
+              "lcp": "good",
+              "fcp": "needs-work",
+              "ttfb": "needs-work",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 2354,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 3,
+                "transfer": 15365,
+                "thirdPartyTransfer": 13608
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 5098,
+                "thirdPartyTransfer": 1529
+              },
+              "image": {
+                "count": 1,
+                "transfer": 593,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 5,
+                "transfer": 227914,
+                "thirdPartyTransfer": 227914
+              },
+              "other": {
+                "count": 1,
+                "transfer": 368,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 13,
+            "totalTransfer": 251692,
+            "thirdPartyTransfer": 243051,
+            "thirdPartyHosts": [
+              "fonts.googleapis.com",
+              "static.cloudflareinsights.com",
+              "plausible.io",
+              "fonts.gstatic.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-ttfb-desktop",
+              "title": "Server is slow to respond (TTFB 1.77 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "TTFB 1.77 s, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 800 ms.",
+              "impact": "The server takes 1.77 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+              "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+              "effort": "moderate",
+              "url": "https://badseo.dev/perf/slow-response",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "5 web font file(s), 223 kB",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2: 19 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2: 15 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2: 14 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2: 45 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2: 129 kB",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://badseo.dev/perf/slow-response",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://badseo.dev/content/images-missing-alt",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 1060,
+            "fcp": 1060,
+            "ttfb": 55.89999999990687,
+            "tbt": 0,
+            "cls": 0.0008,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 2288,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 1,
+                "transfer": 589,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 3,
+                "transfer": 15317,
+                "thirdPartyTransfer": 13608
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 5259,
+                "thirdPartyTransfer": 1574
+              },
+              "font": {
+                "count": 5,
+                "transfer": 212122,
+                "thirdPartyTransfer": 212122
+              },
+              "other": {
+                "count": 1,
+                "transfer": 367,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 13,
+            "totalTransfer": 235942,
+            "thirdPartyTransfer": 227304,
+            "thirdPartyHosts": [
+              "fonts.googleapis.com",
+              "static.cloudflareinsights.com",
+              "fonts.gstatic.com",
+              "plausible.io"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "5 web font file(s), 207 kB",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2: 10 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2: 10 kB\nhttps://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2: 19 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2: 39 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2: 129 kB",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://badseo.dev/content/images-missing-alt",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 772,
+            "fcp": 772,
+            "ttfb": 62.39999999990687,
+            "tbt": 0,
+            "cls": 0.0006,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 2290,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 1,
+                "transfer": 635,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 5177,
+                "thirdPartyTransfer": 1529
+              },
+              "script": {
+                "count": 3,
+                "transfer": 15323,
+                "thirdPartyTransfer": 13609
+              },
+              "font": {
+                "count": 5,
+                "transfer": 227914,
+                "thirdPartyTransfer": 227914
+              },
+              "other": {
+                "count": 1,
+                "transfer": 367,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 13,
+            "totalTransfer": 251706,
+            "thirdPartyTransfer": 243052,
+            "thirdPartyHosts": [
+              "plausible.io",
+              "static.cloudflareinsights.com",
+              "fonts.googleapis.com",
+              "fonts.gstatic.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-fonts",
+              "title": "5 web font file(s), 223 kB",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2: 15 kB\nhttps://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2: 18 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2: 45 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2: 14 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2: 129 kB",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://badseo.dev/content/images-missing-alt",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 2.62 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "LCP 2.62 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.62 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://badseo.dev/kitchen-sink",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 2.62 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "LCP 2.62 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.62 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://badseo.dev/perf/slow-response",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-ttfb-mobile",
+      "title": "Server is slow to respond (TTFB 1.76 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "TTFB 1.76 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 800 ms.",
+      "impact": "The server takes 1.76 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+      "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+      "effort": "moderate",
+      "url": "https://badseo.dev/kitchen-sink",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-ttfb-mobile",
+      "title": "Server is slow to respond (TTFB 1.76 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "TTFB 1.76 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 800 ms.",
+      "impact": "The server takes 1.76 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+      "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+      "effort": "moderate",
+      "url": "https://badseo.dev/perf/slow-response",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "4 web font file(s), 197 kB",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2: 10 kB\nhttps://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2: 19 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2: 39 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2: 129 kB",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://badseo.dev/",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "5 web font file(s), 207 kB",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2: 10 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2: 10 kB\nhttps://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2: 18 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2: 39 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2: 129 kB",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://badseo.dev/kitchen-sink",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "5 web font file(s), 207 kB",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2: 10 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2: 10 kB\nhttps://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2: 19 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2: 39 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2: 129 kB",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://badseo.dev/perf/slow-response",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "5 web font file(s), 207 kB",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgsAXHNk.woff2: 10 kB\nhttps://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q131nj-o.woff2: 10 kB\nhttps://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXxw2d8o.woff2: 19 kB\nhttps://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYbSB4Zh.woff2: 39 kB\nhttps://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjIJFJpc.woff2: 129 kB",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://badseo.dev/content/images-missing-alt",
+      "unconfirmed": false
+    }
+  ]
+}

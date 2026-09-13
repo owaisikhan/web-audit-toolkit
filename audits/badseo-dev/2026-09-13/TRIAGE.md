@@ -72,8 +72,28 @@ therefore in `seen`. That run found the redirect loop and chain but missed the
 broken internal link. Feeding only two pages found the broken link and missed
 the loop.
 
+## The perf half, added on the re-run
+
+`collect-perf.mjs` was not run the first time, so this run adds it on four of
+the 33 pages: the home page, `/kitchen-sink`, `/perf/slow-response` and
+`/content/images-missing-alt`.
+
+It caught the trap the fixture set. `/perf/slow-response` takes the server
+**1.76 s** to begin replying, against **81 ms** on the home page, reported as
+"Server is slow to respond". `/kitchen-sink` is the same, at 1.76 s, which the
+sitemap does not advertise but the name implies. LCP follows the server: 2.62 s
+on both slow pages against 1.05 s on the home page, so the slow start is the
+whole of the difference rather than anything in the page itself.
+
+Nothing was dropped. Every perf finding is true of the page it names, and two
+of them are the fixture agreeing with its own labels.
+
+This run is also the first badseo report with screenshots, since the thumbnails
+the report embeds are written by `collect-perf` and there were none before.
+
 ## Method note
 
 Chromium cannot complete a TLS 1.3 handshake through this sandbox's proxy, so
-the collectors ran behind the TLS 1.2 shim documented in `README.md`. Page
-timings were not collected; `collect-perf.mjs` was not run.
+every collector ran behind the TLS 1.2 shim documented in `README.md`. TBT is
+unreliable in this environment and was not used to rank anything here; see the
+Saam's Store notes for the five-run evidence.

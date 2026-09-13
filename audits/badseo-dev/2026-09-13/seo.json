@@ -1,7 +1,7 @@
 {
   "tool": "check-seo",
   "mode": "passive",
-  "collectedAt": "2026-09-13T14:14:56.204Z",
+  "collectedAt": "2026-09-13T14:38:54.163Z",
   "command": "node check-seo.mjs https://badseo.dev/ https://badseo.dev/privacy https://badseo.dev/head/missing-title https://badseo.dev/head/title-too-long https://badseo.dev/head/title-too-short https://badseo.dev/head/missing-meta-description https://badseo.dev/head/meta-description-too-long https://badseo.dev/head/meta-description-too-short https://badseo.dev/head/missing-h1 https://badseo.dev/head/empty-h1 https://badseo.dev/head/multiple-h1 https://badseo.dev/head/heading-order-skip https://badseo.dev/content/thin-content https://badseo.dev/content/images-missing-alt https://badseo.dev/content/duplicate-a https://badseo.dev/content/duplicate-b https://badseo.dev/content/duplicate-title-a https://badseo.dev/content/duplicate-title-b https://badseo.dev/content/duplicate-meta-a https://badseo.dev/content/duplicate-meta-b https://badseo.dev/index/noindex-meta https://badseo.dev/index/noindex-header https://badseo.dev/index/canonicalized https://badseo.dev/index/canonical-conflict https://badseo.dev/status/not-found https://badseo.dev/status/server-error https://badseo.dev/status/blocked https://badseo.dev/links/broken-internal-link https://badseo.dev/redirect/trailing-slash https://badseo.dev/perf/slow-response https://badseo.dev/structure/orphan https://badseo.dev/structure/no-outgoing-links https://badseo.dev/kitchen-sink",
   "urls": [
     "https://badseo.dev/",

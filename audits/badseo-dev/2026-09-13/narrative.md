@@ -7,7 +7,9 @@ are written once here rather than pasted into each by hand.
 
 We looked at 33 pages of badseo.dev on 13 September 2026, testing what each
 page tells search engines about itself and what the site reveals to the public
-internet.
+internet. Four of those pages were also loaded for speed, once on a mid-range
+Android phone over 4G and once on a desktop browser, three times each with an
+empty cache.
 
 **This site is broken on purpose.** It is a test fixture: each page is built to
 fail one specific check, and the sitemap names them accordingly. What follows
@@ -21,7 +23,12 @@ pages carry an instruction telling search engines not to list them. That is
 correct here, but on a live site it is the most expensive thing that can be
 wrong, and it is the first thing worth checking on any site.
 
-In total: 2 critical, 5 high, 7 medium, 13 low and 1 informational item.
+Speed behaves the same way. The home page draws its main content in about a
+second, while two others take the server the better part of two seconds just to
+begin replying. Those two are named for that fault in the sitemap, so the
+measurement is agreeing with the label rather than discovering anything.
+
+In total: 2 critical, 5 high, 11 medium, 17 low and 1 informational item.
 Nothing suggests the site has been attacked, and no passwords or keys were
 found in the code it sends to visitors.
 
@@ -43,11 +50,11 @@ none of it urgent. Here it is deliberate, so the honest recommendation is to
 leave it exactly as it is.
 
 **What we did not test** only the pages the site publishes in its own sitemap,
-and only as an anonymous visitor, since there is no login here. We did not
-measure page speed, so there are no screenshots in this report. Two further
-limits come from where this audit ran rather than from the site: the connection
-passed through an inspecting proxy, so the certificate details the tools
-recorded were the proxy's rather than the site's and have been removed; and the
-deliberately orphaned page was reached only because the sitemap names it, which
-is the point of that page, since nothing links to it and following links would
-never find it.
+and only as an anonymous visitor, since there is no login here. Speed was
+measured on four of the 33 pages rather than all of them, so the screenshots
+and the timings cover those four. Two further limits come from where this audit
+ran rather than from the site: the connection passed through an inspecting
+proxy, so the certificate details the tools recorded were the proxy's rather
+than the site's and have been removed; and the deliberately orphaned page was
+reached only because the sitemap names it, which is the point of that page,
+since nothing links to it and following links would never find it.

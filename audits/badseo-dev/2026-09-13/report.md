@@ -1,23 +1,32 @@
 # Website audit: badseo.dev
 
 13 September 2026
-Pages tested: https://badseo.dev/, https://badseo.dev/kitchen-sink, https://badseo.dev/index/noindex-header, https://badseo.dev/privacy, https://badseo.dev/head/missing-title, https://badseo.dev/head/title-too-long, https://badseo.dev/head/title-too-short, https://badseo.dev/head/missing-meta-description, https://badseo.dev/head/meta-description-too-long, https://badseo.dev/head/meta-description-too-short, https://badseo.dev/head/missing-h1, https://badseo.dev/head/empty-h1, https://badseo.dev/head/multiple-h1, https://badseo.dev/head/heading-order-skip, https://badseo.dev/content/thin-content, https://badseo.dev/content/images-missing-alt, https://badseo.dev/content/duplicate-a, https://badseo.dev/content/duplicate-b, https://badseo.dev/content/duplicate-title-a, https://badseo.dev/content/duplicate-title-b, https://badseo.dev/content/duplicate-meta-a, https://badseo.dev/content/duplicate-meta-b, https://badseo.dev/index/noindex-meta, https://badseo.dev/index/canonicalized, https://badseo.dev/index/canonical-conflict, https://badseo.dev/status/not-found, https://badseo.dev/status/server-error, https://badseo.dev/status/blocked, https://badseo.dev/links/broken-internal-link, https://badseo.dev/redirect/trailing-slash, https://badseo.dev/perf/slow-response, https://badseo.dev/structure/orphan, https://badseo.dev/structure/no-outgoing-links
+Pages tested: https://badseo.dev/, https://badseo.dev/kitchen-sink, https://badseo.dev/perf/slow-response, https://badseo.dev/content/images-missing-alt, https://badseo.dev/index/noindex-header, https://badseo.dev/privacy, https://badseo.dev/head/missing-title, https://badseo.dev/head/title-too-long, https://badseo.dev/head/title-too-short, https://badseo.dev/head/missing-meta-description, https://badseo.dev/head/meta-description-too-long, https://badseo.dev/head/meta-description-too-short, https://badseo.dev/head/missing-h1, https://badseo.dev/head/empty-h1, https://badseo.dev/head/multiple-h1, https://badseo.dev/head/heading-order-skip, https://badseo.dev/content/thin-content, https://badseo.dev/content/duplicate-a, https://badseo.dev/content/duplicate-b, https://badseo.dev/content/duplicate-title-a, https://badseo.dev/content/duplicate-title-b, https://badseo.dev/content/duplicate-meta-a, https://badseo.dev/content/duplicate-meta-b, https://badseo.dev/index/noindex-meta, https://badseo.dev/index/canonicalized, https://badseo.dev/index/canonical-conflict, https://badseo.dev/status/not-found, https://badseo.dev/status/server-error, https://badseo.dev/status/blocked, https://badseo.dev/links/broken-internal-link, https://badseo.dev/redirect/trailing-slash, https://badseo.dev/structure/orphan, https://badseo.dev/structure/no-outgoing-links
 
 ## Summary
 
-We looked at 33 pages of badseo.dev on 13 September 2026, testing what each page tells search engines about itself and what the site reveals to the public internet.
+We looked at 33 pages of badseo.dev on 13 September 2026, testing what each page tells search engines about itself and what the site reveals to the public internet. Four of those pages were also loaded for speed, once on a mid-range Android phone over 4G and once on a desktop browser, three times each with an empty cache.
 
 **This site is broken on purpose.** It is a test fixture: each page is built to fail one specific check, and the sitemap names them accordingly. What follows should be read as confirmation that the checks fire, not as a list of accidents to go and fix.
 
 Two results still look unintended. The site answers on an unencrypted connection without sending visitors to the secure one, which is a safety matter rather than a search one and is a single rule at the hosting layer. And two pages carry an instruction telling search engines not to list them. That is correct here, but on a live site it is the most expensive thing that can be wrong, and it is the first thing worth checking on any site.
 
-In total: 2 critical, 5 high, 7 medium, 13 low and 1 informational item. Nothing suggests the site has been attacked, and no passwords or keys were found in the code it sends to visitors.
+Speed behaves the same way. The home page draws its main content in about a second, while two others take the server the better part of two seconds just to begin replying. Those two are named for that fault in the sitemap, so the measurement is agreeing with the label rather than discovering anything.
 
-2 critical · 5 high · 7 medium · 13 low · 1 info
+In total: 2 critical, 5 high, 11 medium, 17 low and 1 informational item. Nothing suggests the site has been attacked, and no passwords or keys were found in the code it sends to visitors.
+
+2 critical · 5 high · 11 medium · 17 low · 1 info
 
 ## What we measured
 
-_no performance data collected_
+- `https://badseo.dev/` (mobile): LCP 1.05 s, CLS 0.003, TBT 41 ms, TTFB 81 ms, 348 kB over 16 requests
+- `https://badseo.dev/` (desktop): LCP 824 ms, CLS 0.002, TBT 0 ms, TTFB 75 ms, 357 kB over 14 requests
+- `https://badseo.dev/kitchen-sink` (mobile): LCP 2.62 s, CLS 0.002, TBT 0 ms, TTFB 1.76 s, 231 kB over 13 requests
+- `https://badseo.dev/kitchen-sink` (desktop): LCP 2.48 s, CLS 0.001, TBT 0 ms, TTFB 1.76 s, 247 kB over 13 requests
+- `https://badseo.dev/perf/slow-response` (mobile): LCP 2.62 s, CLS 0.026, TBT 0 ms, TTFB 1.76 s, 231 kB over 13 requests
+- `https://badseo.dev/perf/slow-response` (desktop): LCP 2.44 s, CLS 0.001, TBT 0 ms, TTFB 1.77 s, 246 kB over 13 requests
+- `https://badseo.dev/content/images-missing-alt` (mobile): LCP 1.06 s, CLS 0.001, TBT 0 ms, TTFB 56 ms, 230 kB over 13 requests
+- `https://badseo.dev/content/images-missing-alt` (desktop): LCP 772 ms, CLS 0.001, TBT 0 ms, TTFB 62 ms, 246 kB over 13 requests
 
 ## What is working well
 
@@ -121,6 +130,30 @@ GET https://badseo.dev/status/server-error
 
 **How to fix it.** Find why the server is failing for this address and fix it. If the page has genuinely been removed, answer 404 or 410 deliberately rather than 5xx.
 
+### Main content takes too long to appear (LCP 2.62 s)  
+`[Medium · Quick fix]`
+
+**What we found.**
+```
+LCP 2.62 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for "good" is 2.50 s.
+```
+
+**Why it matters.** On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.62 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.
+
+**How to fix it.** Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.
+
+### Main content takes too long to appear (LCP 2.62 s)  
+`[Medium · Quick fix]`
+
+**What we found.**
+```
+LCP 2.62 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for "good" is 2.50 s.
+```
+
+**Why it matters.** On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.62 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.
+
+**How to fix it.** Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.
+
 ### HSTS is not set  
 `[Medium · Quick fix]`
 
@@ -184,6 +217,30 @@ GET https://badseo.dev/status/blocked
 
 **How to fix it.** If the page is meant to be public, remove whatever is refusing it: an access rule, a password, or a firewall. If it is not, no action is needed and this can be ignored.
 
+### Server is slow to respond (TTFB 1.76 s)  
+`[Medium · Moderate]`
+
+**What we found.**
+```
+TTFB 1.76 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for "good" is 800 ms.
+```
+
+**Why it matters.** The server takes 1.76 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.
+
+**How to fix it.** Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.
+
+### Server is slow to respond (TTFB 1.76 s)  
+`[Medium · Moderate]`
+
+**What we found.**
+```
+TTFB 1.76 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for "good" is 800 ms.
+```
+
+**Why it matters.** The server takes 1.76 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.
+
+**How to fix it.** Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.
+
 ### Several pages share the same title  
 `[Medium · Moderate]`
 
@@ -222,10 +279,14 @@ GET https://badseo.dev/status/blocked
 
 **Later, and only if it matters** the titles, descriptions, headings and image alternatives in the hygiene appendix. All true, all worth doing on a real site, none of it urgent. Here it is deliberate, so the honest recommendation is to leave it exactly as it is.
 
-**What we did not test** only the pages the site publishes in its own sitemap, and only as an anonymous visitor, since there is no login here. We did not measure page speed, so there are no screenshots in this report. Two further limits come from where this audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details the tools recorded were the proxy's rather than the site's and have been removed; and the deliberately orphaned page was reached only because the sitemap names it, which is the point of that page, since nothing links to it and following links would never find it.
+**What we did not test** only the pages the site publishes in its own sitemap, and only as an anonymous visitor, since there is no login here. Speed was measured on four of the 33 pages rather than all of them, so the screenshots and the timings cover those four. Two further limits come from where this audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details the tools recorded were the proxy's rather than the site's and have been removed; and the deliberately orphaned page was reached only because the sitemap names it, which is the point of that page, since nothing links to it and following links would never find it.
 
 ## Appendix: hygiene
 
+- **4 web font file(s), 197 kB** `[Low]`: Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.
+- **5 web font file(s), 207 kB** `[Low]`: Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.
+- **5 web font file(s), 207 kB** `[Low]`: Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.
+- **5 web font file(s), 207 kB** `[Low]`: Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.
 - **5 standard security header(s) are not set** `[Low]`: Set them once at the edge or in middleware so every response carries them: Send `Strict-Transport-Security: max-age=31536000; includeSubDomains` on HTTPS responses. Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust. Send `X-Content-Type-Options: nosniff` on all responses. Send `X-Frame-Options: SAMEORIGIN`, or `frame-ancestors 'self'` in the Content-Security-Policy. Send `Referrer-Policy: strict-origin-when-cross-origin`.
 - **Links to this site look plain when shared** `[Low]`: Add `og:title`, `og:description` and an `og:image` of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own.
 - **A page leads nowhere else on the site** `[Low]`: Add links onward that suit the page: the section it belongs to, related items, or the next step in whatever the visitor came to do. Site-wide navigation counts, but only if it is actually rendered on this page.
@@ -244,6 +305,7 @@ GET https://badseo.dev/status/blocked
 ## Appendix: how to reproduce these figures
 
 ```
+node collect-perf.mjs https://badseo.dev/ https://badseo.dev/kitchen-sink https://badseo.dev/perf/slow-response https://badseo.dev/content/images-missing-alt --runs 3 --all-profiles
 node check-headers.mjs https://badseo.dev/ https://badseo.dev/kitchen-sink https://badseo.dev/index/noindex-header
 node check-seo.mjs https://badseo.dev/ https://badseo.dev/privacy https://badseo.dev/head/missing-title https://badseo.dev/head/title-too-long https://badseo.dev/head/title-too-short https://badseo.dev/head/missing-meta-description https://badseo.dev/head/meta-description-too-long https://badseo.dev/head/meta-description-too-short https://badseo.dev/head/missing-h1 https://badseo.dev/head/empty-h1 https://badseo.dev/head/multiple-h1 https://badseo.dev/head/heading-order-skip https://badseo.dev/content/thin-content https://badseo.dev/content/images-missing-alt https://badseo.dev/content/duplicate-a https://badseo.dev/content/duplicate-b https://badseo.dev/content/duplicate-title-a https://badseo.dev/content/duplicate-title-b https://badseo.dev/content/duplicate-meta-a https://badseo.dev/content/duplicate-meta-b https://badseo.dev/index/noindex-meta https://badseo.dev/index/noindex-header https://badseo.dev/index/canonicalized https://badseo.dev/index/canonical-conflict https://badseo.dev/status/not-found https://badseo.dev/status/server-error https://badseo.dev/status/blocked https://badseo.dev/links/broken-internal-link https://badseo.dev/redirect/trailing-slash https://badseo.dev/perf/slow-response https://badseo.dev/structure/orphan https://badseo.dev/structure/no-outgoing-links https://badseo.dev/kitchen-sink
 ```
