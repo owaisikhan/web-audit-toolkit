@@ -302,7 +302,7 @@ function analyse(url, profile, runs) {
       category: 'performance', effort: 'quick', url,
       evidence: uncompressed.slice(0, 5).map((r) => `${r.url} — ${kb(r.body)}, no content-encoding`).join('\n') +
         `\n(${kb(total)} uncompressed in total)`,
-      impact: `Roughly ${kb(total)} is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing — on a mobile connection that is seconds.`,
+      impact: `Roughly ${kb(total)} is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.`,
       fix: 'Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.',
     }));
   }
@@ -316,7 +316,7 @@ function analyse(url, profile, runs) {
       title: `${badCache.length} build asset(s) are not cached by the browser`,
       severity: 'medium', category: 'performance', effort: 'quick', url,
       evidence: badCache.slice(0, 5).map((r) => `${r.url} — cache-control: ${r.cacheControl || '(none)'}`).join('\n'),
-      impact: 'These files have a content hash in their name, so they can never change without the name changing — they are safe to cache forever. As configured, returning visitors re-download them on every visit.',
+      impact: 'These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.',
       fix: 'Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.',
     }));
   }
@@ -406,7 +406,7 @@ function analyse(url, profile, runs) {
       severity: 'low', category: 'performance', effort: 'quick', url,
       evidence: fontRes.slice(0, 5).map((r) => `${r.url} — ${kb(r.transfer)}`).join('\n') +
         (blockingFonts.length ? `\n${blockingFonts.length} font face(s) use font-display: ${blockingFonts[0].display}, which hides text until the font arrives.` : ''),
-      impact: 'Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.',
+      impact: 'Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.',
       fix: 'Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.',
     }));
   }
@@ -419,7 +419,7 @@ function analyse(url, profile, runs) {
       severity: 'low', category: 'performance', effort: 'quick', url,
       evidence: last.redirects.map((r) => `${r.status || '???'} ${r.url}`).join('\n  → ') + `\n  → ${url}`,
       impact: 'Each redirect is a full network round trip before the real page begins loading. On a mobile connection with 150 ms of latency, this delays everything by roughly half a second.',
-      fix: 'Collapse the chain to a single redirect at the edge — go straight from the original URL to the final one rather than through http, then www, then the page.',
+      fix: 'Collapse the chain to a single redirect at the edge, going straight from the original URL to the final one rather than through http, then www, then the page.',
     }));
   }
 

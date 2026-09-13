@@ -200,6 +200,116 @@ TBT is how long it is frozen to taps, TTFB is the server's own response time.
 Green is within Google's "good" range, amber needs work, red is poor.</p>`;
 }
 
+/* ------------------------------------------------------- the written parts */
+
+/**
+ * Read `<out>/narrative.md` — the two sections no generator can write: the
+ * summary and the plan. Keeping them in one file means they are written once
+ * and appear in every output, rather than being pasted into each by hand and
+ * drifting apart. Absent, the reports carry their TODO markers as before.
+ *
+ *   ## Summary
+ *   One paragraph per blank-line-separated block.
+ *
+ *   ## Plan
+ *   **This week** — what and why.
+ *   **Next** — what and why.
+ */
+function loadNarrative(outDir) {
+  const file = path.join(outDir, 'narrative.md');
+  if (!fs.existsSync(file)) return null;
+  const text = fs.readFileSync(file, 'utf8');
+  // Split on `## ` headings rather than matching each section with a lookahead:
+  // the last section has no following heading to anchor against, and JavaScript
+  // has no \Z, so a lookahead approach silently drops it.
+  const sections = new Map();
+  let current = null;
+  for (const line of text.split(/\r?\n/)) {
+    const h = line.match(/^##\s+(.+?)\s*$/);
+    if (h) { current = h[1].toLowerCase(); sections.set(current, []); }
+    else if (current) sections.get(current).push(line);
+  }
+  const section = (names) => {
+    for (const n of names) {
+      const body = sections.get(n.toLowerCase());
+      if (body) return body.join('\n').trim();
+    }
+    return '';
+  };
+  const blocks = (s) => s.split(/\n\s*\n/).map((b) => b.replace(/\s*\n\s*/g, ' ').trim()).filter(Boolean);
+  const summary = blocks(section(['Summary']));
+  const plan = blocks(section(['Plan', 'What we would do first'])).map((b) => {
+    const m = b.match(/^\*\*(.+?)\*\*\s*[—–-]?\s*([\s\S]*)$/);
+    return m ? { head: m[1].trim(), body: m[2].trim() } : { head: '', body: b };
+  });
+  return (summary.length || plan.length) ? { summary, plan, raw: text } : null;
+}
+
+/** Escape, then honour the inline markdown the narrative and findings use. */
+function rich(s = '') {
+  return escInline(s).replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+}
+
+/* ------------------------------------------------------ the client edition */
+
+// Deliberately quieter than the technical report: more air, fewer rules and
+// boxes, no severity vocabulary. An owner decides "do I pay for this", so the
+// findings are banded by when you would do them rather than by what a scanner
+// scored them.
+const CLIENT_CSS = `
+:root { --ink:#1a1a1a; --soft:#5b5b5b; --line:#e4e0d8; --paper:#fffdf9; --accent:#7a5c2e; --good:#2f6b41; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--paper); color:var(--ink);
+  font:17px/1.65 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+.wrap { max-width: 40rem; margin:0 auto; padding: 3.5rem 1.5rem 5rem; }
+h1 { font-size:2rem; line-height:1.2; margin:0 0 .4rem; letter-spacing:-.01em; }
+.lede { color:var(--soft); font-size:.95rem; margin:0 0 3rem; }
+h2 { font-size:1.35rem; margin:3.5rem 0 1rem; padding-bottom:.4rem; border-bottom:2px solid var(--accent); }
+h3 { font-size:1.05rem; margin:2rem 0 .4rem; font-weight:600; }
+p { margin:0 0 1rem; }
+.big { font-size:1.15rem; line-height:1.6; }
+.good li { margin-bottom:.5rem; color:var(--good); }
+.good li span { color:var(--ink); }
+ul { padding-left:1.2rem; }
+.band { margin:2.5rem 0 0; }
+.band-head { font:600 .8rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 .3rem; }
+.band-note { color:var(--soft); font-size:.9rem; margin:0 0 1.2rem; }
+.item { border-left:3px solid var(--line); padding:.1rem 0 .1rem 1.1rem; margin:0 0 1.8rem; }
+.item h3 { margin-top:0; }
+.item p { margin-bottom:.5rem; }
+.effort { font:600 .75rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--soft); }
+.fix { font-size:.95rem; color:var(--soft); }
+.fix b { color:var(--ink); font-weight:600; }
+code { font:.88em ui-monospace,Menlo,Consolas,monospace; background:#f2ede4;
+  border-radius:3px; padding:.05em .3em; }
+.plan p { margin-bottom:1.1rem; }
+footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
+  color:var(--soft); font-size:.9rem; }
+@media print { body { background:#fff; } .wrap { padding:0; max-width:none; } h2 { break-after:avoid; } .item { break-inside:avoid; } }
+@media (max-width:480px) { .wrap { padding:2rem 1rem 3rem; } h1 { font-size:1.6rem; } }
+`;
+
+const BANDS = [
+  { key: 'now', sev: ['critical', 'high'], head: 'Worth fixing now',
+    note: 'These cost you something today, whether that is visitors, search visibility or safety.' },
+  { key: 'soon', sev: ['medium'], head: 'Worth fixing soon',
+    note: 'Real problems, but none of them is an emergency. Sensible to bundle into the next piece of work.' },
+  { key: 'minor', sev: ['low', 'info'], head: 'Minor, whenever you are next in there',
+    note: 'True and worth doing, but nobody is losing a sale over them. Listed so the picture is complete.' },
+];
+
+function clientItem(f) {
+  return `<div class="item">
+  <h3>${rich(f.title)}</h3>
+  <p>${rich(f.impact)}</p>
+  <p class="fix"><b>What to change:</b> ${rich(f.fix)} <span class="effort">· ${esc(EFFORT_LABEL[f.effort] || f.effort)}</span></p>
+</div>`;
+}
+
+/* -------------------------------------------------------------------- main */
+
 function main() {
   const args = parseArgs(process.argv.slice(2));
   const outDir = args.out || path.join(process.cwd(), 'audit-out');
@@ -225,7 +335,24 @@ function main() {
   const main_ = findings.filter((f) => f.severity !== 'low' && f.severity !== 'info');
   const hygiene = findings.filter((f) => f.severity === 'low' || f.severity === 'info');
 
-  const html = `<title>${esc(site)} — website audit</title>
+  const narrative = loadNarrative(outDir);
+  const summaryHtml = narrative?.summary.length
+    ? `<div>${narrative.summary.map((p) => `<p>${rich(p)}</p>`).join('')}</div>`
+    : `<div class="todo">${TODO('Write the summary')}
+<strong>Write four or five sentences here, in plain language, for a non-technical reader:</strong>
+what was looked at, the single most important thing found, the counts below, and what to do first.
+Answer the unasked question: say whether anything suggests the site has already been attacked.
+No metric names, no tool names. Better still, write it once in <code>narrative.md</code> in this
+directory under a <code>## Summary</code> heading, and every report picks it up.</div>`;
+  const planHtml = narrative?.plan.length
+    ? `<div class="plan">${narrative.plan.map((p) => `<p>${p.head ? `<b>${rich(p.head)}</b> ` : ''}${rich(p.body)}</p>`).join('')}</div>`
+    : `<div class="todo">${TODO('Write the plan')}
+<strong>Not a repeat of the list, but a sequence with reasoning.</strong>
+Group into "this week", "next", and "later, if worth it", and say for each group why it is in that
+order and roughly what it costs. This is the section that turns a report into an engagement.
+Write it once in <code>narrative.md</code> under a <code>## Plan</code> heading.</div>`;
+
+  const html = `<title>${esc(site)}: website audit</title>
 <style>${CSS}</style>
 <div class="wrap">
 <h1>Website audit: ${esc(site)}</h1>
@@ -233,11 +360,7 @@ function main() {
 Pages tested: ${urls.map((u) => `<strong>${esc(u)}</strong>`).join(', ') || '—'}</p>
 
 <h2>Summary</h2>
-<div class="todo">${TODO('Write the summary')}
-<strong>Write four or five sentences here, in plain language, for a non-technical reader:</strong>
-what was looked at, the single most important thing found, the counts below, and what to do first.
-Answer the unasked question — say whether anything suggests the site has already been attacked.
-No metric names, no tool names. Then delete this box.</div>
+${summaryHtml}
 
 <ul class="counts">
 ${SEVERITIES.filter((s) => counts[s]).map((s) => `<li><b>${counts[s]}</b> ${SEV_LABEL[s].toLowerCase()}</li>`).join('\n')}
@@ -255,10 +378,7 @@ ${positives.length ? `<h2>What is working well</h2>
 ${main_.length ? main_.map(findingHtml).join('\n') : '<p>Nothing above low severity was found.</p>'}
 
 <h2>What we would do first</h2>
-<div class="todo">${TODO('Write the plan')}
-<strong>Not a repeat of the list — a sequence, with reasoning.</strong>
-Group into "this week", "next", and "later, if worth it", and say for each group why it is in that
-order and roughly what it costs. This is the section that turns a report into an engagement. Then delete this box.</div>
+${planHtml}
 
 ${hygiene.length ? `<h2>Appendix: hygiene</h2>
 <p class="lede">True, worth doing, not urgent. These are listed for completeness rather than because they need attention this month.</p>
@@ -318,12 +438,58 @@ ${commands.join('\n')}
 `;
 
   fs.mkdirSync(outDir, { recursive: true });
+  const bands = BANDS
+    .map((b) => ({ ...b, items: findings.filter((f) => b.sev.includes(f.severity)) }))
+    .filter((b) => b.items.length);
+
+  const clientHtml = `<title>${esc(site)}: website review</title>
+<style>${CLIENT_CSS}</style>
+<div class="wrap">
+<h1>${esc(site)}</h1>
+<p class="lede">Website review, ${esc(date)}${args.by ? `, by ${esc(args.by)}` : ''}<br>
+${urls.length} page${urls.length === 1 ? '' : 's'} checked</p>
+
+<h2>The short version</h2>
+${narrative?.summary.length ? `<div class="big">${narrative.summary.map((p) => `<p>${rich(p)}</p>`).join('')}</div>`
+  : `<p class="big"><em>Write the summary in <code>narrative.md</code> before sending this to anyone.</em></p>`}
+
+${positives.length ? `<h2>What is already working</h2>
+<ul class="good">${positives.map((p) => `<li><span>${rich(p)}</span></li>`).join('')}</ul>` : ''}
+
+${narrative?.plan.length ? `<h2>What we would do, in order</h2>
+<div class="plan">${narrative.plan.map((p) => `<p>${p.head ? `<b>${rich(p.head)}</b> ` : ''}${rich(p.body)}</p>`).join('')}</div>` : ''}
+
+<h2>Everything we found</h2>
+${bands.map((b) => `<section class="band">
+  <p class="band-head">${esc(b.head)}</p>
+  <p class="band-note">${esc(b.note)}</p>
+  ${b.items.map(clientItem).join('\n')}
+</section>`).join('\n')}
+
+<footer>
+<p>Every point above was measured on ${esc(date)}, not assumed. The working notes behind each
+one, including the exact measurements and the commands that produced them, are in the technical
+version of this report and are available on request.</p>
+<p>Testing covered publicly reachable pages${parts.source ? ' plus a review of the source code provided' : ' only, without signing in'}.
+Websites change, so this describes ${esc(site)} as it was on ${esc(date)}.</p>
+</footer>
+</div>`;
+
   fs.writeFileSync(path.join(outDir, 'report.html'), html);
   fs.writeFileSync(path.join(outDir, 'report.md'), md);
-  console.log(`Wrote ${path.join(outDir, 'report.html')} and report.md`);
+  fs.writeFileSync(path.join(outDir, 'report-client.html'), clientHtml);
+  console.log(`Wrote ${path.join(outDir, 'report.html')}, report.md and report-client.html`);
   console.log(`${findings.length} finding(s): ${SEVERITIES.filter((s) => counts[s]).map((s) => `${counts[s]} ${s}`).join(', ') || 'none'}`);
-  console.log('\nTwo sections are left as TODO on purpose — the summary and the plan.');
-  console.log('Read references/reporting.md, write them, and read the whole report before it goes anywhere.');
+  console.log('\n  report.html         your worklist: evidence, measurements, reproduction commands');
+  console.log('  report-client.html  the one you send: same findings, no apparatus');
+  if (!narrative) {
+    console.log('\nNo narrative.md found, so the summary and the plan are still TODO.');
+    console.log(`Write them once in ${path.join(outDir, 'narrative.md')} under "## Summary" and "## Plan"`);
+    console.log('headings, re-run this, and both reports pick them up. See references/reporting.md.');
+  } else {
+    if (!narrative.summary.length) console.log('\nnarrative.md has no "## Summary" section. Both reports are missing it.');
+    if (!narrative.plan.length) console.log('narrative.md has no "## Plan" section. Both reports are missing it.');
+  }
 }
 
 main();

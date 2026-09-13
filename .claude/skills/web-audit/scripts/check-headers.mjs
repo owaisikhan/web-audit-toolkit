@@ -289,7 +289,7 @@ function analyse(page, tlsInfo) {
         title: `Session cookie \`${c.name}\` can be read by JavaScript`,
         severity: 'high', category: 'security', effort: 'quick', url,
         evidence: `set-cookie: ${redacted}\n(no HttpOnly flag)`,
-        impact: "A signed-in user's session token is one of the most valuable things on the site. Without HttpOnly, any script on the page — including a third-party tag that is later compromised — can read the token and act as that user.",
+        impact: "A signed-in user's session token is one of the most valuable things on the site. Without HttpOnly, any script on the page can read the token and act as that user, including a third-party tag that is later compromised.",
         fix: 'Set `HttpOnly` on the cookie wherever the session is issued, alongside `Secure` and `SameSite=Lax`.',
       }));
     }
@@ -339,17 +339,17 @@ function analyse(page, tlsInfo) {
         evidence: `${b.url}\n` + hits.map((s) => `  ${s.pattern}${s.role ? ` (role: ${s.role})` : ''}: ${s.sample}`).join('\n'),
         impact: 'This value is downloaded by anyone who opens the site, so it must be treated as already public. Depending on what it grants, that may mean full read and write access to the database or the ability to spend money on the account.' +
           (serviceRole.length ? ' A Supabase `service_role` key in particular bypasses row-level security entirely — it is complete access to every table.' : ''),
-        fix: 'Rotate the credential first — removing it from the code does not un-publish it. Then move the operation that needs it to the server, and expose only a public key or an authenticated endpoint to the browser.',
+        fix: 'Rotate the credential first, because removing it from the code does not un-publish it. Then move the operation that needs it to the server, and expose only a public key or an authenticated endpoint to the browser.',
       }));
     }
     if (inspect.length && !serviceRole.length) {
       findings.push(finding({
         id: `sec-key-inspect-${b.url.slice(-24).replace(/\W/g, '')}`,
-        title: 'Key-shaped values in client JavaScript — need confirming',
+        title: 'Key-shaped values in client JavaScript that need confirming',
         severity: 'info', category: 'security', effort: 'quick', url: b.url,
         unconfirmed: true,
         evidence: `${b.url}\n` + inspect.map((s) => `  ${s.pattern}${s.role ? ` (role: ${s.role})` : ''}: ${s.sample}`).join('\n'),
-        impact: 'Several kinds of key belong in the browser by design — a Stripe publishable key, a Supabase anon key, a Google Maps browser key. These matched the shape of a credential but may be entirely correct. Do not report as a leak without checking which they are.',
+        impact: 'Several kinds of key belong in the browser by design: a Stripe publishable key, a Supabase anon key, a Google Maps browser key. These matched the shape of a credential but may be entirely correct. Do not report as a leak without checking which they are.',
         fix: 'Decode each one and confirm what it grants. If it is a public key, note it as expected; if it grants more than a visitor should have, treat it as the critical finding above.',
       }));
     }
@@ -413,8 +413,8 @@ function analyse(page, tlsInfo) {
       title: 'The server announces its software and version number',
       severity: 'info', category: 'security', effort: 'quick', url,
       evidence: disclosed.join('\n'),
-      impact: 'This is not a vulnerability on its own. It matters because it lets anyone check the exact version against the list of published vulnerabilities without touching the site — so an outdated version becomes a target immediately after an advisory is published.',
-      fix: 'Suppress version numbers in `Server` and remove `X-Powered-By`. More importantly, check these versions against published advisories now — see the note in the report on whether any apply.',
+      impact: 'This is not a vulnerability on its own. It matters because it lets anyone check the exact version against the list of published vulnerabilities without touching the site, so an outdated version becomes a target immediately after an advisory is published.',
+      fix: 'Suppress version numbers in `Server` and remove `X-Powered-By`. More importantly, check these versions against published advisories now. The note in the report says whether any apply.',
     }));
   }
 

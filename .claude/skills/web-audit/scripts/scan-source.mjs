@@ -28,7 +28,7 @@ const PATTERNS = [
     re: /(?:query|execute|raw|sql)\s*\(\s*[`'"][^`'"]*(?:SELECT|INSERT|UPDATE|DELETE|DROP)\b[^`'"]*(?:\$\{|['"]\s*\+)/i,
     title: 'SQL appears to be built by joining strings',
     severity: 'high', category: 'security', effort: 'moderate',
-    impact: 'Where any part of that string comes from a request, an attacker can change what the query does — read other people\'s rows, or delete them.',
+    impact: 'Where any part of that string comes from a request, an attacker can change what the query does, reading other people\'s rows or deleting them.',
     fix: 'Use parameterised queries or the query builder throughout. Never interpolate a value into SQL text, even one that "cannot" be user-controlled.',
   },
   {
@@ -36,7 +36,7 @@ const PATTERNS = [
     re: /dangerouslySetInnerHTML|\bv-html\b|\.innerHTML\s*=/,
     title: 'HTML is injected into the page from a variable',
     severity: 'medium', category: 'security', effort: 'moderate',
-    impact: 'If the value ever contains anything a user supplied, that content runs as script in the browser of whoever views the page — including an administrator.',
+    impact: 'If the value ever contains anything a user supplied, that content runs as script in the browser of whoever views the page, including an administrator.',
     fix: 'Render the value as text, or sanitise it with a maintained library (DOMPurify) at the point of insertion.',
     verify: 'Follow each value back to its source. A hard-coded constant or server-rendered markdown from a trusted author is fine and should not be reported.',
   },
@@ -61,7 +61,7 @@ const PATTERNS = [
     re: /path\.(join|resolve)\s*\([^)]*\b(req|request|params|searchParams|query|body|formData)\b/,
     title: 'A filesystem path is built from request data',
     severity: 'high', category: 'security', effort: 'moderate',
-    impact: 'A value containing `../` reaches outside the intended directory, which can read any file the server process can read — including configuration and credentials.',
+    impact: 'A value containing `../` reaches outside the intended directory, which can read any file the server process can read, including configuration and credentials.',
     fix: 'Resolve the path, then verify it still starts with the intended directory before opening it. Prefer looking the file up by an id in the database over accepting a path at all.',
   },
   {
@@ -70,7 +70,7 @@ const PATTERNS = [
     title: 'The Supabase service-role key is referenced in the codebase',
     severity: 'high', category: 'security', effort: 'quick',
     impact: 'The service-role key bypasses row-level security completely. It is correct in a server-only module; anywhere it can reach a client bundle it is a total compromise of the database.',
-    fix: 'Confirm every reference is in a file that never ships to the browser — no `"use client"` anywhere in its import chain, and the variable name must not begin with `NEXT_PUBLIC_`.',
+    fix: 'Confirm every reference is in a file that never ships to the browser: no `"use client"` anywhere in its import chain, and the variable name must not begin with `NEXT_PUBLIC_`.',
     verify: 'Check which files these are. A server-only usage is correct and should be reported as fine, not as a finding.',
   },
   {
@@ -241,7 +241,7 @@ function main() {
         '\nLogin, registration and root pages are excluded as public by design.' +
         '\nThis is a text search. Confirm each one by reading it — a guard applied in middleware or a shared wrapper will not match here.',
       impact: 'An endpoint that does not check who is calling can be called by anyone who knows the address. The common form of this bug is a route that confirms you are signed in but not that the record belongs to you, so changing an id in the URL returns another customer\'s data.',
-      fix: 'For each endpoint, establish what stops one signed-in user reading or changing another\'s data. Enforce it on the server — in the database with row-level security where the database supports it — not by hiding the link in the interface.',
+      fix: 'For each endpoint, establish what stops one signed-in user reading or changing another\'s data. Enforce it on the server, in the database with row-level security where the database supports it, rather than by hiding the link in the interface.',
     }));
   }
 

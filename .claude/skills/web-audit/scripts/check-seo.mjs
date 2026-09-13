@@ -224,7 +224,7 @@ function analysePage(page, robots) {
       title: 'A page refuses access',
       evidence: `GET ${at}\n    HTTP ${status}`,
       impact: 'The server refused to serve this address to an ordinary visitor, so a search engine cannot read it either and it will not be listed. Correct for an admin or account page; a mistake for anything meant to be public.',
-      fix: 'If the page is meant to be public, remove whatever is refusing it — an access rule, a password, or a firewall. If it is not, no action is needed and this can be ignored.',
+      fix: 'If the page is meant to be public, remove whatever is refusing it: an access rule, a password, or a firewall. If it is not, no action is needed and this can be ignored.',
       unconfirmed: true,
     });
   }
@@ -239,8 +239,8 @@ function analysePage(page, robots) {
       id: 'seo-noindex-meta', severity: 'critical', effort: 'quick',
       title: 'This page tells search engines not to list it',
       evidence: `<meta name="robots" content="${f.robotsMeta.join('" / "')}">\n    on ${at}`,
-      impact: 'This single tag removes the page from Google entirely — it will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.',
-      fix: 'Remove `noindex` from the robots meta tag on pages that should be found. Check the whole site, not just this page — the tag is usually applied in a shared layout or template.',
+      impact: 'This single tag removes the page from Google entirely. It will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.',
+      fix: 'Remove `noindex` from the robots meta tag on pages that should be found. Check the whole site, not just this page, because the tag is usually applied in a shared layout or template.',
     });
   }
 
@@ -275,8 +275,8 @@ function analysePage(page, robots) {
         ...domCanon.map((c) => `<link rel="canonical" href="${c}">`),
         ...hdrCanon.map((c) => `Link: <${c}>; rel="canonical"   (HTTP header, not visible in the page source)`),
       ].join('\n    ') + `\n    on ${at}`,
-      impact: 'A canonical tag tells search engines which address is the real one when several show the same content. Two conflicting tags is a contradiction, so search engines ignore both and guess — which can split the page’s ranking across duplicate addresses.',
-      fix: 'Emit exactly one canonical link per page, in one place. Two usually means a layout and a page template are each adding one — or, as here is possible, that one is in the HTML and another is set as an HTTP header at the server or CDN.',
+      impact: 'A canonical tag tells search engines which address is the real one when several show the same content. Two conflicting tags is a contradiction, so search engines ignore both and guess, which can split the page’s ranking across duplicate addresses.',
+      fix: 'Emit exactly one canonical link per page, in one place. Two usually means a layout and a page template are each adding one, or that one is in the HTML while another is set as an HTTP header at the server or CDN.',
     });
   } else if (canon.length === 1) {
     const here = new URL(at);
@@ -302,7 +302,7 @@ function analysePage(page, robots) {
       id: 'seo-title-missing', severity: 'high', effort: 'quick',
       title: 'The page has no title',
       evidence: `No <title> element in the head of ${at}`,
-      impact: 'The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content — usually badly — and the page loses its single strongest ranking signal.',
+      impact: 'The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content, usually badly, and the page loses its single strongest ranking signal.',
       fix: 'Add a `<title>` of roughly 50–60 characters that names the page and the business, most specific part first.',
     });
   } else if (f.titles.length > 1) {
@@ -311,7 +311,7 @@ function analysePage(page, robots) {
       title: 'The page has more than one title',
       evidence: f.titles.map((t) => `<title>${t}</title>`).join('\n    ') + `\n    on ${at}`,
       impact: 'Only the first is used; the rest are ignored. It normally means two templates are each adding one, so the wrong one can win on other pages.',
-      fix: 'Set the title in one place — usually the layout — and let pages override it rather than append to it.',
+      fix: 'Set the title in one place, usually the layout, and let pages override it rather than append to it.',
     });
   } else if (title.length > TITLE_MAX) {
     add({
@@ -337,7 +337,7 @@ function analysePage(page, robots) {
       id: 'seo-meta-description-missing', severity: 'low', effort: 'quick',
       title: 'The page has no description for search results',
       evidence: `No <meta name="description"> on ${at}`,
-      impact: 'The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page — often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.',
+      impact: 'The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page, often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.',
       fix: `Add a \`<meta name="description">\` of ${META_MIN}–${META_MAX} characters describing the page as a sentence a customer would read.`,
     });
   } else if (desc.length > META_MAX) {
@@ -366,7 +366,7 @@ function analysePage(page, robots) {
       id: 'seo-h1-missing', severity: 'medium', effort: 'quick',
       title: 'The page has no main heading',
       evidence: `No <h1> found on ${at}. First heading is ${f.headings[0] ? `an <h${f.headings[0].level}>: "${f.headings[0].text}"` : 'absent — the page has no headings at all'}.`,
-      impact: 'The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing — only the markup is read.',
+      impact: 'The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing, because only the markup is read.',
       fix: 'Mark the page’s main heading as `<h1>`. One per page.',
     });
   } else if (h1s.length > 1) {
@@ -406,7 +406,7 @@ function analysePage(page, robots) {
       title: 'The page does not declare its language',
       evidence: `<html> has no lang attribute on ${at}`,
       impact: 'Screen readers use it to choose a pronunciation, and browsers use it to offer translation. Without it, a screen reader may read English with the wrong accent rules.',
-      fix: 'Set `<html lang="en">` — or the correct code — in the layout.',
+      fix: 'Set `<html lang="en">`, or the correct code for the language, in the layout.',
     });
   }
 
@@ -415,7 +415,7 @@ function analysePage(page, robots) {
       id: 'seo-images-missing-alt', severity: 'low', effort: 'moderate',
       title: 'Some images have no text alternative',
       evidence: `${f.images.missingAlt.length} of ${f.images.total} images on ${at} have no alt attribute:\n    ` + f.images.missingAlt.slice(0, 3).map((s) => s.slice(0, 90)).join('\n    '),
-      impact: 'A blind visitor hears nothing where the image is, and the image cannot appear in image search. Note that an empty `alt=""` is correct for purely decorative images — these have no attribute at all.',
+      impact: 'A blind visitor hears nothing where the image is, and the image cannot appear in image search. Note that an empty `alt=""` is correct for purely decorative images. These have no attribute at all.',
       fix: 'Add `alt` text describing what the image shows. For decorative images, add `alt=""` explicitly so assistive technology knows to skip them.',
     });
   }
@@ -458,7 +458,7 @@ function analysePage(page, robots) {
         ? `${at}\n    links to exactly one other page of this site: ${sameOriginOut[0]}`
         : `No links to other pages of this site were found on ${at}`,
       impact: 'A visitor who lands here from search has nowhere relevant to go next, so they leave. For a search engine it is the end of a path, which means any page reachable only from here is reachable from nowhere at all.',
-      fix: 'Add links onward that suit the page — the section it belongs to, related items, or the next step in whatever the visitor came to do. Site-wide navigation counts, but only if it is actually rendered on this page.',
+      fix: 'Add links onward that suit the page: the section it belongs to, related items, or the next step in whatever the visitor came to do. Site-wide navigation counts, but only if it is actually rendered on this page.',
     });
   }
 
@@ -500,7 +500,7 @@ function corpusPositives(pages, robots, findings) {
     out.push(`All ${imgs} images we saw carry a text alternative.`);
   }
   if (none('seo-noindex-meta', 'seo-noindex-header', 'seo-robots-disallow-all')) {
-    out.push('Nothing on the site tells search engines to stay away — every page tested is free to be listed.');
+    out.push('Nothing on the site tells search engines to stay away, so every page tested is free to be listed.');
   }
   if (robots.present) out.push('A robots.txt is published.');
   if (robots.sitemaps.length) out.push('A sitemap is declared in robots.txt, which helps search engines find every page.');
@@ -532,7 +532,7 @@ function analyseCorpus(pages) {
       title: 'Several pages share the same title',
       evidence: `"${value}" is the title of ${urls.length} pages:\n    ` + urls.slice(0, 5).join('\n    '),
       impact: 'Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.',
-      fix: 'Give each page a title naming what is specific to it — the product, the category, the location — before the business name.',
+      fix: 'Give each page a title naming what is specific to it, such as the product, the category or the location, before the business name.',
     }));
     break; // one worked example is enough; the pattern is the finding
   }
@@ -610,7 +610,7 @@ function analyseOrphans(pages, sitemapUrls, linkTargets) {
     title: 'Some pages are listed in the sitemap but nothing links to them',
     evidence: `${orphans.length} of ${sitemapUrls.length} sitemap entries were not linked from any page we looked at:\n    ` + orphans.slice(0, 5).join('\n    '),
     impact: 'A page nothing links to is reachable only by knowing its address. Search engines will usually still index it because the sitemap names it, but it receives none of the standing the rest of the site has earned, so it ranks far below where it could.',
-    fix: 'Link each of these from somewhere it belongs — a navigation menu, a category listing, or a related-items block. If a page is deliberately unlisted, remove it from the sitemap so the two agree.',
+    fix: 'Link each of these from somewhere it belongs: a navigation menu, a category listing, or a related-items block. If a page is deliberately unlisted, remove it from the sitemap so the two agree.',
     unconfirmed: true,
   })];
 }
@@ -688,7 +688,7 @@ async function checkLinks(pages, robots, { max, timeout }) {
       title: 'Some addresses redirect in a circle',
       evidence: loops.slice(0, 3).map((l) => `${l.href}\n      ` + l.chain.map((c) => `${c.status} → ${c.url}`).join('\n      ')).join('\n    '),
       impact: 'The browser gives up and shows an error, so the page is unreachable for visitors and cannot be indexed at all. Usually caused by two rules disagreeing about a trailing slash or about www.',
-      fix: 'Pick one canonical form — with or without the trailing slash, with or without www — and make every rule redirect towards it rather than between the two.',
+      fix: 'Pick one canonical form, with or without the trailing slash and with or without www, then make every rule redirect towards it rather than between the two.',
     }));
   }
 
