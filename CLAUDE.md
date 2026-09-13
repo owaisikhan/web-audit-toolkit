@@ -97,10 +97,22 @@ them cold.
   Chromium themselves. **Never run `playwright install`** in an environment
   that already ships a browser.
 
-## House style for anything a client reads
+## House style
+
+**No em dashes in anything you write or edit.** Restructure the sentence rather
+than swapping the dash for a comma: a colon, a full stop or a subordinate clause
+almost always reads better than the dash did. Numeric ranges take a hyphen
+(`136-155 ms`).
+
+Enforced today in `CLAUDE.md`, `README.md`, `RUNBOOK.md`, and every string in
+`scripts/` that reaches a report. The reference docs under
+`.claude/skills/web-audit/references/`, the script comments, and older
+`TRIAGE.md` files predate the rule and still contain them. Clean them as you
+touch them rather than in one sweep.
+
+The rest applies to anything a client reads:
 
 - Plain words. "The page takes six seconds to appear", not "LCP is degraded".
-- No em dashes. Restructure the sentence instead of swapping in a comma.
 - No invented numbers. No revenue estimates, no conversion percentages
   borrowed from someone else's study. State what you measured.
 - Never blame whoever built the site. They are often in the room and usually

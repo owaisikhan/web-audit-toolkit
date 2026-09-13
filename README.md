@@ -1,21 +1,21 @@
 # Website audit toolkit
 
-Everything needed to audit somebody's website — speed, Core Web Vitals,
-technical SEO, passive security exposure, and (when I have the repo)
-source-level risk — and turn it into a report a non-technical owner can act on.
+Everything needed to audit somebody's website for speed, Core Web Vitals,
+technical SEO, passive security exposure and (when I have the repo)
+source-level risk, then turn it into a report a non-technical owner can act on.
 
 The whole toolkit is the skill in `.claude/skills/web-audit/`. Open a Claude
 Code session in this repo, say "audit https://theirsite.com", and the skill
-loads itself. **Read `.claude/skills/web-audit/SKILL.md` first** — it is the
+loads itself. **Read `.claude/skills/web-audit/SKILL.md` first.** It is the
 method (scope, triage by consequence, prove every claim, price every fix).
 This README is the operating manual around it: what runs, what it writes,
 where the output goes.
 
 The scripts need Node and a Playwright Chromium. They find the browser
-themselves — a local `node_modules`, a global install, or `PLAYWRIGHT_BROWSERS_PATH`
-(`/opt/pw-browsers` in a Claude Code sandbox). **Do not run `playwright install`**
-in an environment that already ships one. There is no `package.json` here and
-none is needed.
+themselves, whether that is a local `node_modules`, a global install, or
+`PLAYWRIGHT_BROWSERS_PATH` (`/opt/pw-browsers` in a Claude Code sandbox).
+**Do not run `playwright install`** in an environment that already ships one.
+There is no `package.json` here and none is needed.
 
 `RUNBOOK.md` is the step-by-step for auditing a new site end to end.
 
@@ -36,13 +36,13 @@ external host, while `curl` to the same host through the same proxy returns
 intercepting agent proxy. It cannot complete Chromium's TLS 1.3 handshake:
 the ClientHello (~1.7 kB, enlarged by the post-quantum key share) goes out,
 39 bytes come back, and the tunnel closes after 6s. `curl` negotiates
-differently and is unaffected, which is what makes this confusing — the host
+differently and is unaffected, which is what makes this confusing: the host
 is plainly reachable. Check `curl -sS "$HTTPS_PROXY/__agentproxy/status"` and
 look for `ws_closed_mid_exchange` against your target host.
 
 **Fix.** Cap the browser at TLS 1.2. The scripts hardcode their launch args,
-so rather than editing them, put a wrapper where `findChromium()` looks —
-it scans `$PLAYWRIGHT_BROWSERS_PATH` for `chromium*/chrome-linux/chrome`:
+so rather than editing them, put a wrapper where `findChromium()` looks. It
+scans `$PLAYWRIGHT_BROWSERS_PATH` for `chromium*/chrome-linux/chrome`:
 
 ```bash
 mkdir -p /tmp/pw-shim/chromium/chrome-linux
@@ -55,7 +55,7 @@ chmod +x /tmp/pw-shim/chromium/chrome-linux/chrome
 PLAYWRIGHT_BROWSERS_PATH=/tmp/pw-shim node $SKILL/scripts/collect-perf.mjs ...
 ```
 
-Check the real Chromium's version directory first — `chromium-1194` is what
+Check the real Chromium's version directory first. `chromium-1194` is what
 that sandbox shipped, not a constant. This changes nothing about certificate
 verification.
 
@@ -63,7 +63,7 @@ verification.
 are the auditor's problem, not the script's:
 
 - **The TLS certificate in `security.json` is the proxy's, not the site's.**
-  Look at `pages[].tls.issuer` — if it does not name a real CA, discard every
+  Look at `pages[].tls.issuer`. If it does not name a real CA, discard every
   certificate and expiry finding rather than reporting it. The report
   generator's "certificate is valid for another N days" line has to come out
   by hand.
@@ -74,10 +74,10 @@ are the auditor's problem, not the script's:
 - **TBT is unreliable in absolute terms here, and it errs the other way.**
   Total Blocking Time measures main-thread work, so it tracks the CPU this
   container was given rather than the visitor's phone. The same site measured
-  three days apart went from 136–155 ms to 250–290 ms on every mobile page
-  while serving byte-identical JavaScript — same script count, same bytes,
-  same total transfer — with LCP and CLS flat. That produced four false
-  `medium` findings. **Before reporting a TBT finding, compare
+  three days apart went from 136-155 ms to 250-290 ms on every mobile page
+  while serving byte-identical JavaScript, meaning the same script count, the
+  same bytes and the same total transfer, with LCP and CLS flat. That produced
+  four false `medium` findings. **Before reporting a TBT finding, compare
   `resourceSummary.byKind.script` against the previous run.** If the payload
   did not change, the machine did, and the finding is an artifact: drop it
   with `--drop perf-tbt-mobile` and say so in the triage notes.
@@ -93,10 +93,10 @@ report step.
 
 | Script | Run it on | Writes |
 |---|---|---|
-| `collect-perf.mjs` | one or more live URLs | `perf.json` — LCP/CLS/TBT/TTFB/FCP per page per profile (median of N cold loads, Moto G-class 4G and/or desktop), request waterfall, transfer sizes, render-blocking assets, image and font waste, plus findings. Also `screenshots/` at phone and laptop width. |
-| `check-headers.mjs` | one or more live URLs | `security.json` — response headers, cookie flags, TLS certificate, framework/version disclosure, exposed source maps, secrets found in the JavaScript the site itself serves, `robots.txt`/`sitemap.xml`/`security.txt`. Passive only. |
-| `check-seo.mjs` | one or more live URLs | `seo.json` — indexability (`noindex` meta and header, `robots.txt`), canonicals including ones declared in the HTTP `Link` header, titles, descriptions, heading outline, viewport, `lang`, image alt text, Open Graph, HTTP status, thin and duplicate content, dead-end pages, orphan pages found by comparing the sitemap against the link graph, plus broken internal links and redirect chains. Passive only. |
-| `scan-source.mjs` | a repo directory (only one I own or have been given) | `source.json` — dependency CVEs via `npm audit`, injection surface, unguarded endpoints, hard-coded secrets. Candidates, not verdicts: every hit needs reading in context. |
+| `collect-perf.mjs` | one or more live URLs | `perf.json`: LCP/CLS/TBT/TTFB/FCP per page per profile (median of N cold loads, Moto G-class 4G and/or desktop), request waterfall, transfer sizes, render-blocking assets, image and font waste, plus findings. Also `screenshots/` at phone and laptop width. |
+| `check-headers.mjs` | one or more live URLs | `security.json`: response headers, cookie flags, TLS certificate, framework/version disclosure, exposed source maps, secrets found in the JavaScript the site itself serves, `robots.txt`/`sitemap.xml`/`security.txt`. Passive only. |
+| `check-seo.mjs` | one or more live URLs | `seo.json`: indexability (`noindex` meta and header, `robots.txt`), canonicals including ones declared in the HTTP `Link` header, titles, descriptions, heading outline, viewport, `lang`, image alt text, Open Graph, HTTP status, thin and duplicate content, dead-end pages, orphan pages found by comparing the sitemap against the link graph, plus broken internal links and redirect chains. Passive only. |
+| `scan-source.mjs` | a repo directory (only one I own or have been given) | `source.json`: dependency CVEs via `npm audit`, injection surface, unguarded endpoints, hard-coded secrets. Candidates, not verdicts: every hit needs reading in context. |
 | `report.mjs` | the output directory | `report.html` (your worklist: evidence, measurements, reproduction commands), `report-client.html` (the one you send: same findings, no apparatus, prints to PDF cleanly) and `report.md`, built from whichever JSON files are present. It scaffolds. The summary and the plan come from `narrative.md` in the same directory, and are left as TODO markers if it is absent. |
 
 `collect-perf.mjs` writes screenshots because a site can pass every metric and
@@ -108,7 +108,7 @@ still be unusable on a phone. Look at them.
 SKILL=.claude/skills/web-audit
 OUT=audits/bloomfield/2026-09-10          # client slug, then the date of the run
 
-# 1. Performance. More than one page, more than one run — first loads are
+# 1. Performance. More than one page, more than one run, because first loads are
 #    noisy and --runs takes the median. The homepage is the most optimised
 #    page on almost every site; the money is in the listing or the checkout.
 node $SKILL/scripts/collect-perf.mjs \
@@ -124,7 +124,7 @@ node $SKILL/scripts/check-seo.mjs \
   https://example.com https://example.com/shop https://example.com/shop/a-product \
   --out $OUT
 
-# 4. Source scan — ONLY with the repo in hand and permission to read it.
+# 4. Source scan. ONLY with the repo in hand and permission to read it.
 node $SKILL/scripts/scan-source.mjs /path/to/their-repo --out $OUT
 
 # 5. Look at the screenshots, re-rank the findings by what they cost this
@@ -141,7 +141,7 @@ and why, and never goes to the client.
 Useful flags: `--runs N` (median of N cold loads), `--profile mobile|desktop`
 or `--all-profiles`, `--timeout MS`, and `report.mjs --drop id1,id2` to remove
 findings I decided were not real. Steps 3 and 4 of the list above are the ones
-that take judgement — the generator does not know which findings I threw out,
+that take judgement. The generator does not know which findings I threw out,
 and it leaves the summary and the plan blank for me to write.
 
 ## Passive only, and why
@@ -150,7 +150,7 @@ The scripts make the requests an ordinary visitor's browser makes, and draw
 conclusions from the responses. They have no active mode and must not be given
 one. Requesting paths nobody linked to, submitting to a form, sending any
 payload, trying a login, or pointing a vulnerability scanner at a site is
-active testing — it needs written permission naming the scope and the dates,
+active testing. It needs written permission naming the scope and the dates,
 and without it it is a criminal offence in most jurisdictions regardless of
 intent, including here.
 

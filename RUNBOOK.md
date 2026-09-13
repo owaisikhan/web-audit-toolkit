@@ -1,6 +1,6 @@
 # Auditing a new site, end to end
 
-The commands for a full audit, in order, with the judgement steps left in —
+The commands for a full audit, in order, with the judgement steps left in,
 because the parts that are not commands are the parts that make the report
 worth sending. Written from the Saam's Store run of 10 Sep 2026.
 
@@ -34,13 +34,15 @@ OUT=audits/$SLUG/$(date +%F)         # audits/their-name/2026-09-10
 mkdir -p $OUT
 ```
 
-Everything lands in `$OUT`. It is gitignored — see `audits/README.md` for why
-that is not negotiable on a public repo.
+Everything lands in `$OUT`, and it is committed. See `audits/README.md` for
+why the archive is the point, and for the condition that goes with it: a run
+directory describes unfixed weaknesses on somebody's live site, so check the
+repo's visibility before adding a client.
 
 ## 2. Find the pages worth measuring
 
 The homepage is the most optimised page on almost every site. Get the real
-ones — a listing, a product, the cart, a search result — from the links the
+ones, such as a listing, a product, the cart or a search result, from the links the
 site itself serves. This is passive: you are reading what it hands you.
 
 ```bash
@@ -64,7 +66,7 @@ grep -o '<meta name="robots"[^>]*>' /tmp/home.html   # noindex on a live shop is
 
 ## 3. Collect
 
-Nothing is interpreted yet. Three or four pages, three runs each — a single
+Nothing is interpreted yet. Three or four pages, three runs each, because a single
 cold load is not evidence and you will be asked to reproduce it.
 
 ```bash
@@ -100,14 +102,14 @@ Flags worth knowing: `--runs N`, `--profile mobile|desktop`, `--all-profiles`,
 `--timeout MS`, and `scan-source --no-audit` to skip `npm audit`.
 
 **If every page fails with `ERR_CONNECTION_RESET`**, you are in a Claude Code
-web session — see the TLS 1.3 section of `README.md`. Do not report those as
+web session. See the TLS 1.3 section of `README.md`. Do not report those as
 findings about the site; they are about your sandbox.
 
 ## 4. Look at the screenshots
 
 Not optional, and not something a collector can do for you. The one finding on
-Saam's Store that was plausibly costing sales — a floating chat button sitting
-on top of the add-to-cart control, on the listing page, at phone width — was
+Saam's Store that was plausibly costing sales, a floating chat button sitting
+on top of the add-to-cart control on the listing page at phone width, was
 invisible in every JSON file and obvious in one screenshot.
 
 ```bash
@@ -131,7 +133,7 @@ Question 4 is where credibility is won. On Saam's Store, `npm audit` reported a
 critical Next.js RCE that applies only to Windows-hosted servers (they are on
 Vercel) and a second that requires AVIF (not enabled). Both were dropped. The
 scanner also flagged "an endpoint with no authorisation check" that turned out
-to be a deliberately public chatbot — while the admin area, which it could not
+to be a deliberately public chatbot, while the admin area, which it could not
 see into, was properly gated at both the layout and every server action.
 
 Reading the code beats trusting the pattern match. Check these by hand:
@@ -141,7 +143,7 @@ Reading the code beats trusting the pattern match. Check these by hand:
 sed -n 1,60p /tmp/their-repo/app/api/whatever/route.js
 
 # Are server actions guarded, or only the pages? (Next.js: a layout guard
-# does NOT protect a server action — it is a directly invocable endpoint.)
+# does NOT protect a server action. It is a directly invocable endpoint.)
 grep -rl '"use server"' /tmp/their-repo/app
 grep -n "requireAdmin\|getClaims\|ADMIN_EMAIL" /tmp/their-repo/app/_lib/actions.js
 
@@ -154,7 +156,7 @@ for n,v in d.get('vulnerabilities',{}).items():
 "
 ```
 
-If a guard looks thin, test it directly rather than guessing — copy the
+If a guard looks thin, test it directly rather than guessing. Copy the
 function out and call it. That is how the Saam's Store SQL allowlist bypass
 went from a suspicion to a quoted result, without sending anything at the live
 site:
@@ -230,7 +232,7 @@ What always needs hand-work:
 - **"What is working well."** The collectors propose these. Check each one is
   true of every page before it ships: a claim the findings contradict costs you
   more than the positive gains.
-- **Findings the collectors cannot produce** — anything from the screenshots
+- **Findings the collectors cannot produce**, meaning anything from the screenshots
   or from reading the code. Match the existing `<article class="finding …">`
   markup.
 - **"What we did not test."** One honest paragraph. It scopes the next
@@ -242,7 +244,7 @@ grep -c TODO $OUT/report.html $OUT/report-client.html $OUT/report.md   # all 0
 
 ## 8. Look at the finished report
 
-At a laptop width and a phone width, rendered — not by reading the markup.
+At a laptop width and a phone width, rendered, not by reading the markup.
 
 This repo has no `node_modules`, so borrow the skill's own browser loader
 rather than importing `playwright` directly:
@@ -272,14 +274,15 @@ Both paths are passed in as absolute arguments deliberately: a relative
 directory.
 
 Zero is the horizontal overflow you want at both widths. Then actually open the
-images. Check the evidence blocks have not wrapped into nonsense — long lines
+images. Check the evidence blocks have not wrapped into nonsense, because long lines
 in a `<pre>` are the usual casualty.
 
 ## 9. Before it leaves
 
-- `git status` — clean. Audit output is gitignored and must stay out of a
-  public repo.
-- Send the client `report.html` directly. It is self-contained and prints to
-  PDF from a browser; owners overwhelmingly prefer the PDF.
+- `git status` clean, with the run directory committed. Grep it for
+  credentials first: `audits/README.md` says why, and it is the last chance.
+- Send the client `report-client.html`, not `report.html`. It is
+  self-contained and prints to PDF from a browser, and owners overwhelmingly
+  prefer the PDF. `report.html`, `TRIAGE.md` and the raw JSON stay with you.
 - Keep the run directory. Two audits of the same site months apart is the most
   persuasive thing this toolkit produces, and it costs nothing to keep.
