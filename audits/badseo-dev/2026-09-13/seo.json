@@ -1,0 +1,1954 @@
+{
+  "tool": "check-seo",
+  "mode": "passive",
+  "collectedAt": "2026-09-13T10:35:17.228Z",
+  "command": "node check-seo.mjs https://badseo.dev/ https://badseo.dev/privacy https://badseo.dev/head/missing-title https://badseo.dev/head/title-too-long https://badseo.dev/head/title-too-short https://badseo.dev/head/missing-meta-description https://badseo.dev/head/meta-description-too-long https://badseo.dev/head/meta-description-too-short https://badseo.dev/head/missing-h1 https://badseo.dev/head/empty-h1 https://badseo.dev/head/multiple-h1 https://badseo.dev/head/heading-order-skip https://badseo.dev/content/thin-content https://badseo.dev/content/images-missing-alt https://badseo.dev/content/duplicate-a https://badseo.dev/content/duplicate-b https://badseo.dev/content/duplicate-title-a https://badseo.dev/content/duplicate-title-b https://badseo.dev/content/duplicate-meta-a https://badseo.dev/content/duplicate-meta-b https://badseo.dev/index/noindex-meta https://badseo.dev/index/noindex-header https://badseo.dev/index/canonicalized https://badseo.dev/index/canonical-conflict https://badseo.dev/status/not-found https://badseo.dev/status/server-error https://badseo.dev/status/blocked https://badseo.dev/links/broken-internal-link https://badseo.dev/redirect/trailing-slash https://badseo.dev/perf/slow-response https://badseo.dev/structure/orphan https://badseo.dev/structure/no-outgoing-links https://badseo.dev/kitchen-sink",
+  "urls": [
+    "https://badseo.dev/",
+    "https://badseo.dev/privacy",
+    "https://badseo.dev/head/missing-title",
+    "https://badseo.dev/head/title-too-long",
+    "https://badseo.dev/head/title-too-short",
+    "https://badseo.dev/head/missing-meta-description",
+    "https://badseo.dev/head/meta-description-too-long",
+    "https://badseo.dev/head/meta-description-too-short",
+    "https://badseo.dev/head/missing-h1",
+    "https://badseo.dev/head/empty-h1",
+    "https://badseo.dev/head/multiple-h1",
+    "https://badseo.dev/head/heading-order-skip",
+    "https://badseo.dev/content/thin-content",
+    "https://badseo.dev/content/images-missing-alt",
+    "https://badseo.dev/content/duplicate-a",
+    "https://badseo.dev/content/duplicate-b",
+    "https://badseo.dev/content/duplicate-title-a",
+    "https://badseo.dev/content/duplicate-title-b",
+    "https://badseo.dev/content/duplicate-meta-a",
+    "https://badseo.dev/content/duplicate-meta-b",
+    "https://badseo.dev/index/noindex-meta",
+    "https://badseo.dev/index/noindex-header",
+    "https://badseo.dev/index/canonicalized",
+    "https://badseo.dev/index/canonical-conflict",
+    "https://badseo.dev/status/not-found",
+    "https://badseo.dev/status/server-error",
+    "https://badseo.dev/status/blocked",
+    "https://badseo.dev/links/broken-internal-link",
+    "https://badseo.dev/redirect/trailing-slash",
+    "https://badseo.dev/perf/slow-response",
+    "https://badseo.dev/structure/orphan",
+    "https://badseo.dev/structure/no-outgoing-links",
+    "https://badseo.dev/kitchen-sink"
+  ],
+  "robots": {
+    "url": "https://badseo.dev/robots.txt",
+    "present": true,
+    "disallow": [],
+    "sitemaps": [
+      "https://badseo.dev/sitemap.xml"
+    ]
+  },
+  "linksChecked": 3,
+  "pages": [
+    {
+      "url": "https://badseo.dev/",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "BadSEO | Technical SEO test site"
+        ],
+        "descriptions": [
+          "A website with example technical SEO issues for you to learn or test your agents"
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "BadSEO"
+          },
+          {
+            "level": 2,
+            "text": "Kitchen sink"
+          },
+          {
+            "level": 2,
+            "text": "Indexability & canonical"
+          },
+          {
+            "level": 2,
+            "text": "HTTP status & links"
+          },
+          {
+            "level": 2,
+            "text": "Redirects"
+          },
+          {
+            "level": 2,
+            "text": "Performance"
+          },
+          {
+            "level": 2,
+            "text": "Site structure"
+          },
+          {
+            "level": 2,
+            "text": "Head tags & headings"
+          },
+          {
+            "level": 2,
+            "text": "Content quality"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 402,
+        "images": {
+          "total": 0,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/kitchen-sink",
+          "https://badseo.dev/index/noindex-meta",
+          "https://badseo.dev/index/noindex-header",
+          "https://badseo.dev/index/canonicalized",
+          "https://badseo.dev/index/canonical-conflict",
+          "https://badseo.dev/links/broken-internal-link",
+          "https://badseo.dev/redirect/chain-1",
+          "https://badseo.dev/redirect/loop",
+          "https://badseo.dev/redirect/trailing-slash",
+          "https://badseo.dev/perf/slow-response",
+          "https://badseo.dev/structure/no-outgoing-links",
+          "https://badseo.dev/structure/deep/1",
+          "https://badseo.dev/head/missing-title",
+          "https://badseo.dev/head/title-too-long",
+          "https://badseo.dev/head/title-too-short",
+          "https://badseo.dev/head/missing-meta-description",
+          "https://badseo.dev/head/meta-description-too-long",
+          "https://badseo.dev/head/meta-description-too-short",
+          "https://badseo.dev/head/missing-h1",
+          "https://badseo.dev/head/empty-h1",
+          "https://badseo.dev/head/multiple-h1",
+          "https://badseo.dev/head/heading-order-skip",
+          "https://badseo.dev/content/thin-content",
+          "https://badseo.dev/content/images-missing-alt",
+          "https://badseo.dev/content/duplicate-a",
+          "https://badseo.dev/content/duplicate-title-a",
+          "https://badseo.dev/content/duplicate-title-b",
+          "https://badseo.dev/content/duplicate-meta-a",
+          "https://badseo.dev/content/duplicate-meta-b",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/privacy",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Privacy policy | badseo.dev"
+        ],
+        "descriptions": [
+          "How badseo.dev uses Plausible, Google Analytics, and Cloudflare and how visitors control analytics cookies."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Privacy policy"
+          },
+          {
+            "level": 2,
+            "text": "Who operates this site"
+          },
+          {
+            "level": 2,
+            "text": "Plausible Analytics"
+          },
+          {
+            "level": 2,
+            "text": "Google Analytics"
+          },
+          {
+            "level": 2,
+            "text": "Cloudflare"
+          },
+          {
+            "level": 2,
+            "text": "International processing and your rights"
+          },
+          {
+            "level": 2,
+            "text": "Changes"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 398,
+        "images": {
+          "total": 0,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://plausible.io/data-policy",
+          "https://policies.google.com/technologies/partner-sites",
+          "https://policies.google.com/privacy",
+          "https://www.cloudflare.com/privacypolicy/",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/missing-title",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [],
+        "descriptions": [
+          "This page is fine except for one thing: it has no title tag for search results or browser tabs."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "A page with no title"
+          },
+          {
+            "level": 2,
+            "text": "What the title does"
+          },
+          {
+            "level": 2,
+            "text": "Why it goes missing"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 146,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/title-too-long",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "The Complete And Fully Unabridged Guide To Writing Page Titles That Are Much Too Long To Fit In Search Results"
+        ],
+        "descriptions": [
+          "The title on this page runs well past the length a search result will show."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "A title that runs too long"
+          },
+          {
+            "level": 2,
+            "text": "Where the title gets cut"
+          },
+          {
+            "level": 2,
+            "text": "How to shorten it"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 142,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/title-too-short",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Hi"
+        ],
+        "descriptions": [
+          "The title on this page is a single short word, which tells a search engine almost nothing."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "A title that is too short"
+          },
+          {
+            "level": 2,
+            "text": "Titles need room to work"
+          },
+          {
+            "level": 2,
+            "text": "A good length"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 121,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/missing-meta-description",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with no meta description"
+        ],
+        "descriptions": [],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "No meta description"
+          },
+          {
+            "level": 2,
+            "text": "What the description does"
+          },
+          {
+            "level": 2,
+            "text": "How to write one"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 127,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/meta-description-too-long",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with a very long meta description"
+        ],
+        "descriptions": [
+          "This meta description keeps going well past the point where a search engine would ever show the whole thing, adding clause after clause after clause, so most of it ends up cut off with an ellipsis that no one reads."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "A meta description that runs too long"
+          },
+          {
+            "level": 2,
+            "text": "Where the snippet gets cut"
+          },
+          {
+            "level": 2,
+            "text": "Keep it to one line"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 114,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/meta-description-too-short",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with a very short meta description"
+        ],
+        "descriptions": [
+          "A short, unique snippet for this one fixture."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "A meta description that is too short"
+          },
+          {
+            "level": 2,
+            "text": "Why short snippets underperform"
+          },
+          {
+            "level": 2,
+            "text": "What enough detail looks like"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 138,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/missing-h1",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with no H1"
+        ],
+        "descriptions": [
+          "Every heading on this page is an H2 or lower. The top-level H1 that should state the topic is missing."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Where the headline should be"
+          },
+          {
+            "level": 2,
+            "text": "Why it happens"
+          },
+          {
+            "level": 3,
+            "text": "A quick check"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 167,
+        "images": {
+          "total": 0,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/empty-h1",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with an empty H1"
+        ],
+        "descriptions": [
+          "The only H1 on this page is empty, so the markup has a top-level heading tag but no actual heading text."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 2,
+            "text": "Why an empty heading fails"
+          },
+          {
+            "level": 3,
+            "text": "What to fix"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 213,
+        "images": {
+          "total": 0,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/multiple-h1",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with three H1s"
+        ],
+        "descriptions": [
+          "This page marks three separate lines as an H1, so a crawler gets three competing claims about the topic."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "This line is an H1"
+          },
+          {
+            "level": 1,
+            "text": "So is this one"
+          },
+          {
+            "level": 1,
+            "text": "And this is the third H1"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 144,
+        "images": {
+          "total": 0,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/head/heading-order-skip",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page that skips heading levels"
+        ],
+        "descriptions": [
+          "The headings on this page jump from H1 to H4, leaving a gap that confuses screen readers and parsers."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Headings that skip a level"
+          },
+          {
+            "level": 4,
+            "text": "The first section, which should have been an H2"
+          },
+          {
+            "level": 4,
+            "text": "Another skipped-level section"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 145,
+        "images": {
+          "total": 0,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/content/thin-content",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Thin content example"
+        ],
+        "descriptions": [
+          "A sparse page with almost no visible text, built to show how thin content reads to a crawler."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Nothing here yet"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 20,
+        "images": {
+          "total": 0,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/content/images-missing-alt",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with an image that has no alt text"
+        ],
+        "descriptions": [
+          "This page has an image with no alt attribute, so a screen reader and a search engine cannot tell what it shows."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "An image with no alt text"
+          },
+          {
+            "level": 2,
+            "text": "Why alt text matters"
+          },
+          {
+            "level": 2,
+            "text": "Getting it right"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 156,
+        "images": {
+          "total": 1,
+          "missingAlt": [
+            "https://badseo.dev/img/placeholder.svg"
+          ]
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/content/duplicate-a",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Pumpkin Spice Latte Recipe"
+        ],
+        "descriptions": [
+          "The same latte recipe, published word for word at two different URLs, so a search engine has to pick one and drop the other."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "The same latte recipe, twice"
+          },
+          {
+            "level": 2,
+            "text": "Two URLs, one page"
+          },
+          {
+            "level": 2,
+            "text": "How to fix it"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 160,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/content/duplicate-b",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Pumpkin Spice Latte Recipe"
+        ],
+        "descriptions": [
+          "The same latte recipe, published word for word at two different URLs, so a search engine has to pick one and drop the other."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "The same latte recipe, twice"
+          },
+          {
+            "level": 2,
+            "text": "Two URLs, one page"
+          },
+          {
+            "level": 2,
+            "text": "How to fix it"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 160,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/content/duplicate-title-a",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Blue Running Shoes | Sole Mates"
+        ],
+        "descriptions": [
+          "The Marathon model in cobalt blue, a cushioned daily trainer built for long, flat road miles."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Marathon Trainer, Cobalt Blue"
+          },
+          {
+            "level": 2,
+            "text": "Built for distance"
+          },
+          {
+            "level": 2,
+            "text": "Why the title matters here"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 138,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/content/duplicate-title-b",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Blue Running Shoes | Sole Mates"
+        ],
+        "descriptions": [
+          "The Sprint model in electric blue, a firm, low-drop racing flat for 5K and 10K races."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Sprint Racer, Electric Blue"
+          },
+          {
+            "level": 2,
+            "text": "Built for speed"
+          },
+          {
+            "level": 2,
+            "text": "One title, two products"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 135,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/content/duplicate-meta-a",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Early Riser Bakery, sourdough and pastries"
+        ],
+        "descriptions": [
+          "Fresh, seasonal, and made locally every morning, then delivered to your door. Order today."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Early Riser Bakery"
+          },
+          {
+            "level": 2,
+            "text": "What we bake"
+          },
+          {
+            "level": 2,
+            "text": "The snippet problem"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 126,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/content/duplicate-meta-b",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Petal & Stem, seasonal flower delivery"
+        ],
+        "descriptions": [
+          "Fresh, seasonal, and made locally every morning, then delivered to your door. Order today."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Petal & Stem Florist"
+          },
+          {
+            "level": 2,
+            "text": "What we arrange"
+          },
+          {
+            "level": 2,
+            "text": "One sentence, two businesses"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 125,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/index/noindex-meta",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page set to noindex"
+        ],
+        "descriptions": [
+          "This page can be crawled, but a robots noindex tag tells search engines to keep it out of results."
+        ],
+        "robotsMeta": [
+          "noindex, follow"
+        ],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "This page asks not to be indexed"
+          },
+          {
+            "level": 2,
+            "text": "When noindex is right"
+          },
+          {
+            "level": 2,
+            "text": "When it is a problem"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 138,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/index/noindex-header",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Noindex set in a response header"
+        ],
+        "descriptions": [
+          "The HTML on this page looks indexable, but an X-Robots-Tag header tells search engines to skip it."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "A noindex you cannot see in the HTML"
+          },
+          {
+            "level": 2,
+            "text": "Headers can control indexing too"
+          },
+          {
+            "level": 2,
+            "text": "Why a tool has to check both"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 141,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/index/canonicalized",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page whose canonical points elsewhere"
+        ],
+        "descriptions": [
+          "This page's rel=canonical points at the homepage, telling search engines to credit that URL instead of this one."
+        ],
+        "robotsMeta": [],
+        "canonicals": [
+          "https://badseo.dev/"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "This is not the canonical page"
+          },
+          {
+            "level": 2,
+            "text": "What a cross-URL canonical does"
+          },
+          {
+            "level": 2,
+            "text": "When it goes wrong"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 150,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/index/canonical-conflict",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with two different canonicals"
+        ],
+        "descriptions": [
+          "This page ships two canonical URLs that disagree: one in the HTML head and a different one in the HTTP Link header."
+        ],
+        "robotsMeta": [],
+        "canonicals": [
+          "https://badseo.dev/index/canonical-conflict?via=html"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Two canonicals that disagree"
+          },
+          {
+            "level": 2,
+            "text": "Mixed signals"
+          },
+          {
+            "level": 2,
+            "text": "Pick one place"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 140,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/status/not-found",
+      "status": 404,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "404, this page does not exist"
+        ],
+        "descriptions": [
+          "A URL that is listed in the sitemap but returns 404."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "404, but the sitemap still lists it"
+          },
+          {
+            "level": 2,
+            "text": "Why a 404 in the sitemap is a problem"
+          },
+          {
+            "level": 2,
+            "text": "The fix"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 136,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/status/server-error",
+      "status": 500,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "500, the server errored"
+        ],
+        "descriptions": [
+          "A URL that returns a 500 error to every crawler."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "500, a server error"
+          },
+          {
+            "level": 2,
+            "text": "5xx is worse than 4xx"
+          },
+          {
+            "level": 2,
+            "text": "Return the right code"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 122,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/status/blocked",
+      "status": 403,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "403, the crawler was blocked"
+        ],
+        "descriptions": [
+          "A page that returns 403 Forbidden to crawlers."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "403, access denied to the crawler"
+          },
+          {
+            "level": 2,
+            "text": "Blocked is not the same as broken"
+          },
+          {
+            "level": 2,
+            "text": "When your own protection backfires"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 151,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/links/broken-internal-link",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with a broken internal link"
+        ],
+        "descriptions": [
+          "This page is otherwise fine, but it links to one of its own URLs that returns a 404."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "The link below goes nowhere"
+          },
+          {
+            "level": 2,
+            "text": "How to catch these"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 184,
+        "images": {
+          "total": 0,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/status/not-found",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/redirect/trailing-slash",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Trailing-slash canonical page"
+        ],
+        "descriptions": [
+          "The canonical version of this page ends in a trailing slash, and the non-slash form redirects to it, which trips up crawlers that strip slashes."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "This is the canonical, trailing-slash version"
+          },
+          {
+            "level": 2,
+            "text": "Why the trailing slash matters"
+          },
+          {
+            "level": 2,
+            "text": "Where crawlers go wrong"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 159,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/perf/slow-response",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "A page with a slow server response"
+        ],
+        "descriptions": [
+          "This page waits about 1.7 seconds before it responds, past the point where a slow time to first byte starts to hurt."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "A slow response"
+          },
+          {
+            "level": 2,
+            "text": "Why time to first byte matters"
+          },
+          {
+            "level": 2,
+            "text": "Common causes and fixes"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 154,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/structure/orphan",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "An orphan page"
+        ],
+        "descriptions": [
+          "A normal page that no other page on the site links to. It is only reachable because it is listed in the sitemap."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "A page nothing links to"
+          },
+          {
+            "level": 2,
+            "text": "What makes a page an orphan"
+          },
+          {
+            "level": 2,
+            "text": "How pages get orphaned"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 165,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/structure/no-outgoing-links",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Page with no outgoing links"
+        ],
+        "descriptions": [
+          "This healthy page deliberately renders no anchor tags, so crawlers and users reach a dead end."
+        ],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "A page with no outgoing links"
+          },
+          {
+            "level": 2,
+            "text": "Why dead ends are a problem"
+          },
+          {
+            "level": 2,
+            "text": "What a healthy page should do"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 154,
+        "images": {
+          "total": 1,
+          "missingAlt": []
+        },
+        "links": [
+          "https://badseo.dev/privacy"
+        ]
+      }
+    },
+    {
+      "url": "https://badseo.dev/kitchen-sink",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "The Kitchen Sink Page That Breaks Six SEO Rules At Once And Has A Title That Is Far Too Long"
+        ],
+        "descriptions": [],
+        "robotsMeta": [],
+        "canonicals": [],
+        "headings": [
+          {
+            "level": 1,
+            "text": "The kitchen sink page"
+          },
+          {
+            "level": 1,
+            "text": "Yes, that was two H1s"
+          },
+          {
+            "level": 4,
+            "text": "This section skips straight to an H4"
+          },
+          {
+            "level": 4,
+            "text": "And a few more"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1",
+        "og": {
+          "title": null,
+          "description": null,
+          "image": null
+        },
+        "jsonLd": 0,
+        "words": 285,
+        "images": {
+          "total": 1,
+          "missingAlt": [
+            "https://badseo.dev/img/placeholder.svg"
+          ]
+        },
+        "links": [
+          "https://badseo.dev/",
+          "https://openseo.so/",
+          "https://github.com/every-app/open-seo",
+          "https://badseo.dev/#issues",
+          "https://badseo.dev/privacy"
+        ]
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "seo-noindex-meta",
+      "title": "This page tells search engines not to list it",
+      "severity": "critical",
+      "category": "seo",
+      "evidence": "<meta name=\"robots\" content=\"noindex, follow\">\n    on https://badseo.dev/index/noindex-meta",
+      "impact": "This single tag removes the page from Google entirely — it will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.",
+      "fix": "Remove `noindex` from the robots meta tag on pages that should be found. Check the whole site, not just this page — the tag is usually applied in a shared layout or template.",
+      "effort": "quick",
+      "url": "https://badseo.dev/index/noindex-meta",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-noindex-header",
+      "title": "The server sends a header telling search engines not to list this page",
+      "severity": "critical",
+      "category": "seo",
+      "evidence": "X-Robots-Tag: noindex\n    in the response to GET https://badseo.dev/index/noindex-header",
+      "impact": "Same effect as a noindex tag, and harder to spot because it is invisible in the page source. The page will not appear in search results.",
+      "fix": "Remove the `X-Robots-Tag: noindex` header from responses for public pages. It is set at the server, CDN or hosting-platform level rather than in the page itself.",
+      "effort": "quick",
+      "url": "https://badseo.dev/index/noindex-header",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-title-missing",
+      "title": "The page has no title",
+      "severity": "high",
+      "category": "seo",
+      "evidence": "No <title> element in the head of https://badseo.dev/head/missing-title",
+      "impact": "The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content — usually badly — and the page loses its single strongest ranking signal.",
+      "fix": "Add a `<title>` of roughly 50–60 characters that names the page and the business, most specific part first.",
+      "effort": "quick",
+      "url": "https://badseo.dev/head/missing-title",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-redirect-loop",
+      "title": "Some addresses redirect in a circle",
+      "severity": "high",
+      "category": "seo",
+      "evidence": "https://badseo.dev/redirect/loop\n      302 → https://badseo.dev/redirect/loop",
+      "impact": "The browser gives up and shows an error, so the page is unreachable for visitors and cannot be indexed at all. Usually caused by two rules disagreeing about a trailing slash or about www.",
+      "fix": "Pick one canonical form — with or without the trailing slash, with or without www — and make every rule redirect towards it rather than between the two.",
+      "effort": "quick",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-h1-missing",
+      "title": "The page has no main heading",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "No <h1> found on https://badseo.dev/head/missing-h1. First heading is an <h2>: \"Where the headline should be\".",
+      "impact": "The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing — only the markup is read.",
+      "fix": "Mark the page’s main heading as `<h1>`. One per page.",
+      "effort": "quick",
+      "url": "https://badseo.dev/head/missing-h1",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-canonical-elsewhere",
+      "title": "This page points search engines at a different address",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "Requested: https://badseo.dev/index/canonicalized\n    <link rel=\"canonical\" href=\"https://badseo.dev/\">",
+      "impact": "Search engines will show the other address instead of this one, and any links earned by this page are credited there. Correct when the pages really are duplicates; a mistake when they are not.",
+      "fix": "Confirm the target is genuinely the same content. If it is not, point the canonical at this page’s own address.",
+      "effort": "quick",
+      "url": "https://badseo.dev/index/canonicalized",
+      "unconfirmed": true
+    },
+    {
+      "id": "seo-duplicate-title",
+      "title": "Several pages share the same title",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "\"Pumpkin Spice Latte Recipe\" is the title of 2 pages:\n    https://badseo.dev/content/duplicate-a\n    https://badseo.dev/content/duplicate-b",
+      "impact": "Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.",
+      "fix": "Give each page a title naming what is specific to it — the product, the category, the location — before the business name.",
+      "effort": "moderate",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-open-graph-missing",
+      "title": "Links to this site look plain when shared",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "Missing og:title, og:description, og:image on https://badseo.dev/",
+      "impact": "When someone shares the link on WhatsApp, Facebook or LinkedIn, these tags decide whether it appears as a picture with a headline or as a bare URL. A bare URL gets noticeably fewer clicks.",
+      "fix": "Add `og:title`, `og:description` and an `og:image` of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own.",
+      "effort": "quick",
+      "url": "https://badseo.dev/",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-title-long",
+      "title": "The page title is cut off in search results",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "110 characters on https://badseo.dev/head/title-too-long:\n    \"The Complete And Fully Unabridged Guide To Writing Page Titles That Are Much Too Long To Fit In Search Results\"",
+      "impact": "Google truncates titles at roughly 60 characters, so the end of this one is replaced with an ellipsis. If the distinguishing words are at the end, searchers never see them.",
+      "fix": "Shorten to under 60 characters, putting the words that distinguish this page first and the business name last.",
+      "effort": "quick",
+      "url": "https://badseo.dev/head/title-too-long",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-title-short",
+      "title": "The page title is very short",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "2 characters on https://badseo.dev/head/title-too-short:\n    \"Hi\"",
+      "impact": "A short title gives searchers little reason to click and gives search engines little to match a query against.",
+      "fix": "Expand to roughly 50–60 characters describing what the page offers.",
+      "effort": "quick",
+      "url": "https://badseo.dev/head/title-too-short",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-meta-description-missing",
+      "title": "The page has no description for search results",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "No <meta name=\"description\"> on https://badseo.dev/head/missing-meta-description",
+      "impact": "The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page — often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.",
+      "fix": "Add a `<meta name=\"description\">` of 50–160 characters describing the page as a sentence a customer would read.",
+      "effort": "quick",
+      "url": "https://badseo.dev/head/missing-meta-description",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-meta-description-long",
+      "title": "The search-result description is cut off",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "215 characters on https://badseo.dev/head/meta-description-too-long:\n    \"This meta description keeps going well past the point where a search engine would ever show the whole thing, adding clause after clause after clause, so most of it ends up cut off …\"",
+      "impact": "Anything past roughly 160 characters is replaced with an ellipsis, so a call to action at the end is never seen.",
+      "fix": "Trim to under 160 characters.",
+      "effort": "quick",
+      "url": "https://badseo.dev/head/meta-description-too-long",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-h1-multiple",
+      "title": "The page has several main headings",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "<h1>This line is an H1</h1>\n    <h1>So is this one</h1>\n    <h1>And this is the third H1</h1>\n    on https://badseo.dev/head/multiple-h1",
+      "impact": "With several top-level headings the page’s subject is ambiguous, and the outline a screen reader announces becomes flat.",
+      "fix": "Keep one `<h1>` and demote the rest to `<h2>`.",
+      "effort": "quick",
+      "url": "https://badseo.dev/head/multiple-h1",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-heading-skip",
+      "title": "Heading levels skip a step",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "On https://badseo.dev/head/heading-order-skip, an <h4> follows an <h1>:\n    \"The first section, which should have been an H2\"",
+      "impact": "Headings are the document outline. Skipping a level breaks how screen readers let a user jump through the page, and muddies which sections belong to which.",
+      "fix": "Choose heading levels by position in the outline, not by how large you want the text to look. Set size with CSS.",
+      "effort": "quick",
+      "url": "https://badseo.dev/head/heading-order-skip",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-redirect-chain",
+      "title": "Some links pass through several redirects",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "https://badseo.dev/redirect/chain-1\n      301 → https://badseo.dev/redirect/chain-1\n      301 → https://badseo.dev/redirect/chain-2\n      200 → https://badseo.dev/",
+      "impact": "Each hop adds a round trip before anything appears, which is most noticeable on a phone. Search engines also pass slightly less ranking credit through each additional hop.",
+      "fix": "Update the links to point at the final address, and collapse the server rules so one redirect reaches the destination.",
+      "effort": "quick",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-images-missing-alt",
+      "title": "Some images have no text alternative",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "1 of 1 images on https://badseo.dev/content/images-missing-alt have no alt attribute:\n    https://badseo.dev/img/placeholder.svg",
+      "impact": "A blind visitor hears nothing where the image is, and the image cannot appear in image search. Note that an empty `alt=\"\"` is correct for purely decorative images — these have no attribute at all.",
+      "fix": "Add `alt` text describing what the image shows. For decorative images, add `alt=\"\"` explicitly so assistive technology knows to skip them.",
+      "effort": "moderate",
+      "url": "https://badseo.dev/content/images-missing-alt",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-duplicate-meta",
+      "title": "Several pages share the same search-result description",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "\"The same latte recipe, published word for word at two different URLs, so a search engine has to pick one and d…\" appears on 2 pages:\n    https://badseo.dev/content/duplicate-a\n    https://badseo.dev/content/duplicate-b",
+      "impact": "Identical descriptions make every result look the same in a list, so searchers cannot tell which page answers their question.",
+      "fix": "Write a description per page, or generate one from the page’s own content.",
+      "effort": "moderate",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-thin-content",
+      "title": "A page has very little text",
+      "severity": "info",
+      "category": "seo",
+      "evidence": "About 146 words of body text on https://badseo.dev/head/missing-title",
+      "impact": "Pages with little text rarely rank for anything beyond the business name, because there is nothing for a search engine to match a query against. Legitimate for a contact or login page; a problem for a page meant to attract visitors.",
+      "fix": "If this page is meant to bring in search traffic, expand it to answer the questions a customer would actually ask. If it is not, no action needed.",
+      "effort": "involved",
+      "url": "https://badseo.dev/head/missing-title",
+      "unconfirmed": true
+    }
+  ],
+  "positives": [
+    "Page titles are present and sized to display fully in search results.",
+    "Pages carry their own search-result descriptions.",
+    "Each page has exactly one main heading.",
+    "The site is configured to display properly on phones.",
+    "A robots.txt is published.",
+    "A sitemap is declared in robots.txt, which helps search engines find every page.",
+    "Every image carries a text alternative."
+  ]
+}

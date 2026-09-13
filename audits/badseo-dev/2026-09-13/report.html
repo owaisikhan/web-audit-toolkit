@@ -1,0 +1,528 @@
+<title>badseo.dev — website audit</title>
+<style>
+:root {
+  --ink: #14181f; --muted: #5b6472; --line: #e3e7ee; --bg: #ffffff; --panel: #f7f8fb;
+  --critical: #a1122b; --high: #b4451a; --medium: #8a6410; --low: #3f5b7a; --info: #5b6472;
+  --critical-bg: #fdeef1; --high-bg: #fdf1ea; --medium-bg: #fbf5e6; --low-bg: #eff3f8; --info-bg: #f2f4f7;
+  --good: #1c6b45; --good-bg: #e9f5ee;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink);
+  font: 15px/1.6 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%; }
+.wrap { max-width: 46rem; margin: 0 auto; padding-block: 3rem 4rem; padding-left: 20px; padding-right: 20px; }
+h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .35rem; letter-spacing: -.02em; }
+h2 { font-size: 1.3rem; margin: 3rem 0 1rem; padding-top: 1.2rem; border-top: 2px solid var(--ink); letter-spacing: -.01em; }
+h3 { font-size: 1.05rem; margin: 0 0 .1rem; letter-spacing: -.005em; }
+p { margin: 0 0 1rem; }
+.lede { color: var(--muted); font-size: .95rem; margin-bottom: 2rem; }
+.lede strong { color: var(--ink); }
+.todo { background: #fff8e1; border: 1px dashed #b8860b; color: #6b4d00;
+  padding: 1rem 1.1rem; border-radius: 8px; margin-bottom: 1.5rem; font-size: .9rem; }
+.todo code { background: #0000000d; padding: .1em .35em; border-radius: 3px; }
+
+.counts { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 2rem; padding: 0; list-style: none; }
+.counts li { display: flex; align-items: baseline; gap: .45rem;
+  border: 1px solid var(--line); border-radius: 999px; padding: .3rem .85rem; font-size: .85rem; }
+.counts b { font-size: 1.05rem; }
+
+.finding { border: 1px solid var(--line); border-radius: 10px; padding: 1.25rem 1.4rem;
+  margin-bottom: 1.1rem; break-inside: avoid; }
+.finding.critical { border-left: 5px solid var(--critical); }
+.finding.high { border-left: 5px solid var(--high); }
+.finding.medium { border-left: 5px solid var(--medium); }
+.finding.low { border-left: 5px solid var(--low); }
+.finding.info { border-left: 5px solid var(--info); }
+.tags { display: flex; flex-wrap: wrap; gap: .4rem; margin: .55rem 0 1rem; }
+.tag { font-size: .72rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase;
+  padding: .2rem .55rem; border-radius: 4px; background: var(--info-bg); color: var(--info); }
+.tag.critical { background: var(--critical-bg); color: var(--critical); }
+.tag.high { background: var(--high-bg); color: var(--high); }
+.tag.medium { background: var(--medium-bg); color: var(--medium); }
+.tag.low { background: var(--low-bg); color: var(--low); }
+.tag.plain { background: transparent; border: 1px solid var(--line); color: var(--muted); }
+.finding h4 { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); margin: 1.1rem 0 .3rem; font-weight: 600; }
+.finding h4:first-of-type { margin-top: 0; }
+pre { background: var(--panel); border: 1px solid var(--line); border-radius: 6px;
+  padding: .8rem .9rem; overflow-x: auto; font: 12.5px/1.55 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  margin: 0 0 1rem; white-space: pre-wrap; word-break: break-word; }
+code { font: .9em ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+p code { background: var(--panel); border: 1px solid var(--line); border-radius: 3px;
+  padding: .05em .3em; word-break: break-word; }
+
+.tablewrap { overflow-x: auto; margin-bottom: 1.5rem; }
+table { border-collapse: collapse; width: 100%; font-size: .88rem; }
+th, td { text-align: left; padding: .55rem .7rem; border-bottom: 1px solid var(--line); }
+th { font-size: .74rem; text-transform: uppercase; letter-spacing: .05em; color: var(--muted); }
+td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.rate { font-weight: 600; }
+.rate.good { color: var(--good); }
+.rate.needs-work { color: var(--medium); }
+.rate.poor { color: var(--critical); }
+.rate::before { content: "● "; font-size: .8em; }
+
+.good-list { background: var(--good-bg); border-radius: 10px; padding: 1.1rem 1.4rem 1.1rem 2.6rem;
+  margin-bottom: 1.5rem; }
+.good-list li { margin-bottom: .35rem; }
+.unconfirmed { background: var(--medium-bg); color: var(--medium); border-radius: 6px;
+  padding: .55rem .8rem; font-size: .85rem; margin-bottom: 1rem; }
+footer { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--line);
+  color: var(--muted); font-size: .82rem; }
+
+@media (max-width: 560px) {
+  .wrap { padding-block: 2rem 3rem; }
+  h1 { font-size: 1.5rem; }
+}
+@media print {
+  .todo { display: none; }
+  .wrap { max-width: none; padding: 0; }
+  h2 { break-after: avoid; }
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #e8ecf2; --muted: #98a2b3; --line: #2a3140; --bg: #12151b; --panel: #1a1f28;
+    --critical: #ff8fa3; --high: #ffb083; --medium: #e8c46a; --low: #9fc0e0; --info: #98a2b3;
+    --critical-bg: #2a1219; --high-bg: #2a1a10; --medium-bg: #2a2210; --low-bg: #16202b; --info-bg: #1a1f28;
+    --good: #7fd6a6; --good-bg: #10231a;
+  }
+}
+</style>
+<div class="wrap">
+<h1>Website audit: badseo.dev</h1>
+<p class="lede">13 September 2026<br>
+Pages tested: <strong>https://badseo.dev/</strong>, <strong>https://badseo.dev/kitchen-sink</strong>, <strong>https://badseo.dev/index/noindex-header</strong>, <strong>https://badseo.dev/privacy</strong>, <strong>https://badseo.dev/head/missing-title</strong>, <strong>https://badseo.dev/head/title-too-long</strong>, <strong>https://badseo.dev/head/title-too-short</strong>, <strong>https://badseo.dev/head/missing-meta-description</strong>, <strong>https://badseo.dev/head/meta-description-too-long</strong>, <strong>https://badseo.dev/head/meta-description-too-short</strong>, <strong>https://badseo.dev/head/missing-h1</strong>, <strong>https://badseo.dev/head/empty-h1</strong>, <strong>https://badseo.dev/head/multiple-h1</strong>, <strong>https://badseo.dev/head/heading-order-skip</strong>, <strong>https://badseo.dev/content/thin-content</strong>, <strong>https://badseo.dev/content/images-missing-alt</strong>, <strong>https://badseo.dev/content/duplicate-a</strong>, <strong>https://badseo.dev/content/duplicate-b</strong>, <strong>https://badseo.dev/content/duplicate-title-a</strong>, <strong>https://badseo.dev/content/duplicate-title-b</strong>, <strong>https://badseo.dev/content/duplicate-meta-a</strong>, <strong>https://badseo.dev/content/duplicate-meta-b</strong>, <strong>https://badseo.dev/index/noindex-meta</strong>, <strong>https://badseo.dev/index/canonicalized</strong>, <strong>https://badseo.dev/index/canonical-conflict</strong>, <strong>https://badseo.dev/status/not-found</strong>, <strong>https://badseo.dev/status/server-error</strong>, <strong>https://badseo.dev/status/blocked</strong>, <strong>https://badseo.dev/links/broken-internal-link</strong>, <strong>https://badseo.dev/redirect/trailing-slash</strong>, <strong>https://badseo.dev/perf/slow-response</strong>, <strong>https://badseo.dev/structure/orphan</strong>, <strong>https://badseo.dev/structure/no-outgoing-links</strong></p>
+
+<h2>Summary</h2>
+<div><p>We looked at 33 pages of badseo.dev on 13 September 2026, testing what each page tells search engines about itself and what the site reveals to the public internet.</p>
+<p><b>This site is broken on purpose.</b> It is a test fixture: each page is built to fail one specific check, and the sitemap names them accordingly. What follows should be read as confirmation that the checks fire, not as a list of accidents to go and fix.</p>
+<p>Two results still look unintended. The site answers on an unencrypted connection without sending visitors to the secure one — a safety matter rather than a search one, and a single rule at the hosting layer. And two pages carry an instruction telling search engines not to list them; correct here, but on a live site this is the most expensive thing that can be wrong, and it is the first thing worth checking on any site.</p>
+<p>In total: 2 critical, 3 high, 4 medium, 11 low and 1 informational item. Nothing suggests the site has been attacked, and no passwords or keys were found in the code it sends to visitors.</p>
+<strong>Write four or five sentences here, in plain language, for a non-technical reader:</strong>
+what was looked at, the single most important thing found, the counts below, and what to do first.
+Answer the unasked question — say whether anything suggests the site has already been attacked.
+No metric names, no tool names. Then delete this box.</div>
+
+<ul class="counts">
+<li><b>2</b> critical</li>
+<li><b>3</b> high</li>
+<li><b>4</b> medium</li>
+<li><b>11</b> low</li>
+<li><b>1</b> info</li>
+</ul>
+
+<h2>What we measured</h2>
+<p>Pages were loaded in a real browser with an empty cache.
+Security checks were <strong>passive</strong>: the site was loaded as an ordinary visitor's browser loads it, and the conclusions come from what the server sent back. Nothing was submitted, guessed or probed.</p>
+
+
+<h2>What is working well</h2>
+<ul class="good-list"><li>The site is served over HTTPS.</li><li>No credentials were found in the JavaScript served to visitors.</li><li>Every page tested is set up to display properly on phones.</li><li>A robots.txt is published, and it lets search engines in rather than shutting them out.</li><li>A complete sitemap is declared in robots.txt, listing all 33 pages.</li></ul>
+
+<h2>Findings</h2>
+
+<article class="finding critical">
+  <h3>This page tells search engines not to list it</h3>
+  <div class="tags">
+    <span class="tag critical">Critical</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;
+    on https://badseo.dev/index/noindex-meta</pre>
+  <h4>Why it matters</h4>
+  <p>This single tag removes the page from Google entirely — it will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.</p>
+  <h4>How to fix it</h4>
+  <p>Remove <code>noindex</code> from the robots meta tag on pages that should be found. Check the whole site, not just this page — the tag is usually applied in a shared layout or template.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/index/noindex-meta</code></p>
+</article>
+
+<article class="finding critical">
+  <h3>The server sends a header telling search engines not to list this page</h3>
+  <div class="tags">
+    <span class="tag critical">Critical</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>X-Robots-Tag: noindex
+    in the response to GET https://badseo.dev/index/noindex-header</pre>
+  <h4>Why it matters</h4>
+  <p>Same effect as a noindex tag, and harder to spot because it is invisible in the page source. The page will not appear in search results.</p>
+  <h4>How to fix it</h4>
+  <p>Remove the <code>X-Robots-Tag: noindex</code> header from responses for public pages. It is set at the server, CDN or hosting-platform level rather than in the page itself.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/index/noindex-header</code></p>
+</article>
+
+<article class="finding high">
+  <h3>Plain HTTP is served without redirecting to HTTPS</h3>
+  <div class="tags">
+    <span class="tag high">High</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">security</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>http://badseo.dev ended at http://badseo.dev/ (HTTP 200) — still unencrypted.</pre>
+  <h4>Why it matters</h4>
+  <p>Anyone typing the address, following an old link or on a shared network gets the site unencrypted, where the page and anything typed into it can be read and altered in transit.</p>
+  <h4>How to fix it</h4>
+  <p>Redirect all HTTP traffic to HTTPS with a 301 at the edge, and add HSTS so browsers stop trying HTTP at all.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/</code></p>
+</article>
+
+<article class="finding high">
+  <h3>The page has no title</h3>
+  <div class="tags">
+    <span class="tag high">High</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>No &lt;title&gt; element in the head of https://badseo.dev/head/missing-title</pre>
+  <h4>Why it matters</h4>
+  <p>The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content — usually badly — and the page loses its single strongest ranking signal.</p>
+  <h4>How to fix it</h4>
+  <p>Add a <code>&lt;title&gt;</code> of roughly 50–60 characters that names the page and the business, most specific part first.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/missing-title</code></p>
+</article>
+
+<article class="finding high">
+  <h3>Some addresses redirect in a circle</h3>
+  <div class="tags">
+    <span class="tag high">High</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>https://badseo.dev/redirect/loop
+      302 → https://badseo.dev/redirect/loop</pre>
+  <h4>Why it matters</h4>
+  <p>The browser gives up and shows an error, so the page is unreachable for visitors and cannot be indexed at all. Usually caused by two rules disagreeing about a trailing slash or about www.</p>
+  <h4>How to fix it</h4>
+  <p>Pick one canonical form — with or without the trailing slash, with or without www — and make every rule redirect towards it rather than between the two.</p>
+  
+</article>
+
+<article class="finding medium">
+  <h3>HSTS is not set</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">security</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>Response headers for https://badseo.dev/ contain no `strict-transport-security`.</pre>
+  <h4>Why it matters</h4>
+  <p>Without it, the first request of each session can be downgraded to unencrypted HTTP and read or modified in transit.</p>
+  <h4>How to fix it</h4>
+  <p>Send <code>Strict-Transport-Security: max-age=31536000; includeSubDomains</code> on HTTPS responses.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/</code></p>
+</article>
+
+<article class="finding medium">
+  <h3>The page has no main heading</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>No &lt;h1&gt; found on https://badseo.dev/head/missing-h1. First heading is an &lt;h2&gt;: &quot;Where the headline should be&quot;.</pre>
+  <h4>Why it matters</h4>
+  <p>The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing — only the markup is read.</p>
+  <h4>How to fix it</h4>
+  <p>Mark the page’s main heading as <code>&lt;h1&gt;</code>. One per page.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/missing-h1</code></p>
+</article>
+
+<article class="finding medium">
+  <h3>This page points search engines at a different address</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  <p class="unconfirmed"><strong>Unconfirmed.</strong> This was identified from the outside and needs checking against the code or with access before it is treated as certain.</p>
+  <h4>What we found</h4>
+  <pre>Requested: https://badseo.dev/index/canonicalized
+    &lt;link rel=&quot;canonical&quot; href=&quot;https://badseo.dev/&quot;&gt;</pre>
+  <h4>Why it matters</h4>
+  <p>Search engines will show the other address instead of this one, and any links earned by this page are credited there. Correct when the pages really are duplicates; a mistake when they are not.</p>
+  <h4>How to fix it</h4>
+  <p>Confirm the target is genuinely the same content. If it is not, point the canonical at this page’s own address.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/index/canonicalized</code></p>
+</article>
+
+<article class="finding medium">
+  <h3>Several pages share the same title</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Moderate</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>&quot;Pumpkin Spice Latte Recipe&quot; is the title of 2 pages:
+    https://badseo.dev/content/duplicate-a
+    https://badseo.dev/content/duplicate-b</pre>
+  <h4>Why it matters</h4>
+  <p>Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.</p>
+  <h4>How to fix it</h4>
+  <p>Give each page a title naming what is specific to it — the product, the category, the location — before the business name.</p>
+  
+</article>
+
+<h2>What we would do first</h2>
+<div><p><b>This week</b> — the redirect from the unencrypted address to the secure one, and the headers that belong with it. All of it is configuration at the hosting layer, it is under an hour together, and it is the one group of findings here that does not look deliberate.</p>
+<p><b>Next, if this site is ever meant to be found</b> — the two pages that tell search engines not to list them, and the page with no title. On a fixture these are the point. On a live site they are the difference between appearing in search and not, and each is a one-line change.</p>
+<p><b>Later, and only if it matters</b> — the titles, descriptions, headings and image alternatives in the hygiene appendix. All true, all worth doing on a real site, none of it urgent. Here it is deliberate, so the honest recommendation is to leave it exactly as it is.</p>
+<p><b>What we did not test.</b> Only the pages the site publishes in its own sitemap, and only as an anonymous visitor — there is no login here. We did not measure page speed. Two further limits come from where this audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details the tools recorded were the proxy's rather than the site's and have been removed from this report; and the deliberately orphaned page was reached only because the sitemap names it — which is the point of that page, since nothing links to it and following links would never find it.</p>
+<strong>Not a repeat of the list — a sequence, with reasoning.</strong>
+Group into "this week", "next", and "later, if worth it", and say for each group why it is in that
+order and roughly what it costs. This is the section that turns a report into an engagement. Then delete this box.</div>
+
+<h2>Appendix: hygiene</h2>
+<p class="lede">True, worth doing, not urgent. These are listed for completeness rather than because they need attention this month.</p>
+
+<article class="finding low">
+  <h3>5 standard security header(s) are not set</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">security</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>HSTS — not present
+Content-Security-Policy — not present
+X-Content-Type-Options — not present
+X-Frame-Options / frame-ancestors — not present
+Referrer-Policy — not present
+
+Present: none</pre>
+  <h4>Why it matters</h4>
+  <p>These headers are the browser-side defences a site opts into. Individually none of them is a vulnerability; together their absence means a bug elsewhere has nothing standing in its way.</p>
+  <h4>How to fix it</h4>
+  <p>Set them once at the edge or in middleware so every response carries them: Send <code>Strict-Transport-Security: max-age=31536000; includeSubDomains</code> on HTTPS responses. Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust. Send <code>X-Content-Type-Options: nosniff</code> on all responses. Send <code>X-Frame-Options: SAMEORIGIN</code>, or <code>frame-ancestors 'self'</code> in the Content-Security-Policy. Send <code>Referrer-Policy: strict-origin-when-cross-origin</code>.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/</code></p>
+</article>
+
+<article class="finding low">
+  <h3>Links to this site look plain when shared</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>Missing og:title, og:description, og:image on https://badseo.dev/</pre>
+  <h4>Why it matters</h4>
+  <p>When someone shares the link on WhatsApp, Facebook or LinkedIn, these tags decide whether it appears as a picture with a headline or as a bare URL. A bare URL gets noticeably fewer clicks.</p>
+  <h4>How to fix it</h4>
+  <p>Add <code>og:title</code>, <code>og:description</code> and an <code>og:image</code> of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/</code></p>
+</article>
+
+<article class="finding low">
+  <h3>The page title is cut off in search results</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>110 characters on https://badseo.dev/head/title-too-long:
+    &quot;The Complete And Fully Unabridged Guide To Writing Page Titles That Are Much Too Long To Fit In Search Results&quot;</pre>
+  <h4>Why it matters</h4>
+  <p>Google truncates titles at roughly 60 characters, so the end of this one is replaced with an ellipsis. If the distinguishing words are at the end, searchers never see them.</p>
+  <h4>How to fix it</h4>
+  <p>Shorten to under 60 characters, putting the words that distinguish this page first and the business name last.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/title-too-long</code></p>
+</article>
+
+<article class="finding low">
+  <h3>The page title is very short</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>2 characters on https://badseo.dev/head/title-too-short:
+    &quot;Hi&quot;</pre>
+  <h4>Why it matters</h4>
+  <p>A short title gives searchers little reason to click and gives search engines little to match a query against.</p>
+  <h4>How to fix it</h4>
+  <p>Expand to roughly 50–60 characters describing what the page offers.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/title-too-short</code></p>
+</article>
+
+<article class="finding low">
+  <h3>The page has no description for search results</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>No &lt;meta name=&quot;description&quot;&gt; on https://badseo.dev/head/missing-meta-description</pre>
+  <h4>Why it matters</h4>
+  <p>The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page — often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.</p>
+  <h4>How to fix it</h4>
+  <p>Add a <code>&lt;meta name=&quot;description&quot;&gt;</code> of 50–160 characters describing the page as a sentence a customer would read.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/missing-meta-description</code></p>
+</article>
+
+<article class="finding low">
+  <h3>The search-result description is cut off</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>215 characters on https://badseo.dev/head/meta-description-too-long:
+    &quot;This meta description keeps going well past the point where a search engine would ever show the whole thing, adding clause after clause after clause, so most of it ends up cut off …&quot;</pre>
+  <h4>Why it matters</h4>
+  <p>Anything past roughly 160 characters is replaced with an ellipsis, so a call to action at the end is never seen.</p>
+  <h4>How to fix it</h4>
+  <p>Trim to under 160 characters.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/meta-description-too-long</code></p>
+</article>
+
+<article class="finding low">
+  <h3>The page has several main headings</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>&lt;h1&gt;This line is an H1&lt;/h1&gt;
+    &lt;h1&gt;So is this one&lt;/h1&gt;
+    &lt;h1&gt;And this is the third H1&lt;/h1&gt;
+    on https://badseo.dev/head/multiple-h1</pre>
+  <h4>Why it matters</h4>
+  <p>With several top-level headings the page’s subject is ambiguous, and the outline a screen reader announces becomes flat.</p>
+  <h4>How to fix it</h4>
+  <p>Keep one <code>&lt;h1&gt;</code> and demote the rest to <code>&lt;h2&gt;</code>.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/multiple-h1</code></p>
+</article>
+
+<article class="finding low">
+  <h3>Heading levels skip a step</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>On https://badseo.dev/head/heading-order-skip, an &lt;h4&gt; follows an &lt;h1&gt;:
+    &quot;The first section, which should have been an H2&quot;</pre>
+  <h4>Why it matters</h4>
+  <p>Headings are the document outline. Skipping a level breaks how screen readers let a user jump through the page, and muddies which sections belong to which.</p>
+  <h4>How to fix it</h4>
+  <p>Choose heading levels by position in the outline, not by how large you want the text to look. Set size with CSS.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/heading-order-skip</code></p>
+</article>
+
+<article class="finding low">
+  <h3>Some links pass through several redirects</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>https://badseo.dev/redirect/chain-1
+      301 → https://badseo.dev/redirect/chain-1
+      301 → https://badseo.dev/redirect/chain-2
+      200 → https://badseo.dev/</pre>
+  <h4>Why it matters</h4>
+  <p>Each hop adds a round trip before anything appears, which is most noticeable on a phone. Search engines also pass slightly less ranking credit through each additional hop.</p>
+  <h4>How to fix it</h4>
+  <p>Update the links to point at the final address, and collapse the server rules so one redirect reaches the destination.</p>
+  
+</article>
+
+<article class="finding low">
+  <h3>Some images have no text alternative</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Moderate</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>1 of 1 images on https://badseo.dev/content/images-missing-alt have no alt attribute:
+    https://badseo.dev/img/placeholder.svg</pre>
+  <h4>Why it matters</h4>
+  <p>A blind visitor hears nothing where the image is, and the image cannot appear in image search. Note that an empty <code>alt=&quot;&quot;</code> is correct for purely decorative images — these have no attribute at all.</p>
+  <h4>How to fix it</h4>
+  <p>Add <code>alt</code> text describing what the image shows. For decorative images, add <code>alt=&quot;&quot;</code> explicitly so assistive technology knows to skip them.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/content/images-missing-alt</code></p>
+</article>
+
+<article class="finding low">
+  <h3>Several pages share the same search-result description</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Moderate</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>&quot;The same latte recipe, published word for word at two different URLs, so a search engine has to pick one and d…&quot; appears on 2 pages:
+    https://badseo.dev/content/duplicate-a
+    https://badseo.dev/content/duplicate-b</pre>
+  <h4>Why it matters</h4>
+  <p>Identical descriptions make every result look the same in a list, so searchers cannot tell which page answers their question.</p>
+  <h4>How to fix it</h4>
+  <p>Write a description per page, or generate one from the page’s own content.</p>
+  
+</article>
+
+<article class="finding info">
+  <h3>A page has very little text</h3>
+  <div class="tags">
+    <span class="tag info">Info</span>
+    <span class="tag plain">Involved</span>
+    <span class="tag plain">seo</span>
+  </div>
+  <p class="unconfirmed"><strong>Unconfirmed.</strong> This was identified from the outside and needs checking against the code or with access before it is treated as certain.</p>
+  <h4>What we found</h4>
+  <pre>About 146 words of body text on https://badseo.dev/head/missing-title</pre>
+  <h4>Why it matters</h4>
+  <p>Pages with little text rarely rank for anything beyond the business name, because there is nothing for a search engine to match a query against. Legitimate for a contact or login page; a problem for a page meant to attract visitors.</p>
+  <h4>How to fix it</h4>
+  <p>If this page is meant to bring in search traffic, expand it to answer the questions a customer would actually ask. If it is not, no action needed.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/missing-title</code></p>
+</article>
+
+<h2>Appendix: how to reproduce these figures</h2>
+<p>Every number in this report came from these commands, run on 13 September 2026. Re-running them will produce the same measurements, allowing for normal network variation.</p>
+<pre>node check-headers.mjs https://badseo.dev/ https://badseo.dev/kitchen-sink https://badseo.dev/index/noindex-header
+node check-seo.mjs https://badseo.dev/ https://badseo.dev/privacy https://badseo.dev/head/missing-title https://badseo.dev/head/title-too-long https://badseo.dev/head/title-too-short https://badseo.dev/head/missing-meta-description https://badseo.dev/head/meta-description-too-long https://badseo.dev/head/meta-description-too-short https://badseo.dev/head/missing-h1 https://badseo.dev/head/empty-h1 https://badseo.dev/head/multiple-h1 https://badseo.dev/head/heading-order-skip https://badseo.dev/content/thin-content https://badseo.dev/content/images-missing-alt https://badseo.dev/content/duplicate-a https://badseo.dev/content/duplicate-b https://badseo.dev/content/duplicate-title-a https://badseo.dev/content/duplicate-title-b https://badseo.dev/content/duplicate-meta-a https://badseo.dev/content/duplicate-meta-b https://badseo.dev/index/noindex-meta https://badseo.dev/index/noindex-header https://badseo.dev/index/canonicalized https://badseo.dev/index/canonical-conflict https://badseo.dev/status/not-found https://badseo.dev/status/server-error https://badseo.dev/status/blocked https://badseo.dev/links/broken-internal-link https://badseo.dev/redirect/trailing-slash https://badseo.dev/perf/slow-response https://badseo.dev/structure/orphan https://badseo.dev/structure/no-outgoing-links https://badseo.dev/kitchen-sink</pre>
+
+<footer>
+<p>Testing was limited to publicly reachable pages, without a login.
+The signed-in part of the site was not tested, as we did not have access to it.
+Sites change: this report describes badseo.dev as it was on 13 September 2026.</p>
+</footer>
+</div>

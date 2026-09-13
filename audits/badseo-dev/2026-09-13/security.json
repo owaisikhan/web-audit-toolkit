@@ -1,0 +1,386 @@
+{
+  "tool": "check-headers",
+  "mode": "passive",
+  "collectedAt": "2026-09-13T10:38:17.785Z",
+  "command": "node check-headers.mjs https://badseo.dev/ https://badseo.dev/kitchen-sink https://badseo.dev/index/noindex-header",
+  "urls": [
+    "https://badseo.dev/",
+    "https://badseo.dev/kitchen-sink",
+    "https://badseo.dev/index/noindex-header"
+  ],
+  "pages": [
+    {
+      "url": "https://badseo.dev/",
+      "navError": null,
+      "status": 200,
+      "headers": {
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cf-ray": "a3a68540bf81d6d4-IAD",
+        "content-encoding": "zstd",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sun, 13 Sep 2026 10:38:07 GMT",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=fShfTBJCXceikk0xQELAeHDWiO2o7PUPCevUXHCB1abY8niWEWs4oF2KM53OTYj8zNcD0lDnRdNgRF3HGKrHB3RwExgNx0ljvgvRBayHdbaA7RWegJlZWaki3qT7\"}]}",
+        "server": "cloudflare",
+        "server-timing": "cfEdge;dur=8,cfOrigin;dur=0,cfWorker;dur=6"
+      },
+      "allResponses": [
+        {
+          "url": "https://badseo.dev/",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/styles.css",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/assets/site-layout-BSb4LTMU.js",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/assets/index-fSuvSEGj.js",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/assets/index-Bgtm4qwB.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/analytics.js",
+          "status": 200
+        },
+        {
+          "url": "https://plausible.io/js/pa-Cr442m-9lp6sEF3_GhWNS.js",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/cdn-cgi/rum?",
+          "status": 204
+        },
+        {
+          "url": "https://badseo.dev/cdn-cgi/rum?",
+          "status": 204
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/cdn-cgi/rum?",
+          "status": 204
+        }
+      ],
+      "cookies": [],
+      "forms": [],
+      "generator": null,
+      "bundles": [],
+      "wellKnown": {
+        "/robots.txt": {
+          "status": 200,
+          "body": "# badseo.dev is broken on purpose, but it lets crawlers in.\nUser-agent: *\nAllow: /\n\nSitemap: https://badseo.dev/sitemap.xml\n"
+        },
+        "/sitemap.xml": {
+          "status": 200,
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url><loc>https://badseo.dev/</loc></url>\n  <url><loc>https://badseo.dev/privacy</loc></url>\n  <url><loc>https://badseo.dev/head/missing-title</loc></url>\n  <url><loc>https://badseo.dev/head/title-too-long</loc></url>\n  <url><loc>https://badseo.dev/head/title-too-short</loc></url>\n  <url><loc>https://badseo.dev/head/missing-meta-description</loc></url>\n  <url><loc>https://badseo.dev/head/meta-description-too-long</loc></url>\n  <url><loc>https://badseo.dev/head/meta-description-too-short</loc></url>\n  <url><loc>https://badseo.dev/head/missing-h1</loc></url>\n  <url><loc>https://badseo.dev/head/empty-h1</loc></url>\n  <url><loc>https://badseo.dev/head/multiple-h1</loc></url>\n  <url><loc>https://badseo.dev/head/heading-order-skip</loc></url>\n  <url><loc>https://badseo.dev/content/thin-content</loc></url>\n  <url><loc>https://badseo.dev/content/images-missing-alt</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-a</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-b</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-title-a</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-title-b</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-meta-a</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-meta-b</loc></url>\n  <url><loc>https://badseo.dev/index/noindex-meta</loc></url>\n  <url><loc>https://badseo.dev/index/noindex-header</loc></url>\n  <url><loc>https://badseo.dev/index/canonicalized</loc></url>\n  <url><loc>https://badseo.dev/index/canonical-conflict</loc></url>\n  <url><loc>https://badseo.dev/status/not-found</loc></url>\n  <url><loc>https://badseo.dev/status/server-error</loc></url>\n  <url><loc>https://badseo.dev/status/blocked</loc></url>\n  <url><loc>https://badseo.dev/links/broken-internal-link</loc></url>\n  <url><loc>https://badseo.dev/redirect/trailing-slash</loc></url>\n  <url><loc>https://badseo.dev/perf/slow-r"
+        },
+        "/.well-known/security.txt": {
+          "status": 404,
+          "body": null
+        }
+      },
+      "httpUpgrade": {
+        "finalUrl": "http://badseo.dev/",
+        "secure": false,
+        "status": 200
+      },
+      "tls": {
+        "subject": "badseo.dev",
+        "issuer": "Anthropic",
+        "validFrom": "Sep 13 10:36:40 2026 GMT",
+        "validTo": "Oct 13 10:37:40 2026 GMT",
+        "daysRemaining": 30,
+        "protocol": "TLSv1.3",
+        "altNames": "DNS:badseo.dev",
+        "authorized": true,
+        "authorizationError": null
+      },
+      "hasAuth": false
+    },
+    {
+      "url": "https://badseo.dev/kitchen-sink",
+      "navError": null,
+      "status": 200,
+      "headers": {
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cache-control": "no-store",
+        "cf-ray": "a3a68553dc381b05-IAD",
+        "content-encoding": "zstd",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sun, 13 Sep 2026 10:38:12 GMT",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=QCpPbFAD9HEJcaLLefMEzEEubNWSEqyGRze9VsrO0xcimNytMHda%2B07YvLj83Vwi2BnZQQJoPokteK7bAdWyVN%2BPTRAUlCdZ2UfosqAHoimzkr5nVpV1ekhM837j\"}]}",
+        "server": "cloudflare",
+        "server-timing": "cfEdge;dur=7,cfOrigin;dur=0,cfWorker;dur=1700"
+      },
+      "allResponses": [
+        {
+          "url": "https://badseo.dev/kitchen-sink",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/styles.css",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/img/placeholder.svg",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/analytics.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "status": 200
+        },
+        {
+          "url": "https://plausible.io/js/pa-Cr442m-9lp6sEF3_GhWNS.js",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/cdn-cgi/rum?",
+          "status": 204
+        }
+      ],
+      "cookies": [],
+      "forms": [],
+      "generator": null,
+      "bundles": [],
+      "wellKnown": {
+        "/robots.txt": {
+          "status": 200,
+          "body": "# badseo.dev is broken on purpose, but it lets crawlers in.\nUser-agent: *\nAllow: /\n\nSitemap: https://badseo.dev/sitemap.xml\n"
+        },
+        "/sitemap.xml": {
+          "status": 200,
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url><loc>https://badseo.dev/</loc></url>\n  <url><loc>https://badseo.dev/privacy</loc></url>\n  <url><loc>https://badseo.dev/head/missing-title</loc></url>\n  <url><loc>https://badseo.dev/head/title-too-long</loc></url>\n  <url><loc>https://badseo.dev/head/title-too-short</loc></url>\n  <url><loc>https://badseo.dev/head/missing-meta-description</loc></url>\n  <url><loc>https://badseo.dev/head/meta-description-too-long</loc></url>\n  <url><loc>https://badseo.dev/head/meta-description-too-short</loc></url>\n  <url><loc>https://badseo.dev/head/missing-h1</loc></url>\n  <url><loc>https://badseo.dev/head/empty-h1</loc></url>\n  <url><loc>https://badseo.dev/head/multiple-h1</loc></url>\n  <url><loc>https://badseo.dev/head/heading-order-skip</loc></url>\n  <url><loc>https://badseo.dev/content/thin-content</loc></url>\n  <url><loc>https://badseo.dev/content/images-missing-alt</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-a</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-b</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-title-a</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-title-b</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-meta-a</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-meta-b</loc></url>\n  <url><loc>https://badseo.dev/index/noindex-meta</loc></url>\n  <url><loc>https://badseo.dev/index/noindex-header</loc></url>\n  <url><loc>https://badseo.dev/index/canonicalized</loc></url>\n  <url><loc>https://badseo.dev/index/canonical-conflict</loc></url>\n  <url><loc>https://badseo.dev/status/not-found</loc></url>\n  <url><loc>https://badseo.dev/status/server-error</loc></url>\n  <url><loc>https://badseo.dev/status/blocked</loc></url>\n  <url><loc>https://badseo.dev/links/broken-internal-link</loc></url>\n  <url><loc>https://badseo.dev/redirect/trailing-slash</loc></url>\n  <url><loc>https://badseo.dev/perf/slow-r"
+        },
+        "/.well-known/security.txt": {
+          "status": 404,
+          "body": null
+        }
+      },
+      "httpUpgrade": {
+        "finalUrl": "http://badseo.dev/kitchen-sink",
+        "secure": false,
+        "status": 200
+      },
+      "tls": {
+        "subject": "badseo.dev",
+        "issuer": "Anthropic",
+        "validFrom": "Sep 13 10:37:15 2026 GMT",
+        "validTo": "Oct 13 10:38:15 2026 GMT",
+        "daysRemaining": 30,
+        "protocol": "TLSv1.3",
+        "altNames": "DNS:badseo.dev",
+        "authorized": true,
+        "authorizationError": null
+      },
+      "hasAuth": false
+    },
+    {
+      "url": "https://badseo.dev/index/noindex-header",
+      "navError": null,
+      "status": 200,
+      "headers": {
+        "alt-svc": "h3=\":443\"; ma=86400",
+        "cache-control": "no-store",
+        "cf-ray": "a3a68577ffb9d663-IAD",
+        "content-encoding": "zstd",
+        "content-type": "text/html; charset=utf-8",
+        "date": "Sun, 13 Sep 2026 10:38:16 GMT",
+        "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+        "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=4n5V3G26uD4Qe4c4hwQPHiSlp0dNYfIQq7fTYx%2BTAaOfYa72w5X7OA4ipPsei41MdmgC9PwrjopkIhkqdai1wggP7Wt7GlwuL7JlO0Y4%2BjWemc4ec7CnoENKpzTu\"}]}",
+        "server": "cloudflare",
+        "server-timing": "cfEdge;dur=8,cfOrigin;dur=0,cfWorker;dur=1",
+        "x-robots-tag": "noindex"
+      },
+      "allResponses": [
+        {
+          "url": "https://badseo.dev/index/noindex-header",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/styles.css",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/img/placeholder.svg",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/analytics.js",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&display=swap",
+          "status": 200
+        },
+        {
+          "url": "https://plausible.io/js/pa-Cr442m-9lp6sEF3_GhWNS.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.cloudflareinsights.com/beacon.min.js/v31edd6df95cf4e85bb4c19e7a9bdbcba1788362987495",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/archivonarrow/v35/tss0ApVBdCYD5Q7hcxTE1ArZ0bbwiXw.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F63fjptAgt5VM-kVkqdyU8n1i8q1w.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexsans/v23/zYXzKVElMYYaJe8bpLHnCwDKr932-G7dytD-Dmu1syxeKYY.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/ibmplexmono/v20/-F6qfjptAgt5VM-kVkqdyU8n3vAOwlBFgg.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/newsreader/v26/cY9AfjOCX1hbuyalUrK4397yjA.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://badseo.dev/cdn-cgi/rum?",
+          "status": 204
+        }
+      ],
+      "cookies": [],
+      "forms": [],
+      "generator": null,
+      "bundles": [],
+      "wellKnown": {
+        "/robots.txt": {
+          "status": 200,
+          "body": "# badseo.dev is broken on purpose, but it lets crawlers in.\nUser-agent: *\nAllow: /\n\nSitemap: https://badseo.dev/sitemap.xml\n"
+        },
+        "/sitemap.xml": {
+          "status": 200,
+          "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n  <url><loc>https://badseo.dev/</loc></url>\n  <url><loc>https://badseo.dev/privacy</loc></url>\n  <url><loc>https://badseo.dev/head/missing-title</loc></url>\n  <url><loc>https://badseo.dev/head/title-too-long</loc></url>\n  <url><loc>https://badseo.dev/head/title-too-short</loc></url>\n  <url><loc>https://badseo.dev/head/missing-meta-description</loc></url>\n  <url><loc>https://badseo.dev/head/meta-description-too-long</loc></url>\n  <url><loc>https://badseo.dev/head/meta-description-too-short</loc></url>\n  <url><loc>https://badseo.dev/head/missing-h1</loc></url>\n  <url><loc>https://badseo.dev/head/empty-h1</loc></url>\n  <url><loc>https://badseo.dev/head/multiple-h1</loc></url>\n  <url><loc>https://badseo.dev/head/heading-order-skip</loc></url>\n  <url><loc>https://badseo.dev/content/thin-content</loc></url>\n  <url><loc>https://badseo.dev/content/images-missing-alt</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-a</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-b</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-title-a</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-title-b</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-meta-a</loc></url>\n  <url><loc>https://badseo.dev/content/duplicate-meta-b</loc></url>\n  <url><loc>https://badseo.dev/index/noindex-meta</loc></url>\n  <url><loc>https://badseo.dev/index/noindex-header</loc></url>\n  <url><loc>https://badseo.dev/index/canonicalized</loc></url>\n  <url><loc>https://badseo.dev/index/canonical-conflict</loc></url>\n  <url><loc>https://badseo.dev/status/not-found</loc></url>\n  <url><loc>https://badseo.dev/status/server-error</loc></url>\n  <url><loc>https://badseo.dev/status/blocked</loc></url>\n  <url><loc>https://badseo.dev/links/broken-internal-link</loc></url>\n  <url><loc>https://badseo.dev/redirect/trailing-slash</loc></url>\n  <url><loc>https://badseo.dev/perf/slow-r"
+        },
+        "/.well-known/security.txt": {
+          "status": 404,
+          "body": null
+        }
+      },
+      "httpUpgrade": {
+        "finalUrl": "http://badseo.dev/index/noindex-header",
+        "secure": false,
+        "status": 200
+      },
+      "tls": {
+        "subject": "badseo.dev",
+        "issuer": "Anthropic",
+        "validFrom": "Sep 13 10:37:15 2026 GMT",
+        "validTo": "Oct 13 10:38:15 2026 GMT",
+        "daysRemaining": 30,
+        "protocol": "TLSv1.3",
+        "altNames": "DNS:badseo.dev",
+        "authorized": true,
+        "authorizationError": null
+      },
+      "hasAuth": false
+    }
+  ],
+  "findings": [
+    {
+      "id": "sec-no-https-redirect",
+      "title": "Plain HTTP is served without redirecting to HTTPS",
+      "severity": "high",
+      "category": "security",
+      "evidence": "http://badseo.dev ended at http://badseo.dev/ (HTTP 200) — still unencrypted.",
+      "impact": "Anyone typing the address, following an old link or on a shared network gets the site unencrypted, where the page and anything typed into it can be read and altered in transit.",
+      "fix": "Redirect all HTTP traffic to HTTPS with a 301 at the edge, and add HSTS so browsers stop trying HTTP at all.",
+      "effort": "quick",
+      "url": "https://badseo.dev/",
+      "unconfirmed": false
+    },
+    {
+      "id": "sec-header-strict-transport-security",
+      "title": "HSTS is not set",
+      "severity": "medium",
+      "category": "security",
+      "evidence": "Response headers for https://badseo.dev/ contain no `strict-transport-security`.",
+      "impact": "Without it, the first request of each session can be downgraded to unencrypted HTTP and read or modified in transit.",
+      "fix": "Send `Strict-Transport-Security: max-age=31536000; includeSubDomains` on HTTPS responses.",
+      "effort": "quick",
+      "url": "https://badseo.dev/",
+      "unconfirmed": false
+    },
+    {
+      "id": "sec-headers-missing",
+      "title": "5 standard security header(s) are not set",
+      "severity": "low",
+      "category": "security",
+      "evidence": "HSTS — not present\nContent-Security-Policy — not present\nX-Content-Type-Options — not present\nX-Frame-Options / frame-ancestors — not present\nReferrer-Policy — not present\n\nPresent: none",
+      "impact": "These headers are the browser-side defences a site opts into. Individually none of them is a vulnerability; together their absence means a bug elsewhere has nothing standing in its way.",
+      "fix": "Set them once at the edge or in middleware so every response carries them: Send `Strict-Transport-Security: max-age=31536000; includeSubDomains` on HTTPS responses. Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust. Send `X-Content-Type-Options: nosniff` on all responses. Send `X-Frame-Options: SAMEORIGIN`, or `frame-ancestors 'self'` in the Content-Security-Policy. Send `Referrer-Policy: strict-origin-when-cross-origin`.",
+      "effort": "quick",
+      "url": "https://badseo.dev/",
+      "unconfirmed": false
+    }
+  ],
+  "positives": [
+    "The site is served over HTTPS.",
+    "The HTTPS certificate is valid for another 30 days.",
+    "No credentials were found in the JavaScript served to visitors."
+  ]
+}
