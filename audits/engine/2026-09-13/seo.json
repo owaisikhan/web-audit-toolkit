@@ -1,0 +1,888 @@
+{
+  "tool": "check-seo",
+  "mode": "passive",
+  "collectedAt": "2026-09-13T19:11:21.339Z",
+  "command": "node check-seo.mjs https://engine.com.pk/ https://engine.com.pk/collections/new-arrivals https://engine.com.pk/collections/men https://engine.com.pk/products/kt6147-nvy https://engine.com.pk/cart",
+  "urls": [
+    "https://engine.com.pk/",
+    "https://engine.com.pk/collections/new-arrivals",
+    "https://engine.com.pk/collections/men",
+    "https://engine.com.pk/products/kt6147-nvy",
+    "https://engine.com.pk/cart"
+  ],
+  "robots": {
+    "url": "https://engine.com.pk/robots.txt",
+    "present": true,
+    "disallow": [
+      "/admin",
+      "/cart/",
+      "/*/cart/",
+      "/checkout",
+      "/*/checkout",
+      "/checkouts/",
+      "/*/checkouts/",
+      "/orders",
+      "/*/orders",
+      "/account",
+      "/*/account",
+      "/55337746621",
+      "/cdn/wpm/*.js",
+      "/services",
+      "/sf_*",
+      "/cart.js",
+      "/*/cart.js",
+      "/recommendations/products",
+      "/*/recommendations/products",
+      "/collections/*sort_by*",
+      "/*/collections/*sort_by*",
+      "/collections/*+*",
+      "/collections/*%2B*",
+      "/collections/*%2b*",
+      "/*/collections/*+*",
+      "/*/collections/*%2B*",
+      "/*/collections/*%2b*",
+      "/collections/*filter*&*filter*",
+      "/*/collections/*filter*&*filter*",
+      "/blogs/*+*",
+      "/blogs/*%2B*",
+      "/blogs/*%2b*",
+      "/*/blogs/*+*",
+      "/*/blogs/*%2B*",
+      "/*/blogs/*%2b*",
+      "/*?*ls=*&ls=*",
+      "/*?*ls%3*ls%3*",
+      "/*?*oseid=*",
+      "/*?*preview_theme_id=*",
+      "/*?*preview_script_id=*"
+    ],
+    "sitemaps": [
+      "https://engine.com.pk/sitemap.xml"
+    ]
+  },
+  "linksChecked": 30,
+  "sitemapUrlCount": 3002,
+  "pages": [
+    {
+      "url": "https://engine.com.pk/",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Engine Official: Western Wear Clothing Store!\n – EngineClothing"
+        ],
+        "descriptions": [
+          "ENGINE Western Wear Clothing Brand! Shop Online for New Arrivals and trendy Clothes for Men, Women and kids in Pakistan."
+        ],
+        "robotsMeta": [],
+        "canonicals": [
+          "https://engine.com.pk/"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "#sticky-header-content .logo-normal, #sticky-header-content:hover .logo-transparent, #sticky-header-content .open-menu ."
+          },
+          {
+            "level": 2,
+            "text": "Featured Collections"
+          },
+          {
+            "level": 3,
+            "text": "Men Henley"
+          },
+          {
+            "level": 3,
+            "text": "Men T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Men T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Men T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Men T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Boys T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Boys T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Boys T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Boys T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Boys T Shirt"
+          },
+          {
+            "level": 2,
+            "text": "Men's Collections"
+          },
+          {
+            "level": 2,
+            "text": "Women's Collections"
+          },
+          {
+            "level": 3,
+            "text": "Notify me"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "og": {
+          "title": "Engine Official: Western Wear Clothing Store!",
+          "description": "ENGINE Western Wear Clothing Brand! Shop Online for New Arrivals and trendy Clothes for Men, Women and kids in Pakistan.",
+          "image": "http://engine.com.pk/cdn/shop/files/1783319529104-52c5ea61-eab6-4604-bd4d-45c487ab97ea_1_d0cfa62f-7e69-432c-8e52-046a5e4240a1.png?v=1783601770"
+        },
+        "jsonLd": 2,
+        "words": 375,
+        "images": {
+          "total": 82,
+          "missingAlt": []
+        },
+        "links": [
+          "https://engine.com.pk/#MainContent",
+          "https://engine.com.pk/",
+          "https://engine.com.pk/search",
+          "https://engine.com.pk/cart",
+          "https://engine.com.pk/collections/new-arrivals",
+          "https://engine.com.pk/collections/men",
+          "https://engine.com.pk/collections/women",
+          "https://engine.com.pk/collections/all-boys",
+          "https://engine.com.pk/collections/all-girls",
+          "https://engine.com.pk/collections/sale",
+          "https://engine.com.pk/collections/men-sale/products/ft6354-blu",
+          "https://engine.com.pk/collections/men-sale/products/ft6359-mrn",
+          "https://engine.com.pk/collections/men-sale/products/ft6361-blk",
+          "https://engine.com.pk/collections/men-sale/products/ft6361-chr",
+          "https://engine.com.pk/collections/men-sale/products/ft6362-olv",
+          "https://engine.com.pk/collections/all-boys-sale/products/vtt596-blk",
+          "https://engine.com.pk/collections/all-boys-sale/products/vtt594-wht",
+          "https://engine.com.pk/collections/all-boys-sale/products/vtt586-nvy",
+          "https://engine.com.pk/collections/all-boys-sale/products/vtt583-grn",
+          "https://engine.com.pk/collections/all-boys-sale/products/vtt581-blk",
+          "https://engine.com.pk/collections/men-sale",
+          "https://engine.com.pk/collections/men-new-arrivals",
+          "https://engine.com.pk/collections/men-tops",
+          "https://engine.com.pk/collections/men-casual-shirt",
+          "https://engine.com.pk/collections/men-trouser",
+          "https://engine.com.pk/collections/men-suits",
+          "https://engine.com.pk/collections/men-tshirts",
+          "https://engine.com.pk/products/mc6050-grn",
+          "https://engine.com.pk/products/ke6037-wht",
+          "https://engine.com.pk/products/te6041-nvy",
+          "https://engine.com.pk/products/lo6030-rst",
+          "https://engine.com.pk/products/me6029-mrn",
+          "https://engine.com.pk/products/mp6006-khk",
+          "https://engine.com.pk/products/lu6055-bge",
+          "https://engine.com.pk/products/tt6069-crl",
+          "https://engine.com.pk/products/mt6171-skb",
+          "https://engine.com.pk/products/mp6006-brn",
+          "https://engine.com.pk/products/mc6052-olv",
+          "https://engine.com.pk/products/td6010-blu",
+          "https://engine.com.pk/collections/women-new-arrivals",
+          "https://engine.com.pk/collections/women-tops-1",
+          "https://engine.com.pk/collections/women-suits",
+          "https://engine.com.pk/collections/women-dress",
+          "https://engine.com.pk/collections/women-denims",
+          "https://engine.com.pk/collections/women-casual-shirt",
+          "https://engine.com.pk/collections/kids-sale",
+          "https://engine.com.pk/collections/boys-suits",
+          "https://engine.com.pk/collections/boys-polos-t-shirts",
+          "https://engine.com.pk/collections/boys-shorts",
+          "https://engine.com.pk/collections/boys-pants",
+          "https://engine.com.pk/collections/girls-suits",
+          "https://engine.com.pk/collections/girls-tops",
+          "https://engine.com.pk/collections/girls-dresses-1",
+          "https://engine.com.pk/collections/girls-trousers-1",
+          "https://tracker.tradeunleashed.com/1214912696",
+          "https://engine.com.pk/pages/shipment-and-delivery",
+          "https://engine.com.pk/pages/return-and-exchange",
+          "https://engine.com.pk/pages/how-to-order",
+          "https://engine.com.pk/pages/terms-and-conditions",
+          "https://engine.com.pk/pages/baadmay",
+          "https://engine.com.pk/pages/about-us",
+          "https://engine.com.pk/pages/store-locator",
+          "https://engine.com.pk/pages/privacy-policy",
+          "https://engine.com.pk/pages/work-with-us",
+          "https://engine.com.pk/pages/payment",
+          "https://engine.com.pk/pages/customer-services",
+          "https://engine.com.pk/blogs/news",
+          "https://www.facebook.com/EnginePakistan",
+          "https://www.pinterest.com/engineclothingpk",
+          "https://www.instagram.com/enginepakistan/",
+          "https://www.snapchat.com/add/engine.pakistan/",
+          "https://www.youtube.com/c/EnginePakistan1/",
+          "https://www.linkedin.com/company/engine-clothing"
+        ],
+        "textHash": "fa9e973d8c8bf234",
+        "textSample": "/collections/sale Featured Collections Men Women Boys Girls previous slide next slide Interlock Pique Choose options Qui",
+        "headerCanonicals": []
+      }
+    },
+    {
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Engine New Arrivals 2026 | Latest Summer Fashion for Men & Women\n – EngineClothing"
+        ],
+        "descriptions": [
+          "Explore online Engine's New Arrivals 2026 featuring new summer season clothing for men, women, and kids. Discover fresh colors, modern fits, and everyday styles in Pakistan."
+        ],
+        "robotsMeta": [],
+        "canonicals": [
+          "https://engine.com.pk/collections/new-arrivals"
+        ],
+        "headings": [
+          {
+            "level": 6,
+            "text": "New In"
+          },
+          {
+            "level": 2,
+            "text": "Related collections"
+          },
+          {
+            "level": 3,
+            "text": "Notify me"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "og": {
+          "title": "Engine New Arrivals 2026 | Latest Summer Fashion for Men & Women",
+          "description": "Explore online Engine's New Arrivals 2026 featuring new summer season clothing for men, women, and kids. Discover fresh colors, modern fits, and everyday styles in Pakistan.",
+          "image": "http://engine.com.pk/cdn/shop/collections/Combine-2.jpg?v=1783574939"
+        },
+        "jsonLd": 2,
+        "words": 7004,
+        "images": {
+          "total": 205,
+          "missingAlt": []
+        },
+        "links": [
+          "https://engine.com.pk/collections/new-arrivals#MainContent",
+          "https://engine.com.pk/",
+          "https://engine.com.pk/search",
+          "https://engine.com.pk/cart",
+          "https://engine.com.pk/collections/new-arrivals",
+          "https://engine.com.pk/collections/men",
+          "https://engine.com.pk/collections/women",
+          "https://engine.com.pk/collections/all-boys",
+          "https://engine.com.pk/collections/all-girls",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6233-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6231-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6230-wgr",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6230-brn",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6213-nvy",
+          "https://engine.com.pk/collections/new-arrivals/products/md6039-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6093-olv",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6089-brn",
+          "https://engine.com.pk/collections/new-arrivals/products/le6075-olv",
+          "https://engine.com.pk/collections/new-arrivals/products/le6046-dgr",
+          "https://engine.com.pk/collections/new-arrivals/products/mu6049-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mu6048-mnv",
+          "https://engine.com.pk/collections/new-arrivals/products/mu6048-bk1",
+          "https://engine.com.pk/collections/new-arrivals/products/mu6036-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6229-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6226-owt",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6224-dbr",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6221-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6220-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6219-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6217-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6216-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6215-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6214-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6212-owt",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6212-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6209-dsg",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6208-owt",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6208-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6205-brp",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6204-cgr",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6202-chr",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6195-dne",
+          "https://engine.com.pk/collections/new-arrivals/products/me6050-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/me6043-brn",
+          "https://engine.com.pk/collections/new-arrivals/products/me6042-nvy",
+          "https://engine.com.pk/collections/new-arrivals/products/me6035-nvy",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6073-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6070-rst",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6070-mrn",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6069-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6068-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6068-mrn",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6067-owt",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6067-brp",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6066-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6066-nvy",
+          "https://engine.com.pk/collections/new-arrivals/products/mc6065-dgy",
+          "https://engine.com.pk/collections/new-arrivals/products/lu6081-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/lu6071-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/lu6069-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/lu6067-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/lu6066-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/lu6065-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6094-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6092-khk",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6084-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6082-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6080-owt",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6077-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6075-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/lt6062-wne",
+          "https://engine.com.pk/collections/new-arrivals/products/lo6056-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/lo6052-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/lo6051-lbl",
+          "https://engine.com.pk/collections/new-arrivals/products/lo6050-mrn",
+          "https://engine.com.pk/collections/new-arrivals/products/lo6048-rst",
+          "https://engine.com.pk/collections/new-arrivals/products/lo6047-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/lo6040-wht",
+          "https://engine.com.pk/collections/new-arrivals/products/le6073-brp",
+          "https://engine.com.pk/collections/new-arrivals/products/le6072-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/le6067-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/le6064-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/le6062-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/le6061-dsg",
+          "https://engine.com.pk/collections/new-arrivals/products/le6060-dsg",
+          "https://engine.com.pk/collections/new-arrivals/products/le6058-owt",
+          "https://engine.com.pk/collections/new-arrivals/products/le6057-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/le6056-nvy",
+          "https://engine.com.pk/collections/new-arrivals/products/le6056-mrn",
+          "https://engine.com.pk/collections/new-arrivals/products/le6055-brn",
+          "https://engine.com.pk/collections/new-arrivals/products/le6054-rst",
+          "https://engine.com.pk/collections/new-arrivals/products/le6054-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/le6053-owt",
+          "https://engine.com.pk/collections/new-arrivals/products/le6053-olv",
+          "https://engine.com.pk/collections/new-arrivals/products/le6052-mrn",
+          "https://engine.com.pk/collections/new-arrivals/products/le6051-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/mt6149-chr",
+          "https://engine.com.pk/collections/new-arrivals/products/mo6014-dbr",
+          "https://engine.com.pk/collections/new-arrivals/products/mo6014-chr",
+          "https://engine.com.pk/collections/new-arrivals/products/mo6012-chr",
+          "https://engine.com.pk/collections/new-arrivals/products/tw6034-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/tw6032-mgn",
+          "https://engine.com.pk/collections/new-arrivals/products/tt6160-nvy",
+          "https://engine.com.pk/collections/new-arrivals/products/tt6157-blk",
+          "https://engine.com.pk/collections/new-arrivals/products/kw6027-mve",
+          "https://engine.com.pk/collections/new-arrivals/products/ku6067-bge",
+          "https://engine.com.pk/collections/new-arrivals/products/ku6065-nvy",
+          "https://engine.com.pk/collections/new-arrivals/products/ku6064-stn",
+          "https://engine.com.pk/collections/new-arrivals/products/kt6147-nvy",
+          "https://engine.com.pk/collections/new-arrivals?page=2",
+          "https://engine.com.pk/collections/men-new-arrivals",
+          "https://engine.com.pk/collections/women-new-arrivals",
+          "https://engine.com.pk/collections/kids-new-arrivals",
+          "https://tracker.tradeunleashed.com/1214912696",
+          "https://engine.com.pk/pages/shipment-and-delivery",
+          "https://engine.com.pk/pages/return-and-exchange",
+          "https://engine.com.pk/pages/how-to-order",
+          "https://engine.com.pk/pages/terms-and-conditions",
+          "https://engine.com.pk/pages/baadmay",
+          "https://engine.com.pk/pages/about-us",
+          "https://engine.com.pk/pages/store-locator",
+          "https://engine.com.pk/pages/privacy-policy",
+          "https://engine.com.pk/pages/work-with-us",
+          "https://engine.com.pk/pages/payment",
+          "https://engine.com.pk/pages/customer-services",
+          "https://engine.com.pk/blogs/news",
+          "https://www.facebook.com/EnginePakistan",
+          "https://www.pinterest.com/engineclothingpk",
+          "https://www.instagram.com/enginepakistan/",
+          "https://www.snapchat.com/add/engine.pakistan/",
+          "https://www.youtube.com/c/EnginePakistan1/",
+          "https://www.linkedin.com/company/engine-clothing"
+        ],
+        "textHash": "d825ccfc27c62a2a",
+        "textSample": "New In Show filter Filter and sort 1094 products Sort by: FeaturedMost relevantBest sellingAlphabetically, A-ZAlphabetic",
+        "headerCanonicals": []
+      }
+    },
+    {
+      "url": "https://engine.com.pk/collections/men",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Engine Men: Buy Men Western Wear Summer Clothes in 2026!\n – EngineClothing"
+        ],
+        "descriptions": [
+          "Engine Official Clothing & Fashion Store! Grab Casual & formal Western clothes for men in this Summer 2026 in different Colors & Styles. Shop Now."
+        ],
+        "robotsMeta": [],
+        "canonicals": [
+          "https://engine.com.pk/collections/men"
+        ],
+        "headings": [
+          {
+            "level": 6,
+            "text": "Men"
+          },
+          {
+            "level": 2,
+            "text": "Related collections"
+          },
+          {
+            "level": 3,
+            "text": "Notify me"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "og": {
+          "title": "Engine Men: Buy Men Western Wear Summer Clothes in 2026!",
+          "description": "Engine Official Clothing & Fashion Store! Grab Casual & formal Western clothes for men in this Summer 2026 in different Colors & Styles. Shop Now.",
+          "image": "http://engine.com.pk/cdn/shop/collections/Men_Mobile_Banner.png?v=1772092236"
+        },
+        "jsonLd": 2,
+        "words": 8168,
+        "images": {
+          "total": 206,
+          "missingAlt": []
+        },
+        "links": [
+          "https://engine.com.pk/collections/men#MainContent",
+          "https://engine.com.pk/",
+          "https://engine.com.pk/search",
+          "https://engine.com.pk/cart",
+          "https://engine.com.pk/collections/new-arrivals",
+          "https://engine.com.pk/collections/men",
+          "https://engine.com.pk/collections/women",
+          "https://engine.com.pk/collections/all-boys",
+          "https://engine.com.pk/collections/all-girls",
+          "https://engine.com.pk/collections/men/products/mo6019-wht",
+          "https://engine.com.pk/collections/men/products/mc6062-wht",
+          "https://engine.com.pk/collections/men/products/fp6010-chr",
+          "https://engine.com.pk/collections/men/products/me6027-nvy",
+          "https://engine.com.pk/collections/men/products/mc6064-nvy",
+          "https://engine.com.pk/collections/men/products/mc6063-skb",
+          "https://engine.com.pk/collections/men/products/mc6061-brn",
+          "https://engine.com.pk/collections/men/products/mc6059-wht",
+          "https://engine.com.pk/collections/men/products/mc6059-nvy",
+          "https://engine.com.pk/collections/men/products/mc6059-gry",
+          "https://engine.com.pk/collections/men/products/mc6058-dgy",
+          "https://engine.com.pk/collections/men/products/mc6055-nvy",
+          "https://engine.com.pk/collections/men/products/mc6055-gry",
+          "https://engine.com.pk/collections/men/products/mt6211-wht",
+          "https://engine.com.pk/collections/men/products/mt6211-wgr",
+          "https://engine.com.pk/collections/men/products/mt6206-skb",
+          "https://engine.com.pk/collections/men/products/mo6021-dbu",
+          "https://engine.com.pk/collections/men/products/mo6018-lbl",
+          "https://engine.com.pk/collections/men/products/me6040-brn",
+          "https://engine.com.pk/collections/men/products/mc6060-sgn",
+          "https://engine.com.pk/collections/men/products/fu6049-grn",
+          "https://engine.com.pk/collections/men/products/fu6048-stn",
+          "https://engine.com.pk/collections/men/products/fu6047-stl",
+          "https://engine.com.pk/collections/men/products/fu6046-stl",
+          "https://engine.com.pk/collections/men/products/fu6043-brn",
+          "https://engine.com.pk/collections/men/products/fu6042-brn",
+          "https://engine.com.pk/collections/men/products/ft6357-wht",
+          "https://engine.com.pk/collections/men/products/ft6356-wht",
+          "https://engine.com.pk/collections/men/products/ft6356-nvy",
+          "https://engine.com.pk/collections/men/products/ft6355-mrn",
+          "https://engine.com.pk/collections/men/products/ft6353-dnv",
+          "https://engine.com.pk/collections/men/products/ft6351-blk",
+          "https://engine.com.pk/collections/men/products/ft6349-wht",
+          "https://engine.com.pk/collections/men/products/ft6349-chr",
+          "https://engine.com.pk/collections/men/products/ft6345-tpk",
+          "https://engine.com.pk/collections/men/products/ft6344-chr",
+          "https://engine.com.pk/collections/men/products/ft6343-brn",
+          "https://engine.com.pk/collections/men/products/ft6343-blk",
+          "https://engine.com.pk/collections/men/products/ft6342-mrn",
+          "https://engine.com.pk/collections/men/products/ft6341-stl",
+          "https://engine.com.pk/collections/men/products/ft6341-bge",
+          "https://engine.com.pk/collections/men/products/fp6016-blk",
+          "https://engine.com.pk/collections/men/products/fe6045-dne",
+          "https://engine.com.pk/collections/men/products/fe6042-brn",
+          "https://engine.com.pk/collections/men/products/fe6042-blk",
+          "https://engine.com.pk/collections/men/products/mu6049-nvy",
+          "https://engine.com.pk/collections/men/products/mu6049-blk",
+          "https://engine.com.pk/collections/men/products/mu6048-mnv",
+          "https://engine.com.pk/collections/men/products/mu6048-bk1",
+          "https://engine.com.pk/collections/men/products/mu6036-blk",
+          "https://engine.com.pk/collections/men/products/mt6226-owt",
+          "https://engine.com.pk/collections/men/products/mt6224-dbr",
+          "https://engine.com.pk/collections/men/products/mt6216-wht",
+          "https://engine.com.pk/collections/men/products/mt6212-owt",
+          "https://engine.com.pk/collections/men/products/mt6209-rst",
+          "https://engine.com.pk/collections/men/products/mt6209-dsg",
+          "https://engine.com.pk/collections/men/products/mt6208-owt",
+          "https://engine.com.pk/collections/men/products/mt6208-blk",
+          "https://engine.com.pk/collections/men/products/mt6205-brp",
+          "https://engine.com.pk/collections/men/products/mt6202-chr",
+          "https://engine.com.pk/collections/men/products/mt6195-dne",
+          "https://engine.com.pk/collections/men/products/me6043-mrn",
+          "https://engine.com.pk/collections/men/products/me6043-brn",
+          "https://engine.com.pk/collections/men/products/me6042-nvy",
+          "https://engine.com.pk/collections/men/products/me6042-blk",
+          "https://engine.com.pk/collections/men/products/me6035-nvy",
+          "https://engine.com.pk/collections/men/products/mc6073-wht",
+          "https://engine.com.pk/collections/men/products/mc6070-rst",
+          "https://engine.com.pk/collections/men/products/mc6070-mrn",
+          "https://engine.com.pk/collections/men/products/mc6070-khk",
+          "https://engine.com.pk/collections/men/products/mc6069-wht",
+          "https://engine.com.pk/collections/men/products/mc6068-wht",
+          "https://engine.com.pk/collections/men/products/mc6068-rst",
+          "https://engine.com.pk/collections/men/products/mc6068-mrn",
+          "https://engine.com.pk/collections/men/products/mc6068-blk",
+          "https://engine.com.pk/collections/men/products/mc6067-owt",
+          "https://engine.com.pk/collections/men/products/mc6067-brp",
+          "https://engine.com.pk/collections/men/products/mc6066-wht",
+          "https://engine.com.pk/collections/men/products/mc6066-nvy",
+          "https://engine.com.pk/collections/men/products/mc6065-nvy",
+          "https://engine.com.pk/collections/men/products/mc6065-dgy",
+          "https://engine.com.pk/collections/men/products/fu6045-stl",
+          "https://engine.com.pk/collections/men/products/fu6045-brn",
+          "https://engine.com.pk/collections/men/products/fu6044-olv",
+          "https://engine.com.pk/collections/men/products/fu6044-nvy",
+          "https://engine.com.pk/collections/men/products/fu6044-brn",
+          "https://engine.com.pk/collections/men/products/ft6338-wgr",
+          "https://engine.com.pk/collections/men/products/ft6338-chr",
+          "https://engine.com.pk/collections/men/products/ft6337-mrn",
+          "https://engine.com.pk/collections/men/products/ft6323-dgy",
+          "https://engine.com.pk/collections/men/products/ft6318-mrn",
+          "https://engine.com.pk/collections/men/products/ft6314-dne",
+          "https://engine.com.pk/collections/men/products/fp6015-stn",
+          "https://engine.com.pk/collections/men/products/fp6015-olv",
+          "https://engine.com.pk/collections/men/products/fp6015-nvy",
+          "https://engine.com.pk/collections/men/products/fp6015-chr",
+          "https://engine.com.pk/collections/men/products/fe6044-dbr",
+          "https://engine.com.pk/collections/men/products/fe6044-chr",
+          "https://engine.com.pk/collections/men/products/fe6041-red",
+          "https://engine.com.pk/collections/men/products/fe6041-brn",
+          "https://engine.com.pk/collections/men?page=2",
+          "https://engine.com.pk/collections/men-tops",
+          "https://engine.com.pk/collections/men-bottoms",
+          "https://engine.com.pk/collections/men-accessories",
+          "https://engine.com.pk/collections/men-suits",
+          "https://tracker.tradeunleashed.com/1214912696",
+          "https://engine.com.pk/pages/shipment-and-delivery",
+          "https://engine.com.pk/pages/return-and-exchange",
+          "https://engine.com.pk/pages/how-to-order",
+          "https://engine.com.pk/pages/terms-and-conditions",
+          "https://engine.com.pk/pages/baadmay",
+          "https://engine.com.pk/pages/about-us",
+          "https://engine.com.pk/pages/store-locator",
+          "https://engine.com.pk/pages/privacy-policy",
+          "https://engine.com.pk/pages/work-with-us",
+          "https://engine.com.pk/pages/payment",
+          "https://engine.com.pk/pages/customer-services",
+          "https://engine.com.pk/blogs/news",
+          "https://www.facebook.com/EnginePakistan",
+          "https://www.pinterest.com/engineclothingpk",
+          "https://www.instagram.com/enginepakistan/",
+          "https://www.snapchat.com/add/engine.pakistan/",
+          "https://www.youtube.com/c/EnginePakistan1/",
+          "https://www.linkedin.com/company/engine-clothing"
+        ],
+        "textHash": "d941b2c96616654b",
+        "textSample": "Men Show filter Filter and sort 1395 products Sort by: FeaturedMost relevantBest sellingAlphabetically, A-ZAlphabeticall",
+        "headerCanonicals": []
+      }
+    },
+    {
+      "url": "https://engine.com.pk/products/kt6147-nvy",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Girls T Shirt\n – EngineClothing"
+        ],
+        "descriptions": [
+          "Explore Girls' T-Shirts (7-14 yrs) at Engine Clothing. Crafted from soft jersey knit with a crewneck and regular fit built for all-day comfort. Shop now."
+        ],
+        "robotsMeta": [],
+        "canonicals": [
+          "https://engine.com.pk/products/kt6147-nvy"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Girls T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Pay for your purchase, thora abhi, baqi?"
+          },
+          {
+            "level": 3,
+            "text": "Added items to your cart?"
+          },
+          {
+            "level": 3,
+            "text": "Let’s shop and pay BaadMay !"
+          },
+          {
+            "level": 2,
+            "text": "Fast and Reliable Shipping:"
+          },
+          {
+            "level": 2,
+            "text": "Real-Time Tracking:"
+          },
+          {
+            "level": 2,
+            "text": "Secure Packaging:"
+          },
+          {
+            "level": 2,
+            "text": "Exchange:"
+          },
+          {
+            "level": 2,
+            "text": "Customer Support:"
+          },
+          {
+            "level": 2,
+            "text": "DELIVERY"
+          },
+          {
+            "level": 2,
+            "text": "Recently viewed products"
+          },
+          {
+            "level": 2,
+            "text": "Girls T Shirt"
+          },
+          {
+            "level": 3,
+            "text": "Pay for your purchase, thora abhi, baqi?"
+          },
+          {
+            "level": 3,
+            "text": "Added items to your cart?"
+          },
+          {
+            "level": 3,
+            "text": "Let’s shop and pay BaadMay !"
+          },
+          {
+            "level": 3,
+            "text": "Notify me"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "og": {
+          "title": "Girls T Shirt",
+          "description": "Explore Girls' T-Shirts (7-14 yrs) at Engine Clothing. Crafted from soft jersey knit with a crewneck and regular fit built for all-day comfort. Shop now.",
+          "image": "http://engine.com.pk/cdn/shop/files/5_1df554f6-ac9f-49f4-a4ea-df4021f4a309.jpg?v=1788345937"
+        },
+        "jsonLd": 2,
+        "words": 607,
+        "images": {
+          "total": 26,
+          "missingAlt": []
+        },
+        "links": [
+          "https://engine.com.pk/products/kt6147-nvy#MainContent",
+          "https://engine.com.pk/",
+          "https://engine.com.pk/search",
+          "https://engine.com.pk/cart",
+          "https://engine.com.pk/collections/new-arrivals",
+          "https://engine.com.pk/collections/men",
+          "https://engine.com.pk/collections/women",
+          "https://engine.com.pk/collections/all-boys",
+          "https://engine.com.pk/collections/all-girls",
+          "https://engine.com.pk/products/kt6147-nvy#ProductInfo-template--22340460839163__main",
+          "https://engine.com.pk/products/kt6147-nvy#baadmay-content",
+          "https://engine.com.pk/pages/return-and-exchange",
+          "https://engine.com.pk/products/kt6147-nvy",
+          "https://tracker.tradeunleashed.com/1214912696",
+          "https://engine.com.pk/pages/shipment-and-delivery",
+          "https://engine.com.pk/pages/how-to-order",
+          "https://engine.com.pk/pages/terms-and-conditions",
+          "https://engine.com.pk/pages/baadmay",
+          "https://engine.com.pk/pages/about-us",
+          "https://engine.com.pk/pages/store-locator",
+          "https://engine.com.pk/pages/privacy-policy",
+          "https://engine.com.pk/pages/work-with-us",
+          "https://engine.com.pk/pages/payment",
+          "https://engine.com.pk/pages/customer-services",
+          "https://engine.com.pk/blogs/news",
+          "https://www.facebook.com/EnginePakistan",
+          "https://www.pinterest.com/engineclothingpk",
+          "https://www.instagram.com/enginepakistan/",
+          "https://www.snapchat.com/add/engine.pakistan/",
+          "https://www.youtube.com/c/EnginePakistan1/",
+          "https://www.linkedin.com/company/engine-clothing",
+          "https://engine.com.pk/products/kt6147-nvy#ProductInfo-sections--22340451303675__quick-view"
+        ],
+        "textHash": "bc5f9b9175cd2e95",
+        "textSample": "Home Girls T Shirt Skip to product information previous slide next slide Girls T Shirt - Navy / 7-8 Y Girls T Shirt 1999",
+        "headerCanonicals": []
+      }
+    },
+    {
+      "url": "https://engine.com.pk/cart",
+      "status": 200,
+      "loadError": null,
+      "facts": {
+        "titles": [
+          "Your Shopping Cart\n – EngineClothing"
+        ],
+        "descriptions": [],
+        "robotsMeta": [],
+        "canonicals": [
+          "https://engine.com.pk/cart"
+        ],
+        "headings": [
+          {
+            "level": 1,
+            "text": "Your cart is empty"
+          },
+          {
+            "level": 3,
+            "text": "Notify me"
+          }
+        ],
+        "lang": "en",
+        "viewport": "width=device-width, initial-scale=1.0",
+        "og": {
+          "title": "Your Shopping Cart",
+          "description": "ENGINE Western Wear Clothing Brand! Shop Online for New Arrivals and trendy Clothes for Men, Women and kids in Pakistan.",
+          "image": "http://engine.com.pk/cdn/shop/files/1783319529104-52c5ea61-eab6-4604-bd4d-45c487ab97ea_1_d0cfa62f-7e69-432c-8e52-046a5e4240a1.png?v=1783601770"
+        },
+        "jsonLd": 1,
+        "words": 22,
+        "images": {
+          "total": 2,
+          "missingAlt": []
+        },
+        "links": [
+          "https://engine.com.pk/cart#MainContent",
+          "https://engine.com.pk/",
+          "https://engine.com.pk/search",
+          "https://engine.com.pk/cart",
+          "https://engine.com.pk/collections/new-arrivals",
+          "https://engine.com.pk/collections/men",
+          "https://engine.com.pk/collections/women",
+          "https://engine.com.pk/collections/all-boys",
+          "https://engine.com.pk/collections/all-girls",
+          "https://engine.com.pk/account/login",
+          "https://tracker.tradeunleashed.com/1214912696",
+          "https://engine.com.pk/pages/shipment-and-delivery",
+          "https://engine.com.pk/pages/return-and-exchange",
+          "https://engine.com.pk/pages/how-to-order",
+          "https://engine.com.pk/pages/terms-and-conditions",
+          "https://engine.com.pk/pages/baadmay",
+          "https://engine.com.pk/pages/about-us",
+          "https://engine.com.pk/pages/store-locator",
+          "https://engine.com.pk/pages/privacy-policy",
+          "https://engine.com.pk/pages/work-with-us",
+          "https://engine.com.pk/pages/payment",
+          "https://engine.com.pk/pages/customer-services",
+          "https://engine.com.pk/blogs/news",
+          "https://www.facebook.com/EnginePakistan",
+          "https://www.pinterest.com/engineclothingpk",
+          "https://www.instagram.com/enginepakistan/",
+          "https://www.snapchat.com/add/engine.pakistan/",
+          "https://www.youtube.com/c/EnginePakistan1/",
+          "https://www.linkedin.com/company/engine-clothing"
+        ],
+        "textHash": "00e10a94917dd2b1",
+        "textSample": "Your cart is empty Not sure where to start?Try these collections: Continue shopping Have an account? Log in to check out",
+        "headerCanonicals": []
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "seo-h1-missing",
+      "title": "The page has no main heading",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "No <h1> found on https://engine.com.pk/collections/new-arrivals. First heading is an <h6>: \"New In\".",
+      "impact": "The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing, because only the markup is read.",
+      "fix": "Mark the page’s main heading as `<h1>`. One per page.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-title-long",
+      "title": "The page title is cut off in search results",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "63 characters on https://engine.com.pk/:\n    \"Engine Official: Western Wear Clothing Store!\n – EngineClothing\"",
+      "impact": "Google truncates titles at roughly 60 characters, so the end of this one is replaced with an ellipsis. If the distinguishing words are at the end, searchers never see them.",
+      "fix": "Shorten to under 60 characters, putting the words that distinguish this page first and the business name last.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-meta-description-long",
+      "title": "The search-result description is cut off",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "173 characters on https://engine.com.pk/collections/new-arrivals:\n    \"Explore online Engine's New Arrivals 2026 featuring new summer season clothing for men, women, and kids. Discover fresh colors, modern fits, and everyday styles in Pakistan.…\"",
+      "impact": "Anything past roughly 160 characters is replaced with an ellipsis, so a call to action at the end is never seen.",
+      "fix": "Trim to under 160 characters.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-heading-skip",
+      "title": "Heading levels skip a step",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "On https://engine.com.pk/products/kt6147-nvy, an <h3> follows an <h1>:\n    \"Pay for your purchase, thora abhi, baqi?\"",
+      "impact": "Headings are the document outline. Skipping a level breaks how screen readers let a user jump through the page, and muddies which sections belong to which.",
+      "fix": "Choose heading levels by position in the outline, not by how large you want the text to look. Set size with CSS.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/products/kt6147-nvy",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-meta-description-missing",
+      "title": "The page has no description for search results",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "No <meta name=\"description\"> on https://engine.com.pk/cart",
+      "impact": "The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page, often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.",
+      "fix": "Add a `<meta name=\"description\">` of 50–160 characters describing the page as a sentence a customer would read.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/cart",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-thin-content",
+      "title": "A page has very little text",
+      "severity": "info",
+      "category": "seo",
+      "evidence": "About 22 words of body text on https://engine.com.pk/cart",
+      "impact": "Pages with little text rarely rank for anything beyond the business name, because there is nothing for a search engine to match a query against. Legitimate for a contact or login page; a problem for a page meant to attract visitors.",
+      "fix": "If this page is meant to bring in search traffic, expand it to answer the questions a customer would actually ask. If it is not, no action needed.",
+      "effort": "involved",
+      "url": "https://engine.com.pk/cart",
+      "unconfirmed": true
+    }
+  ],
+  "positives": [
+    "Every page is set up to display properly on phones.",
+    "Every page declares the language it is written in.",
+    "The site publishes structured data, which helps search engines understand what it offers.",
+    "All 521 images we saw carry a text alternative.",
+    "Nothing on the site tells search engines to stay away, so every page tested is free to be listed.",
+    "A robots.txt is published.",
+    "A sitemap is declared in robots.txt, which helps search engines find every page.",
+    "All 30 internal links we followed resolved without an error or a redirect chain."
+  ]
+}

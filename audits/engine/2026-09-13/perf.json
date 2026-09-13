@@ -1,0 +1,2142 @@
+{
+  "tool": "collect-perf",
+  "collectedAt": "2026-09-13T19:20:51.418Z",
+  "command": "node collect-perf.mjs https://engine.com.pk/ https://engine.com.pk/collections/new-arrivals https://engine.com.pk/collections/men https://engine.com.pk/products/kt6147-nvy https://engine.com.pk/cart --runs 3 --all-profiles",
+  "urls": [
+    "https://engine.com.pk/",
+    "https://engine.com.pk/collections/new-arrivals",
+    "https://engine.com.pk/collections/men",
+    "https://engine.com.pk/products/kt6147-nvy",
+    "https://engine.com.pk/cart"
+  ],
+  "runs": 3,
+  "profiles": [
+    "mobile",
+    "desktop"
+  ],
+  "pages": [
+    {
+      "url": "https://engine.com.pk/",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 8340,
+            "fcp": 2704,
+            "ttfb": 53.20000000001164,
+            "tbt": 2320,
+            "cls": 0.002,
+            "rating": {
+              "lcp": "poor",
+              "fcp": "needs-work",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "stylesheet": {
+                "count": 10,
+                "transfer": 67671,
+                "thirdPartyTransfer": 24108
+              },
+              "script": {
+                "count": 170,
+                "transfer": 2298066,
+                "thirdPartyTransfer": 1230880
+              },
+              "font": {
+                "count": 2,
+                "transfer": 40721,
+                "thirdPartyTransfer": 0
+              },
+              "document": {
+                "count": 12,
+                "transfer": 197705,
+                "thirdPartyTransfer": 1232
+              },
+              "other": {
+                "count": 35,
+                "transfer": 16132,
+                "thirdPartyTransfer": 5856
+              },
+              "image": {
+                "count": 26,
+                "transfer": 737584,
+                "thirdPartyTransfer": 160446
+              },
+              "data": {
+                "count": 23,
+                "transfer": 7360,
+                "thirdPartyTransfer": 3942
+              }
+            },
+            "totalRequests": 278,
+            "totalTransfer": 3365239,
+            "thirdPartyTransfer": 1426464,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "fonts.googleapis.com",
+              "cdnjs.cloudflare.com",
+              "shop.app",
+              "otlp-http-production.shopifysvc.com",
+              "code.jquery.com",
+              "api.prod.pushbot.app",
+              "shopify-emailbot.s3.amazonaws.com",
+              "www.googletagmanager.com",
+              "analytics.google.com",
+              "stats.g.doubleclick.net",
+              "www.cloudflare.com",
+              "api.cloud.mailbot.universal-apps.com",
+              "www.clarity.ms",
+              "analytics.tiktok.com",
+              "connect.facebook.net",
+              "www.merchant-center-analytics.goog",
+              "www.googleadservices.com",
+              "ad.doubleclick.net",
+              "www.google.com",
+              "www.facebook.com",
+              "googleads.g.doubleclick.net",
+              "intg.snapchat.com",
+              "sc-static.net",
+              "tr.snapchat.com",
+              "tr6.snapchat.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 8.34 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "LCP 8.34 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 8.34 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 2.32 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 2.32 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 2.32 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://api.prod.pushbot.app/settings: 3 kB, no content-encoding\nhttps://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "4 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~41 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2244 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1202 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2244 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 1236,
+            "fcp": 1168,
+            "ttfb": 48.19999999998254,
+            "tbt": 176,
+            "cls": 0.0162,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 11,
+                "transfer": 194880,
+                "thirdPartyTransfer": 1248
+              },
+              "stylesheet": {
+                "count": 44,
+                "transfer": 132010,
+                "thirdPartyTransfer": 23891
+              },
+              "script": {
+                "count": 186,
+                "transfer": 2393427,
+                "thirdPartyTransfer": 1219803
+              },
+              "font": {
+                "count": 2,
+                "transfer": 40708,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 30,
+                "transfer": 611291,
+                "thirdPartyTransfer": 200825
+              },
+              "other": {
+                "count": 28,
+                "transfer": 12992,
+                "thirdPartyTransfer": 5261
+              },
+              "data": {
+                "count": 10,
+                "transfer": 3220,
+                "thirdPartyTransfer": 3220
+              }
+            },
+            "totalRequests": 311,
+            "totalTransfer": 3388528,
+            "thirdPartyTransfer": 1454248,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "cdnjs.cloudflare.com",
+              "fonts.googleapis.com",
+              "code.jquery.com",
+              "otlp-http-production.shopifysvc.com",
+              "shop.app",
+              "www.cloudflare.com",
+              "connect.facebook.net",
+              "www.clarity.ms",
+              "www.googletagmanager.com",
+              "shopify-emailbot.s3.amazonaws.com",
+              "analytics.tiktok.com",
+              "www.merchant-center-analytics.goog",
+              "www.googleadservices.com",
+              "www.google.com",
+              "stats.g.doubleclick.net",
+              "ad.doubleclick.net",
+              "analytics.google.com",
+              "api.prod.pushbot.app",
+              "intg.snapchat.com",
+              "googleads.g.doubleclick.net",
+              "sc-static.net",
+              "tr.snapchat.com",
+              "api.cloud.mailbot.universal-apps.com",
+              "tr6.snapchat.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\nhttps://api.prod.pushbot.app/settings: 3 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "7 files block the page from drawing anything",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-md.css?v=132121132021328883421786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-lg.css?v=80485476460842249911786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-xl.css?v=108715784441113734131786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n(~53 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2337 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6&cx=c&gtm=4e6992  (third-party)\n1191 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2337 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-failed-requests",
+              "title": "1 request(s) on the page fail",
+              "severity": "low",
+              "category": "best-practice",
+              "evidence": "403 https://shop.app/pay/hop?analytics_trace_id=7f5aff5c-8452-4ded-9a55-35768a885732&target_origin=https%3A%2F%2Fengine.com.pk&client_handle=engineclothing.myshopify.com",
+              "impact": "Each failed request costs a round trip and may leave something on the page missing or broken. A 404 for an asset is usually a deployment that left a reference behind.",
+              "fix": "Remove or correct the references. Where the file should exist, check whether it is missing from the deployed build.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 14212,
+            "fcp": 3672,
+            "ttfb": 54.899999999965075,
+            "tbt": 6087,
+            "cls": 0.0193,
+            "rating": {
+              "lcp": "poor",
+              "fcp": "poor",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "script": {
+                "count": 168,
+                "transfer": 2276410,
+                "thirdPartyTransfer": 1209637
+              },
+              "stylesheet": {
+                "count": 10,
+                "transfer": 62969,
+                "thirdPartyTransfer": 18454
+              },
+              "font": {
+                "count": 1,
+                "transfer": 20232,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 38,
+                "transfer": 17449,
+                "thirdPartyTransfer": 5883
+              },
+              "image": {
+                "count": 23,
+                "transfer": 1444568,
+                "thirdPartyTransfer": 559
+              },
+              "document": {
+                "count": 9,
+                "transfer": 222678,
+                "thirdPartyTransfer": 1235
+              },
+              "data": {
+                "count": 23,
+                "transfer": 7043,
+                "thirdPartyTransfer": 4002
+              }
+            },
+            "totalRequests": 272,
+            "totalTransfer": 4051349,
+            "thirdPartyTransfer": 1239770,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "fonts.googleapis.com",
+              "cdnjs.cloudflare.com",
+              "otlp-http-production.shopifysvc.com",
+              "www.googletagmanager.com",
+              "www.clarity.ms",
+              "stats.g.doubleclick.net",
+              "analytics.google.com",
+              "www.cloudflare.com",
+              "shop.app",
+              "analytics.tiktok.com",
+              "code.jquery.com",
+              "connect.facebook.net",
+              "shopify-emailbot.s3.amazonaws.com",
+              "www.googleadservices.com",
+              "api.prod.pushbot.app",
+              "www.google.com",
+              "ad.doubleclick.net",
+              "www.merchant-center-analytics.goog",
+              "api.cloud.mailbot.universal-apps.com",
+              "googleads.g.doubleclick.net",
+              "www.facebook.com",
+              "intg.snapchat.com",
+              "sc-static.net",
+              "tr.snapchat.com",
+              "tr6.snapchat.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 14.21 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "LCP 14.21 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 14.21 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 6.09 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 6.09 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 6.09 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\nhttps://api.prod.pushbot.app/settings: 3 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "4 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~41 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2223 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1181 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2223 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-image-format",
+              "title": "4 large image(s) use an older format",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://engine.com.pk/cdn/shop/files/MT6230-WGR_1.jpg?v=1787633350&width=750: image/jpeg, 143 kB\nhttps://engine.com.pk/cdn/shop/files/LT6093-OLV_1.jpg?v=1787306618&width=750: image/jpeg, 118 kB\nhttps://engine.com.pk/cdn/shop/files/LT6089-BRN_1.jpg?v=1787306366&width=750: image/jpeg, 168 kB\nhttps://engine.com.pk/cdn/shop/files/LE6075-OLV_1.jpg?v=1787298810&width=750: image/jpeg, 107 kB",
+              "impact": "WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.",
+              "fix": "Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 4208,
+            "fcp": 2588,
+            "ttfb": 55,
+            "tbt": 954,
+            "cls": 0.0043,
+            "rating": {
+              "lcp": "poor",
+              "fcp": "needs-work",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 8,
+                "transfer": 219860,
+                "thirdPartyTransfer": 1233
+              },
+              "stylesheet": {
+                "count": 44,
+                "transfer": 127746,
+                "thirdPartyTransfer": 18441
+              },
+              "image": {
+                "count": 36,
+                "transfer": 871436,
+                "thirdPartyTransfer": 43963
+              },
+              "font": {
+                "count": 2,
+                "transfer": 40784,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 185,
+                "transfer": 2373394,
+                "thirdPartyTransfer": 1196570
+              },
+              "other": {
+                "count": 35,
+                "transfer": 15904,
+                "thirdPartyTransfer": 5609
+              },
+              "data": {
+                "count": 17,
+                "transfer": 5672,
+                "thirdPartyTransfer": 3657
+              }
+            },
+            "totalRequests": 327,
+            "totalTransfer": 3654796,
+            "thirdPartyTransfer": 1269473,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "cdnjs.cloudflare.com",
+              "fonts.googleapis.com",
+              "otlp-http-production.shopifysvc.com",
+              "www.clarity.ms",
+              "www.googletagmanager.com",
+              "www.cloudflare.com",
+              "connect.facebook.net",
+              "stats.g.doubleclick.net",
+              "code.jquery.com",
+              "analytics.google.com",
+              "shop.app",
+              "shopify-emailbot.s3.amazonaws.com",
+              "www.googleadservices.com",
+              "www.google.com",
+              "www.merchant-center-analytics.goog",
+              "ad.doubleclick.net",
+              "googleads.g.doubleclick.net",
+              "api.prod.pushbot.app",
+              "intg.snapchat.com",
+              "analytics.tiktok.com",
+              "sc-static.net",
+              "tr.snapchat.com",
+              "api.cloud.mailbot.universal-apps.com",
+              "tr6.snapchat.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-desktop",
+              "title": "Main content takes too long to appear (LCP 4.21 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "LCP 4.21 s, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Desktop, unthrottled, the largest thing on screen finishes drawing after 4.21 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-desktop",
+              "title": "Page freezes while scripts run (TBT 954 ms)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 954 ms, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 954 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\nhttps://api.prod.pushbot.app/settings: 3 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "7 files block the page from drawing anything",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-md.css?v=132121132021328883421786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-lg.css?v=80485476460842249911786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-xl.css?v=108715784441113734131786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n(~53 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2318 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1169 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2318 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-failed-requests",
+              "title": "1 request(s) on the page fail",
+              "severity": "low",
+              "category": "best-practice",
+              "evidence": "403 https://shop.app/pay/hop?analytics_trace_id=f061fafe-3ca7-4ea1-9a35-057ffc10e2f8&target_origin=https%3A%2F%2Fengine.com.pk&client_handle=engineclothing.myshopify.com",
+              "impact": "Each failed request costs a round trip and may leave something on the page missing or broken. A 404 for an asset is usually a deployment that left a reference behind.",
+              "fix": "Remove or correct the references. Where the file should exist, check whether it is missing from the deployed build.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/new-arrivals",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://engine.com.pk/collections/men",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 14284,
+            "fcp": 3520,
+            "ttfb": 54.09999999997672,
+            "tbt": 6935,
+            "cls": 0.0193,
+            "rating": {
+              "lcp": "poor",
+              "fcp": "poor",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "script": {
+                "count": 167,
+                "transfer": 2273113,
+                "thirdPartyTransfer": 1209616
+              },
+              "stylesheet": {
+                "count": 10,
+                "transfer": 63135,
+                "thirdPartyTransfer": 18457
+              },
+              "font": {
+                "count": 1,
+                "transfer": 20282,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 37,
+                "transfer": 19376,
+                "thirdPartyTransfer": 5846
+              },
+              "image": {
+                "count": 23,
+                "transfer": 1209891,
+                "thirdPartyTransfer": 559
+              },
+              "document": {
+                "count": 9,
+                "transfer": 230376,
+                "thirdPartyTransfer": 1256
+              },
+              "data": {
+                "count": 23,
+                "transfer": 6806,
+                "thirdPartyTransfer": 3995
+              }
+            },
+            "totalRequests": 270,
+            "totalTransfer": 3822979,
+            "thirdPartyTransfer": 1239729,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "fonts.googleapis.com",
+              "cdnjs.cloudflare.com",
+              "otlp-http-production.shopifysvc.com",
+              "www.googletagmanager.com",
+              "analytics.google.com",
+              "stats.g.doubleclick.net",
+              "shop.app",
+              "www.clarity.ms",
+              "www.cloudflare.com",
+              "code.jquery.com",
+              "connect.facebook.net",
+              "shopify-emailbot.s3.amazonaws.com",
+              "www.googleadservices.com",
+              "api.prod.pushbot.app",
+              "ad.doubleclick.net",
+              "www.google.com",
+              "api.cloud.mailbot.universal-apps.com",
+              "www.merchant-center-analytics.goog",
+              "googleads.g.doubleclick.net",
+              "analytics.tiktok.com",
+              "www.facebook.com",
+              "intg.snapchat.com",
+              "sc-static.net",
+              "tr.snapchat.com",
+              "tr6.snapchat.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 14.28 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "LCP 14.28 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 14.28 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 6.93 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 6.93 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 6.93 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\nhttps://api.prod.pushbot.app/settings: 3 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "4 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~40 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2220 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1181 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2220 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-image-format",
+              "title": "1 large image(s) use an older format",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://engine.com.pk/cdn/shop/files/MC6061-BRN_2.jpg?v=1785154721&width=750: image/jpeg, 123 kB",
+              "impact": "WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.",
+              "fix": "Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 4060,
+            "fcp": 2724,
+            "ttfb": 48.09999999997672,
+            "tbt": 1107,
+            "cls": 0.0043,
+            "rating": {
+              "lcp": "poor",
+              "fcp": "needs-work",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 8,
+                "transfer": 227408,
+                "thirdPartyTransfer": 1226
+              },
+              "stylesheet": {
+                "count": 44,
+                "transfer": 127604,
+                "thirdPartyTransfer": 18410
+              },
+              "image": {
+                "count": 36,
+                "transfer": 889341,
+                "thirdPartyTransfer": 43965
+              },
+              "font": {
+                "count": 2,
+                "transfer": 40881,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 185,
+                "transfer": 2384702,
+                "thirdPartyTransfer": 1207991
+              },
+              "other": {
+                "count": 35,
+                "transfer": 14835,
+                "thirdPartyTransfer": 6079
+              },
+              "data": {
+                "count": 17,
+                "transfer": 5812,
+                "thirdPartyTransfer": 3648
+              }
+            },
+            "totalRequests": 327,
+            "totalTransfer": 3690583,
+            "thirdPartyTransfer": 1281319,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "cdnjs.cloudflare.com",
+              "fonts.googleapis.com",
+              "otlp-http-production.shopifysvc.com",
+              "www.clarity.ms",
+              "www.googletagmanager.com",
+              "www.cloudflare.com",
+              "connect.facebook.net",
+              "code.jquery.com",
+              "stats.g.doubleclick.net",
+              "analytics.google.com",
+              "shop.app",
+              "shopify-emailbot.s3.amazonaws.com",
+              "www.merchant-center-analytics.goog",
+              "www.googleadservices.com",
+              "analytics.tiktok.com",
+              "www.google.com",
+              "ad.doubleclick.net",
+              "api.prod.pushbot.app",
+              "googleads.g.doubleclick.net",
+              "intg.snapchat.com",
+              "sc-static.net",
+              "api.cloud.mailbot.universal-apps.com",
+              "tr.snapchat.com",
+              "tr6.snapchat.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-desktop",
+              "title": "Main content takes too long to appear (LCP 4.06 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "LCP 4.06 s, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Desktop, unthrottled, the largest thing on screen finishes drawing after 4.06 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-desktop",
+              "title": "Page freezes while scripts run (TBT 1.11 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 1.11 s, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 1.11 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\nhttps://api.prod.pushbot.app/settings: 3 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "7 files block the page from drawing anything",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-md.css?v=132121132021328883421786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-lg.css?v=80485476460842249911786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-xl.css?v=108715784441113734131786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n(~53 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2329 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1180 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2329 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-failed-requests",
+              "title": "1 request(s) on the page fail",
+              "severity": "low",
+              "category": "best-practice",
+              "evidence": "403 https://shop.app/pay/hop?analytics_trace_id=aaaf1255-ade8-4470-9bac-ee36f145ee97&target_origin=https%3A%2F%2Fengine.com.pk&client_handle=engineclothing.myshopify.com",
+              "impact": "Each failed request costs a round trip and may leave something on the page missing or broken. A 404 for an asset is usually a deployment that left a reference behind.",
+              "fix": "Remove or correct the references. Where the file should exist, check whether it is missing from the deployed build.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/collections/men",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://engine.com.pk/products/kt6147-nvy",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 3804,
+            "fcp": 2636,
+            "ttfb": 46.29999999993015,
+            "tbt": 1865,
+            "cls": 0.0005,
+            "rating": {
+              "lcp": "needs-work",
+              "fcp": "needs-work",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "script": {
+                "count": 180,
+                "transfer": 2411595,
+                "thirdPartyTransfer": 1242567
+              },
+              "stylesheet": {
+                "count": 12,
+                "transfer": 67127,
+                "thirdPartyTransfer": 20087
+              },
+              "font": {
+                "count": 3,
+                "transfer": 61091,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 8,
+                "transfer": 353003,
+                "thirdPartyTransfer": 660
+              },
+              "document": {
+                "count": 10,
+                "transfer": 147376,
+                "thirdPartyTransfer": 1223
+              },
+              "other": {
+                "count": 46,
+                "transfer": 17937,
+                "thirdPartyTransfer": 7186
+              },
+              "data": {
+                "count": 26,
+                "transfer": 9608,
+                "thirdPartyTransfer": 5946
+              }
+            },
+            "totalRequests": 285,
+            "totalTransfer": 3067737,
+            "thirdPartyTransfer": 1277669,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "fonts.googleapis.com",
+              "cdnjs.cloudflare.com",
+              "shop.app",
+              "otlp-http-production.shopifysvc.com",
+              "code.jquery.com",
+              "error-analytics-sessions-production.shopifysvc.com",
+              "www.googletagmanager.com",
+              "analytics.google.com",
+              "stats.g.doubleclick.net",
+              "api.prod.pushbot.app",
+              "www.cloudflare.com",
+              "shopify-emailbot.s3.amazonaws.com",
+              "www.clarity.ms",
+              "analytics.tiktok.com",
+              "k.clarity.ms",
+              "tracking-pixel.omegatheme.com",
+              "api.cloud.mailbot.universal-apps.com",
+              "connect.facebook.net",
+              "www.merchant-center-analytics.goog",
+              "www.googleadservices.com",
+              "www.google.com",
+              "ad.doubleclick.net",
+              "www.facebook.com",
+              "googleads.g.doubleclick.net",
+              "intg.snapchat.com",
+              "sc-static.net",
+              "tr.snapchat.com",
+              "tr6.snapchat.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 3.80 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "LCP 3.80 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 3.80 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 1.86 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 1.86 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 1.86 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://api.prod.pushbot.app/settings: 3 kB, no content-encoding\nhttps://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "5 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~43 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2355 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1213 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2355 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 1520,
+            "fcp": 1460,
+            "ttfb": 57.5,
+            "tbt": 169,
+            "cls": 0.019,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 11,
+                "transfer": 191931,
+                "thirdPartyTransfer": 1242
+              },
+              "stylesheet": {
+                "count": 46,
+                "transfer": 131782,
+                "thirdPartyTransfer": 20070
+              },
+              "script": {
+                "count": 191,
+                "transfer": 2487742,
+                "thirdPartyTransfer": 1233354
+              },
+              "font": {
+                "count": 3,
+                "transfer": 61090,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 24,
+                "transfer": 421433,
+                "thirdPartyTransfer": 44065
+              },
+              "other": {
+                "count": 48,
+                "transfer": 17962,
+                "thirdPartyTransfer": 6477
+              },
+              "data": {
+                "count": 21,
+                "transfer": 7518,
+                "thirdPartyTransfer": 5524
+              }
+            },
+            "totalRequests": 344,
+            "totalTransfer": 3319458,
+            "thirdPartyTransfer": 1310732,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "cdnjs.cloudflare.com",
+              "fonts.googleapis.com",
+              "error-analytics-sessions-production.shopifysvc.com",
+              "code.jquery.com",
+              "shop.app",
+              "monorail-edge.shopifysvc.com",
+              "otlp-http-production.shopifysvc.com",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "www.clarity.ms",
+              "www.cloudflare.com",
+              "www.googleadservices.com",
+              "z.clarity.ms",
+              "www.merchant-center-analytics.goog",
+              "www.google.com",
+              "stats.g.doubleclick.net",
+              "ad.doubleclick.net",
+              "analytics.google.com",
+              "api.prod.pushbot.app",
+              "shopify-emailbot.s3.amazonaws.com",
+              "analytics.tiktok.com",
+              "googleads.g.doubleclick.net",
+              "intg.snapchat.com",
+              "tracking-pixel.omegatheme.com",
+              "sc-static.net",
+              "tr.snapchat.com",
+              "tr6.snapchat.com",
+              "api.cloud.mailbot.universal-apps.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://api.prod.pushbot.app/settings: 3 kB, no content-encoding\nhttps://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "8 files block the page from drawing anything",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-md.css?v=132121132021328883421786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-lg.css?v=80485476460842249911786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-xl.css?v=108715784441113734131786435704\n<link> https://engine.com.pk/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css\n(~55 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2429 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6&cx=c&gtm=4e6992h1  (third-party)\n1204 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2429 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "3 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://engine.com.pk/cdn/shop/files/05_2c36a8b0-cd8b-4957-88d3-cf7c4bdfe6e2.jpg?v=1788345938&width=750\n    720×900 delivered, drawn at 329×438, 145 kB\nhttps://engine.com.pk/cdn/shop/files/5_1df554f6-ac9f-49f4-a4ea-df4021f4a309.jpg?v=1788345937&width=750\n    720×900 delivered, drawn at 329×438, 21 kB\nhttps://engine.com.pk/cdn/shop/files/005_c83fd5f3-ad8a-4eaf-aa3c-391b79efc91e.jpg?v=1788345937&width=750\n    720×900 delivered, drawn at 329×438, 15 kB",
+              "impact": "About 181 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-image-format",
+              "title": "3 large image(s) use an older format",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://engine.com.pk/cdn/shop/files/05_2c36a8b0-cd8b-4957-88d3-cf7c4bdfe6e2.jpg?v=1788345938&width=750: image/jpeg, 145 kB\nhttps://engine.com.pk/cdn/shop/files/05_2c36a8b0-cd8b-4957-88d3-cf7c4bdfe6e2.jpg?v=1788345938&width=750: image/jpeg, 145 kB\nhttps://engine.com.pk/cdn/shop/files/05_2c36a8b0-cd8b-4957-88d3-cf7c4bdfe6e2.jpg?v=1788345938&width=750: image/jpeg, 145 kB",
+              "impact": "WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.",
+              "fix": "Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-failed-requests",
+              "title": "1 request(s) on the page fail",
+              "severity": "low",
+              "category": "best-practice",
+              "evidence": "403 https://shop.app/pay/hop?analytics_trace_id=db9a1a2b-467e-47b5-a8a9-36f1b84bc4a9&target_origin=https%3A%2F%2Fengine.com.pk&client_handle=engineclothing.myshopify.com",
+              "impact": "Each failed request costs a round trip and may leave something on the page missing or broken. A 404 for an asset is usually a deployment that left a reference behind.",
+              "fix": "Remove or correct the references. Where the file should exist, check whether it is missing from the deployed build.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/products/kt6147-nvy",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://engine.com.pk/cart",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 3064,
+            "fcp": 2100,
+            "ttfb": 51.59999999997672,
+            "tbt": 1302,
+            "cls": 0.1028,
+            "rating": {
+              "lcp": "needs-work",
+              "fcp": "needs-work",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "needs-work"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "script": {
+                "count": 175,
+                "transfer": 2288438,
+                "thirdPartyTransfer": 1212372
+              },
+              "stylesheet": {
+                "count": 9,
+                "transfer": 62021,
+                "thirdPartyTransfer": 18420
+              },
+              "document": {
+                "count": 9,
+                "transfer": 114617,
+                "thirdPartyTransfer": 1235
+              },
+              "font": {
+                "count": 1,
+                "transfer": 20239,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 33,
+                "transfer": 14009,
+                "thirdPartyTransfer": 5097
+              },
+              "image": {
+                "count": 3,
+                "transfer": 6182,
+                "thirdPartyTransfer": 559
+              },
+              "data": {
+                "count": 17,
+                "transfer": 5321,
+                "thirdPartyTransfer": 3703
+              }
+            },
+            "totalRequests": 247,
+            "totalTransfer": 2510827,
+            "thirdPartyTransfer": 1241386,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "fonts.googleapis.com",
+              "cdnjs.cloudflare.com",
+              "shop.app",
+              "code.jquery.com",
+              "shopify-emailbot.s3.amazonaws.com",
+              "otlp-http-production.shopifysvc.com",
+              "api.prod.pushbot.app",
+              "www.googletagmanager.com",
+              "www.cloudflare.com",
+              "stats.g.doubleclick.net",
+              "analytics.google.com",
+              "api.cloud.mailbot.universal-apps.com",
+              "www.clarity.ms",
+              "analytics.tiktok.com",
+              "connect.facebook.net",
+              "www.merchant-center-analytics.goog",
+              "www.googleadservices.com",
+              "www.google.com",
+              "ad.doubleclick.net",
+              "googleads.g.doubleclick.net",
+              "www.facebook.com",
+              "intg.snapchat.com",
+              "sc-static.net",
+              "tr.snapchat.com",
+              "tr6.snapchat.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 3.06 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "LCP 3.06 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 3.06 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cls-mobile",
+              "title": "Page content shifts while loading (CLS 0.103)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "CLS 0.103, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 0.1.",
+              "impact": "Content moves by 0.103 of the screen after it first appears, which is what makes people tap the wrong thing. Google treats anything over 0.1 as poor.",
+              "fix": "Reserve space for anything that arrives late: width and height attributes (or aspect-ratio) on every image, a fixed height for ad and embed slots, and font-display settings that do not swap in a differently-sized face.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 1.30 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 1.30 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 1.30 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\nhttps://api.prod.pushbot.app/settings: 3 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "4 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~41 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2235 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e69a0h2  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1184 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2235 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 1280,
+            "fcp": 1228,
+            "ttfb": 51.59999999997672,
+            "tbt": 78,
+            "cls": 0.0162,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 8,
+                "transfer": 111668,
+                "thirdPartyTransfer": 1236
+              },
+              "script": {
+                "count": 184,
+                "transfer": 2373862,
+                "thirdPartyTransfer": 1212322
+              },
+              "stylesheet": {
+                "count": 43,
+                "transfer": 126571,
+                "thirdPartyTransfer": 18420
+              },
+              "font": {
+                "count": 2,
+                "transfer": 40861,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 4,
+                "transfer": 47729,
+                "thirdPartyTransfer": 43966
+              },
+              "other": {
+                "count": 28,
+                "transfer": 12574,
+                "thirdPartyTransfer": 4661
+              },
+              "data": {
+                "count": 10,
+                "transfer": 3295,
+                "thirdPartyTransfer": 3295
+              }
+            },
+            "totalRequests": 279,
+            "totalTransfer": 2716560,
+            "thirdPartyTransfer": 1283900,
+            "thirdPartyHosts": [
+              "cdn.shopify.com",
+              "fonts.googleapis.com",
+              "cdnjs.cloudflare.com",
+              "code.jquery.com",
+              "shop.app",
+              "otlp-http-production.shopifysvc.com",
+              "connect.facebook.net",
+              "www.clarity.ms",
+              "www.googletagmanager.com",
+              "www.cloudflare.com",
+              "www.google.com",
+              "www.merchant-center-analytics.goog",
+              "www.googleadservices.com",
+              "analytics.google.com",
+              "stats.g.doubleclick.net",
+              "ad.doubleclick.net",
+              "api.prod.pushbot.app",
+              "analytics.tiktok.com",
+              "shopify-emailbot.s3.amazonaws.com",
+              "intg.snapchat.com",
+              "googleads.g.doubleclick.net",
+              "sc-static.net",
+              "tr.snapchat.com",
+              "api.cloud.mailbot.universal-apps.com",
+              "tr6.snapchat.com",
+              "pixel.tapad.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-no-compression",
+              "title": "2 text file(s) are served without compression",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://api.prod.pushbot.app/settings: 3 kB, no content-encoding\nhttps://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\n(77 kB uncompressed in total)",
+              "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-cache-headers",
+              "title": "1 build asset(s) are not cached by the browser",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+              "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+              "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "7 files block the page from drawing anything",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-md.css?v=132121132021328883421786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-lg.css?v=80485476460842249911786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/theme-xl.css?v=108715784441113734131786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n(~53 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2318 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1184 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2318 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-failed-requests",
+              "title": "1 request(s) on the page fail",
+              "severity": "low",
+              "category": "best-practice",
+              "evidence": "403 https://shop.app/pay/hop?analytics_trace_id=cf3902e1-510d-4462-805c-4c483d4c49ce&target_origin=https%3A%2F%2Fengine.com.pk&client_handle=engineclothing.myshopify.com",
+              "impact": "Each failed request costs a round trip and may leave something on the page missing or broken. A 404 for an asset is usually a deployment that left a reference behind.",
+              "fix": "Remove or correct the references. Where the file should exist, check whether it is missing from the deployed build.",
+              "effort": "quick",
+              "url": "https://engine.com.pk/cart",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 8.34 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "LCP 8.34 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 8.34 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 2.32 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 2.32 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 2.32 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 14.21 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "LCP 14.21 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 14.21 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 6.09 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 6.09 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 6.09 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 14.28 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "LCP 14.28 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 14.28 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/men",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 6.93 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 6.93 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 6.93 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/men",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 1.86 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 1.86 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 1.86 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/products/kt6147-nvy",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 1.30 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 1.30 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 1.30 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/cart",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "2244 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1202 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 2244 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://engine.com.pk/",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "2223 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1181 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 2223 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "2220 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1181 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 2220 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://engine.com.pk/collections/men",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "2355 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e6992  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1213 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 2355 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://engine.com.pk/products/kt6147-nvy",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "2235 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "206 kB  https://engine.com.pk/cdn/shopifycloud/checkout-web/assets/c1/hydrate.6TM1bUGT.js\n174 kB  https://www.googletagmanager.com/gtag/js?id=G-WHWZC8WS42  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939  (third-party)\n160 kB  https://www.googletagmanager.com/gtag/js?id=AW-457208939&cx=c&gtm=4e69a0h2  (third-party)\n149 kB  https://www.googletagmanager.com/gtag/js?id=GT-NGPQKXM6  (third-party)\n1184 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 2235 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://engine.com.pk/cart",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "2 text file(s) are served without compression",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://api.prod.pushbot.app/settings: 3 kB, no content-encoding\nhttps://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\n(77 kB uncompressed in total)",
+      "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-cache-headers",
+      "title": "1 build asset(s) are not cached by the browser",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+      "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+      "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "2 text file(s) are served without compression",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\nhttps://api.prod.pushbot.app/settings: 3 kB, no content-encoding\n(77 kB uncompressed in total)",
+      "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-cache-headers",
+      "title": "1 build asset(s) are not cached by the browser",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+      "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+      "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "2 text file(s) are served without compression",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\nhttps://api.prod.pushbot.app/settings: 3 kB, no content-encoding\n(77 kB uncompressed in total)",
+      "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/men",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-cache-headers",
+      "title": "1 build asset(s) are not cached by the browser",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+      "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+      "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/men",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 3.80 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "LCP 3.80 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 3.80 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/products/kt6147-nvy",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "2 text file(s) are served without compression",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://api.prod.pushbot.app/settings: 3 kB, no content-encoding\nhttps://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\n(77 kB uncompressed in total)",
+      "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/products/kt6147-nvy",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-cache-headers",
+      "title": "1 build asset(s) are not cached by the browser",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+      "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+      "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/products/kt6147-nvy",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 3.06 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "LCP 3.06 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 3.06 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/cart",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-cls-mobile",
+      "title": "Page content shifts while loading (CLS 0.103)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "CLS 0.103, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 0.1.",
+      "impact": "Content moves by 0.103 of the screen after it first appears, which is what makes people tap the wrong thing. Google treats anything over 0.1 as poor.",
+      "fix": "Reserve space for anything that arrives late: width and height attributes (or aspect-ratio) on every image, a fixed height for ad and embed slots, and font-display settings that do not swap in a differently-sized face.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/cart",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "2 text file(s) are served without compression",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://shopify-emailbot.s3.amazonaws.com/email-bot/email-bot-theme-file/index.js?subdomain=engineclothing.myshopify.com: 74 kB, no content-encoding\nhttps://api.prod.pushbot.app/settings: 3 kB, no content-encoding\n(77 kB uncompressed in total)",
+      "impact": "Roughly 77 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/cart",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-cache-headers",
+      "title": "1 build asset(s) are not cached by the browser",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://tr.snapchat.com/config/pk/03b4b3e7-8624-406a-ab17-009c741f8ffc.js?v=3.60.0-2608111919: cache-control (none)",
+      "impact": "These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.",
+      "fix": "Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/cart",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "4 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~41 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "4 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~41 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-image-format",
+      "title": "4 large image(s) use an older format",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://engine.com.pk/cdn/shop/files/MT6230-WGR_1.jpg?v=1787633350&width=750: image/jpeg, 143 kB\nhttps://engine.com.pk/cdn/shop/files/LT6093-OLV_1.jpg?v=1787306618&width=750: image/jpeg, 118 kB\nhttps://engine.com.pk/cdn/shop/files/LT6089-BRN_1.jpg?v=1787306366&width=750: image/jpeg, 168 kB\nhttps://engine.com.pk/cdn/shop/files/LE6075-OLV_1.jpg?v=1787298810&width=750: image/jpeg, 107 kB",
+      "impact": "WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.",
+      "fix": "Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/new-arrivals",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "4 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~40 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/men",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-image-format",
+      "title": "1 large image(s) use an older format",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://engine.com.pk/cdn/shop/files/MC6061-BRN_2.jpg?v=1785154721&width=750: image/jpeg, 123 kB",
+      "impact": "WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.",
+      "fix": "Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/collections/men",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "5 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shopifycloud/portable-wallets/latest/accelerated-checkout-backwards-compat.css\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~43 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/products/kt6147-nvy",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "4 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<link> https://engine.com.pk/cdn/shop/t/62/assets/theme.css?v=75864758994093421481786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/secondary-css.css?v=19872392729268356371786435704\n<link> https://engine.com.pk/cdn/shop/t/62/assets/baadmay-styles.css?v=97879054335855733621787311032\n<link> https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css\n(~41 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://engine.com.pk/cart",
+      "unconfirmed": false
+    }
+  ]
+}
