@@ -34,13 +34,13 @@ export function writeJson(outDir, name, data) {
 /**
  * Import Playwright from wherever it is: a local node_modules, or a global
  * install. ESM does not search global paths, so a globally installed
- * Playwright — which is what several sandboxes ship — has to be located and
+ * Playwright, which is what several sandboxes ship, has to be located and
  * imported by file URL. Keeps this skill runnable in a repo that has no
  * package.json of its own.
  */
 export async function loadPlaywright() {
   // Playwright is CommonJS. Imported by file URL its named exports are not
-  // always detected, so the browsers land on `.default` instead — normalise.
+  // always detected, so the browsers land on `.default` instead. Normalise.
   const norm = (mod) => (mod?.chromium ? mod : mod?.default?.chromium ? mod.default : null);
   try {
     const m = norm(await import('playwright'));
@@ -65,7 +65,7 @@ export async function loadPlaywright() {
   }
   throw new Error(
     'Could not find Playwright. Install it locally (`npm i -D playwright`) or globally (`npm i -g playwright`).\n' +
-    'Do not run `playwright install` in a sandbox that already ships a browser — see SKILL.md.'
+    'Do not run `playwright install` in a sandbox that already ships a browser. See SKILL.md.'
   );
 }
 
@@ -74,7 +74,7 @@ export const EFFORTS = ['quick', 'moderate', 'involved'];
 
 /**
  * Build a finding. Every field is required except `url` and `unconfirmed`,
- * because a finding missing its evidence or its fix is not reportable — see
+ * because a finding missing its evidence or its fix is not reportable. See
  * SKILL.md §3 and §4.
  */
 export function finding({
@@ -159,7 +159,7 @@ export function summarise(name, findings) {
   const counts = {};
   for (const f of findings) counts[f.severity] = (counts[f.severity] || 0) + 1;
   const line = SEVERITIES.filter((s) => counts[s]).map((s) => `${counts[s]} ${s}`).join(', ');
-  console.log(`\n${name}: ${findings.length} finding(s)${line ? ` — ${line}` : ''}`);
+  console.log(`\n${name}: ${findings.length} finding(s)${line ? `: ${line}` : ''}`);
   for (const f of [...findings].sort(bySeverityThenEffort)) {
     console.log(`  [${f.severity.padEnd(8)}] ${f.title}`);
   }

@@ -8,7 +8,7 @@
 // PASSIVE ONLY, BY DESIGN. It requests the URLs given, the assets those pages
 // reference, and the three well-known files whose purpose is to be fetched
 // (robots.txt, sitemap.xml, security.txt). It does not guess paths, submit
-// forms, send payloads or attempt logins — those are active tests and need
+// forms, send payloads or attempt logins. Those are active tests and need
 // written authorisation. See references/security.md. Do not add an active
 // mode to this script.
 
@@ -54,7 +54,7 @@ const HEADER_CHECKS = [
   {
     key: 'referrer-policy',
     name: 'Referrer-Policy',
-    why: 'Full URLs — including anything sensitive in the path or query string — are sent to every external site the page links to or loads a resource from.',
+    why: 'Full URLs, including anything sensitive in the path or query string, are sent to every external site the page links to or loads a resource from.',
     fix: 'Send `Referrer-Policy: strict-origin-when-cross-origin`.',
     base: 'low', withAuth: 'low',
   },
@@ -247,7 +247,7 @@ function analyse(page, tlsInfo) {
       id: 'sec-headers-missing',
       title: `${missing.length} standard security header(s) are not set`,
       severity: 'low', category: 'security', effort: 'quick', url,
-      evidence: missing.map((c) => `${c.name} — not present`).join('\n') +
+      evidence: missing.map((c) => `${c.name}: not present`).join('\n') +
         `\n\nPresent: ${HEADER_CHECKS.filter((c) => h[c.key]).map((c) => c.name).join(', ') || 'none'}`,
       impact: 'These headers are the browser-side defences a site opts into. Individually none of them is a vulnerability; together their absence means a bug elsewhere has nothing standing in its way.',
       fix: 'Set them once at the edge or in middleware so every response carries them: ' +
@@ -338,7 +338,7 @@ function analyse(page, tlsInfo) {
         severity: 'critical', category: 'security', effort: 'quick', url: b.url,
         evidence: `${b.url}\n` + hits.map((s) => `  ${s.pattern}${s.role ? ` (role: ${s.role})` : ''}: ${s.sample}`).join('\n'),
         impact: 'This value is downloaded by anyone who opens the site, so it must be treated as already public. Depending on what it grants, that may mean full read and write access to the database or the ability to spend money on the account.' +
-          (serviceRole.length ? ' A Supabase `service_role` key in particular bypasses row-level security entirely — it is complete access to every table.' : ''),
+          (serviceRole.length ? ' A Supabase `service_role` key in particular bypasses row-level security entirely. It is complete access to every table.' : ''),
         fix: 'Rotate the credential first, because removing it from the code does not un-publish it. Then move the operation that needs it to the server, and expose only a public key or an authenticated endpoint to the browser.',
       }));
     }
@@ -362,7 +362,7 @@ function analyse(page, tlsInfo) {
       id: 'sec-source-maps',
       title: `Original source code is published alongside ${maps.length} script(s)`,
       severity: 'low', category: 'security', effort: 'quick', url,
-      evidence: maps.slice(0, 4).map((b) => `${b.sourceMap} — reachable (HTTP 200)`).join('\n'),
+      evidence: maps.slice(0, 4).map((b) => `${b.sourceMap}: reachable (HTTP 200)`).join('\n'),
       impact: 'Source maps reconstruct the original, commented source from the minified bundle. This is not a vulnerability by itself, but it hands anyone looking a full map of the internal API routes, feature flags and developer comments, which turns a hard attack into an easy one.',
       fix: 'Stop emitting source maps in production builds, or upload them to the error-tracking service and block the `.map` paths at the edge.',
     }));
@@ -397,7 +397,7 @@ function analyse(page, tlsInfo) {
       id: 'sec-no-https-redirect',
       title: 'Plain HTTP is served without redirecting to HTTPS',
       severity: 'high', category: 'security', effort: 'quick', url,
-      evidence: `http://${new URL(url).host} ended at ${page.httpUpgrade.finalUrl} (HTTP ${page.httpUpgrade.status}) — still unencrypted.`,
+      evidence: `http://${new URL(url).host} ended at ${page.httpUpgrade.finalUrl} (HTTP ${page.httpUpgrade.status}), still unencrypted.`,
       impact: 'Anyone typing the address, following an old link or on a shared network gets the site unencrypted, where the page and anything typed into it can be read and altered in transit.',
       fix: 'Redirect all HTTP traffic to HTTPS with a 301 at the edge, and add HSTS so browsers stop trying HTTP at all.',
     }));

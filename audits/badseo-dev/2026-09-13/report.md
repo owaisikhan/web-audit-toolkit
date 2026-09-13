@@ -5,27 +5,15 @@ Pages tested: https://badseo.dev/, https://badseo.dev/kitchen-sink, https://bads
 
 ## Summary
 
-We looked at 33 pages of badseo.dev on 13 September 2026, testing what each page
-tells search engines about itself and what the site reveals to the public
-internet.
+We looked at 33 pages of badseo.dev on 13 September 2026, testing what each page tells search engines about itself and what the site reveals to the public internet.
 
-**This site is broken on purpose.** It is a test fixture: each page is built to
-fail one specific check, and the sitemap names them accordingly. What follows
-should be read as confirmation that the checks fire, not as a list of accidents
-to go and fix.
+**This site is broken on purpose.** It is a test fixture: each page is built to fail one specific check, and the sitemap names them accordingly. What follows should be read as confirmation that the checks fire, not as a list of accidents to go and fix.
 
-Two results still look unintended. The site answers on an unencrypted
-connection without sending visitors to the secure one — a safety matter rather
-than a search one, and a single rule at the hosting layer. And two pages carry
-an instruction telling search engines not to list them; correct here, but on a
-live site this is the most expensive thing that can be wrong, and it is the
-first thing worth checking on any site.
+Two results still look unintended. The site answers on an unencrypted connection without sending visitors to the secure one, which is a safety matter rather than a search one and is a single rule at the hosting layer. And two pages carry an instruction telling search engines not to list them. That is correct here, but on a live site it is the most expensive thing that can be wrong, and it is the first thing worth checking on any site.
 
-In total: 2 critical, 3 high, 4 medium, 11 low and 1 informational item. Nothing
-suggests the site has been attacked, and no passwords or keys were found in the
-code it sends to visitors.
+In total: 2 critical, 5 high, 7 medium, 13 low and 1 informational item. Nothing suggests the site has been attacked, and no passwords or keys were found in the code it sends to visitors.
 
-2 critical · 3 high · 4 medium · 11 low · 1 info
+2 critical · 5 high · 7 medium · 13 low · 1 info
 
 ## What we measured
 
@@ -34,10 +22,12 @@ _no performance data collected_
 ## What is working well
 
 - The site is served over HTTPS.
+- The HTTPS certificate is valid for another 30 days.
 - No credentials were found in the JavaScript served to visitors.
-- Every page tested is set up to display properly on phones.
-- A robots.txt is published, and it lets search engines in rather than shutting them out.
-- A complete sitemap is declared in robots.txt, listing all 33 pages.
+- Every page is set up to display properly on phones.
+- Every page declares the language it is written in.
+- A robots.txt is published.
+- A sitemap is declared in robots.txt, which helps search engines find every page.
 
 ## Findings
 
@@ -50,9 +40,9 @@ _no performance data collected_
     on https://badseo.dev/index/noindex-meta
 ```
 
-**Why it matters.** This single tag removes the page from Google entirely — it will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.
+**Why it matters.** This single tag removes the page from Google entirely. It will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.
 
-**How to fix it.** Remove `noindex` from the robots meta tag on pages that should be found. Check the whole site, not just this page — the tag is usually applied in a shared layout or template.
+**How to fix it.** Remove `noindex` from the robots meta tag on pages that should be found. Check the whole site, not just this page, because the tag is usually applied in a shared layout or template.
 
 ### The server sends a header telling search engines not to list this page  
 `[Critical · Quick fix]`
@@ -72,7 +62,7 @@ X-Robots-Tag: noindex
 
 **What we found.**
 ```
-http://badseo.dev ended at http://badseo.dev/ (HTTP 200) — still unencrypted.
+http://badseo.dev ended at http://badseo.dev/ (HTTP 200), still unencrypted.
 ```
 
 **Why it matters.** Anyone typing the address, following an old link or on a shared network gets the site unencrypted, where the page and anything typed into it can be read and altered in transit.
@@ -87,9 +77,23 @@ http://badseo.dev ended at http://badseo.dev/ (HTTP 200) — still unencrypted.
 No <title> element in the head of https://badseo.dev/head/missing-title
 ```
 
-**Why it matters.** The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content — usually badly — and the page loses its single strongest ranking signal.
+**Why it matters.** The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content, usually badly, and the page loses its single strongest ranking signal.
 
 **How to fix it.** Add a `<title>` of roughly 50–60 characters that names the page and the business, most specific part first.
+
+### The page names more than one "official" address for itself  
+`[High · Quick fix]`
+
+**What we found.**
+```
+<link rel="canonical" href="https://badseo.dev/index/canonical-conflict?via=html">
+    Link: <https://badseo.dev/index/canonical-conflict?via=header>; rel="canonical"   (HTTP header, not visible in the page source)
+    on https://badseo.dev/index/canonical-conflict
+```
+
+**Why it matters.** A canonical tag tells search engines which address is the real one when several show the same content. Two conflicting tags is a contradiction, so search engines ignore both and guess, which can split the page’s ranking across duplicate addresses.
+
+**How to fix it.** Emit exactly one canonical link per page, in one place. Two usually means a layout and a page template are each adding one, or that one is in the HTML while another is set as an HTTP header at the server or CDN.
 
 ### Some addresses redirect in a circle  
 `[High · Quick fix]`
@@ -102,7 +106,20 @@ https://badseo.dev/redirect/loop
 
 **Why it matters.** The browser gives up and shows an error, so the page is unreachable for visitors and cannot be indexed at all. Usually caused by two rules disagreeing about a trailing slash or about www.
 
-**How to fix it.** Pick one canonical form — with or without the trailing slash, with or without www — and make every rule redirect towards it rather than between the two.
+**How to fix it.** Pick one canonical form, with or without the trailing slash and with or without www, then make every rule redirect towards it rather than between the two.
+
+### A page answers with a server error  
+`[High · Moderate]`
+
+**What we found.**
+```
+GET https://badseo.dev/status/server-error
+    HTTP 500
+```
+
+**Why it matters.** Visitors reaching this address see an error rather than the page. Search engines drop a page that answers this way, and if it happens across many addresses they slow down crawling the whole site. The page may still render something, which is why this is easy to miss by eye.
+
+**How to fix it.** Find why the server is failing for this address and fix it. If the page has genuinely been removed, answer 404 or 410 deliberately rather than 5xx.
 
 ### HSTS is not set  
 `[Medium · Quick fix]`
@@ -124,7 +141,7 @@ Response headers for https://badseo.dev/ contain no `strict-transport-security`.
 No <h1> found on https://badseo.dev/head/missing-h1. First heading is an <h2>: "Where the headline should be".
 ```
 
-**Why it matters.** The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing — only the markup is read.
+**Why it matters.** The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing, because only the markup is read.
 
 **How to fix it.** Mark the page’s main heading as `<h1>`. One per page.
 
@@ -141,6 +158,32 @@ Requested: https://badseo.dev/index/canonicalized
 
 **How to fix it.** Confirm the target is genuinely the same content. If it is not, point the canonical at this page’s own address.
 
+### A page we were asked to check does not exist  
+`[Medium · Quick fix]`
+
+**What we found.**
+```
+GET https://badseo.dev/status/not-found
+    HTTP 404
+```
+
+**Why it matters.** This address returns "not found". If it is linked from anywhere, or was previously indexed, visitors following those links reach nothing and any ranking it held is lost.
+
+**How to fix it.** Restore the page, or redirect the address to whatever replaced it with a 301 so existing links and bookmarks keep working.
+
+### A page refuses access  
+`[Medium · Quick fix]` _(unconfirmed)_
+
+**What we found.**
+```
+GET https://badseo.dev/status/blocked
+    HTTP 403
+```
+
+**Why it matters.** The server refused to serve this address to an ordinary visitor, so a search engine cannot read it either and it will not be listed. Correct for an admin or account page; a mistake for anything meant to be public.
+
+**How to fix it.** If the page is meant to be public, remove whatever is refusing it: an access rule, a password, or a firewall. If it is not, no action is needed and this can be ignored.
+
 ### Several pages share the same title  
 `[Medium · Moderate]`
 
@@ -153,49 +196,50 @@ Requested: https://badseo.dev/index/canonicalized
 
 **Why it matters.** Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.
 
-**How to fix it.** Give each page a title naming what is specific to it — the product, the category, the location — before the business name.
+**How to fix it.** Give each page a title naming what is specific to it, such as the product, the category or the location, before the business name.
+
+### Several pages show word-for-word the same content  
+`[Medium · Involved]`
+
+**What we found.**
+```
+2 pages have identical body text:
+    https://badseo.dev/content/duplicate-a
+    https://badseo.dev/content/duplicate-b
+    beginning "The same latte recipe, twice This page is identical, byte for byte, to another U…"
+```
+
+**Why it matters.** When the same text is published at more than one address, search engines pick one to show and largely ignore the rest, and the choice is theirs rather than yours. Any links pointing at the copies count for less than they would if everything pointed at one page.
+
+**How to fix it.** Keep one address as the real one and either remove the duplicates or add a canonical link on each copy pointing at it. Where the pages are meant to differ, the shared text is the thing to change.
 
 
 ## What we would do first
 
-**This week** — the redirect from the unencrypted address to the secure one,
-and the headers that belong with it. All of it is configuration at the hosting
-layer, it is under an hour together, and it is the one group of findings here
-that does not look deliberate.
+**This week** the redirect from the unencrypted address to the secure one, and the headers that belong with it. All of it is configuration at the hosting layer, it is under an hour together, and it is the one group of findings here that does not look deliberate.
 
-**Next, if this site is ever meant to be found** — the two pages that tell
-search engines not to list them, and the page with no title. On a fixture these
-are the point. On a live site they are the difference between appearing in
-search and not, and each is a one-line change.
+**Next, if this site is ever meant to be found** the two pages that tell search engines not to list them, and the page with no title. On a fixture these are the point. On a live site they are the difference between appearing in search and not, and each is a one-line change.
 
-**Later, and only if it matters** — the titles, descriptions, headings and
-image alternatives in the hygiene appendix. All true, all worth doing on a real
-site, none of it urgent. Here it is deliberate, so the honest recommendation is
-to leave it exactly as it is.
+**Later, and only if it matters** the titles, descriptions, headings and image alternatives in the hygiene appendix. All true, all worth doing on a real site, none of it urgent. Here it is deliberate, so the honest recommendation is to leave it exactly as it is.
 
-**What we did not test.** Only the pages the site publishes in its own sitemap,
-and only as an anonymous visitor — there is no login here. We did not measure
-page speed. Two further limits come from where this audit ran rather than from
-the site: the connection passed through an inspecting proxy, so the certificate
-details the tools recorded were the proxy's rather than the site's and have been
-removed from this report; and the deliberately orphaned page was reached only
-because the sitemap names it — which is the point of that page, since nothing
-links to it and following links would never find it.
+**What we did not test** only the pages the site publishes in its own sitemap, and only as an anonymous visitor, since there is no login here. We did not measure page speed, so there are no screenshots in this report. Two further limits come from where this audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details the tools recorded were the proxy's rather than the site's and have been removed; and the deliberately orphaned page was reached only because the sitemap names it, which is the point of that page, since nothing links to it and following links would never find it.
 
 ## Appendix: hygiene
 
-- **5 standard security header(s) are not set** `[Low]` — Set them once at the edge or in middleware so every response carries them: Send `Strict-Transport-Security: max-age=31536000; includeSubDomains` on HTTPS responses. Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust. Send `X-Content-Type-Options: nosniff` on all responses. Send `X-Frame-Options: SAMEORIGIN`, or `frame-ancestors 'self'` in the Content-Security-Policy. Send `Referrer-Policy: strict-origin-when-cross-origin`.
-- **Links to this site look plain when shared** `[Low]` — Add `og:title`, `og:description` and an `og:image` of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own.
-- **The page title is cut off in search results** `[Low]` — Shorten to under 60 characters, putting the words that distinguish this page first and the business name last.
-- **The page title is very short** `[Low]` — Expand to roughly 50–60 characters describing what the page offers.
-- **The page has no description for search results** `[Low]` — Add a `<meta name="description">` of 50–160 characters describing the page as a sentence a customer would read.
-- **The search-result description is cut off** `[Low]` — Trim to under 160 characters.
-- **The page has several main headings** `[Low]` — Keep one `<h1>` and demote the rest to `<h2>`.
-- **Heading levels skip a step** `[Low]` — Choose heading levels by position in the outline, not by how large you want the text to look. Set size with CSS.
-- **Some links pass through several redirects** `[Low]` — Update the links to point at the final address, and collapse the server rules so one redirect reaches the destination.
-- **Some images have no text alternative** `[Low]` — Add `alt` text describing what the image shows. For decorative images, add `alt=""` explicitly so assistive technology knows to skip them.
-- **Several pages share the same search-result description** `[Low]` — Write a description per page, or generate one from the page’s own content.
-- **A page has very little text** `[Info]` — If this page is meant to bring in search traffic, expand it to answer the questions a customer would actually ask. If it is not, no action needed.
+- **5 standard security header(s) are not set** `[Low]`: Set them once at the edge or in middleware so every response carries them: Send `Strict-Transport-Security: max-age=31536000; includeSubDomains` on HTTPS responses. Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust. Send `X-Content-Type-Options: nosniff` on all responses. Send `X-Frame-Options: SAMEORIGIN`, or `frame-ancestors 'self'` in the Content-Security-Policy. Send `Referrer-Policy: strict-origin-when-cross-origin`.
+- **Links to this site look plain when shared** `[Low]`: Add `og:title`, `og:description` and an `og:image` of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own.
+- **A page leads nowhere else on the site** `[Low]`: Add links onward that suit the page: the section it belongs to, related items, or the next step in whatever the visitor came to do. Site-wide navigation counts, but only if it is actually rendered on this page.
+- **The page title is cut off in search results** `[Low]`: Shorten to under 60 characters, putting the words that distinguish this page first and the business name last.
+- **The page title is very short** `[Low]`: Expand to roughly 50–60 characters describing what the page offers.
+- **The page has no description for search results** `[Low]`: Add a `<meta name="description">` of 50–160 characters describing the page as a sentence a customer would read.
+- **The search-result description is cut off** `[Low]`: Trim to under 160 characters.
+- **The search-result description is very short** `[Low]`: Expand to 50–160 characters, describing what the page offers as a sentence a customer would read.
+- **The page has several main headings** `[Low]`: Keep one `<h1>` and demote the rest to `<h2>`.
+- **Heading levels skip a step** `[Low]`: Choose heading levels by position in the outline, not by how large you want the text to look. Set size with CSS.
+- **Some links pass through several redirects** `[Low]`: Update the links to point at the final address, and collapse the server rules so one redirect reaches the destination.
+- **Some images have no text alternative** `[Low]`: Add `alt` text describing what the image shows. For decorative images, add `alt=""` explicitly so assistive technology knows to skip them.
+- **Several pages share the same search-result description** `[Low]`: Write a description per page, or generate one from the page’s own content.
+- **A page has very little text** `[Info]`: If this page is meant to bring in search traffic, expand it to answer the questions a customer would actually ask. If it is not, no action needed.
 
 ## Appendix: how to reproduce these figures
 

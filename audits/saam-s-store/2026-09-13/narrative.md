@@ -6,9 +6,11 @@ are written once here rather than pasted into each by hand.
 ## Summary
 
 We looked at four pages of Saam's Store on 13 September 2026: the home page,
-the shop, a product page and the cart. We tested how quickly they load on a
-typical mid-range Android phone, what each page tells search engines about
-itself, and what the site reveals to the public internet.
+the shop, a product page and the cart. Each was loaded twice over, once on a
+typical mid-range Android phone over a 4G connection and once on a desktop
+browser at 1440 pixels wide, three times each with an empty cache. We also
+read what each page tells search engines about itself, and what the site
+reveals to the public internet.
 
 The site is in good shape, and most of this report says so. Speed is
 competitive, nothing shifts around as pages load, every image is described for
@@ -40,7 +42,7 @@ they load, which is why the first moment of each page feels blank on a phone.
 One line of CSS changes that, and it is the cheapest visible improvement on the
 list.
 
-**Worth doing, not urgent** the cart's load time on mobile, at 2.90 seconds the
+**Worth doing, not urgent** the cart's load time on mobile, at 2.86 seconds the
 one page outside Google's good range; the sharing tags that currently make
 links posted to WhatsApp or Facebook appear as bare addresses; and the four
 standard security headers that are not set. None of these is costing customers
@@ -48,7 +50,10 @@ today.
 
 **What we did not test** only public pages, as an anonymous visitor. We did not
 sign in, so the account and checkout flows are untested, and that is where most
-of the code lives. We did not review the source code in this pass. Two limits
+of the code lives. We did not review the source code in this pass. On screen
+sizes, we measured two: a 412 pixel phone and a 1440 pixel desktop. Tablets and
+the widths in between were not measured, and the desktop figures assume a fast
+connection, so they are a best case rather than a typical one. Two limits
 come from where the audit ran rather than from the site: the connection passed
 through an inspecting proxy, so the certificate details our tools recorded were
 the proxy's and have been removed; and this machine's processor is shared,

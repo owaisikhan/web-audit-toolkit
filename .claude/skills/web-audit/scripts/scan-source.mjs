@@ -13,7 +13,7 @@ import path from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { parseArgs, writeJson, finding, summarise, bySeverityThenEffort } from './_lib.mjs';
 
-// `.claude` is skipped because it holds tooling, not the website — and
+// `.claude` is skipped because it holds tooling, not the website, and
 // because this scanner's own pattern list otherwise matches itself.
 const SKIP_DIRS = new Set(['node_modules', '.git', '.next', 'dist', 'build', 'out', 'coverage', '.turbo', '.vercel', 'vendor', '.claude']);
 
@@ -212,7 +212,7 @@ function main() {
   // --- Route / server-action guard inventory --------------------------------
   // Not a finding by itself: a list for you to read. The recurring high-value
   // bug is a route that checks that you are signed in but not whether you are
-  // allowed — see references/security.md.
+  // allowed. See references/security.md.
   const routeFiles = files.filter((f) => /(^|\/)(route|page|actions?)\.(js|ts|jsx|tsx)$/.test(f.rel) || /\/(api|pages\/api)\//.test(f.rel));
   const guardRe = guardName
     ? new RegExp(guardName)
@@ -239,7 +239,7 @@ function main() {
       evidence: unguarded.slice(0, 12).map((r) => r.file).join('\n') +
         `\n\nSearched for: ${guardRe.source}` +
         '\nLogin, registration and root pages are excluded as public by design.' +
-        '\nThis is a text search. Confirm each one by reading it — a guard applied in middleware or a shared wrapper will not match here.',
+        '\nThis is a text search. Confirm each one by reading it, because a guard applied in middleware or a shared wrapper will not match here.',
       impact: 'An endpoint that does not check who is calling can be called by anyone who knows the address. The common form of this bug is a route that confirms you are signed in but not that the record belongs to you, so changing an id in the URL returns another customer\'s data.',
       fix: 'For each endpoint, establish what stops one signed-in user reading or changing another\'s data. Enforce it on the server, in the database with row-level security where the database supports it, rather than by hiding the link in the interface.',
     }));
@@ -259,7 +259,7 @@ function main() {
         const named = Object.values(audit.vulnerabilities || {})
           .filter((x) => ['critical', 'high'].includes(x.severity))
           .slice(0, 8)
-          .map((x) => `${x.name} (${x.severity})${x.via?.[0]?.title ? ` — ${x.via[0].title}` : ''}`);
+          .map((x) => `${x.name} (${x.severity})${x.via?.[0]?.title ? `: ${x.via[0].title}` : ''}`);
         findings.push(finding({
           id: 'src-dependency-vulns',
           title: `${serious} dependency advisor${serious > 1 ? 'ies' : 'y'} at high or critical severity`,

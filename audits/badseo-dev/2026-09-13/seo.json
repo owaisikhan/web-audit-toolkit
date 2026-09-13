@@ -1,7 +1,7 @@
 {
   "tool": "check-seo",
   "mode": "passive",
-  "collectedAt": "2026-09-13T10:35:17.228Z",
+  "collectedAt": "2026-09-13T14:14:56.204Z",
   "command": "node check-seo.mjs https://badseo.dev/ https://badseo.dev/privacy https://badseo.dev/head/missing-title https://badseo.dev/head/title-too-long https://badseo.dev/head/title-too-short https://badseo.dev/head/missing-meta-description https://badseo.dev/head/meta-description-too-long https://badseo.dev/head/meta-description-too-short https://badseo.dev/head/missing-h1 https://badseo.dev/head/empty-h1 https://badseo.dev/head/multiple-h1 https://badseo.dev/head/heading-order-skip https://badseo.dev/content/thin-content https://badseo.dev/content/images-missing-alt https://badseo.dev/content/duplicate-a https://badseo.dev/content/duplicate-b https://badseo.dev/content/duplicate-title-a https://badseo.dev/content/duplicate-title-b https://badseo.dev/content/duplicate-meta-a https://badseo.dev/content/duplicate-meta-b https://badseo.dev/index/noindex-meta https://badseo.dev/index/noindex-header https://badseo.dev/index/canonicalized https://badseo.dev/index/canonical-conflict https://badseo.dev/status/not-found https://badseo.dev/status/server-error https://badseo.dev/status/blocked https://badseo.dev/links/broken-internal-link https://badseo.dev/redirect/trailing-slash https://badseo.dev/perf/slow-response https://badseo.dev/structure/orphan https://badseo.dev/structure/no-outgoing-links https://badseo.dev/kitchen-sink",
   "urls": [
     "https://badseo.dev/",
@@ -47,6 +47,7 @@
     ]
   },
   "linksChecked": 3,
+  "sitemapUrlCount": 33,
   "pages": [
     {
       "url": "https://badseo.dev/",
@@ -147,7 +148,10 @@
           "https://badseo.dev/content/duplicate-meta-b",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "5fd55bd995e85d2a",
+        "textSample": "BadSEOA website with example technical SEO issues for you to learn or test your agentsKitchen sinkIssueWhat it demonstra",
+        "headerCanonicals": []
       }
     },
     {
@@ -216,7 +220,10 @@
           "https://www.cloudflare.com/privacypolicy/",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "0c766111f665628d",
+        "textSample": "Privacy policyThis policy explains the limited information processed when you visit badseo.dev. Last updated July 10, 20",
+        "headerCanonicals": []
       }
     },
     {
@@ -263,7 +270,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "d7c20d4362bccf02",
+        "textSample": "A page with no title The content and headings here are fine. There is just no title tag in the head. What the title does",
+        "headerCanonicals": []
       }
     },
     {
@@ -312,7 +322,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "e83f4f728b74ddca",
+        "textSample": "A title that runs too long There is a length past which a title stops helping and just gets cut off. Where the title get",
+        "headerCanonicals": []
       }
     },
     {
@@ -361,7 +374,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "a769b62dc9ae31f6",
+        "textSample": "A title that is too short Short is good. This is too short to say anything. Titles need room to work The title is the mo",
+        "headerCanonicals": []
       }
     },
     {
@@ -408,7 +424,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "35629417af154675",
+        "textSample": "No meta description This page has a title and clean headings. It has no meta description. What the description does The ",
+        "headerCanonicals": []
       }
     },
     {
@@ -457,7 +476,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "416a420676087152",
+        "textSample": "A meta description that runs too long You can write too much here, and this page proves it. Where the snippet gets cut T",
+        "headerCanonicals": []
       }
     },
     {
@@ -506,7 +528,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "3c9609221dca2612",
+        "textSample": "A meta description that is too short The page has a description, but it is too short to do much work. Why short snippets",
+        "headerCanonicals": []
       }
     },
     {
@@ -555,7 +580,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "12d1460590ecd5bf",
+        "textSample": "Where the headline should be This article has plenty to say, but it never states its topic in an H1. A well-structured p",
+        "headerCanonicals": []
       }
     },
     {
@@ -600,7 +628,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "5405f40ffbe6f72e",
+        "textSample": "The headline tag is present, but it does not contain a headline. the quick brown fox jumps over a lazy search engine whi",
+        "headerCanonicals": []
       }
     },
     {
@@ -649,7 +680,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "4baa5d40f9a6a07c",
+        "textSample": "This line is an H1 So is this one Three H1s on one page. A crawler cannot tell which one is the actual topic. An H1 is m",
+        "headerCanonicals": []
       }
     },
     {
@@ -698,7 +732,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "15b72cd3c317585f",
+        "textSample": "Headings that skip a level This page goes from an H1 straight to an H4, as if H2 and H3 did not exist. The first section",
+        "headerCanonicals": []
       }
     },
     {
@@ -739,7 +776,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "a1d14519317de955",
+        "textSample": "Nothing here yet This is the whole page. There is not enough here for a search engine to work with.",
+        "headerCanonicals": []
       }
     },
     {
@@ -790,7 +830,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "91d8e5750499ba42",
+        "textSample": "An image with no alt text The image below has no alt text, so a screen reader skips over it as if it were not there. Why",
+        "headerCanonicals": []
       }
     },
     {
@@ -839,7 +882,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "dfce5b14ec7d1339",
+        "textSample": "The same latte recipe, twice This page is identical, byte for byte, to another URL on this site. Two URLs, one page Dupl",
+        "headerCanonicals": []
       }
     },
     {
@@ -888,7 +934,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "dfce5b14ec7d1339",
+        "textSample": "The same latte recipe, twice This page is identical, byte for byte, to another URL on this site. Two URLs, one page Dupl",
+        "headerCanonicals": []
       }
     },
     {
@@ -937,7 +986,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "10262a7932ffc1fb",
+        "textSample": "Marathon Trainer, Cobalt Blue A cushioned road shoe for runners who put in serious weekly mileage. Built for distance Th",
+        "headerCanonicals": []
       }
     },
     {
@@ -986,7 +1038,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "86fe46672f4f404d",
+        "textSample": "Sprint Racer, Electric Blue A light racing flat for short, fast efforts on the track and road. Built for speed The Sprin",
+        "headerCanonicals": []
       }
     },
     {
@@ -1035,7 +1090,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "8f45fcd7dc3c5e9d",
+        "textSample": "Early Riser Bakery Slow-fermented sourdough and pastries, baked before dawn. What we bake Every loaf takes two days: a l",
+        "headerCanonicals": []
       }
     },
     {
@@ -1084,7 +1142,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "9f77d3dde88ffbdb",
+        "textSample": "Petal & Stem Florist Hand-tied seasonal bouquets, cut fresh and delivered the same day. What we arrange Our bouquets fol",
+        "headerCanonicals": []
       }
     },
     {
@@ -1135,7 +1196,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "c77e213fddeeaae6",
+        "textSample": "This page asks not to be indexed Nothing is wrong with this page. It just does not want to be in Google. When noindex is",
+        "headerCanonicals": []
       }
     },
     {
@@ -1184,7 +1248,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "7cdef16ef7d889c8",
+        "textSample": "A noindex you cannot see in the HTML View the source all you want. This page's noindex is in the HTTP headers. Headers c",
+        "headerCanonicals": []
       }
     },
     {
@@ -1235,7 +1302,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "afb01e6ee426864a",
+        "textSample": "This is not the canonical page This page exists, but it tells search engines to index a different URL in its place. What",
+        "headerCanonicals": []
       }
     },
     {
@@ -1286,6 +1356,11 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
+        ],
+        "textHash": "6f235efb18eeed8c",
+        "textSample": "Two canonicals that disagree The head names one canonical URL. The HTTP header names another. Both lose. Mixed signals Y",
+        "headerCanonicals": [
+          "https://badseo.dev/index/canonical-conflict?via=header"
         ]
       }
     },
@@ -1335,7 +1410,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "d0338b512696943a",
+        "textSample": "404, but the sitemap still lists it The sitemap says this page exists. The server returns 404. Why a 404 in the sitemap ",
+        "headerCanonicals": []
       }
     },
     {
@@ -1384,7 +1462,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "1d1c3a1f0fa5df31",
+        "textSample": "500, a server error This URL does not return 404. It returns a 500 every time. 5xx is worse than 4xx A 404 says the page",
+        "headerCanonicals": []
       }
     },
     {
@@ -1433,7 +1514,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "62596d30a767a77f",
+        "textSample": "403, access denied to the crawler Aggressive bot protection can block the good crawlers along with the bad ones. Blocked",
+        "headerCanonicals": []
       }
     },
     {
@@ -1479,7 +1563,10 @@
           "https://badseo.dev/status/not-found",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "a6e1acd7026f0491",
+        "textSample": "The link below goes nowhere This page is fine, except that it links to a page that no longer exists. Broken internal lin",
+        "headerCanonicals": []
       }
     },
     {
@@ -1528,7 +1615,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "954ee66d564b299c",
+        "textSample": "This is the canonical, trailing-slash version You reached this via a 301 from the non-slash URL. That is normal, and a c",
+        "headerCanonicals": []
       }
     },
     {
@@ -1577,7 +1667,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "6372003dee5feeb2",
+        "textSample": "A slow response The pause before this page loaded was on purpose, and it was too long. Why time to first byte matters Ti",
+        "headerCanonicals": []
       }
     },
     {
@@ -1626,7 +1719,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "e2b7382773a7b7a4",
+        "textSample": "A page nothing links to This page is fine. No other page on the site links to it. What makes a page an orphan An orphan ",
+        "headerCanonicals": []
       }
     },
     {
@@ -1671,7 +1767,10 @@
         },
         "links": [
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "2d71559875908172",
+        "textSample": "A page with no outgoing links Everything on this page is healthy except the complete lack of links. Why dead ends are a ",
+        "headerCanonicals": []
       }
     },
     {
@@ -1724,7 +1823,10 @@
           "https://github.com/every-app/open-seo",
           "https://badseo.dev/#issues",
           "https://badseo.dev/privacy"
-        ]
+        ],
+        "textHash": "9f703ee98c82c019",
+        "textSample": "The kitchen sink page Yes, that was two H1s This page is broken on purpose, in more than one way, so an audit has plenty",
+        "headerCanonicals": []
       }
     }
   ],
@@ -1735,8 +1837,8 @@
       "severity": "critical",
       "category": "seo",
       "evidence": "<meta name=\"robots\" content=\"noindex, follow\">\n    on https://badseo.dev/index/noindex-meta",
-      "impact": "This single tag removes the page from Google entirely — it will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.",
-      "fix": "Remove `noindex` from the robots meta tag on pages that should be found. Check the whole site, not just this page — the tag is usually applied in a shared layout or template.",
+      "impact": "This single tag removes the page from Google entirely. It will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.",
+      "fix": "Remove `noindex` from the robots meta tag on pages that should be found. Check the whole site, not just this page, because the tag is usually applied in a shared layout or template.",
       "effort": "quick",
       "url": "https://badseo.dev/index/noindex-meta",
       "unconfirmed": false
@@ -1759,10 +1861,22 @@
       "severity": "high",
       "category": "seo",
       "evidence": "No <title> element in the head of https://badseo.dev/head/missing-title",
-      "impact": "The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content — usually badly — and the page loses its single strongest ranking signal.",
+      "impact": "The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content, usually badly, and the page loses its single strongest ranking signal.",
       "fix": "Add a `<title>` of roughly 50–60 characters that names the page and the business, most specific part first.",
       "effort": "quick",
       "url": "https://badseo.dev/head/missing-title",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-canonical-conflict",
+      "title": "The page names more than one \"official\" address for itself",
+      "severity": "high",
+      "category": "seo",
+      "evidence": "<link rel=\"canonical\" href=\"https://badseo.dev/index/canonical-conflict?via=html\">\n    Link: <https://badseo.dev/index/canonical-conflict?via=header>; rel=\"canonical\"   (HTTP header, not visible in the page source)\n    on https://badseo.dev/index/canonical-conflict",
+      "impact": "A canonical tag tells search engines which address is the real one when several show the same content. Two conflicting tags is a contradiction, so search engines ignore both and guess, which can split the page’s ranking across duplicate addresses.",
+      "fix": "Emit exactly one canonical link per page, in one place. Two usually means a layout and a page template are each adding one, or that one is in the HTML while another is set as an HTTP header at the server or CDN.",
+      "effort": "quick",
+      "url": "https://badseo.dev/index/canonical-conflict",
       "unconfirmed": false
     },
     {
@@ -1772,8 +1886,20 @@
       "category": "seo",
       "evidence": "https://badseo.dev/redirect/loop\n      302 → https://badseo.dev/redirect/loop",
       "impact": "The browser gives up and shows an error, so the page is unreachable for visitors and cannot be indexed at all. Usually caused by two rules disagreeing about a trailing slash or about www.",
-      "fix": "Pick one canonical form — with or without the trailing slash, with or without www — and make every rule redirect towards it rather than between the two.",
+      "fix": "Pick one canonical form, with or without the trailing slash and with or without www, then make every rule redirect towards it rather than between the two.",
       "effort": "quick",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-status-server-error",
+      "title": "A page answers with a server error",
+      "severity": "high",
+      "category": "seo",
+      "evidence": "GET https://badseo.dev/status/server-error\n    HTTP 500",
+      "impact": "Visitors reaching this address see an error rather than the page. Search engines drop a page that answers this way, and if it happens across many addresses they slow down crawling the whole site. The page may still render something, which is why this is easy to miss by eye.",
+      "fix": "Find why the server is failing for this address and fix it. If the page has genuinely been removed, answer 404 or 410 deliberately rather than 5xx.",
+      "effort": "moderate",
+      "url": "https://badseo.dev/status/server-error",
       "unconfirmed": false
     },
     {
@@ -1782,7 +1908,7 @@
       "severity": "medium",
       "category": "seo",
       "evidence": "No <h1> found on https://badseo.dev/head/missing-h1. First heading is an <h2>: \"Where the headline should be\".",
-      "impact": "The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing — only the markup is read.",
+      "impact": "The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing, because only the markup is read.",
       "fix": "Mark the page’s main heading as `<h1>`. One per page.",
       "effort": "quick",
       "url": "https://badseo.dev/head/missing-h1",
@@ -1801,14 +1927,49 @@
       "unconfirmed": true
     },
     {
+      "id": "seo-status-not-found",
+      "title": "A page we were asked to check does not exist",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "GET https://badseo.dev/status/not-found\n    HTTP 404",
+      "impact": "This address returns \"not found\". If it is linked from anywhere, or was previously indexed, visitors following those links reach nothing and any ranking it held is lost.",
+      "fix": "Restore the page, or redirect the address to whatever replaced it with a 301 so existing links and bookmarks keep working.",
+      "effort": "quick",
+      "url": "https://badseo.dev/status/not-found",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-status-blocked",
+      "title": "A page refuses access",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "GET https://badseo.dev/status/blocked\n    HTTP 403",
+      "impact": "The server refused to serve this address to an ordinary visitor, so a search engine cannot read it either and it will not be listed. Correct for an admin or account page; a mistake for anything meant to be public.",
+      "fix": "If the page is meant to be public, remove whatever is refusing it: an access rule, a password, or a firewall. If it is not, no action is needed and this can be ignored.",
+      "effort": "quick",
+      "url": "https://badseo.dev/status/blocked",
+      "unconfirmed": true
+    },
+    {
       "id": "seo-duplicate-title",
       "title": "Several pages share the same title",
       "severity": "medium",
       "category": "seo",
       "evidence": "\"Pumpkin Spice Latte Recipe\" is the title of 2 pages:\n    https://badseo.dev/content/duplicate-a\n    https://badseo.dev/content/duplicate-b",
       "impact": "Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.",
-      "fix": "Give each page a title naming what is specific to it — the product, the category, the location — before the business name.",
+      "fix": "Give each page a title naming what is specific to it, such as the product, the category or the location, before the business name.",
       "effort": "moderate",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-duplicate-content",
+      "title": "Several pages show word-for-word the same content",
+      "severity": "medium",
+      "category": "seo",
+      "evidence": "2 pages have identical body text:\n    https://badseo.dev/content/duplicate-a\n    https://badseo.dev/content/duplicate-b\n    beginning \"The same latte recipe, twice This page is identical, byte for byte, to another U…\"",
+      "impact": "When the same text is published at more than one address, search engines pick one to show and largely ignore the rest, and the choice is theirs rather than yours. Any links pointing at the copies count for less than they would if everything pointed at one page.",
+      "fix": "Keep one address as the real one and either remove the duplicates or add a canonical link on each copy pointing at it. Where the pages are meant to differ, the shared text is the thing to change.",
+      "effort": "involved",
       "unconfirmed": false
     },
     {
@@ -1821,6 +1982,18 @@
       "fix": "Add `og:title`, `og:description` and an `og:image` of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own.",
       "effort": "quick",
       "url": "https://badseo.dev/",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-no-outgoing-links",
+      "title": "A page leads nowhere else on the site",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "https://badseo.dev/privacy\n    links to exactly one other page of this site: https://badseo.dev/",
+      "impact": "A visitor who lands here from search has nowhere relevant to go next, so they leave. For a search engine it is the end of a path, which means any page reachable only from here is reachable from nowhere at all.",
+      "fix": "Add links onward that suit the page: the section it belongs to, related items, or the next step in whatever the visitor came to do. Site-wide navigation counts, but only if it is actually rendered on this page.",
+      "effort": "quick",
+      "url": "https://badseo.dev/privacy",
       "unconfirmed": false
     },
     {
@@ -1853,7 +2026,7 @@
       "severity": "low",
       "category": "seo",
       "evidence": "No <meta name=\"description\"> on https://badseo.dev/head/missing-meta-description",
-      "impact": "The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page — often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.",
+      "impact": "The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page, often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.",
       "fix": "Add a `<meta name=\"description\">` of 50–160 characters describing the page as a sentence a customer would read.",
       "effort": "quick",
       "url": "https://badseo.dev/head/missing-meta-description",
@@ -1869,6 +2042,18 @@
       "fix": "Trim to under 160 characters.",
       "effort": "quick",
       "url": "https://badseo.dev/head/meta-description-too-long",
+      "unconfirmed": false
+    },
+    {
+      "id": "seo-meta-description-short",
+      "title": "The search-result description is very short",
+      "severity": "low",
+      "category": "seo",
+      "evidence": "45 characters on https://badseo.dev/head/meta-description-too-short:\n    \"A short, unique snippet for this one fixture.\"",
+      "impact": "A description this brief leaves most of the space Google gives it unused, and gives a searcher little reason to choose this result over the one above it. Under roughly 50 characters, Google is also more likely to discard it and pull its own sentence from the page instead.",
+      "fix": "Expand to 50–160 characters, describing what the page offers as a sentence a customer would read.",
+      "effort": "quick",
+      "url": "https://badseo.dev/head/meta-description-too-short",
       "unconfirmed": false
     },
     {
@@ -1912,7 +2097,7 @@
       "severity": "low",
       "category": "seo",
       "evidence": "1 of 1 images on https://badseo.dev/content/images-missing-alt have no alt attribute:\n    https://badseo.dev/img/placeholder.svg",
-      "impact": "A blind visitor hears nothing where the image is, and the image cannot appear in image search. Note that an empty `alt=\"\"` is correct for purely decorative images — these have no attribute at all.",
+      "impact": "A blind visitor hears nothing where the image is, and the image cannot appear in image search. Note that an empty `alt=\"\"` is correct for purely decorative images. These have no attribute at all.",
       "fix": "Add `alt` text describing what the image shows. For decorative images, add `alt=\"\"` explicitly so assistive technology knows to skip them.",
       "effort": "moderate",
       "url": "https://badseo.dev/content/images-missing-alt",
@@ -1943,12 +2128,9 @@
     }
   ],
   "positives": [
-    "Page titles are present and sized to display fully in search results.",
-    "Pages carry their own search-result descriptions.",
-    "Each page has exactly one main heading.",
-    "The site is configured to display properly on phones.",
+    "Every page is set up to display properly on phones.",
+    "Every page declares the language it is written in.",
     "A robots.txt is published.",
-    "A sitemap is declared in robots.txt, which helps search engines find every page.",
-    "Every image carries a text alternative."
+    "A sitemap is declared in robots.txt, which helps search engines find every page."
   ]
 }

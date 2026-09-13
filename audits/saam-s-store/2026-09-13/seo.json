@@ -1,7 +1,7 @@
 {
   "tool": "check-seo",
   "mode": "passive",
-  "collectedAt": "2026-09-13T12:57:32.702Z",
+  "collectedAt": "2026-09-13T14:13:42.895Z",
   "command": "node check-seo.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart",
   "urls": [
     "https://saam-s-store.vercel.app/",

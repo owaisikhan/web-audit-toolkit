@@ -74,7 +74,7 @@ are the auditor's problem, not the script's:
 - **TBT is unreliable in absolute terms here, and it errs the other way.**
   Total Blocking Time measures main-thread work, so it tracks the CPU this
   container was given rather than the visitor's phone. The same site measured
-  three days apart went from 136-155 ms to 250-290 ms on every mobile page
+  three days apart went from 136–155 ms to 250–290 ms on every mobile page
   while serving byte-identical JavaScript, meaning the same script count, the
   same bytes and the same total transfer, with LCP and CLS flat. That produced
   four false `medium` findings. **Before reporting a TBT finding, compare

@@ -1,0 +1,221 @@
+<title>badseo.dev: website review</title>
+<style>
+:root { --ink:#1a1a1a; --soft:#5b5b5b; --line:#e4e0d8; --paper:#fffdf9; --accent:#7a5c2e; --good:#2f6b41; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--paper); color:var(--ink);
+  font:17px/1.65 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+.wrap { max-width: 40rem; margin:0 auto; padding: 3.5rem 1.5rem 5rem; }
+h1 { font-size:2rem; line-height:1.2; margin:0 0 .4rem; letter-spacing:-.01em; }
+.lede { color:var(--soft); font-size:.95rem; margin:0 0 3rem; }
+h2 { font-size:1.35rem; margin:3.5rem 0 1rem; padding-bottom:.4rem; border-bottom:2px solid var(--accent); }
+h3 { font-size:1.05rem; margin:2rem 0 .4rem; font-weight:600; }
+p { margin:0 0 1rem; }
+.big { font-size:1.15rem; line-height:1.6; }
+.good li { margin-bottom:.5rem; color:var(--good); }
+.good li span { color:var(--ink); }
+ul { padding-left:1.2rem; }
+.band { margin:2.5rem 0 0; }
+.band-head { font:600 .8rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 .3rem; }
+.band-note { color:var(--soft); font-size:.9rem; margin:0 0 1.2rem; }
+.item { border-left:3px solid var(--line); padding:.1rem 0 .1rem 1.1rem; margin:0 0 1.8rem; }
+.item h3 { margin-top:0; }
+.item p { margin-bottom:.5rem; }
+.effort { font:600 .75rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--soft); }
+.fix { font-size:.95rem; color:var(--soft); }
+.fix b { color:var(--ink); font-weight:600; }
+code { font:.88em ui-monospace,Menlo,Consolas,monospace; background:#f2ede4;
+  border-radius:3px; padding:.05em .3em; }
+.plan p { margin-bottom:1.1rem; }
+footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
+  color:var(--soft); font-size:.9rem; }
+.shots-client { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+  gap:1.2rem; margin:1.5rem 0 0; }
+.shots-client figure { margin:0; }
+.shots-client img { width:100%; height:auto; border:1px solid var(--line);
+  border-radius:4px; display:block; }
+.shots-client figcaption { font:.85rem/1.4 ui-sans-serif,system-ui,sans-serif;
+  color:var(--soft); margin-top:.45rem; word-break:break-word; }
+.shots-client figcaption span { display:block; font-size:.75rem; }
+@media print { body { background:#fff; } .wrap { padding:0; max-width:none; } h2 { break-after:avoid; } .item { break-inside:avoid; } }
+@media (max-width:480px) { .wrap { padding:2rem 1rem 3rem; } h1 { font-size:1.6rem; } }
+</style>
+<div class="wrap">
+<h1>badseo.dev</h1>
+<p class="lede">Website review, 13 September 2026<br>
+33 pages checked</p>
+
+<h2>The short version</h2>
+<div class="big"><p>We looked at 33 pages of badseo.dev on 13 September 2026, testing what each page tells search engines about itself and what the site reveals to the public internet.</p><p><strong>This site is broken on purpose.</strong> It is a test fixture: each page is built to fail one specific check, and the sitemap names them accordingly. What follows should be read as confirmation that the checks fire, not as a list of accidents to go and fix.</p><p>Two results still look unintended. The site answers on an unencrypted connection without sending visitors to the secure one, which is a safety matter rather than a search one and is a single rule at the hosting layer. And two pages carry an instruction telling search engines not to list them. That is correct here, but on a live site it is the most expensive thing that can be wrong, and it is the first thing worth checking on any site.</p><p>In total: 2 critical, 5 high, 7 medium, 13 low and 1 informational item. Nothing suggests the site has been attacked, and no passwords or keys were found in the code it sends to visitors.</p></div>
+
+<h2>What is already working</h2>
+<ul class="good"><li><span>The site is served over HTTPS.</span></li><li><span>The HTTPS certificate is valid for another 30 days.</span></li><li><span>No credentials were found in the JavaScript served to visitors.</span></li><li><span>Every page is set up to display properly on phones.</span></li><li><span>Every page declares the language it is written in.</span></li><li><span>A robots.txt is published.</span></li><li><span>A sitemap is declared in robots.txt, which helps search engines find every page.</span></li></ul>
+
+<h2>What we would do, in order</h2>
+<div class="plan"><p><b>This week</b> the redirect from the unencrypted address to the secure one, and the headers that belong with it. All of it is configuration at the hosting layer, it is under an hour together, and it is the one group of findings here that does not look deliberate.</p><p><b>Next, if this site is ever meant to be found</b> the two pages that tell search engines not to list them, and the page with no title. On a fixture these are the point. On a live site they are the difference between appearing in search and not, and each is a one-line change.</p><p><b>Later, and only if it matters</b> the titles, descriptions, headings and image alternatives in the hygiene appendix. All true, all worth doing on a real site, none of it urgent. Here it is deliberate, so the honest recommendation is to leave it exactly as it is.</p><p><b>What we did not test</b> only the pages the site publishes in its own sitemap, and only as an anonymous visitor, since there is no login here. We did not measure page speed, so there are no screenshots in this report. Two further limits come from where this audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details the tools recorded were the proxy's rather than the site's and have been removed; and the deliberately orphaned page was reached only because the sitemap names it, which is the point of that page, since nothing links to it and following links would never find it.</p></div>
+
+
+
+<h2>Everything we found</h2>
+<section class="band">
+  <p class="band-head">Worth fixing now</p>
+  <p class="band-note">These cost you something today, whether that is visitors, search visibility or safety.</p>
+  <div class="item">
+  <h3>This page tells search engines not to list it</h3>
+  <p>This single tag removes the page from Google entirely. It will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.</p>
+  <p class="fix"><b>What to change:</b> Remove <code>noindex</code> from the robots meta tag on pages that should be found. Check the whole site, not just this page, because the tag is usually applied in a shared layout or template. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The server sends a header telling search engines not to list this page</h3>
+  <p>Same effect as a noindex tag, and harder to spot because it is invisible in the page source. The page will not appear in search results.</p>
+  <p class="fix"><b>What to change:</b> Remove the <code>X-Robots-Tag: noindex</code> header from responses for public pages. It is set at the server, CDN or hosting-platform level rather than in the page itself. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Plain HTTP is served without redirecting to HTTPS</h3>
+  <p>Anyone typing the address, following an old link or on a shared network gets the site unencrypted, where the page and anything typed into it can be read and altered in transit.</p>
+  <p class="fix"><b>What to change:</b> Redirect all HTTP traffic to HTTPS with a 301 at the edge, and add HSTS so browsers stop trying HTTP at all. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The page has no title</h3>
+  <p>The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content, usually badly, and the page loses its single strongest ranking signal.</p>
+  <p class="fix"><b>What to change:</b> Add a <code>&lt;title&gt;</code> of roughly 50–60 characters that names the page and the business, most specific part first. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The page names more than one &quot;official&quot; address for itself</h3>
+  <p>A canonical tag tells search engines which address is the real one when several show the same content. Two conflicting tags is a contradiction, so search engines ignore both and guess, which can split the page’s ranking across duplicate addresses.</p>
+  <p class="fix"><b>What to change:</b> Emit exactly one canonical link per page, in one place. Two usually means a layout and a page template are each adding one, or that one is in the HTML while another is set as an HTTP header at the server or CDN. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Some addresses redirect in a circle</h3>
+  <p>The browser gives up and shows an error, so the page is unreachable for visitors and cannot be indexed at all. Usually caused by two rules disagreeing about a trailing slash or about www.</p>
+  <p class="fix"><b>What to change:</b> Pick one canonical form, with or without the trailing slash and with or without www, then make every rule redirect towards it rather than between the two. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>A page answers with a server error</h3>
+  <p>Visitors reaching this address see an error rather than the page. Search engines drop a page that answers this way, and if it happens across many addresses they slow down crawling the whole site. The page may still render something, which is why this is easy to miss by eye.</p>
+  <p class="fix"><b>What to change:</b> Find why the server is failing for this address and fix it. If the page has genuinely been removed, answer 404 or 410 deliberately rather than 5xx. <span class="effort">· Moderate</span></p>
+</div>
+</section>
+<section class="band">
+  <p class="band-head">Worth fixing soon</p>
+  <p class="band-note">Real problems, but none of them is an emergency. Sensible to bundle into the next piece of work.</p>
+  <div class="item">
+  <h3>HSTS is not set</h3>
+  <p>Without it, the first request of each session can be downgraded to unencrypted HTTP and read or modified in transit.</p>
+  <p class="fix"><b>What to change:</b> Send <code>Strict-Transport-Security: max-age=31536000; includeSubDomains</code> on HTTPS responses. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The page has no main heading</h3>
+  <p>The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing, because only the markup is read.</p>
+  <p class="fix"><b>What to change:</b> Mark the page’s main heading as <code>&lt;h1&gt;</code>. One per page. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>This page points search engines at a different address</h3>
+  <p>Search engines will show the other address instead of this one, and any links earned by this page are credited there. Correct when the pages really are duplicates; a mistake when they are not.</p>
+  <p class="fix"><b>What to change:</b> Confirm the target is genuinely the same content. If it is not, point the canonical at this page’s own address. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>A page we were asked to check does not exist</h3>
+  <p>This address returns &quot;not found&quot;. If it is linked from anywhere, or was previously indexed, visitors following those links reach nothing and any ranking it held is lost.</p>
+  <p class="fix"><b>What to change:</b> Restore the page, or redirect the address to whatever replaced it with a 301 so existing links and bookmarks keep working. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>A page refuses access</h3>
+  <p>The server refused to serve this address to an ordinary visitor, so a search engine cannot read it either and it will not be listed. Correct for an admin or account page; a mistake for anything meant to be public.</p>
+  <p class="fix"><b>What to change:</b> If the page is meant to be public, remove whatever is refusing it: an access rule, a password, or a firewall. If it is not, no action is needed and this can be ignored. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Several pages share the same title</h3>
+  <p>Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.</p>
+  <p class="fix"><b>What to change:</b> Give each page a title naming what is specific to it, such as the product, the category or the location, before the business name. <span class="effort">· Moderate</span></p>
+</div>
+<div class="item">
+  <h3>Several pages show word-for-word the same content</h3>
+  <p>When the same text is published at more than one address, search engines pick one to show and largely ignore the rest, and the choice is theirs rather than yours. Any links pointing at the copies count for less than they would if everything pointed at one page.</p>
+  <p class="fix"><b>What to change:</b> Keep one address as the real one and either remove the duplicates or add a canonical link on each copy pointing at it. Where the pages are meant to differ, the shared text is the thing to change. <span class="effort">· Involved</span></p>
+</div>
+</section>
+<section class="band">
+  <p class="band-head">Minor, whenever you are next in there</p>
+  <p class="band-note">True and worth doing, but nobody is losing a sale over them. Listed so the picture is complete.</p>
+  <div class="item">
+  <h3>5 standard security header(s) are not set</h3>
+  <p>These headers are the browser-side defences a site opts into. Individually none of them is a vulnerability; together their absence means a bug elsewhere has nothing standing in its way.</p>
+  <p class="fix"><b>What to change:</b> Set them once at the edge or in middleware so every response carries them: Send <code>Strict-Transport-Security: max-age=31536000; includeSubDomains</code> on HTTPS responses. Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust. Send <code>X-Content-Type-Options: nosniff</code> on all responses. Send <code>X-Frame-Options: SAMEORIGIN</code>, or <code>frame-ancestors 'self'</code> in the Content-Security-Policy. Send <code>Referrer-Policy: strict-origin-when-cross-origin</code>. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Links to this site look plain when shared</h3>
+  <p>When someone shares the link on WhatsApp, Facebook or LinkedIn, these tags decide whether it appears as a picture with a headline or as a bare URL. A bare URL gets noticeably fewer clicks.</p>
+  <p class="fix"><b>What to change:</b> Add <code>og:title</code>, <code>og:description</code> and an <code>og:image</code> of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>A page leads nowhere else on the site</h3>
+  <p>A visitor who lands here from search has nowhere relevant to go next, so they leave. For a search engine it is the end of a path, which means any page reachable only from here is reachable from nowhere at all.</p>
+  <p class="fix"><b>What to change:</b> Add links onward that suit the page: the section it belongs to, related items, or the next step in whatever the visitor came to do. Site-wide navigation counts, but only if it is actually rendered on this page. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The page title is cut off in search results</h3>
+  <p>Google truncates titles at roughly 60 characters, so the end of this one is replaced with an ellipsis. If the distinguishing words are at the end, searchers never see them.</p>
+  <p class="fix"><b>What to change:</b> Shorten to under 60 characters, putting the words that distinguish this page first and the business name last. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The page title is very short</h3>
+  <p>A short title gives searchers little reason to click and gives search engines little to match a query against.</p>
+  <p class="fix"><b>What to change:</b> Expand to roughly 50–60 characters describing what the page offers. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The page has no description for search results</h3>
+  <p>The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page, often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.</p>
+  <p class="fix"><b>What to change:</b> Add a <code>&lt;meta name=&quot;description&quot;&gt;</code> of 50–160 characters describing the page as a sentence a customer would read. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The search-result description is cut off</h3>
+  <p>Anything past roughly 160 characters is replaced with an ellipsis, so a call to action at the end is never seen.</p>
+  <p class="fix"><b>What to change:</b> Trim to under 160 characters. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The search-result description is very short</h3>
+  <p>A description this brief leaves most of the space Google gives it unused, and gives a searcher little reason to choose this result over the one above it. Under roughly 50 characters, Google is also more likely to discard it and pull its own sentence from the page instead.</p>
+  <p class="fix"><b>What to change:</b> Expand to 50–160 characters, describing what the page offers as a sentence a customer would read. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The page has several main headings</h3>
+  <p>With several top-level headings the page’s subject is ambiguous, and the outline a screen reader announces becomes flat.</p>
+  <p class="fix"><b>What to change:</b> Keep one <code>&lt;h1&gt;</code> and demote the rest to <code>&lt;h2&gt;</code>. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Heading levels skip a step</h3>
+  <p>Headings are the document outline. Skipping a level breaks how screen readers let a user jump through the page, and muddies which sections belong to which.</p>
+  <p class="fix"><b>What to change:</b> Choose heading levels by position in the outline, not by how large you want the text to look. Set size with CSS. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Some links pass through several redirects</h3>
+  <p>Each hop adds a round trip before anything appears, which is most noticeable on a phone. Search engines also pass slightly less ranking credit through each additional hop.</p>
+  <p class="fix"><b>What to change:</b> Update the links to point at the final address, and collapse the server rules so one redirect reaches the destination. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Some images have no text alternative</h3>
+  <p>A blind visitor hears nothing where the image is, and the image cannot appear in image search. Note that an empty <code>alt=&quot;&quot;</code> is correct for purely decorative images. These have no attribute at all.</p>
+  <p class="fix"><b>What to change:</b> Add <code>alt</code> text describing what the image shows. For decorative images, add <code>alt=&quot;&quot;</code> explicitly so assistive technology knows to skip them. <span class="effort">· Moderate</span></p>
+</div>
+<div class="item">
+  <h3>Several pages share the same search-result description</h3>
+  <p>Identical descriptions make every result look the same in a list, so searchers cannot tell which page answers their question.</p>
+  <p class="fix"><b>What to change:</b> Write a description per page, or generate one from the page’s own content. <span class="effort">· Moderate</span></p>
+</div>
+<div class="item">
+  <h3>A page has very little text</h3>
+  <p>Pages with little text rarely rank for anything beyond the business name, because there is nothing for a search engine to match a query against. Legitimate for a contact or login page; a problem for a page meant to attract visitors.</p>
+  <p class="fix"><b>What to change:</b> If this page is meant to bring in search traffic, expand it to answer the questions a customer would actually ask. If it is not, no action needed. <span class="effort">· Involved</span></p>
+</div>
+</section>
+
+<footer>
+<p>Every point above was measured on 13 September 2026, not assumed. The working notes behind each
+one, including the exact measurements and the commands that produced them, are in the technical
+version of this report and are available on request.</p>
+<p>Testing covered publicly reachable pages only, without signing in.
+Websites change, so this describes badseo.dev as it was on 13 September 2026.</p>
+</footer>
+</div>

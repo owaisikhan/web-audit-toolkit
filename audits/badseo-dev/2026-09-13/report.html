@@ -1,4 +1,4 @@
-<title>badseo.dev — website audit</title>
+<title>badseo.dev: website audit</title>
 <style>
 :root {
   --ink: #14181f; --muted: #5b6472; --line: #e3e7ee; --bg: #ffffff; --panel: #f7f8fb;
@@ -62,6 +62,16 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: now
 .rate.poor { color: var(--critical); }
 .rate::before { content: "● "; font-size: .8em; }
 
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem; margin-bottom: 1.5rem; }
+.shots figure { margin: 0; }
+.shots img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--panel); display: block; }
+.shots figcaption { font-size: .8rem; color: var(--muted); margin-top: .4rem;
+  word-break: break-word; }
+.shots figcaption span { display: block; font-size: .74rem; text-transform: uppercase;
+  letter-spacing: .05em; }
+
 .good-list { background: var(--good-bg); border-radius: 10px; padding: 1.1rem 1.4rem 1.1rem 2.6rem;
   margin-bottom: 1.5rem; }
 .good-list li { margin-bottom: .35rem; }
@@ -94,20 +104,13 @@ footer { margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--li
 Pages tested: <strong>https://badseo.dev/</strong>, <strong>https://badseo.dev/kitchen-sink</strong>, <strong>https://badseo.dev/index/noindex-header</strong>, <strong>https://badseo.dev/privacy</strong>, <strong>https://badseo.dev/head/missing-title</strong>, <strong>https://badseo.dev/head/title-too-long</strong>, <strong>https://badseo.dev/head/title-too-short</strong>, <strong>https://badseo.dev/head/missing-meta-description</strong>, <strong>https://badseo.dev/head/meta-description-too-long</strong>, <strong>https://badseo.dev/head/meta-description-too-short</strong>, <strong>https://badseo.dev/head/missing-h1</strong>, <strong>https://badseo.dev/head/empty-h1</strong>, <strong>https://badseo.dev/head/multiple-h1</strong>, <strong>https://badseo.dev/head/heading-order-skip</strong>, <strong>https://badseo.dev/content/thin-content</strong>, <strong>https://badseo.dev/content/images-missing-alt</strong>, <strong>https://badseo.dev/content/duplicate-a</strong>, <strong>https://badseo.dev/content/duplicate-b</strong>, <strong>https://badseo.dev/content/duplicate-title-a</strong>, <strong>https://badseo.dev/content/duplicate-title-b</strong>, <strong>https://badseo.dev/content/duplicate-meta-a</strong>, <strong>https://badseo.dev/content/duplicate-meta-b</strong>, <strong>https://badseo.dev/index/noindex-meta</strong>, <strong>https://badseo.dev/index/canonicalized</strong>, <strong>https://badseo.dev/index/canonical-conflict</strong>, <strong>https://badseo.dev/status/not-found</strong>, <strong>https://badseo.dev/status/server-error</strong>, <strong>https://badseo.dev/status/blocked</strong>, <strong>https://badseo.dev/links/broken-internal-link</strong>, <strong>https://badseo.dev/redirect/trailing-slash</strong>, <strong>https://badseo.dev/perf/slow-response</strong>, <strong>https://badseo.dev/structure/orphan</strong>, <strong>https://badseo.dev/structure/no-outgoing-links</strong></p>
 
 <h2>Summary</h2>
-<div><p>We looked at 33 pages of badseo.dev on 13 September 2026, testing what each page tells search engines about itself and what the site reveals to the public internet.</p>
-<p><b>This site is broken on purpose.</b> It is a test fixture: each page is built to fail one specific check, and the sitemap names them accordingly. What follows should be read as confirmation that the checks fire, not as a list of accidents to go and fix.</p>
-<p>Two results still look unintended. The site answers on an unencrypted connection without sending visitors to the secure one — a safety matter rather than a search one, and a single rule at the hosting layer. And two pages carry an instruction telling search engines not to list them; correct here, but on a live site this is the most expensive thing that can be wrong, and it is the first thing worth checking on any site.</p>
-<p>In total: 2 critical, 3 high, 4 medium, 11 low and 1 informational item. Nothing suggests the site has been attacked, and no passwords or keys were found in the code it sends to visitors.</p>
-<strong>Write four or five sentences here, in plain language, for a non-technical reader:</strong>
-what was looked at, the single most important thing found, the counts below, and what to do first.
-Answer the unasked question — say whether anything suggests the site has already been attacked.
-No metric names, no tool names. Then delete this box.</div>
+<div><p>We looked at 33 pages of badseo.dev on 13 September 2026, testing what each page tells search engines about itself and what the site reveals to the public internet.</p><p><strong>This site is broken on purpose.</strong> It is a test fixture: each page is built to fail one specific check, and the sitemap names them accordingly. What follows should be read as confirmation that the checks fire, not as a list of accidents to go and fix.</p><p>Two results still look unintended. The site answers on an unencrypted connection without sending visitors to the secure one, which is a safety matter rather than a search one and is a single rule at the hosting layer. And two pages carry an instruction telling search engines not to list them. That is correct here, but on a live site it is the most expensive thing that can be wrong, and it is the first thing worth checking on any site.</p><p>In total: 2 critical, 5 high, 7 medium, 13 low and 1 informational item. Nothing suggests the site has been attacked, and no passwords or keys were found in the code it sends to visitors.</p></div>
 
 <ul class="counts">
 <li><b>2</b> critical</li>
-<li><b>3</b> high</li>
-<li><b>4</b> medium</li>
-<li><b>11</b> low</li>
+<li><b>5</b> high</li>
+<li><b>7</b> medium</li>
+<li><b>13</b> low</li>
 <li><b>1</b> info</li>
 </ul>
 
@@ -116,8 +119,9 @@ No metric names, no tool names. Then delete this box.</div>
 Security checks were <strong>passive</strong>: the site was loaded as an ordinary visitor's browser loads it, and the conclusions come from what the server sent back. Nothing was submitted, guessed or probed.</p>
 
 
+
 <h2>What is working well</h2>
-<ul class="good-list"><li>The site is served over HTTPS.</li><li>No credentials were found in the JavaScript served to visitors.</li><li>Every page tested is set up to display properly on phones.</li><li>A robots.txt is published, and it lets search engines in rather than shutting them out.</li><li>A complete sitemap is declared in robots.txt, listing all 33 pages.</li></ul>
+<ul class="good-list"><li>The site is served over HTTPS.</li><li>The HTTPS certificate is valid for another 30 days.</li><li>No credentials were found in the JavaScript served to visitors.</li><li>Every page is set up to display properly on phones.</li><li>Every page declares the language it is written in.</li><li>A robots.txt is published.</li><li>A sitemap is declared in robots.txt, which helps search engines find every page.</li></ul>
 
 <h2>Findings</h2>
 
@@ -133,9 +137,9 @@ Security checks were <strong>passive</strong>: the site was loaded as an ordinar
   <pre>&lt;meta name=&quot;robots&quot; content=&quot;noindex, follow&quot;&gt;
     on https://badseo.dev/index/noindex-meta</pre>
   <h4>Why it matters</h4>
-  <p>This single tag removes the page from Google entirely — it will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.</p>
+  <p>This single tag removes the page from Google entirely. It will not appear for any search, including the business’s own name. It is most often left behind from a staging site or a site that was deliberately hidden before launch and never switched back.</p>
   <h4>How to fix it</h4>
-  <p>Remove <code>noindex</code> from the robots meta tag on pages that should be found. Check the whole site, not just this page — the tag is usually applied in a shared layout or template.</p>
+  <p>Remove <code>noindex</code> from the robots meta tag on pages that should be found. Check the whole site, not just this page, because the tag is usually applied in a shared layout or template.</p>
   <h4>Where</h4><p><code>https://badseo.dev/index/noindex-meta</code></p>
 </article>
 
@@ -166,7 +170,7 @@ Security checks were <strong>passive</strong>: the site was loaded as an ordinar
   </div>
   
   <h4>What we found</h4>
-  <pre>http://badseo.dev ended at http://badseo.dev/ (HTTP 200) — still unencrypted.</pre>
+  <pre>http://badseo.dev ended at http://badseo.dev/ (HTTP 200), still unencrypted.</pre>
   <h4>Why it matters</h4>
   <p>Anyone typing the address, following an old link or on a shared network gets the site unencrypted, where the page and anything typed into it can be read and altered in transit.</p>
   <h4>How to fix it</h4>
@@ -185,10 +189,29 @@ Security checks were <strong>passive</strong>: the site was loaded as an ordinar
   <h4>What we found</h4>
   <pre>No &lt;title&gt; element in the head of https://badseo.dev/head/missing-title</pre>
   <h4>Why it matters</h4>
-  <p>The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content — usually badly — and the page loses its single strongest ranking signal.</p>
+  <p>The title is the blue clickable line in search results and the label on a browser tab. Without one, Google invents something from the page content, usually badly, and the page loses its single strongest ranking signal.</p>
   <h4>How to fix it</h4>
   <p>Add a <code>&lt;title&gt;</code> of roughly 50–60 characters that names the page and the business, most specific part first.</p>
   <h4>Where</h4><p><code>https://badseo.dev/head/missing-title</code></p>
+</article>
+
+<article class="finding high">
+  <h3>The page names more than one &quot;official&quot; address for itself</h3>
+  <div class="tags">
+    <span class="tag high">High</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>&lt;link rel=&quot;canonical&quot; href=&quot;https://badseo.dev/index/canonical-conflict?via=html&quot;&gt;
+    Link: &lt;https://badseo.dev/index/canonical-conflict?via=header&gt;; rel=&quot;canonical&quot;   (HTTP header, not visible in the page source)
+    on https://badseo.dev/index/canonical-conflict</pre>
+  <h4>Why it matters</h4>
+  <p>A canonical tag tells search engines which address is the real one when several show the same content. Two conflicting tags is a contradiction, so search engines ignore both and guess, which can split the page’s ranking across duplicate addresses.</p>
+  <h4>How to fix it</h4>
+  <p>Emit exactly one canonical link per page, in one place. Two usually means a layout and a page template are each adding one, or that one is in the HTML while another is set as an HTTP header at the server or CDN.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/index/canonical-conflict</code></p>
 </article>
 
 <article class="finding high">
@@ -205,8 +228,26 @@ Security checks were <strong>passive</strong>: the site was loaded as an ordinar
   <h4>Why it matters</h4>
   <p>The browser gives up and shows an error, so the page is unreachable for visitors and cannot be indexed at all. Usually caused by two rules disagreeing about a trailing slash or about www.</p>
   <h4>How to fix it</h4>
-  <p>Pick one canonical form — with or without the trailing slash, with or without www — and make every rule redirect towards it rather than between the two.</p>
+  <p>Pick one canonical form, with or without the trailing slash and with or without www, then make every rule redirect towards it rather than between the two.</p>
   
+</article>
+
+<article class="finding high">
+  <h3>A page answers with a server error</h3>
+  <div class="tags">
+    <span class="tag high">High</span>
+    <span class="tag plain">Moderate</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>GET https://badseo.dev/status/server-error
+    HTTP 500</pre>
+  <h4>Why it matters</h4>
+  <p>Visitors reaching this address see an error rather than the page. Search engines drop a page that answers this way, and if it happens across many addresses they slow down crawling the whole site. The page may still render something, which is why this is easy to miss by eye.</p>
+  <h4>How to fix it</h4>
+  <p>Find why the server is failing for this address and fix it. If the page has genuinely been removed, answer 404 or 410 deliberately rather than 5xx.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/status/server-error</code></p>
 </article>
 
 <article class="finding medium">
@@ -237,7 +278,7 @@ Security checks were <strong>passive</strong>: the site was loaded as an ordinar
   <h4>What we found</h4>
   <pre>No &lt;h1&gt; found on https://badseo.dev/head/missing-h1. First heading is an &lt;h2&gt;: &quot;Where the headline should be&quot;.</pre>
   <h4>Why it matters</h4>
-  <p>The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing — only the markup is read.</p>
+  <p>The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing, because only the markup is read.</p>
   <h4>How to fix it</h4>
   <p>Mark the page’s main heading as <code>&lt;h1&gt;</code>. One per page.</p>
   <h4>Where</h4><p><code>https://badseo.dev/head/missing-h1</code></p>
@@ -262,6 +303,42 @@ Security checks were <strong>passive</strong>: the site was loaded as an ordinar
 </article>
 
 <article class="finding medium">
+  <h3>A page we were asked to check does not exist</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>GET https://badseo.dev/status/not-found
+    HTTP 404</pre>
+  <h4>Why it matters</h4>
+  <p>This address returns &quot;not found&quot;. If it is linked from anywhere, or was previously indexed, visitors following those links reach nothing and any ranking it held is lost.</p>
+  <h4>How to fix it</h4>
+  <p>Restore the page, or redirect the address to whatever replaced it with a 301 so existing links and bookmarks keep working.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/status/not-found</code></p>
+</article>
+
+<article class="finding medium">
+  <h3>A page refuses access</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  <p class="unconfirmed"><strong>Unconfirmed.</strong> This was identified from the outside and needs checking against the code or with access before it is treated as certain.</p>
+  <h4>What we found</h4>
+  <pre>GET https://badseo.dev/status/blocked
+    HTTP 403</pre>
+  <h4>Why it matters</h4>
+  <p>The server refused to serve this address to an ordinary visitor, so a search engine cannot read it either and it will not be listed. Correct for an admin or account page; a mistake for anything meant to be public.</p>
+  <h4>How to fix it</h4>
+  <p>If the page is meant to be public, remove whatever is refusing it: an access rule, a password, or a firewall. If it is not, no action is needed and this can be ignored.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/status/blocked</code></p>
+</article>
+
+<article class="finding medium">
   <h3>Several pages share the same title</h3>
   <div class="tags">
     <span class="tag medium">Medium</span>
@@ -276,18 +353,32 @@ Security checks were <strong>passive</strong>: the site was loaded as an ordinar
   <h4>Why it matters</h4>
   <p>Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.</p>
   <h4>How to fix it</h4>
-  <p>Give each page a title naming what is specific to it — the product, the category, the location — before the business name.</p>
+  <p>Give each page a title naming what is specific to it, such as the product, the category or the location, before the business name.</p>
+  
+</article>
+
+<article class="finding medium">
+  <h3>Several pages show word-for-word the same content</h3>
+  <div class="tags">
+    <span class="tag medium">Medium</span>
+    <span class="tag plain">Involved</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>2 pages have identical body text:
+    https://badseo.dev/content/duplicate-a
+    https://badseo.dev/content/duplicate-b
+    beginning &quot;The same latte recipe, twice This page is identical, byte for byte, to another U…&quot;</pre>
+  <h4>Why it matters</h4>
+  <p>When the same text is published at more than one address, search engines pick one to show and largely ignore the rest, and the choice is theirs rather than yours. Any links pointing at the copies count for less than they would if everything pointed at one page.</p>
+  <h4>How to fix it</h4>
+  <p>Keep one address as the real one and either remove the duplicates or add a canonical link on each copy pointing at it. Where the pages are meant to differ, the shared text is the thing to change.</p>
   
 </article>
 
 <h2>What we would do first</h2>
-<div><p><b>This week</b> — the redirect from the unencrypted address to the secure one, and the headers that belong with it. All of it is configuration at the hosting layer, it is under an hour together, and it is the one group of findings here that does not look deliberate.</p>
-<p><b>Next, if this site is ever meant to be found</b> — the two pages that tell search engines not to list them, and the page with no title. On a fixture these are the point. On a live site they are the difference between appearing in search and not, and each is a one-line change.</p>
-<p><b>Later, and only if it matters</b> — the titles, descriptions, headings and image alternatives in the hygiene appendix. All true, all worth doing on a real site, none of it urgent. Here it is deliberate, so the honest recommendation is to leave it exactly as it is.</p>
-<p><b>What we did not test.</b> Only the pages the site publishes in its own sitemap, and only as an anonymous visitor — there is no login here. We did not measure page speed. Two further limits come from where this audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details the tools recorded were the proxy's rather than the site's and have been removed from this report; and the deliberately orphaned page was reached only because the sitemap names it — which is the point of that page, since nothing links to it and following links would never find it.</p>
-<strong>Not a repeat of the list — a sequence, with reasoning.</strong>
-Group into "this week", "next", and "later, if worth it", and say for each group why it is in that
-order and roughly what it costs. This is the section that turns a report into an engagement. Then delete this box.</div>
+<div class="plan"><p><b>This week</b> the redirect from the unencrypted address to the secure one, and the headers that belong with it. All of it is configuration at the hosting layer, it is under an hour together, and it is the one group of findings here that does not look deliberate.</p><p><b>Next, if this site is ever meant to be found</b> the two pages that tell search engines not to list them, and the page with no title. On a fixture these are the point. On a live site they are the difference between appearing in search and not, and each is a one-line change.</p><p><b>Later, and only if it matters</b> the titles, descriptions, headings and image alternatives in the hygiene appendix. All true, all worth doing on a real site, none of it urgent. Here it is deliberate, so the honest recommendation is to leave it exactly as it is.</p><p><b>What we did not test</b> only the pages the site publishes in its own sitemap, and only as an anonymous visitor, since there is no login here. We did not measure page speed, so there are no screenshots in this report. Two further limits come from where this audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details the tools recorded were the proxy's rather than the site's and have been removed; and the deliberately orphaned page was reached only because the sitemap names it, which is the point of that page, since nothing links to it and following links would never find it.</p></div>
 
 <h2>Appendix: hygiene</h2>
 <p class="lede">True, worth doing, not urgent. These are listed for completeness rather than because they need attention this month.</p>
@@ -301,11 +392,11 @@ order and roughly what it costs. This is the section that turns a report into an
   </div>
   
   <h4>What we found</h4>
-  <pre>HSTS — not present
-Content-Security-Policy — not present
-X-Content-Type-Options — not present
-X-Frame-Options / frame-ancestors — not present
-Referrer-Policy — not present
+  <pre>HSTS: not present
+Content-Security-Policy: not present
+X-Content-Type-Options: not present
+X-Frame-Options / frame-ancestors: not present
+Referrer-Policy: not present
 
 Present: none</pre>
   <h4>Why it matters</h4>
@@ -330,6 +421,24 @@ Present: none</pre>
   <h4>How to fix it</h4>
   <p>Add <code>og:title</code>, <code>og:description</code> and an <code>og:image</code> of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own.</p>
   <h4>Where</h4><p><code>https://badseo.dev/</code></p>
+</article>
+
+<article class="finding low">
+  <h3>A page leads nowhere else on the site</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>https://badseo.dev/privacy
+    links to exactly one other page of this site: https://badseo.dev/</pre>
+  <h4>Why it matters</h4>
+  <p>A visitor who lands here from search has nowhere relevant to go next, so they leave. For a search engine it is the end of a path, which means any page reachable only from here is reachable from nowhere at all.</p>
+  <h4>How to fix it</h4>
+  <p>Add links onward that suit the page: the section it belongs to, related items, or the next step in whatever the visitor came to do. Site-wide navigation counts, but only if it is actually rendered on this page.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/privacy</code></p>
 </article>
 
 <article class="finding low">
@@ -379,7 +488,7 @@ Present: none</pre>
   <h4>What we found</h4>
   <pre>No &lt;meta name=&quot;description&quot;&gt; on https://badseo.dev/head/missing-meta-description</pre>
   <h4>Why it matters</h4>
-  <p>The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page — often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.</p>
+  <p>The description is the grey text under the blue link. Without one, Google pulls an arbitrary sentence from the page, often a cookie notice or a menu. It does not affect ranking, but it affects how many people click.</p>
   <h4>How to fix it</h4>
   <p>Add a <code>&lt;meta name=&quot;description&quot;&gt;</code> of 50–160 characters describing the page as a sentence a customer would read.</p>
   <h4>Where</h4><p><code>https://badseo.dev/head/missing-meta-description</code></p>
@@ -401,6 +510,24 @@ Present: none</pre>
   <h4>How to fix it</h4>
   <p>Trim to under 160 characters.</p>
   <h4>Where</h4><p><code>https://badseo.dev/head/meta-description-too-long</code></p>
+</article>
+
+<article class="finding low">
+  <h3>The search-result description is very short</h3>
+  <div class="tags">
+    <span class="tag low">Low</span>
+    <span class="tag plain">Quick fix</span>
+    <span class="tag plain">seo</span>
+  </div>
+  
+  <h4>What we found</h4>
+  <pre>45 characters on https://badseo.dev/head/meta-description-too-short:
+    &quot;A short, unique snippet for this one fixture.&quot;</pre>
+  <h4>Why it matters</h4>
+  <p>A description this brief leaves most of the space Google gives it unused, and gives a searcher little reason to choose this result over the one above it. Under roughly 50 characters, Google is also more likely to discard it and pull its own sentence from the page instead.</p>
+  <h4>How to fix it</h4>
+  <p>Expand to 50–160 characters, describing what the page offers as a sentence a customer would read.</p>
+  <h4>Where</h4><p><code>https://badseo.dev/head/meta-description-too-short</code></p>
 </article>
 
 <article class="finding low">
@@ -473,7 +600,7 @@ Present: none</pre>
   <pre>1 of 1 images on https://badseo.dev/content/images-missing-alt have no alt attribute:
     https://badseo.dev/img/placeholder.svg</pre>
   <h4>Why it matters</h4>
-  <p>A blind visitor hears nothing where the image is, and the image cannot appear in image search. Note that an empty <code>alt=&quot;&quot;</code> is correct for purely decorative images — these have no attribute at all.</p>
+  <p>A blind visitor hears nothing where the image is, and the image cannot appear in image search. Note that an empty <code>alt=&quot;&quot;</code> is correct for purely decorative images. These have no attribute at all.</p>
   <h4>How to fix it</h4>
   <p>Add <code>alt</code> text describing what the image shows. For decorative images, add <code>alt=&quot;&quot;</code> explicitly so assistive technology knows to skip them.</p>
   <h4>Where</h4><p><code>https://badseo.dev/content/images-missing-alt</code></p>

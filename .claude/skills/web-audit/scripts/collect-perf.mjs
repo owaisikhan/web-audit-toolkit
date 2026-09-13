@@ -211,7 +211,7 @@ async function runOnce(browser, url, profile, timeout, screenshotPrefix) {
   }
 
   let data = null;
-  // Playwright evaluates a string as a JS *expression* and returns its value —
+  // Playwright evaluates a string as a JS *expression* and returns its value,
   // it does not call a function the string evaluates to. So the collector is
   // written as an immediately-invoked function.
   if (!navError) data = await page.evaluate(IN_PAGE_COLLECT).catch((e) => ({ error: String(e) }));
@@ -219,6 +219,11 @@ async function runOnce(browser, url, profile, timeout, screenshotPrefix) {
   if (screenshotPrefix && !navError) {
     await page.screenshot({ path: `${screenshotPrefix}-${profile}-above-fold.png` }).catch(() => {});
     await page.screenshot({ path: `${screenshotPrefix}-${profile}-full.png`, fullPage: true }).catch(() => {});
+    // A small JPEG of the same above-fold view, for the report to embed. The
+    // PNGs are the record and run to megabytes each; base64'd into a
+    // self-contained HTML file they would make it too big to email, which is
+    // the one thing report.html has to survive.
+    await page.screenshot({ path: `${screenshotPrefix}-${profile}-thumb.jpg`, type: 'jpeg', quality: 68 }).catch(() => {});
   }
 
   await context.close();
@@ -286,7 +291,7 @@ function analyse(url, profile, runs) {
       title: `${name} (${key.toUpperCase()} ${fmt(key, v)})`,
       severity: poor ? 'high' : 'medium',
       category: 'performance', effort: key === 'ttfb' ? 'moderate' : 'quick', url,
-      evidence: `${key.toUpperCase()} ${fmt(key, v)} — ${runNote}. Threshold for "good" is ${key === 'cls' ? THRESHOLDS[key].good : ms(THRESHOLDS[key].good)}.`,
+      evidence: `${key.toUpperCase()} ${fmt(key, v)}, ${runNote}. Threshold for "good" is ${key === 'cls' ? THRESHOLDS[key].good : ms(THRESHOLDS[key].good)}.`,
       ...detail,
     }));
   }
@@ -300,7 +305,7 @@ function analyse(url, profile, runs) {
       title: `${uncompressed.length} text file(s) are served without compression`,
       severity: total > 200 * 1024 ? 'high' : 'medium',
       category: 'performance', effort: 'quick', url,
-      evidence: uncompressed.slice(0, 5).map((r) => `${r.url} — ${kb(r.body)}, no content-encoding`).join('\n') +
+      evidence: uncompressed.slice(0, 5).map((r) => `${r.url}: ${kb(r.body)}, no content-encoding`).join('\n') +
         `\n(${kb(total)} uncompressed in total)`,
       impact: `Roughly ${kb(total)} is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.`,
       fix: 'Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.',
@@ -315,7 +320,7 @@ function analyse(url, profile, runs) {
       id: 'perf-cache-headers',
       title: `${badCache.length} build asset(s) are not cached by the browser`,
       severity: 'medium', category: 'performance', effort: 'quick', url,
-      evidence: badCache.slice(0, 5).map((r) => `${r.url} — cache-control: ${r.cacheControl || '(none)'}`).join('\n'),
+      evidence: badCache.slice(0, 5).map((r) => `${r.url}: cache-control ${r.cacheControl || '(none)'}`).join('\n'),
       impact: 'These files have a content hash in their name, so they can never change without the name changing, which makes them safe to cache forever. As configured, returning visitors re-download them on every visit.',
       fix: 'Serve hashed build assets with `Cache-Control: public, max-age=31536000, immutable`. This does not affect first-time visitors, and does not change what is deployed.',
     }));
@@ -377,7 +382,7 @@ function analyse(url, profile, runs) {
       id: 'perf-image-dimensions',
       title: `${noDims.length} image(s) have no reserved space, so the page jumps`,
       severity: 'medium', category: 'performance', effort: 'quick', url,
-      evidence: noDims.slice(0, 5).map((i) => `${i.url} — no width/height attributes or aspect-ratio`).join('\n') +
+      evidence: noDims.slice(0, 5).map((i) => `${i.url}: no width/height attributes or aspect-ratio`).join('\n') +
         `\nMeasured layout shift: ${m.cls.toFixed(3)} (good is under ${THRESHOLDS.cls.good}).`,
       impact: 'The browser cannot reserve space for an image until it has downloaded, so everything below it moves down when it arrives. This is what makes a visitor tap the wrong link.',
       fix: 'Add `width` and `height` attributes to every `<img>`, or set `aspect-ratio` in CSS. The values only need the correct ratio, not the display size.',
@@ -389,7 +394,7 @@ function analyse(url, profile, runs) {
       id: 'perf-image-format',
       title: `${legacy.length} large image(s) use an older format`,
       severity: 'low', category: 'performance', effort: 'quick', url,
-      evidence: legacy.slice(0, 5).map((r) => `${r.url} — ${r.contentType}, ${kb(r.transfer)}`).join('\n'),
+      evidence: legacy.slice(0, 5).map((r) => `${r.url}: ${r.contentType}, ${kb(r.transfer)}`).join('\n'),
       impact: 'WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.',
       fix: 'Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.',
     }));
@@ -404,7 +409,7 @@ function analyse(url, profile, runs) {
       id: 'perf-fonts',
       title: `${fontRes.length} web font file(s), ${kb(fontBytes)}${blockingFonts.length ? ', text hidden while they load' : ''}`,
       severity: 'low', category: 'performance', effort: 'quick', url,
-      evidence: fontRes.slice(0, 5).map((r) => `${r.url} — ${kb(r.transfer)}`).join('\n') +
+      evidence: fontRes.slice(0, 5).map((r) => `${r.url}: ${kb(r.transfer)}`).join('\n') +
         (blockingFonts.length ? `\n${blockingFonts.length} font face(s) use font-display: ${blockingFonts[0].display}, which hides text until the font arrives.` : ''),
       impact: 'Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.',
       fix: 'Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.',
@@ -526,7 +531,7 @@ async function main() {
   }
   summarise('Performance', findings);
   console.log(`\nWrote ${file}`);
-  console.log(`Screenshots in ${path.join(outDir, 'screenshots')} — look at them before writing the report.`);
+  console.log(`Screenshots in ${path.join(outDir, 'screenshots')}. Look at them before writing the report.`);
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

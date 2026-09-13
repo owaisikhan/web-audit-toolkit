@@ -6,15 +6,15 @@
 //   node check-seo.mjs <url...> --out DIR [--timeout 30000] [--max-links 30] [--no-links]
 //                       [--no-sitemap]
 //
-// PASSIVE ONLY, BY DESIGN — the same boundary the other collectors keep. It
-// requests the URLs given, `/robots.txt`, the sitemap those declare (unless
+// PASSIVE ONLY, BY DESIGN, keeping the same boundary as the other collectors.
+// It requests the URLs given, `/robots.txt`, the sitemap those declare (unless
 // --no-sitemap), and (unless --no-links) the same-origin URLs those pages
 // themselves link to, honouring robots.txt as it goes. It does not guess
 // paths, submit forms or send payloads. Following a link the site publishes is
 // what every crawler and every visitor does; guessing one is not, and neither
 // is reading a sitemap the site advertises. Do not add an active mode here.
 //
-// Severity here follows SKILL.md §2 — consequence to the business, not rule
+// Severity here follows SKILL.md §2: consequence to the business, not rule
 // count. A live page carrying `noindex` is critical because it is invisible in
 // search; a title three characters over the truncation point is low.
 
@@ -32,7 +32,7 @@ const TITLE_MIN = 15;
 const META_MAX = 160;
 const META_MIN = 50;
 // Below this a page rarely answers the query it ranks for. Judgement-dependent,
-// so it is reported `unconfirmed` — some pages are legitimately short.
+// so it is reported `unconfirmed`, because some pages are legitimately short.
 const THIN_WORDS = 250;
 
 const SKIP_SCHEME = /^(mailto:|tel:|javascript:|data:|#)/i;
@@ -143,7 +143,7 @@ async function collectPage(browser, url, timeout) {
   for (const [k, v] of Object.entries(response?.headers() || {})) headers[k.toLowerCase()] = v;
 
   // Keep a fingerprint of the body text for cross-page duplicate detection, but
-  // not the text itself — it would multiply the size of seo.json for no gain.
+  // not the text itself, which would multiply the size of seo.json for no gain.
   facts.textHash = facts.bodyText ? createHash('sha1').update(facts.bodyText).digest('hex').slice(0, 16) : null;
   facts.textSample = (facts.bodyText || '').slice(0, 120);
   delete facts.bodyText;
@@ -365,7 +365,7 @@ function analysePage(page, robots) {
     add({
       id: 'seo-h1-missing', severity: 'medium', effort: 'quick',
       title: 'The page has no main heading',
-      evidence: `No <h1> found on ${at}. First heading is ${f.headings[0] ? `an <h${f.headings[0].level}>: "${f.headings[0].text}"` : 'absent — the page has no headings at all'}.`,
+      evidence: `No <h1> found on ${at}. First heading is ${f.headings[0] ? `an <h${f.headings[0].level}>: "${f.headings[0].text}"` : 'absent, the page has no headings at all'}.`,
       impact: 'The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing, because only the markup is read.',
       fix: 'Mark the page’s main heading as `<h1>`. One per page.',
     });
@@ -469,7 +469,7 @@ function analysePage(page, robots) {
  * Positives are worked out across the whole corpus, never per page.
  *
  * Gathering them per page and unioning produces claims the report's own
- * findings disprove — one page with a good title emits "titles are present and
+ * findings disprove. One page with a good title emits "titles are present and
  * sized to display fully" even when another page has none. A positive is only
  * honest if it holds for every page tested, so each of these is the absence of
  * its corresponding failure.
@@ -549,7 +549,7 @@ function analyseCorpus(pages) {
   }
 
   // Duplicate body text. Matched on a hash of the visible text, so this is an
-  // exact match rather than a similarity score — it does not guess.
+  // exact match rather than a similarity score. It does not guess.
   for (const [, urls] of group((p) => (p.facts.words >= 25 ? p.facts.textHash : ''))) {
     const sample = live.find((p) => urls.includes(p.url))?.facts.textSample || '';
     findings.push(finding({
@@ -594,7 +594,7 @@ async function fetchSitemapUrls(sitemapUrls, origin, timeout) {
 /**
  * A page listed in the sitemap that nothing we saw links to. Reported
  * `unconfirmed` and only when enough of the sitemap was audited to make the
- * comparison meaningful — following links from four pages of a 400-page site
+ * comparison meaningful. Following links from four pages of a 400-page site
  * would call almost everything an orphan.
  */
 function analyseOrphans(pages, sitemapUrls, linkTargets) {
@@ -676,7 +676,7 @@ async function checkLinks(pages, robots, { max, timeout }) {
     findings.push(finding({
       id: 'seo-broken-internal-links', category: 'seo', severity: 'medium', effort: 'quick',
       title: 'The site links to pages that do not exist',
-      evidence: broken.slice(0, 5).map((b) => `${b.status || b.error} — ${b.href}\n      linked from ${b.from}`).join('\n    '),
+      evidence: broken.slice(0, 5).map((b) => `${b.status || b.error}  ${b.href}\n      linked from ${b.from}`).join('\n    '),
       impact: 'A visitor who follows one of these reaches an error page and often leaves. Search engines treat a site that links to its own missing pages as less well maintained, and any ranking those pages had is lost.',
       fix: 'Point each link at the current address, or restore the page. Where a page moved permanently, add a 301 redirect from the old address so existing links and bookmarks keep working.',
     }));
@@ -777,7 +777,7 @@ async function main() {
 
   summarise('Technical SEO (passive)', unique);
   console.log(`\nWrote ${file}`);
-  console.log('Reminder: severity here is provisional. Re-rank by consequence to this business — SKILL.md §2.');
+  console.log('Reminder: severity here is provisional. Re-rank by consequence to this business. See SKILL.md §2.');
 }
 
 main().catch((e) => { console.error(e); process.exit(1); });

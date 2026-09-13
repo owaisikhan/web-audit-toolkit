@@ -16,7 +16,7 @@ import { parseArgs, SEVERITIES, bySeverityThenEffort, kb, ms } from './_lib.mjs'
 
 const SEV_LABEL = { critical: 'Critical', high: 'High', medium: 'Medium', low: 'Low', info: 'Info' };
 const EFFORT_LABEL = { quick: 'Quick fix', moderate: 'Moderate', involved: 'Involved' };
-const TODO = (what) => `<!-- TODO: ${what} — see references/reporting.md. Do not send the report with this marker still in it. -->`;
+const TODO = (what) => `<!-- TODO: ${what}. See references/reporting.md. Do not send the report with this marker still in it. -->`;
 
 function esc(s = '') {
   return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -129,6 +129,16 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: now
 .rate.poor { color: var(--critical); }
 .rate::before { content: "● "; font-size: .8em; }
 
+.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem; margin-bottom: 1.5rem; }
+.shots figure { margin: 0; }
+.shots img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--panel); display: block; }
+.shots figcaption { font-size: .8rem; color: var(--muted); margin-top: .4rem;
+  word-break: break-word; }
+.shots figcaption span { display: block; font-size: .74rem; text-transform: uppercase;
+  letter-spacing: .05em; }
+
 .good-list { background: var(--good-bg); border-radius: 10px; padding: 1.1rem 1.4rem 1.1rem 2.6rem;
   margin-bottom: 1.5rem; }
 .good-list li { margin-bottom: .35rem; }
@@ -200,10 +210,52 @@ TBT is how long it is frozen to taps, TTFB is the server's own response time.
 Green is within Google's "good" range, amber needs work, red is poor.</p>`;
 }
 
+/* ------------------------------------------------------------- screenshots */
+
+/**
+ * Collect the above-fold screenshots as data URIs, one per page per profile.
+ *
+ * Both reports have to be self-contained: `report.html` is emailed and printed
+ * to PDF, so an `<img src="screenshots/…">` would be a broken box by the time
+ * it reaches anyone. The collector writes a small JPEG next to each PNG for
+ * exactly this; the PNG is the record, the JPEG is what ships. If a run
+ * predates the thumbnails there is nothing to embed and the section is simply
+ * omitted rather than half-rendered.
+ */
+function screenshots(parts, outDir) {
+  const dir = path.join(outDir, 'screenshots');
+  if (!parts.perf || !fs.existsSync(dir)) return [];
+  const out = [];
+  for (const page of parts.perf.pages || []) {
+    const slug = page.url.replace(/^https?:\/\//, '').replace(/[^a-z0-9]+/gi, '-').replace(/-+$/, '').slice(0, 60);
+    for (const profile of Object.keys(page.profiles || {})) {
+      const file = path.join(dir, `${slug}-${profile}-thumb.jpg`);
+      if (!fs.existsSync(file)) continue;
+      const bytes = fs.readFileSync(file);
+      // A runaway image would defeat the point of embedding at all.
+      if (bytes.length > 600 * 1024) continue;
+      out.push({
+        url: page.url, profile,
+        label: page.profiles[profile]?.metrics?.profileLabel || profile,
+        src: `data:image/jpeg;base64,${bytes.toString('base64')}`,
+      });
+    }
+  }
+  return out;
+}
+
+function shotsHtml(shots, cls) {
+  if (!shots.length) return '';
+  return `<div class="${cls}">` + shots.map((s) => `<figure>
+  <img src="${s.src}" alt="${esc(s.url)} as it appears on ${esc(s.label)}" loading="lazy">
+  <figcaption>${esc(s.url.replace(/^https?:\/\/[^/]+/, '') || '/')} <span>${esc(s.label)}</span></figcaption>
+</figure>`).join('') + '</div>';
+}
+
 /* ------------------------------------------------------- the written parts */
 
 /**
- * Read `<out>/narrative.md` — the two sections no generator can write: the
+ * Read `<out>/narrative.md`, the two sections no generator can write: the
  * summary and the plan. Keeping them in one file means they are written once
  * and appear in every output, rather than being pasted into each by hand and
  * drifting apart. Absent, the reports carry their TODO markers as before.
@@ -212,8 +264,8 @@ Green is within Google's "good" range, amber needs work, red is poor.</p>`;
  *   One paragraph per blank-line-separated block.
  *
  *   ## Plan
- *   **This week** — what and why.
- *   **Next** — what and why.
+ *   **This week** what and why.
+ *   **Next** what and why.
  */
 function loadNarrative(outDir) {
   const file = path.join(outDir, 'narrative.md');
@@ -239,6 +291,9 @@ function loadNarrative(outDir) {
   const blocks = (s) => s.split(/\n\s*\n/).map((b) => b.replace(/\s*\n\s*/g, ' ').trim()).filter(Boolean);
   const summary = blocks(section(['Summary']));
   const plan = blocks(section(['Plan', 'What we would do first'])).map((b) => {
+    // The dash class here is deliberate: it matches whatever separator a human
+    // typed after the bold lead-in, so it has to accept em and en dashes even
+    // though we never write them ourselves.
     const m = b.match(/^\*\*(.+?)\*\*\s*[—–-]?\s*([\s\S]*)$/);
     return m ? { head: m[1].trim(), body: m[2].trim() } : { head: '', body: b };
   });
@@ -287,6 +342,14 @@ code { font:.88em ui-monospace,Menlo,Consolas,monospace; background:#f2ede4;
 .plan p { margin-bottom:1.1rem; }
 footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
   color:var(--soft); font-size:.9rem; }
+.shots-client { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
+  gap:1.2rem; margin:1.5rem 0 0; }
+.shots-client figure { margin:0; }
+.shots-client img { width:100%; height:auto; border:1px solid var(--line);
+  border-radius:4px; display:block; }
+.shots-client figcaption { font:.85rem/1.4 ui-sans-serif,system-ui,sans-serif;
+  color:var(--soft); margin-top:.45rem; word-break:break-word; }
+.shots-client figcaption span { display:block; font-size:.75rem; }
 @media print { body { background:#fff; } .wrap { padding:0; max-width:none; } h2 { break-after:avoid; } .item { break-inside:avoid; } }
 @media (max-width:480px) { .wrap { padding:2rem 1rem 3rem; } h1 { font-size:1.6rem; } }
 `;
@@ -326,7 +389,7 @@ function main() {
   const counts = Object.fromEntries(SEVERITIES.map((s) => [s, findings.filter((f) => f.severity === s).length]));
   const urls = [...new Set(Object.values(parts).flatMap((p) => p.urls || []))];
   // Every collector contributes to "what is working well", not just the
-  // security one — a report that only praises the headers reads as grudging.
+  // security one. A report that only praises the headers reads as grudging.
   const positives = [...new Set(Object.values(parts).flatMap((p) => p.positives || []))];
   const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   const rows = metricsTable(parts);
@@ -334,6 +397,11 @@ function main() {
 
   const main_ = findings.filter((f) => f.severity !== 'low' && f.severity !== 'info');
   const hygiene = findings.filter((f) => f.severity === 'low' || f.severity === 'info');
+
+  const shots = screenshots(parts, outDir);
+  // The client edition gets the phone view only. It is the one an owner
+  // recognises, and two of every page is a slideshow rather than evidence.
+  const clientShots = shots.filter((s) => s.profile === 'mobile');
 
   const narrative = loadNarrative(outDir);
   const summaryHtml = narrative?.summary.length
@@ -344,9 +412,15 @@ what was looked at, the single most important thing found, the counts below, and
 Answer the unasked question: say whether anything suggests the site has already been attacked.
 No metric names, no tool names. Better still, write it once in <code>narrative.md</code> in this
 directory under a <code>## Summary</code> heading, and every report picks it up.</div>`;
+  const summaryMd = narrative?.summary.length
+    ? narrative.summary.join('\n\n')
+    : TODO('Write the summary');
+  const planMd = narrative?.plan.length
+    ? narrative.plan.map((p) => (p.head ? `**${p.head}** ${p.body}` : p.body)).join('\n\n')
+    : TODO('Write the plan');
   const planHtml = narrative?.plan.length
     ? `<div class="plan">${narrative.plan.map((p) => `<p>${p.head ? `<b>${rich(p.head)}</b> ` : ''}${rich(p.body)}</p>`).join('')}</div>`
-    : `<div class="todo">${TODO('Write the plan')}
+    : `<div class="todo">${planMd}
 <strong>Not a repeat of the list, but a sequence with reasoning.</strong>
 Group into "this week", "next", and "later, if worth it", and say for each group why it is in that
 order and roughly what it costs. This is the section that turns a report into an engagement.
@@ -357,7 +431,7 @@ Write it once in <code>narrative.md</code> under a <code>## Plan</code> heading.
 <div class="wrap">
 <h1>Website audit: ${esc(site)}</h1>
 <p class="lede">${esc(date)}${args.by ? ` · prepared by ${esc(args.by)}` : ''}<br>
-Pages tested: ${urls.map((u) => `<strong>${esc(u)}</strong>`).join(', ') || '—'}</p>
+Pages tested: ${urls.map((u) => `<strong>${esc(u)}</strong>`).join(', ') || 'none'}</p>
 
 <h2>Summary</h2>
 ${summaryHtml}
@@ -370,6 +444,10 @@ ${SEVERITIES.filter((s) => counts[s]).map((s) => `<li><b>${counts[s]}</b> ${SEV_
 <p>Pages were loaded in a real browser with an empty cache${parts.perf ? `, ${parts.perf.runs} times each, on a ${esc(parts.perf.pages?.[0]?.profiles?.mobile?.metrics?.profileLabel || 'throttled mobile')} profile; the figures below are medians` : ''}.
 Security checks were <strong>passive</strong>: the site was loaded as an ordinary visitor's browser loads it, and the conclusions come from what the server sent back. Nothing was submitted, guessed or probed.</p>
 ${metricsHtml(rows)}
+${shots.length ? `<h3>What the pages looked like</h3>
+<p class="lede">Captured on the same load as the measurements above, at the top of each page
+before scrolling. Full-length captures at both widths are in <code>screenshots/</code>.</p>
+${shotsHtml(shots, 'shots')}` : ''}
 
 ${positives.length ? `<h2>What is working well</h2>
 <ul class="good-list">${positives.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>` : ''}
@@ -398,17 +476,17 @@ Sites change: this report describes ${esc(site)} as it was on ${esc(date)}.</p>
   const md = `# Website audit: ${site}
 
 ${date}${args.by ? ` · prepared by ${args.by}` : ''}
-Pages tested: ${urls.join(', ') || '—'}
+Pages tested: ${urls.join(', ') || 'none'}
 
 ## Summary
 
-${TODO('Write the summary')}
+${summaryMd}
 
 ${SEVERITIES.filter((s) => counts[s]).map((s) => `${counts[s]} ${s}`).join(' · ')}
 
 ## What we measured
 
-${rows.map((r) => `- \`${r.url}\` (${r.profile}) — LCP ${ms(r.lcp)}, CLS ${r.cls.toFixed(3)}, TBT ${ms(r.tbt)}, TTFB ${ms(r.ttfb)}, ${kb(r.transfer)} over ${r.requests} requests`).join('\n') || '_no performance data collected_'}
+${rows.map((r) => `- \`${r.url}\` (${r.profile}): LCP ${ms(r.lcp)}, CLS ${r.cls.toFixed(3)}, TBT ${ms(r.tbt)}, TTFB ${ms(r.ttfb)}, ${kb(r.transfer)} over ${r.requests} requests`).join('\n') || '_no performance data collected_'}
 
 ${positives.length ? `## What is working well\n\n${positives.map((p) => `- ${p}`).join('\n')}\n` : ''}
 ## Findings
@@ -427,9 +505,9 @@ ${f.evidence}
 
 ## What we would do first
 
-${TODO('Write the plan')}
+${planMd}
 
-${hygiene.length ? `## Appendix: hygiene\n\n${hygiene.map((f) => `- **${f.title}** \`[${SEV_LABEL[f.severity]}]\` — ${f.fix}`).join('\n')}\n` : ''}
+${hygiene.length ? `## Appendix: hygiene\n\n${hygiene.map((f) => `- **${f.title}** \`[${SEV_LABEL[f.severity]}]\`: ${f.fix}`).join('\n')}\n` : ''}
 ## Appendix: how to reproduce these figures
 
 \`\`\`
@@ -458,6 +536,11 @@ ${positives.length ? `<h2>What is already working</h2>
 
 ${narrative?.plan.length ? `<h2>What we would do, in order</h2>
 <div class="plan">${narrative.plan.map((p) => `<p>${p.head ? `<b>${rich(p.head)}</b> ` : ''}${rich(p.body)}</p>`).join('')}</div>` : ''}
+
+${clientShots.length ? `<h2>How the site looked when we tested it</h2>
+<p>These are the pages exactly as they appeared on the day, at the top of the screen before
+scrolling. Nothing has been staged or edited.</p>
+${shotsHtml(clientShots, 'shots-client')}` : ''}
 
 <h2>Everything we found</h2>
 ${bands.map((b) => `<section class="band">
