@@ -1,7 +1,7 @@
 {
   "tool": "check-headers",
   "mode": "passive",
-  "collectedAt": "2026-09-13T12:42:10.258Z",
+  "collectedAt": "2026-09-13T12:57:43.856Z",
   "command": "node check-headers.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/cart",
   "urls": [
     "https://saam-s-store.vercel.app/",
@@ -14,12 +14,12 @@
       "navError": null,
       "status": 200,
       "headers": {
-        "age": "2672",
+        "age": "5",
         "cache-control": "public, max-age=0, must-revalidate",
         "content-encoding": "br",
         "content-type": "text/html; charset=utf-8",
-        "date": "Sun, 13 Sep 2026 11:57:26 GMT",
-        "etag": "W/\"u5plouz2mg3onw\"",
+        "date": "Sun, 13 Sep 2026 12:57:28 GMT",
+        "etag": "W/\"gfjvvd78ez3op3\"",
         "server": "Vercel",
         "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
         "vary": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
@@ -28,11 +28,15 @@
         "x-nextjs-stale-time": "300",
         "x-powered-by": "Next.js",
         "x-vercel-cache": "HIT",
-        "x-vercel-id": "iad1::iad1::s24pm-1789303319064-40500ace203a"
+        "x-vercel-id": "iad1::iad1::vh2ls-1789304254331-0d9e4f9affe9"
       },
       "allResponses": [
         {
           "url": "https://saam-s-store.vercel.app/",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0ars8_er-z6il.css",
           "status": 200
         },
         {
@@ -44,19 +48,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fhero%2FBanner.jpg&w=1920&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0ars8_er-z6il.css",
-          "status": 200
-        },
-        {
           "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fbaby-care.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fadmin-uploads%2F1783803131027-233etnyujga.png&w=384&q=75",
           "status": 200
         },
         {
@@ -64,11 +56,19 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0ha4m18glnjqn.js",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fadmin-uploads%2F1783803131027-233etnyujga.png&w=384&q=75",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2zjueh7t2vecu.js",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fhero%2FBanner.jpg&w=1920&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2u4zgxbr273n_.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0ha4m18glnjqn.js",
           "status": 200
         },
         {
@@ -80,11 +80,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/3wr5ziy18xaf_.js",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/27jktro2p5rq9.js",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/turbopack-07a5-yc2iiccr.js",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/3wr5ziy18xaf_.js",
           "status": 200
         },
         {
@@ -96,15 +96,15 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/27jktro2p5rq9.js",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2zjueh7t2vecu.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/turbopack-07a5-yc2iiccr.js",
           "status": 200
         },
         {
           "url": "https://saam-s-store.vercel.app/_next/static/chunks/1-8s9_t85wwr4.js",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2u4zgxbr273n_.js",
           "status": 200
         },
         {
@@ -113,6 +113,74 @@
         },
         {
           "url": "https://saam-s-store.vercel.app/_next/static/chunks/0lb03-rqky8_4.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Foffice-stationary.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783798217776-4givt4h1soa.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Ftoys-games.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fpet-care.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fhealth-household.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fadmin-uploads%2F1783687627644-q28q3kvjbbi.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783780840147-v6cicg0t5yc.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783687527540-9mj4nvnhhi6.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783687523107-w1n4sz0s0o.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fhome-kitchen.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fhero%2FBanner2.jpg&w=1920&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fadmin-uploads%2F1783448054845-fllzoo4ogne.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783454442219-z1rfo1kgsci.jpeg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fhardware-tools.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783780851575-tw1kv5x3ui.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2",
           "status": 200
         },
         {
@@ -132,6 +200,10 @@
           "status": 200
         },
         {
+          "url": "https://saam-s-store.vercel.app/account?_rsc=5CB68i4pnAekjehf",
+          "status": 200
+        },
+        {
           "url": "https://saam-s-store.vercel.app/contact?_rsc=5CB68i4pnAekjehf",
           "status": 200
         },
@@ -141,10 +213,6 @@
         },
         {
           "url": "https://saam-s-store.vercel.app/about?_rsc=7h4NYy5eoyMcNlUN",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/account?_rsc=5CB68i4pnAekjehf",
           "status": 200
         },
         {
@@ -164,55 +232,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/contact?_rsc=tXyZJ52UQVBCVsD3",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fhealth-household.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fpet-care.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fhome-kitchen.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Foffice-stationary.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783454442219-z1rfo1kgsci.jpeg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783687523107-w1n4sz0s0o.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783780851575-tw1kv5x3ui.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fadmin-uploads%2F1783448054845-fllzoo4ogne.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Ftoys-games.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783687527540-9mj4nvnhhi6.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783780840147-v6cicg0t5yc.jpg&w=384&q=75",
+          "url": "https://saam-s-store.vercel.app/shop?_rsc=NUlzUV-vZB3gWb0h",
           "status": 200
         },
         {
@@ -220,19 +240,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fhero%2FBanner2.jpg&w=1920&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fadmin-uploads%2F1783687627644-q28q3kvjbbi.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fcategories%2Fhardware-tools.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783798217776-4givt4h1soa.png&w=384&q=75",
+          "url": "https://saam-s-store.vercel.app/contact?_rsc=tXyZJ52UQVBCVsD3",
           "status": 200
         },
         {
@@ -244,19 +252,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?_rsc=NUlzUV-vZB3gWb0h",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2",
+          "url": "https://saam-s-store.vercel.app/?_rsc=8nTjltbQWvg6NcbE",
           "status": 200
         },
         {
           "url": "https://saam-s-store.vercel.app/?_rsc=7h4NYy5eoyMcNlUN",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/?_rsc=8nTjltbQWvg6NcbE",
           "status": 200
         },
         {
@@ -306,8 +306,8 @@
       "tls": {
         "subject": "*.vercel.app",
         "issuer": "Anthropic",
-        "validFrom": "Sep 13 12:40:42 2026 GMT",
-        "validTo": "Oct 13 12:41:42 2026 GMT",
+        "validFrom": "Sep 13 12:56:20 2026 GMT",
+        "validTo": "Oct 13 12:57:20 2026 GMT",
         "daysRemaining": 30,
         "protocol": "TLSv1.3",
         "altNames": "DNS:saam-s-store.vercel.app",
@@ -325,7 +325,7 @@
         "cache-control": "private, no-cache, no-store, max-age=0, must-revalidate",
         "content-encoding": "br",
         "content-type": "text/html; charset=utf-8",
-        "date": "Sun, 13 Sep 2026 12:42:02 GMT",
+        "date": "Sun, 13 Sep 2026 12:57:37 GMT",
         "link": "</_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2>; rel=preload; as=\"font\"; crossorigin=\"\"; type=\"font/woff2\"",
         "server": "Vercel",
         "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
@@ -333,7 +333,7 @@
         "x-matched-path": "/shop",
         "x-powered-by": "Next.js",
         "x-vercel-cache": "MISS",
-        "x-vercel-id": "iad1::iad1::jczdp-1789303322431-b3b6472af434"
+        "x-vercel-id": "iad1::iad1::sds5z-1789304257641-f02baacf2664"
       },
       "allResponses": [
         {
@@ -341,7 +341,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=%2Flogo.png&w=128&q=75",
           "status": 200
         },
         {
@@ -349,7 +349,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=%2Flogo.png&w=128&q=75",
+          "url": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2",
           "status": 200
         },
         {
@@ -357,15 +357,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0ha4m18glnjqn.js",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0eyn19km7hxm2.js",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/1-8s9_t85wwr4.js",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/3wr5ziy18xaf_.js",
           "status": 200
         },
         {
@@ -373,7 +365,19 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2wnwi10lqap0y.js",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2u4zgxbr273n_.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0eyn19km7hxm2.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0ha4m18glnjqn.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/1-8s9_t85wwr4.js",
           "status": 200
         },
         {
@@ -381,23 +385,15 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2rmu0b31rnbi3.js",
-          "status": 200
-        },
-        {
           "url": "https://saam-s-store.vercel.app/_next/static/chunks/25k41q27owg5h.js",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/41quhm3lw31li.js",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2wnwi10lqap0y.js",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/3wr5ziy18xaf_.js",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2u4zgxbr273n_.js",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2rmu0b31rnbi3.js",
           "status": 200
         },
         {
@@ -405,7 +401,15 @@
           "status": 200
         },
         {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/41quhm3lw31li.js",
+          "status": 200
+        },
+        {
           "url": "https://saam-s-store.vercel.app/_next/static/chunks/2gkxchvdpqh5f.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783780840147-v6cicg0t5yc.jpg&w=384&q=75",
           "status": 200
         },
         {
@@ -413,7 +417,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/contact?_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783785669712-xjlf3ya3v3.jpeg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783687523107-w1n4sz0s0o.png&w=384&q=75",
           "status": 200
         },
         {
@@ -421,11 +429,23 @@
           "status": 200
         },
         {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783798217776-4givt4h1soa.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/contact?_rsc=XyVmYtFX6zHDMoh_",
+          "status": 200
+        },
+        {
           "url": "https://saam-s-store.vercel.app/account?_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/?_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/about?_rsc=DYQ6xeu1WzGBuOtK",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/icon.png?icon.1r1sy7ndqim-w.png",
           "status": 200
         },
         {
@@ -433,7 +453,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/about?_rsc=DYQ6xeu1WzGBuOtK",
+          "url": "https://saam-s-store.vercel.app/?_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
         {
@@ -449,55 +469,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783785669712-xjlf3ya3v3.jpeg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783780840147-v6cicg0t5yc.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783687523107-w1n4sz0s0o.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783798217776-4givt4h1soa.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/contact?_rsc=4CEEjZVs8gMj_MrP",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/track-order?_rsc=DYQ6xeu1WzGBuOtK",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/track-order?_rsc=RU45HEcfMljnqsTu",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/track-order?_rsc=cwa2ZeINDLGlbMeF",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/icon.png?icon.1r1sy7ndqim-w.png",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/?_rsc=tPicLh69xz952R5N",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/?_rsc=DYQ6xeu1WzGBuOtK",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/shop?_rsc=4CEEjZVs8gMj_MrP",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0iai0seezk2pp.js",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783780851575-tw1kv5x3ui.png&w=384&q=75",
           "status": 200
         },
         {
@@ -505,83 +477,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783452773632-w9vytfkx85.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783454442219-z1rfo1kgsci.jpeg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-4-hover.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
           "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbulk-import%2F1783629776255-7ff933x97ga.jpg&w=384&q=75",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783436544333-imyxwcozu4m.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbulk-import%2F1783629774202-yk6wumes5.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783630046913-wpulekg9iaf.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbulk-import%2F1783629775748-7w2sd5tpbs.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783630045645-ld78sbl3u9.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783453072215-rd8y4z09cpc.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fpet-care%2Fproduct-1-hover.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/1c8p1aam83ohe.js",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783434138092-n704odmro39.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fhome-kitchen%2Fproduct-1-main.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783434685272-mlzncw21etm.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-4-main.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-1-hover.png&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fhardware-tools%2Fproduct-1-hover.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fhome-kitchen%2Fproduct-1-hover.jpg&w=384&q=75",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fpet-care%2Fproduct-1-main.png&w=384&q=75",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783452773632-w9vytfkx85.jpg&w=384&q=75",
           "status": 200
         },
         {
@@ -589,11 +489,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-2-main.jpg&w=384&q=75",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783434686676-7qhtzxpzjv9.png&w=384&q=75",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783780851575-tw1kv5x3ui.png&w=384&q=75",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783436544333-imyxwcozu4m.jpg&w=384&q=75",
           "status": 200
         },
         {
@@ -601,19 +501,43 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fhardware-tools%2Fproduct-1-main.jpg&w=384&q=75",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783434685272-mlzncw21etm.png&w=384&q=75",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-2-hover.jpg&w=384&q=75",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783453072215-rd8y4z09cpc.png&w=384&q=75",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783434686676-7qhtzxpzjv9.png&w=384&q=75",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783434138092-n704odmro39.png&w=384&q=75",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-3-hover.png&w=384&q=75",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fpet-care%2Fproduct-1-hover.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fpet-care%2Fproduct-1-main.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbulk-import%2F1783629775748-7w2sd5tpbs.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/track-order?_rsc=DYQ6xeu1WzGBuOtK",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783630046913-wpulekg9iaf.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-4-main.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-4-hover.jpg&w=384&q=75",
           "status": 200
         },
         {
@@ -621,19 +545,55 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-1?_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fhome-kitchen%2Fproduct-1-hover.jpg&w=384&q=75",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-4?_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fhardware-tools%2Fproduct-1-main.jpg&w=384&q=75",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-2?_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fhardware-tools%2Fproduct-1-hover.jpg&w=384&q=75",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/products/ammar?_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-3-hover.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-1-hover.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbulk-import%2F1783629774202-yk6wumes5.png&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fhome-kitchen%2Fproduct-1-main.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-2-hover.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/track-order?_rsc=RU45HEcfMljnqsTu",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fbaby-care%2Fproduct-2-main.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783630045645-ld78sbl3u9.jpg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/image?url=https%3A%2F%2Fsgyxlcjqlcbwudekpgfz.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fimages%2Fproducts%2Fadmin-uploads%2F1783454442219-z1rfo1kgsci.jpeg&w=384&q=75",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/contact?_rsc=4CEEjZVs8gMj_MrP",
           "status": 200
         },
         {
@@ -641,15 +601,27 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/products/chips?_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/track-order?_rsc=cwa2ZeINDLGlbMeF",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/products/neutella-jug?_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0iai0seezk2pp.js",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/products/apple?_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/products/ammar?_rsc=XyVmYtFX6zHDMoh_",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-1?_rsc=XyVmYtFX6zHDMoh_",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-2?_rsc=XyVmYtFX6zHDMoh_",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-4?_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
         {
@@ -657,11 +629,23 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?category=test-category-2&_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/products/chips?_rsc=XyVmYtFX6zHDMoh_",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/products/apple?_rsc=XyVmYtFX6zHDMoh_",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/products/neutella-jug?_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
         {
           "url": "https://saam-s-store.vercel.app/shop?category=toys-games&_rsc=XyVmYtFX6zHDMoh_",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/shop?category=test-category-2&_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
         {
@@ -673,10 +657,6 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?category=hardware-tools&_rsc=XyVmYtFX6zHDMoh_",
-          "status": 200
-        },
-        {
           "url": "https://saam-s-store.vercel.app/shop?category=office-stationary&_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
@@ -685,11 +665,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?category=health-household&_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/shop?category=hardware-tools&_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?category=clothing&_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/shop?category=health-household&_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
         {
@@ -697,7 +677,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?category=beauty-personal-care&_rsc=XyVmYtFX6zHDMoh_",
+          "url": "https://saam-s-store.vercel.app/shop?category=clothing&_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
         {
@@ -705,11 +685,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-2?_rsc=641OkTuBQuNwEh3p",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-4?_rsc=wjNeCf5oVnAfeCtz",
+          "url": "https://saam-s-store.vercel.app/shop?category=beauty-personal-care&_rsc=XyVmYtFX6zHDMoh_",
           "status": 200
         },
         {
@@ -717,7 +693,15 @@
           "status": 200
         },
         {
+          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-2?_rsc=641OkTuBQuNwEh3p",
+          "status": 200
+        },
+        {
           "url": "https://saam-s-store.vercel.app/products/bulk-test-product-1?_rsc=5hT57n8lWfWeNY3G",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/products/bulk-test-product-4?_rsc=wjNeCf5oVnAfeCtz",
           "status": 200
         },
         {
@@ -729,6 +713,10 @@
           "status": 200
         },
         {
+          "url": "https://saam-s-store.vercel.app/products/chips?_rsc=o5d0hpA-eZNs7_dI",
+          "status": 200
+        },
+        {
           "url": "https://saam-s-store.vercel.app/products/neutella-jug?_rsc=afpN-UlWotjPjSzR",
           "status": 200
         },
@@ -737,7 +725,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/products/chips?_rsc=o5d0hpA-eZNs7_dI",
+          "url": "https://saam-s-store.vercel.app/shop?category=test-category-2&_rsc=4CEEjZVs8gMj_MrP",
           "status": 200
         },
         {
@@ -745,15 +733,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?category=test&_rsc=4CEEjZVs8gMj_MrP",
-          "status": 200
-        },
-        {
           "url": "https://saam-s-store.vercel.app/shop?category=pet-care&_rsc=4CEEjZVs8gMj_MrP",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?category=test-category-2&_rsc=4CEEjZVs8gMj_MrP",
+          "url": "https://saam-s-store.vercel.app/shop?category=test&_rsc=4CEEjZVs8gMj_MrP",
           "status": 200
         },
         {
@@ -765,19 +749,19 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?category=health-household&_rsc=4CEEjZVs8gMj_MrP",
-          "status": 200
-        },
-        {
           "url": "https://saam-s-store.vercel.app/shop?category=hardware-tools&_rsc=4CEEjZVs8gMj_MrP",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?category=clothing&_rsc=4CEEjZVs8gMj_MrP",
+          "url": "https://saam-s-store.vercel.app/shop?category=health-household&_rsc=4CEEjZVs8gMj_MrP",
           "status": 200
         },
         {
           "url": "https://saam-s-store.vercel.app/shop?category=grocery-gourmet&_rsc=4CEEjZVs8gMj_MrP",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/shop?category=clothing&_rsc=4CEEjZVs8gMj_MrP",
           "status": 200
         },
         {
@@ -786,6 +770,22 @@
         },
         {
           "url": "https://saam-s-store.vercel.app/shop?category=baby-care&_rsc=4CEEjZVs8gMj_MrP",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/?_rsc=DYQ6xeu1WzGBuOtK",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/shop?_rsc=4CEEjZVs8gMj_MrP",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/?_rsc=tPicLh69xz952R5N",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/1c8p1aam83ohe.js",
           "status": 200
         }
       ],
@@ -827,8 +827,8 @@
       "tls": {
         "subject": "*.vercel.app",
         "issuer": "Anthropic",
-        "validFrom": "Sep 13 12:40:42 2026 GMT",
-        "validTo": "Oct 13 12:41:42 2026 GMT",
+        "validFrom": "Sep 13 12:56:41 2026 GMT",
+        "validTo": "Oct 13 12:57:41 2026 GMT",
         "daysRemaining": 30,
         "protocol": "TLSv1.3",
         "altNames": "DNS:saam-s-store.vercel.app",
@@ -843,12 +843,12 @@
       "status": 200,
       "headers": {
         "access-control-allow-origin": "*",
-        "age": "233761",
+        "age": "234695",
         "cache-control": "public, max-age=0, must-revalidate",
         "content-disposition": "inline",
         "content-encoding": "br",
         "content-type": "text/html; charset=utf-8",
-        "date": "Sun, 13 Sep 2026 12:42:07 GMT",
+        "date": "Sun, 13 Sep 2026 12:57:41 GMT",
         "etag": "W/\"2267a39f852c99257fe11e7d8b7ac3c0\"",
         "server": "Vercel",
         "strict-transport-security": "max-age=63072000; includeSubDomains; preload",
@@ -857,7 +857,7 @@
         "x-nextjs-prerender": "1",
         "x-nextjs-stale-time": "300",
         "x-vercel-cache": "HIT",
-        "x-vercel-id": "iad1::f4jtj-1789303327379-1665140e774c"
+        "x-vercel-id": "iad1::2qtj6-1789304261503-5a695b1bde44"
       },
       "allResponses": [
         {
@@ -869,15 +869,7 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2wnwi10lqap0y.js",
-          "status": 200
-        },
-        {
           "url": "https://saam-s-store.vercel.app/_next/static/chunks/2zjueh7t2vecu.js",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0ha4m18glnjqn.js",
           "status": 200
         },
         {
@@ -885,7 +877,15 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/3wr5ziy18xaf_.js",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0ha4m18glnjqn.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/27jktro2p5rq9.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/41quhm3lw31li.js",
           "status": 200
         },
         {
@@ -897,15 +897,11 @@
           "status": 200
         },
         {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/1-8s9_t85wwr4.js",
+          "status": 200
+        },
+        {
           "url": "https://saam-s-store.vercel.app/_next/static/chunks/11eolyyqldoac.js",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/27jktro2p5rq9.js",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0lb03-rqky8_4.js",
           "status": 200
         },
         {
@@ -913,15 +909,19 @@
           "status": 200
         },
         {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/0lb03-rqky8_4.js",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/3wr5ziy18xaf_.js",
+          "status": 200
+        },
+        {
           "url": "https://saam-s-store.vercel.app/_next/static/chunks/2u4zgxbr273n_.js",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/1-8s9_t85wwr4.js",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/41quhm3lw31li.js",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/2wnwi10lqap0y.js",
           "status": 200
         },
         {
@@ -941,11 +941,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/contact?_rsc=z0wyxdPQsgvRMaIZ",
+          "url": "https://saam-s-store.vercel.app/account?_rsc=z0wyxdPQsgvRMaIZ",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/account?_rsc=z0wyxdPQsgvRMaIZ",
+          "url": "https://saam-s-store.vercel.app/contact?_rsc=z0wyxdPQsgvRMaIZ",
           "status": 200
         },
         {
@@ -957,19 +957,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/about?_rsc=tVwX2VaT8ButppUt",
-          "status": 200
-        },
-        {
           "url": "https://saam-s-store.vercel.app/about?_rsc=2FqBfHLB662s8cQM",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/about?_rsc=7ZULCnXfRQDvvSCv",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/about?_rsc=-VxUp5_BENQ1lTBP",
+          "url": "https://saam-s-store.vercel.app/about?_rsc=tVwX2VaT8ButppUt",
           "status": 200
         },
         {
@@ -977,7 +969,15 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/track-order?_rsc=2FqBfHLB662s8cQM",
+          "url": "https://saam-s-store.vercel.app/about?_rsc=-VxUp5_BENQ1lTBP",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/about?_rsc=7ZULCnXfRQDvvSCv",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/shop?_rsc=Ey6BdS1rnWFFj0MK",
           "status": 200
         },
         {
@@ -985,7 +985,15 @@
           "status": 200
         },
         {
+          "url": "https://saam-s-store.vercel.app/track-order?_rsc=2FqBfHLB662s8cQM",
+          "status": 200
+        },
+        {
           "url": "https://saam-s-store.vercel.app/track-order?_rsc=_JNnLFIjJeTiOK6p",
+          "status": 200
+        },
+        {
+          "url": "https://saam-s-store.vercel.app/track-order?_rsc=1_h3RTuuBf7N6prc",
           "status": 200
         },
         {
@@ -997,19 +1005,11 @@
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/track-order?_rsc=1_h3RTuuBf7N6prc",
-          "status": 200
-        },
-        {
-          "url": "https://saam-s-store.vercel.app/_next/static/chunks/1c8p1aam83ohe.js",
-          "status": 200
-        },
-        {
           "url": "https://saam-s-store.vercel.app/_next/static/chunks/0iai0seezk2pp.js",
           "status": 200
         },
         {
-          "url": "https://saam-s-store.vercel.app/shop?_rsc=Ey6BdS1rnWFFj0MK",
+          "url": "https://saam-s-store.vercel.app/_next/static/chunks/1c8p1aam83ohe.js",
           "status": 200
         },
         {
@@ -1055,8 +1055,8 @@
       "tls": {
         "subject": "*.vercel.app",
         "issuer": "Anthropic",
-        "validFrom": "Sep 13 12:40:42 2026 GMT",
-        "validTo": "Oct 13 12:41:42 2026 GMT",
+        "validFrom": "Sep 13 12:56:41 2026 GMT",
+        "validTo": "Oct 13 12:57:41 2026 GMT",
         "daysRemaining": 30,
         "protocol": "TLSv1.3",
         "altNames": "DNS:saam-s-store.vercel.app",
@@ -1081,11 +1081,11 @@
     },
     {
       "id": "sec-key-inspect-chunks0lb03rqky8_4js",
-      "title": "Key-shaped values in client JavaScript — need confirming",
+      "title": "Key-shaped values in client JavaScript that need confirming",
       "severity": "info",
       "category": "security",
       "evidence": "https://saam-s-store.vercel.app/_next/static/chunks/0lb03-rqky8_4.js\n  JWT (role: anon): eyJhbGciOiJI…",
-      "impact": "Several kinds of key belong in the browser by design — a Stripe publishable key, a Supabase anon key, a Google Maps browser key. These matched the shape of a credential but may be entirely correct. Do not report as a leak without checking which they are.",
+      "impact": "Several kinds of key belong in the browser by design: a Stripe publishable key, a Supabase anon key, a Google Maps browser key. These matched the shape of a credential but may be entirely correct. Do not report as a leak without checking which they are.",
       "fix": "Decode each one and confirm what it grants. If it is a public key, note it as expected; if it grants more than a visitor should have, treat it as the critical finding above.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/_next/static/chunks/0lb03-rqky8_4.js",

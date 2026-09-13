@@ -1,0 +1,142 @@
+<title>Saam's Store: website review</title>
+<style>
+:root { --ink:#1a1a1a; --soft:#5b5b5b; --line:#e4e0d8; --paper:#fffdf9; --accent:#7a5c2e; --good:#2f6b41; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--paper); color:var(--ink);
+  font:17px/1.65 Georgia, "Iowan Old Style", "Times New Roman", serif; }
+.wrap { max-width: 40rem; margin:0 auto; padding: 3.5rem 1.5rem 5rem; }
+h1 { font-size:2rem; line-height:1.2; margin:0 0 .4rem; letter-spacing:-.01em; }
+.lede { color:var(--soft); font-size:.95rem; margin:0 0 3rem; }
+h2 { font-size:1.35rem; margin:3.5rem 0 1rem; padding-bottom:.4rem; border-bottom:2px solid var(--accent); }
+h3 { font-size:1.05rem; margin:2rem 0 .4rem; font-weight:600; }
+p { margin:0 0 1rem; }
+.big { font-size:1.15rem; line-height:1.6; }
+.good li { margin-bottom:.5rem; color:var(--good); }
+.good li span { color:var(--ink); }
+ul { padding-left:1.2rem; }
+.band { margin:2.5rem 0 0; }
+.band-head { font:600 .8rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--accent); margin:0 0 .3rem; }
+.band-note { color:var(--soft); font-size:.9rem; margin:0 0 1.2rem; }
+.item { border-left:3px solid var(--line); padding:.1rem 0 .1rem 1.1rem; margin:0 0 1.8rem; }
+.item h3 { margin-top:0; }
+.item p { margin-bottom:.5rem; }
+.effort { font:600 .75rem/1 ui-sans-serif,system-ui,sans-serif; letter-spacing:.05em;
+  text-transform:uppercase; color:var(--soft); }
+.fix { font-size:.95rem; color:var(--soft); }
+.fix b { color:var(--ink); font-weight:600; }
+code { font:.88em ui-monospace,Menlo,Consolas,monospace; background:#f2ede4;
+  border-radius:3px; padding:.05em .3em; }
+.plan p { margin-bottom:1.1rem; }
+footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
+  color:var(--soft); font-size:.9rem; }
+@media print { body { background:#fff; } .wrap { padding:0; max-width:none; } h2 { break-after:avoid; } .item { break-inside:avoid; } }
+@media (max-width:480px) { .wrap { padding:2rem 1rem 3rem; } h1 { font-size:1.6rem; } }
+</style>
+<div class="wrap">
+<h1>Saam's Store</h1>
+<p class="lede">Website review, 13 September 2026<br>
+4 pages checked</p>
+
+<h2>The short version</h2>
+<div class="big"><p>We looked at four pages of Saam's Store on 13 September 2026: the home page, the shop, a product page and the cart. We tested how quickly they load on a typical mid-range Android phone, what each page tells search engines about itself, and what the site reveals to the public internet.</p><p>The site is in good shape, and most of this report says so. Speed is competitive, nothing shifts around as pages load, every image is described for screen readers, every internal link works, and the security basics are set up correctly. Most shops we look at cannot say that.</p><p>The clearest opportunity is in how the site describes itself to Google. Three of the four pages, including the product page, carry the identical title &quot;Saamj Store&quot; and the identical one-line description. To a search engine those pages look interchangeable, so they compete with each other rather than each ranking for what it actually sells. The cart page also has no main heading at all. Both are template changes rather than redesigns, and together they are well under a day.</p><p>In total: 3 medium and 10 low-severity items, plus 2 observations. Nothing suggests the site has been attacked, and no passwords or keys were found in the code it sends to visitors.</p></div>
+
+<h2>What is already working</h2>
+<ul class="good"><li><span>The site is served over HTTPS.</span></li><li><span>Plain HTTP correctly redirects to HTTPS.</span></li><li><span>HSTS is configured.</span></li><li><span>The HTTPS certificate is valid for another 30 days.</span></li><li><span>No credentials were found in the JavaScript served to visitors.</span></li><li><span>Every page is set up to display properly on phones.</span></li><li><span>Every page declares the language it is written in.</span></li><li><span>All 78 images we saw carry a text alternative.</span></li><li><span>Nothing on the site tells search engines to stay away, so every page tested is free to be listed.</span></li><li><span>All 30 internal links we followed resolved without an error or a redirect chain.</span></li></ul>
+
+<h2>What we would do, in order</h2>
+<div class="plan"><p><b>This week</b> give each page its own title and description. The product page inheriting the site-wide title is the highest-value fix available here, because product pages are what people search for and at the moment Google cannot tell one from another. Add a main heading to the cart while the template is already open. Half a day, no design work, nothing a customer would see change.</p><p><b>Next</b> the fonts. Three font files totalling 89 kB currently hide text while they load, which is why the first moment of each page feels blank on a phone. One line of CSS changes that, and it is the cheapest visible improvement on the list.</p><p><b>Worth doing, not urgent</b> the cart's load time on mobile, at 2.90 seconds the one page outside Google's good range; the sharing tags that currently make links posted to WhatsApp or Facebook appear as bare addresses; and the four standard security headers that are not set. None of these is costing customers today.</p><p><b>What we did not test</b> only public pages, as an anonymous visitor. We did not sign in, so the account and checkout flows are untested, and that is where most of the code lives. We did not review the source code in this pass. Two limits come from where the audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details our tools recorded were the proxy's and have been removed; and this machine's processor is shared, which inflates one measure of script-blocking time, so four such findings were set aside after confirming the site serves byte-for-byte identical JavaScript to earlier runs today.</p></div>
+
+<h2>Everything we found</h2>
+<section class="band">
+  <p class="band-head">Worth fixing soon</p>
+  <p class="band-note">Real problems, but none of them is an emergency. Sensible to bundle into the next piece of work.</p>
+  <div class="item">
+  <h3>Main content takes too long to appear (LCP 2.90 s)</h3>
+  <p>On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.90 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.</p>
+  <p class="fix"><b>What to change:</b> Identify the LCP element (recorded in perf.json as <code>lcpElement</code>) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The page has no main heading</h3>
+  <p>The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing, because only the markup is read.</p>
+  <p class="fix"><b>What to change:</b> Mark the page’s main heading as <code>&lt;h1&gt;</code>. One per page. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Several pages share the same title</h3>
+  <p>Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.</p>
+  <p class="fix"><b>What to change:</b> Give each page a title naming what is specific to it, such as the product, the category or the location, before the business name. <span class="effort">· Moderate</span></p>
+</div>
+</section>
+<section class="band">
+  <p class="band-head">Minor, whenever you are next in there</p>
+  <p class="band-note">True and worth doing, but nobody is losing a sale over them. Listed so the picture is complete.</p>
+  <div class="item">
+  <h3>3 web font file(s), 89 kB, text hidden while they load</h3>
+  <p>Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.</p>
+  <p class="fix"><b>What to change:</b> Set <code>font-display: swap</code>, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>1 web font file(s), 37 kB, text hidden while they load</h3>
+  <p>Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.</p>
+  <p class="fix"><b>What to change:</b> Set <code>font-display: swap</code>, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>1 web font file(s), 37 kB, text hidden while they load</h3>
+  <p>Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.</p>
+  <p class="fix"><b>What to change:</b> Set <code>font-display: swap</code>, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>1 web font file(s), 37 kB, text hidden while they load</h3>
+  <p>Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.</p>
+  <p class="fix"><b>What to change:</b> Set <code>font-display: swap</code>, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>4 standard security header(s) are not set</h3>
+  <p>These headers are the browser-side defences a site opts into. Individually none of them is a vulnerability; together their absence means a bug elsewhere has nothing standing in its way.</p>
+  <p class="fix"><b>What to change:</b> Set them once at the edge or in middleware so every response carries them: Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust. Send <code>X-Content-Type-Options: nosniff</code> on all responses. Send <code>X-Frame-Options: SAMEORIGIN</code>, or <code>frame-ancestors 'self'</code> in the Content-Security-Policy. Send <code>Referrer-Policy: strict-origin-when-cross-origin</code>. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The page title is very short</h3>
+  <p>A short title gives searchers little reason to click and gives search engines little to match a query against.</p>
+  <p class="fix"><b>What to change:</b> Expand to roughly 50–60 characters describing what the page offers. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>The search-result description is very short</h3>
+  <p>A description this brief leaves most of the space Google gives it unused, and gives a searcher little reason to choose this result over the one above it. Under roughly 50 characters, Google is also more likely to discard it and pull its own sentence from the page instead.</p>
+  <p class="fix"><b>What to change:</b> Expand to 50–160 characters, describing what the page offers as a sentence a customer would read. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Heading levels skip a step</h3>
+  <p>Headings are the document outline. Skipping a level breaks how screen readers let a user jump through the page, and muddies which sections belong to which.</p>
+  <p class="fix"><b>What to change:</b> Choose heading levels by position in the outline, not by how large you want the text to look. Set size with CSS. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Links to this site look plain when shared</h3>
+  <p>When someone shares the link on WhatsApp, Facebook or LinkedIn, these tags decide whether it appears as a picture with a headline or as a bare URL. A bare URL gets noticeably fewer clicks.</p>
+  <p class="fix"><b>What to change:</b> Add <code>og:title</code>, <code>og:description</code> and an <code>og:image</code> of about 1200×630 to the shared layout, defaulting to the business logo where a page has no image of its own. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>Several pages share the same search-result description</h3>
+  <p>Identical descriptions make every result look the same in a list, so searchers cannot tell which page answers their question.</p>
+  <p class="fix"><b>What to change:</b> Write a description per page, or generate one from the page’s own content. <span class="effort">· Moderate</span></p>
+</div>
+<div class="item">
+  <h3>Key-shaped values in client JavaScript that need confirming</h3>
+  <p>Several kinds of key belong in the browser by design: a Stripe publishable key, a Supabase anon key, a Google Maps browser key. These matched the shape of a credential but may be entirely correct. Do not report as a leak without checking which they are.</p>
+  <p class="fix"><b>What to change:</b> Decode each one and confirm what it grants. If it is a public key, note it as expected; if it grants more than a visitor should have, treat it as the critical finding above. <span class="effort">· Quick fix</span></p>
+</div>
+<div class="item">
+  <h3>A page has very little text</h3>
+  <p>Pages with little text rarely rank for anything beyond the business name, because there is nothing for a search engine to match a query against. Legitimate for a contact or login page; a problem for a page meant to attract visitors.</p>
+  <p class="fix"><b>What to change:</b> If this page is meant to bring in search traffic, expand it to answer the questions a customer would actually ask. If it is not, no action needed. <span class="effort">· Involved</span></p>
+</div>
+</section>
+
+<footer>
+<p>Every point above was measured on 13 September 2026, not assumed. The working notes behind each
+one, including the exact measurements and the commands that produced them, are in the technical
+version of this report and are available on request.</p>
+<p>Testing covered publicly reachable pages only, without signing in.
+Websites change, so this describes Saam's Store as it was on 13 September 2026.</p>
+</footer>
+</div>

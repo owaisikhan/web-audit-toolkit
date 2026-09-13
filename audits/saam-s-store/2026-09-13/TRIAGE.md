@@ -13,7 +13,7 @@ could not see three days ago?
 
 | Dropped | Grounds |
 |---|---|
-| `perf-tbt-mobile` × 4 — "Page freezes while scripts run", 272–327 ms | **Measurement artifact, not a site regression.** TBT roughly doubled against 10 September (155→327, 141→274, 142→281, 136→272) while the site served byte-identical JavaScript: same script count, same script bytes, same total transfer on all four pages. LCP, CLS and TTFB are flat across the same interval. Measured twice on 13 September, it drifted again within a 250–330 band (262→327, 290→274, 250→281, 263→272) against an unchanged payload — noise, not a trend. Dropped via `--drop perf-tbt-mobile`, per the rule now written into `README.md`. |
+| `perf-tbt-mobile` × 4, "Page freezes while scripts run", 244-283 ms | **Measurement artifact, not a site regression.** TBT roughly doubled against 10 September (155 to 244, 141 to 283, 142 to 252, 136 to 250) while the site served byte-identical JavaScript: same script count, same script bytes, same total transfer on all four pages. LCP, CLS and TTFB are flat across the same interval. Measured three times on 13 September it drifted within a 244-327 band against an identical payload every time (262/327/244, 290/274/283, 250/281/252, 263/272/250), which is noise rather than a trend. Dropped via `--drop perf-tbt-mobile`, per the rule now written into `README.md`. |
 | "The HTTPS certificate is valid for another 30 days." | Recorded issuer is `Anthropic` — the sandbox's intercepting proxy, not the site's CA. `README.md` says to discard every certificate and expiry finding when this happens. |
 
 The three contradictory positives this run originally produced — claiming every

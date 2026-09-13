@@ -1,6 +1,6 @@
 {
   "tool": "collect-perf",
-  "collectedAt": "2026-09-13T12:45:13.753Z",
+  "collectedAt": "2026-09-13T13:00:17.601Z",
   "command": "node collect-perf.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart --runs 3 --all-profiles",
   "urls": [
     "https://saam-s-store.vercel.app/",
@@ -19,11 +19,11 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 2012,
-            "fcp": 1628,
-            "ttfb": 43.39999999999418,
-            "tbt": 327,
-            "cls": 0.0007,
+            "lcp": 2064,
+            "fcp": 1620,
+            "ttfb": 40.5,
+            "tbt": 244,
+            "cls": 0.0026,
             "rating": {
               "lcp": "good",
               "fcp": "good",
@@ -39,17 +39,17 @@
             "byKind": {
               "document": {
                 "count": 1,
-                "transfer": 14150,
+                "transfer": 14131,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 15,
-                "transfer": 254587,
+                "transfer": 254683,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 17,
-                "transfer": 406630,
+                "transfer": 406661,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
@@ -59,17 +59,17 @@
               },
               "font": {
                 "count": 3,
-                "transfer": 91437,
+                "transfer": 91436,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 21,
-                "transfer": 18730,
+                "transfer": 18383,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 58,
-            "totalTransfer": 796571,
+            "totalTransfer": 796331,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -77,11 +77,11 @@
           "findings": [
             {
               "id": "perf-tbt-mobile",
-              "title": "Page freezes while scripts run (TBT 327 ms)",
+              "title": "Page freezes while scripts run (TBT 244 ms)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "TBT 327 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-              "impact": "The page is unresponsive to taps and clicks for about 327 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "evidence": "TBT 244 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 244 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
               "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/",
@@ -93,7 +93,7 @@
               "severity": "low",
               "category": "performance",
               "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/",
@@ -103,9 +103,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 892,
-            "fcp": 572,
-            "ttfb": 35.69999999999709,
+            "lcp": 880,
+            "fcp": 556,
+            "ttfb": 40.5,
             "tbt": 0,
             "cls": 0.0005,
             "rating": {
@@ -123,37 +123,37 @@
             "byKind": {
               "document": {
                 "count": 1,
-                "transfer": 14151,
-                "thirdPartyTransfer": 0
-              },
-              "image": {
-                "count": 22,
-                "transfer": 616399,
-                "thirdPartyTransfer": 0
-              },
-              "stylesheet": {
-                "count": 1,
-                "transfer": 11037,
+                "transfer": 14130,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 3,
-                "transfer": 91379,
+                "transfer": 91435,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 22,
+                "transfer": 616312,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 15,
-                "transfer": 254543,
+                "transfer": 254573,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11043,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 25,
-                "transfer": 16364,
+                "transfer": 15020,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 67,
-            "totalTransfer": 1003873,
+            "totalTransfer": 1002513,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -165,7 +165,7 @@
               "severity": "low",
               "category": "performance",
               "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/",
@@ -180,10 +180,10 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 1720,
-            "fcp": 1716,
-            "ttfb": 34.70000000001164,
-            "tbt": 274,
+            "lcp": 1736,
+            "fcp": 1724,
+            "ttfb": 34.800000000046566,
+            "tbt": 283,
             "cls": 0.0003,
             "rating": {
               "lcp": "good",
@@ -200,12 +200,12 @@
             "byKind": {
               "script": {
                 "count": 17,
-                "transfer": 258849,
+                "transfer": 258830,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 24,
-                "transfer": 402398,
+                "transfer": 402368,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
@@ -215,22 +215,22 @@
               },
               "document": {
                 "count": 1,
-                "transfer": 15530,
+                "transfer": 15582,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 1,
-                "transfer": 37817,
+                "transfer": 37816,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 53,
-                "transfer": 34530,
+                "transfer": 37243,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 97,
-            "totalTransfer": 760161,
+            "totalTransfer": 762876,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -238,11 +238,11 @@
           "findings": [
             {
               "id": "perf-tbt-mobile",
-              "title": "Page freezes while scripts run (TBT 274 ms)",
+              "title": "Page freezes while scripts run (TBT 283 ms)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "TBT 274 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-              "impact": "The page is unresponsive to taps and clicks for about 274 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "evidence": "TBT 283 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 283 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
               "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/shop",
@@ -254,7 +254,7 @@
               "severity": "low",
               "category": "performance",
               "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/shop",
@@ -264,9 +264,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 1152,
-            "fcp": 636,
-            "ttfb": 35,
+            "lcp": 1468,
+            "fcp": 620,
+            "ttfb": 40.39999999990687,
             "tbt": 0,
             "cls": 0,
             "rating": {
@@ -282,6 +282,11 @@
           },
           "resourceSummary": {
             "byKind": {
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11037,
+                "thirdPartyTransfer": 0
+              },
               "font": {
                 "count": 1,
                 "transfer": 37817,
@@ -289,32 +294,27 @@
               },
               "image": {
                 "count": 36,
-                "transfer": 345864,
+                "transfer": 345832,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 17,
-                "transfer": 258878,
-                "thirdPartyTransfer": 0
-              },
-              "stylesheet": {
-                "count": 1,
-                "transfer": 11037,
+                "transfer": 258782,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 65,
-                "transfer": 20241,
+                "transfer": 20817,
                 "thirdPartyTransfer": 0
               },
               "document": {
                 "count": 1,
-                "transfer": 15579,
+                "transfer": 15483,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 121,
-            "totalTransfer": 689416,
+            "totalTransfer": 689768,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -326,7 +326,7 @@
               "severity": "low",
               "category": "performance",
               "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/shop",
@@ -341,10 +341,10 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 1524,
-            "fcp": 1516,
-            "ttfb": 36.70000000001164,
-            "tbt": 281,
+            "lcp": 1508,
+            "fcp": 1496,
+            "ttfb": 38.5999999998603,
+            "tbt": 252,
             "cls": 0.001,
             "rating": {
               "lcp": "good",
@@ -361,12 +361,12 @@
             "byKind": {
               "script": {
                 "count": 17,
-                "transfer": 259405,
+                "transfer": 259375,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 7,
-                "transfer": 44370,
+                "transfer": 44368,
                 "thirdPartyTransfer": 0
               },
               "document": {
@@ -386,12 +386,12 @@
               },
               "other": {
                 "count": 20,
-                "transfer": 17547,
+                "transfer": 17549,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 47,
-            "totalTransfer": 380408,
+            "totalTransfer": 380378,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -399,11 +399,11 @@
           "findings": [
             {
               "id": "perf-tbt-mobile",
-              "title": "Page freezes while scripts run (TBT 281 ms)",
+              "title": "Page freezes while scripts run (TBT 252 ms)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "TBT 281 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-              "impact": "The page is unresponsive to taps and clicks for about 281 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "evidence": "TBT 252 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 252 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
               "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/products/apple",
@@ -415,7 +415,7 @@
               "severity": "low",
               "category": "performance",
               "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/products/apple",
@@ -425,9 +425,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 1574,
-            "fcp": 514,
-            "ttfb": 38.94999999999709,
+            "lcp": 1144,
+            "fcp": 496,
+            "ttfb": 37.5999999998603,
             "tbt": 0,
             "cls": 0,
             "rating": {
@@ -437,45 +437,45 @@
               "tbt": "good",
               "cls": "good"
             },
-            "runs": 2,
+            "runs": 3,
             "profile": "desktop",
             "profileLabel": "Desktop, unthrottled"
           },
           "resourceSummary": {
             "byKind": {
-              "stylesheet": {
-                "count": 1,
-                "transfer": 11036,
-                "thirdPartyTransfer": 0
-              },
               "font": {
                 "count": 1,
                 "transfer": 37817,
                 "thirdPartyTransfer": 0
               },
-              "image": {
-                "count": 7,
-                "transfer": 30427,
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11037,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 17,
-                "transfer": 259434,
+                "transfer": 259437,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 7,
+                "transfer": 30540,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 22,
-                "transfer": 16033,
+                "transfer": 15368,
                 "thirdPartyTransfer": 0
               },
               "document": {
                 "count": 1,
-                "transfer": 10231,
+                "transfer": 10232,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 49,
-            "totalTransfer": 364978,
+            "totalTransfer": 364431,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -487,7 +487,7 @@
               "severity": "low",
               "category": "performance",
               "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/products/apple",
@@ -502,10 +502,10 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 2964,
-            "fcp": 1304,
-            "ttfb": 38.89999999999418,
-            "tbt": 272,
+            "lcp": 2896,
+            "fcp": 1348,
+            "ttfb": 33.89999999990687,
+            "tbt": 250,
             "cls": 0.0001,
             "rating": {
               "lcp": "needs-work",
@@ -527,7 +527,7 @@
               },
               "script": {
                 "count": 16,
-                "transfer": 257093,
+                "transfer": 257078,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
@@ -537,7 +537,7 @@
               },
               "font": {
                 "count": 1,
-                "transfer": 37810,
+                "transfer": 37833,
                 "thirdPartyTransfer": 0
               },
               "image": {
@@ -547,12 +547,12 @@
               },
               "other": {
                 "count": 18,
-                "transfer": 17228,
+                "transfer": 17238,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 39,
-            "totalTransfer": 336026,
+            "totalTransfer": 336044,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -560,11 +560,11 @@
           "findings": [
             {
               "id": "perf-lcp-mobile",
-              "title": "Main content takes too long to appear (LCP 2.96 s)",
+              "title": "Main content takes too long to appear (LCP 2.90 s)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "LCP 2.96 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
-              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.96 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "evidence": "LCP 2.90 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.90 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
               "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/cart",
@@ -572,11 +572,11 @@
             },
             {
               "id": "perf-tbt-mobile",
-              "title": "Page freezes while scripts run (TBT 272 ms)",
+              "title": "Page freezes while scripts run (TBT 250 ms)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "TBT 272 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-              "impact": "The page is unresponsive to taps and clicks for about 272 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "evidence": "TBT 250 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 250 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
               "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/cart",
@@ -588,7 +588,7 @@
               "severity": "low",
               "category": "performance",
               "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/cart",
@@ -598,9 +598,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 724,
-            "fcp": 528,
-            "ttfb": 36.60000000000582,
+            "lcp": 644,
+            "fcp": 464,
+            "ttfb": 36.39999999990687,
             "tbt": 0,
             "cls": 0.0005,
             "rating": {
@@ -621,9 +621,14 @@
                 "transfer": 5082,
                 "thirdPartyTransfer": 0
               },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11085,
+                "thirdPartyTransfer": 0
+              },
               "script": {
                 "count": 16,
-                "transfer": 257092,
+                "transfer": 257123,
                 "thirdPartyTransfer": 0
               },
               "font": {
@@ -631,24 +636,19 @@
                 "transfer": 37785,
                 "thirdPartyTransfer": 0
               },
-              "stylesheet": {
-                "count": 1,
-                "transfer": 11037,
-                "thirdPartyTransfer": 0
-              },
               "image": {
                 "count": 2,
-                "transfer": 5045,
+                "transfer": 5040,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 18,
-                "transfer": 16024,
+                "transfer": 15541,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 39,
-            "totalTransfer": 332065,
+            "totalTransfer": 331656,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -660,7 +660,7 @@
               "severity": "low",
               "category": "performance",
               "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/cart",
@@ -674,11 +674,11 @@
   "findings": [
     {
       "id": "perf-tbt-mobile",
-      "title": "Page freezes while scripts run (TBT 327 ms)",
+      "title": "Page freezes while scripts run (TBT 244 ms)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "TBT 327 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-      "impact": "The page is unresponsive to taps and clicks for about 327 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "evidence": "TBT 244 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 244 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
       "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/",
@@ -686,11 +686,11 @@
     },
     {
       "id": "perf-tbt-mobile",
-      "title": "Page freezes while scripts run (TBT 274 ms)",
+      "title": "Page freezes while scripts run (TBT 283 ms)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "TBT 274 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-      "impact": "The page is unresponsive to taps and clicks for about 274 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "evidence": "TBT 283 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 283 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
       "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/shop",
@@ -698,11 +698,11 @@
     },
     {
       "id": "perf-tbt-mobile",
-      "title": "Page freezes while scripts run (TBT 281 ms)",
+      "title": "Page freezes while scripts run (TBT 252 ms)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "TBT 281 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-      "impact": "The page is unresponsive to taps and clicks for about 281 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "evidence": "TBT 252 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 252 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
       "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/products/apple",
@@ -710,11 +710,11 @@
     },
     {
       "id": "perf-lcp-mobile",
-      "title": "Main content takes too long to appear (LCP 2.96 s)",
+      "title": "Main content takes too long to appear (LCP 2.90 s)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "LCP 2.96 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
-      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.96 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "evidence": "LCP 2.90 s — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.90 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
       "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/cart",
@@ -722,11 +722,11 @@
     },
     {
       "id": "perf-tbt-mobile",
-      "title": "Page freezes while scripts run (TBT 272 ms)",
+      "title": "Page freezes while scripts run (TBT 250 ms)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "TBT 272 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-      "impact": "The page is unresponsive to taps and clicks for about 272 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "evidence": "TBT 250 ms — median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 250 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
       "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/cart",
@@ -738,7 +738,7 @@
       "severity": "low",
       "category": "performance",
       "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2 — 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2 — 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
       "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/",
@@ -750,7 +750,7 @@
       "severity": "low",
       "category": "performance",
       "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
       "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/shop",
@@ -762,7 +762,7 @@
       "severity": "low",
       "category": "performance",
       "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
       "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/products/apple",
@@ -774,7 +774,7 @@
       "severity": "low",
       "category": "performance",
       "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2 — 37 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
-      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be — for up to three seconds on a slow connection.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
       "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/cart",

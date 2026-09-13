@@ -85,9 +85,9 @@ are the auditor's problem, not the script's:
 If either matters to the deliverable, run the two live collectors from a
 normal machine instead and generate the report from that JSON.
 
-## The four scripts
+## The five scripts
 
-Three collect, one writes up. Each collector writes one JSON file into the
+Four collect, one writes up. Each collector writes one JSON file into the
 output directory and prints a summary; nothing interprets anything until the
 report step.
 
@@ -95,8 +95,9 @@ report step.
 |---|---|---|
 | `collect-perf.mjs` | one or more live URLs | `perf.json` — LCP/CLS/TBT/TTFB/FCP per page per profile (median of N cold loads, Moto G-class 4G and/or desktop), request waterfall, transfer sizes, render-blocking assets, image and font waste, plus findings. Also `screenshots/` at phone and laptop width. |
 | `check-headers.mjs` | one or more live URLs | `security.json` — response headers, cookie flags, TLS certificate, framework/version disclosure, exposed source maps, secrets found in the JavaScript the site itself serves, `robots.txt`/`sitemap.xml`/`security.txt`. Passive only. |
+| `check-seo.mjs` | one or more live URLs | `seo.json` — indexability (`noindex` meta and header, `robots.txt`), canonicals including ones declared in the HTTP `Link` header, titles, descriptions, heading outline, viewport, `lang`, image alt text, Open Graph, HTTP status, thin and duplicate content, dead-end pages, orphan pages found by comparing the sitemap against the link graph, plus broken internal links and redirect chains. Passive only. |
 | `scan-source.mjs` | a repo directory (only one I own or have been given) | `source.json` — dependency CVEs via `npm audit`, injection surface, unguarded endpoints, hard-coded secrets. Candidates, not verdicts: every hit needs reading in context. |
-| `report.mjs` | the output directory | `report.html` (self-contained, prints to PDF cleanly) and `report.md`, built from whichever JSON files are present. It scaffolds — the summary and the plan are left as TODO markers on purpose. |
+| `report.mjs` | the output directory | `report.html` (your worklist: evidence, measurements, reproduction commands), `report-client.html` (the one you send: same findings, no apparatus, prints to PDF cleanly) and `report.md`, built from whichever JSON files are present. It scaffolds. The summary and the plan come from `narrative.md` in the same directory, and are left as TODO markers if it is absent. |
 
 `collect-perf.mjs` writes screenshots because a site can pass every metric and
 still be unusable on a phone. Look at them.
@@ -117,14 +118,25 @@ node $SKILL/scripts/collect-perf.mjs \
 # 2. Passive security posture.
 node $SKILL/scripts/check-headers.mjs https://example.com https://example.com/shop --out $OUT
 
-# 3. Source scan — ONLY with the repo in hand and permission to read it.
+# 3. Technical SEO. Give it the SAME URL list as collect-perf: duplicate titles
+#    and descriptions can only be found by comparing pages against each other.
+node $SKILL/scripts/check-seo.mjs \
+  https://example.com https://example.com/shop https://example.com/shop/a-product \
+  --out $OUT
+
+# 4. Source scan — ONLY with the repo in hand and permission to read it.
 node $SKILL/scripts/scan-source.mjs /path/to/their-repo --out $OUT
 
-# 4. Look at the screenshots, re-rank the findings by what they cost this
-#    business, drop the ones I cannot demonstrate, then generate.
+# 5. Look at the screenshots, re-rank the findings by what they cost this
+#    business, drop the ones I cannot demonstrate, write $OUT/narrative.md
+#    (## Summary and ## Plan), then generate.
 node $SKILL/scripts/report.mjs --out $OUT \
   --site "Bloomfield Garden Centre" --url https://example.com --by "Owais Khan"
 ```
+
+That writes `report.html` (mine, with the evidence) and `report-client.html`
+(theirs, print to PDF and send). `TRIAGE.md` beside them records what I dropped
+and why, and never goes to the client.
 
 Useful flags: `--runs N` (median of N cold loads), `--profile mobile|desktop`
 or `--all-profiles`, `--timeout MS`, and `report.mjs --drop id1,id2` to remove

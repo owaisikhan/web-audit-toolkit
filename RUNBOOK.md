@@ -166,7 +166,30 @@ sed -i 's#"./schema"#"./schema.js"#' sqlGuard.js
 # then a small .mjs that imports it and prints allowed/blocked per case
 ```
 
-## 6. Generate
+## 6. Write the narrative, then generate
+
+The summary and the plan cannot be generated. Write them once in
+`$OUT/narrative.md` and every report picks them up, so you never paste the same
+prose into two files and watch them drift:
+
+```markdown
+## Summary
+
+Four or five sentences, plain language, no metric or tool names. What you
+looked at, the most important thing found, the counts, what to do first. Say
+whether anything suggests the site has been attacked, because that is the
+owner's first fear and leaving it unanswered makes them defensive.
+
+## Plan
+
+**This week** what and why.
+**Next** what and why.
+**Later, if worth it** what and why.
+**What we did not test** one honest paragraph. It scopes the next engagement
+better than any pitch.
+```
+
+Then:
 
 ```bash
 node $SKILL/scripts/report.mjs --out $OUT \
@@ -177,9 +200,20 @@ node $SKILL/scripts/report.mjs --out $OUT \
 ```
 
 `--drop` takes finding ids from the JSON. Use it for anything triage killed,
-and for duplicate ids repeated across pages — six near-identical cards is the
+and for duplicate ids repeated across pages. Six near-identical cards is the
 signature of a generated report and the technical reader will spot it. Collapse
 those into one hygiene entry you write yourself.
+
+This writes three files:
+
+| File | Who it is for |
+|---|---|
+| `report.html` | You. Evidence, measurement tables, reproduction commands. The worklist you fix from. |
+| `report-client.html` | Them. Same findings, banded by when you would act rather than by severity, with the apparatus removed. Print to PDF and send this one. |
+| `report.md` | Same content as `report.html`, for diffing and for pasting into email. |
+
+`TRIAGE.md` beside them records what you dropped and why. It is for you in six
+months, and it never goes to the client.
 
 ## 7. Finish the report by hand
 
@@ -190,12 +224,12 @@ worse than no report.** Read
 
 What always needs hand-work:
 
-- **The summary.** Four or five sentences, plain language, no metric names.
-  Say whether anything suggests the site has already been attacked — that is
-  the owner's first fear and leaving it unanswered makes them defensive.
-- **The plan.** A sequence with reasoning, not a repeat of the list.
-- **"What is working well."** Three to five true things. Costs nothing, and a
-  wholly negative report reads as a sales document.
+- **The summary and the plan**, written in `narrative.md` per step 6. If the
+  markers are still there, that file is missing or its headings are wrong, and
+  the run tells you which.
+- **"What is working well."** The collectors propose these. Check each one is
+  true of every page before it ships: a claim the findings contradict costs you
+  more than the positive gains.
 - **Findings the collectors cannot produce** — anything from the screenshots
   or from reading the code. Match the existing `<article class="finding …">`
   markup.
@@ -203,11 +237,8 @@ What always needs hand-work:
   engagement better than any pitch.
 
 ```bash
-grep -c TODO $OUT/report.html $OUT/report.md    # must be 0 before sending
+grep -c TODO $OUT/report.html $OUT/report-client.html $OUT/report.md   # all 0
 ```
-
-`report.md` is generated too. If you only finish the HTML, delete the markdown
-rather than shipping a half-written twin.
 
 ## 8. Look at the finished report
 

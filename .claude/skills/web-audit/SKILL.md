@@ -184,11 +184,45 @@ Being straight about the involved ones is what makes the quick ones credible.
 node $SKILL/scripts/report.mjs --out $OUT --site "Example Ltd" --url https://example.com
 ```
 
-It reads every JSON in the output directory and writes `report.html` (a
-self-contained page you can send or print to PDF) and `report.md`. Read
-`references/reporting.md` before you edit the generated text — the ordering,
-the tone, and what to leave out are the point of that file, and the generator
-only gives you a scaffold.
+It reads every JSON in the output directory and writes three files:
+
+| File | Who it is for |
+|---|---|
+| `report.html` | You. Every finding with its quoted evidence, the measurement tables, and the commands that reproduce them. This is the worklist you fix from. |
+| `report-client.html` | Them. The same findings and the same claims, banded by when you would act rather than by severity, with the evidence blocks, metric tables and reproduction commands removed. Print to PDF and send. |
+| `report.md` | The same content as `report.html`, for diffing and for pasting into email. |
+
+Read `references/reporting.md` before you edit the generated text. The
+ordering, the tone, and what to leave out are the point of that file, and the
+generator only gives you a scaffold.
+
+### Write the summary and the plan once
+
+Two sections cannot be generated: the summary and the sequenced plan. Put them
+in `narrative.md` in the output directory and every report picks them up:
+
+```markdown
+## Summary
+
+Four or five sentences, plain language, no metric or tool names. What you
+looked at, the most important thing you found, the counts, what to do first.
+Say whether anything suggests the site has been attacked.
+
+## Plan
+
+**This week** what and why.
+**Next** what and why.
+**Later, if worth it** what and why.
+**What we did not test** one honest line.
+```
+
+Then re-run `report.mjs`. Without the file, both reports carry TODO markers and
+the run tells you so. **A report that goes out with those markers still in it is
+worse than no report.**
+
+Drop findings you judged unreal in step 2 with `--drop id1,id2` rather than
+deleting them from the generated HTML by hand, so the next run stays correct.
+Record what you dropped and why in `TRIAGE.md` beside the JSON.
 
 **Always read the generated report end to end before it goes anywhere.** You
 are putting your name on it, and the generator does not know which of the

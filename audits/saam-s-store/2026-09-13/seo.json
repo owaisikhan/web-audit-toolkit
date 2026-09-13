@@ -1,7 +1,7 @@
 {
   "tool": "check-seo",
   "mode": "passive",
-  "collectedAt": "2026-09-13T12:41:57.491Z",
+  "collectedAt": "2026-09-13T12:57:32.702Z",
   "command": "node check-seo.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart",
   "urls": [
     "https://saam-s-store.vercel.app/",
@@ -398,7 +398,7 @@
       "severity": "medium",
       "category": "seo",
       "evidence": "No <h1> found on https://saam-s-store.vercel.app/cart. First heading is an <h3>: \"Shop\".",
-      "impact": "The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing — only the markup is read.",
+      "impact": "The main heading tells both a search engine and a screen-reader user what the page is about. Styling text to look like a heading is not the same thing, because only the markup is read.",
       "fix": "Mark the page’s main heading as `<h1>`. One per page.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/cart",
@@ -411,7 +411,7 @@
       "category": "seo",
       "evidence": "\"Saamj Store\" is the title of 3 pages:\n    https://saam-s-store.vercel.app/\n    https://saam-s-store.vercel.app/products/apple\n    https://saam-s-store.vercel.app/cart",
       "impact": "Search engines use the title to tell pages apart. When several are identical they compete with each other for the same searches, and the one that wins is not necessarily the one you would choose.",
-      "fix": "Give each page a title naming what is specific to it — the product, the category, the location — before the business name.",
+      "fix": "Give each page a title naming what is specific to it, such as the product, the category or the location, before the business name.",
       "effort": "moderate",
       "unconfirmed": false
     },
@@ -491,7 +491,7 @@
     "Every page is set up to display properly on phones.",
     "Every page declares the language it is written in.",
     "All 78 images we saw carry a text alternative.",
-    "Nothing on the site tells search engines to stay away — every page tested is free to be listed.",
+    "Nothing on the site tells search engines to stay away, so every page tested is free to be listed.",
     "All 30 internal links we followed resolved without an error or a redirect chain."
   ]
 }
