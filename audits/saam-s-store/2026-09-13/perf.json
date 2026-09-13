@@ -1,6 +1,6 @@
 {
   "tool": "collect-perf",
-  "collectedAt": "2026-09-13T14:13:03.645Z",
+  "collectedAt": "2026-09-13T14:28:42.859Z",
   "command": "node collect-perf.mjs https://saam-s-store.vercel.app/ https://saam-s-store.vercel.app/shop https://saam-s-store.vercel.app/products/apple https://saam-s-store.vercel.app/cart --runs 3 --all-profiles",
   "urls": [
     "https://saam-s-store.vercel.app/",
@@ -19,11 +19,11 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 2060,
-            "fcp": 1644,
-            "ttfb": 39.699999999953434,
-            "tbt": 179,
-            "cls": 0.0007,
+            "lcp": 2232,
+            "fcp": 1616,
+            "ttfb": 36.5999999998603,
+            "tbt": 163,
+            "cls": 0.0026,
             "rating": {
               "lcp": "good",
               "fcp": "good",
@@ -39,22 +39,22 @@
             "byKind": {
               "document": {
                 "count": 1,
-                "transfer": 14165,
+                "transfer": 14168,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 15,
-                "transfer": 254676,
+                "transfer": 254684,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 17,
-                "transfer": 406771,
+                "transfer": 406777,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
                 "count": 1,
-                "transfer": 11087,
+                "transfer": 11086,
                 "thirdPartyTransfer": 0
               },
               "font": {
@@ -64,12 +64,12 @@
               },
               "other": {
                 "count": 21,
-                "transfer": 18039,
+                "transfer": 17939,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 58,
-            "totalTransfer": 796097,
+            "totalTransfer": 796013,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -80,7 +80,7 @@
               "title": "3 web font file(s), 89 kB, text hidden while they load",
               "severity": "low",
               "category": "performance",
-              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2: 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2: 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2: 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "evidence": "https://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2: 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2: 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2: 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
               "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
               "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
               "effort": "quick",
@@ -91,9 +91,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 704,
-            "fcp": 528,
-            "ttfb": 37,
+            "lcp": 584,
+            "fcp": 584,
+            "ttfb": 36.799999999813735,
             "tbt": 0,
             "cls": 0.0005,
             "rating": {
@@ -121,27 +121,27 @@
               },
               "image": {
                 "count": 22,
-                "transfer": 616296,
+                "transfer": 616318,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 15,
-                "transfer": 254554,
+                "transfer": 254639,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 3,
-                "transfer": 91348,
+                "transfer": 91351,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 25,
-                "transfer": 16324,
+                "transfer": 15313,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 67,
-            "totalTransfer": 1003775,
+            "totalTransfer": 1002874,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -168,16 +168,16 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 1844,
-            "fcp": 1608,
-            "ttfb": 34.90000000002328,
-            "tbt": 202,
+            "lcp": 1656,
+            "fcp": 1624,
+            "ttfb": 38,
+            "tbt": 173,
             "cls": 0.0003,
             "rating": {
               "lcp": "good",
               "fcp": "good",
               "ttfb": "good",
-              "tbt": "needs-work",
+              "tbt": "good",
               "cls": "good"
             },
             "runs": 3,
@@ -188,54 +188,42 @@
             "byKind": {
               "script": {
                 "count": 17,
-                "transfer": 258821,
+                "transfer": 258809,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 24,
-                "transfer": 402352,
+                "transfer": 402513,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
                 "count": 1,
-                "transfer": 11036,
+                "transfer": 11069,
                 "thirdPartyTransfer": 0
               },
               "document": {
                 "count": 1,
-                "transfer": 15531,
+                "transfer": 15530,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 1,
-                "transfer": 37817,
+                "transfer": 37785,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 53,
-                "transfer": 36736,
+                "transfer": 37224,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 97,
-            "totalTransfer": 762293,
+            "totalTransfer": 762930,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
           "lcpElement": null,
           "findings": [
-            {
-              "id": "perf-tbt-mobile",
-              "title": "Page freezes while scripts run (TBT 202 ms)",
-              "severity": "medium",
-              "category": "performance",
-              "evidence": "TBT 202 ms, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-              "impact": "The page is unresponsive to taps and clicks for about 202 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
-              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
-              "effort": "quick",
-              "url": "https://saam-s-store.vercel.app/shop",
-              "unconfirmed": false
-            },
             {
               "id": "perf-fonts",
               "title": "1 web font file(s), 37 kB, text hidden while they load",
@@ -252,9 +240,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 1272,
-            "fcp": 636,
-            "ttfb": 43.199999999953434,
+            "lcp": 1184,
+            "fcp": 572,
+            "ttfb": 39.5,
             "tbt": 0,
             "cls": 0,
             "rating": {
@@ -270,39 +258,39 @@
           },
           "resourceSummary": {
             "byKind": {
+              "image": {
+                "count": 36,
+                "transfer": 345955,
+                "thirdPartyTransfer": 0
+              },
               "font": {
                 "count": 1,
                 "transfer": 37817,
                 "thirdPartyTransfer": 0
               },
-              "image": {
-                "count": 36,
-                "transfer": 345999,
-                "thirdPartyTransfer": 0
-              },
               "stylesheet": {
                 "count": 1,
-                "transfer": 11035,
+                "transfer": 11037,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 17,
-                "transfer": 258836,
+                "transfer": 258890,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 65,
-                "transfer": 23711,
+                "transfer": 19247,
                 "thirdPartyTransfer": 0
               },
               "document": {
                 "count": 1,
-                "transfer": 15607,
+                "transfer": 15447,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 121,
-            "totalTransfer": 693005,
+            "totalTransfer": 688393,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -329,11 +317,11 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 2168,
-            "fcp": 1560,
-            "ttfb": 38.09999999997672,
-            "tbt": 154,
-            "cls": 0.001,
+            "lcp": 1760,
+            "fcp": 1520,
+            "ttfb": 36,
+            "tbt": 166,
+            "cls": 0,
             "rating": {
               "lcp": "good",
               "fcp": "good",
@@ -349,37 +337,37 @@
             "byKind": {
               "script": {
                 "count": 17,
-                "transfer": 259363,
+                "transfer": 259460,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 7,
-                "transfer": 44286,
-                "thirdPartyTransfer": 0
-              },
-              "stylesheet": {
-                "count": 1,
-                "transfer": 11068,
+                "transfer": 44366,
                 "thirdPartyTransfer": 0
               },
               "document": {
                 "count": 1,
-                "transfer": 10231,
+                "transfer": 10230,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11037,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 1,
-                "transfer": 37785,
+                "transfer": 37817,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 20,
-                "transfer": 17554,
+                "transfer": 16796,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 47,
-            "totalTransfer": 380287,
+            "totalTransfer": 379706,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -401,9 +389,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 996,
-            "fcp": 576,
-            "ttfb": 44.90000000002328,
+            "lcp": 1136,
+            "fcp": 488,
+            "ttfb": 37.10000000009313,
             "tbt": 0,
             "cls": 0,
             "rating": {
@@ -419,6 +407,11 @@
           },
           "resourceSummary": {
             "byKind": {
+              "stylesheet": {
+                "count": 1,
+                "transfer": 11037,
+                "thirdPartyTransfer": 0
+              },
               "font": {
                 "count": 1,
                 "transfer": 37817,
@@ -426,22 +419,17 @@
               },
               "image": {
                 "count": 7,
-                "transfer": 30421,
-                "thirdPartyTransfer": 0
-              },
-              "stylesheet": {
-                "count": 1,
-                "transfer": 11037,
+                "transfer": 30428,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 17,
-                "transfer": 259427,
+                "transfer": 259441,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 22,
-                "transfer": 15688,
+                "transfer": 15136,
                 "thirdPartyTransfer": 0
               },
               "document": {
@@ -451,7 +439,7 @@
               }
             },
             "totalRequests": 49,
-            "totalTransfer": 364621,
+            "totalTransfer": 364090,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -478,10 +466,10 @@
       "profiles": {
         "mobile": {
           "metrics": {
-            "lcp": 2856,
-            "fcp": 1404,
-            "ttfb": 37.90000000002328,
-            "tbt": 162,
+            "lcp": 2692,
+            "fcp": 1284,
+            "ttfb": 38.200000000186265,
+            "tbt": 161,
             "cls": 0.0001,
             "rating": {
               "lcp": "needs-work",
@@ -498,37 +486,37 @@
             "byKind": {
               "document": {
                 "count": 1,
-                "transfer": 5090,
+                "transfer": 5079,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 16,
-                "transfer": 257086,
+                "transfer": 257100,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
                 "count": 1,
-                "transfer": 11062,
+                "transfer": 11036,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 1,
-                "transfer": 37785,
+                "transfer": 37810,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 2,
-                "transfer": 7747,
+                "transfer": 7752,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 18,
-                "transfer": 17305,
+                "transfer": 16486,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 39,
-            "totalTransfer": 336075,
+            "totalTransfer": 335263,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -536,11 +524,11 @@
           "findings": [
             {
               "id": "perf-lcp-mobile",
-              "title": "Main content takes too long to appear (LCP 2.86 s)",
+              "title": "Main content takes too long to appear (LCP 2.69 s)",
               "severity": "medium",
               "category": "performance",
-              "evidence": "LCP 2.86 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
-              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.86 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "evidence": "LCP 2.69 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.69 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
               "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
               "effort": "quick",
               "url": "https://saam-s-store.vercel.app/cart",
@@ -562,9 +550,9 @@
         },
         "desktop": {
           "metrics": {
-            "lcp": 924,
-            "fcp": 760,
-            "ttfb": 35.59999999997672,
+            "lcp": 608,
+            "fcp": 456,
+            "ttfb": 37.300000000046566,
             "tbt": 0,
             "cls": 0.0005,
             "rating": {
@@ -582,37 +570,37 @@
             "byKind": {
               "document": {
                 "count": 1,
-                "transfer": 5082,
+                "transfer": 5081,
                 "thirdPartyTransfer": 0
               },
               "stylesheet": {
                 "count": 1,
-                "transfer": 11062,
+                "transfer": 11036,
                 "thirdPartyTransfer": 0
               },
               "font": {
                 "count": 1,
-                "transfer": 37784,
+                "transfer": 37810,
                 "thirdPartyTransfer": 0
               },
               "script": {
                 "count": 16,
-                "transfer": 257121,
+                "transfer": 257070,
                 "thirdPartyTransfer": 0
               },
               "image": {
                 "count": 2,
-                "transfer": 5110,
+                "transfer": 5045,
                 "thirdPartyTransfer": 0
               },
               "other": {
                 "count": 18,
-                "transfer": 15694,
+                "transfer": 15120,
                 "thirdPartyTransfer": 0
               }
             },
             "totalRequests": 39,
-            "totalTransfer": 331853,
+            "totalTransfer": 331162,
             "thirdPartyTransfer": 0,
             "thirdPartyHosts": []
           },
@@ -637,24 +625,12 @@
   ],
   "findings": [
     {
-      "id": "perf-tbt-mobile",
-      "title": "Page freezes while scripts run (TBT 202 ms)",
-      "severity": "medium",
-      "category": "performance",
-      "evidence": "TBT 202 ms, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
-      "impact": "The page is unresponsive to taps and clicks for about 202 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
-      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
-      "effort": "quick",
-      "url": "https://saam-s-store.vercel.app/shop",
-      "unconfirmed": false
-    },
-    {
       "id": "perf-lcp-mobile",
-      "title": "Main content takes too long to appear (LCP 2.86 s)",
+      "title": "Main content takes too long to appear (LCP 2.69 s)",
       "severity": "medium",
       "category": "performance",
-      "evidence": "LCP 2.86 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
-      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.86 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "evidence": "LCP 2.69 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.69 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
       "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
       "effort": "quick",
       "url": "https://saam-s-store.vercel.app/cart",
@@ -665,7 +641,7 @@
       "title": "3 web font file(s), 89 kB, text hidden while they load",
       "severity": "low",
       "category": "performance",
-      "evidence": "https://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2: 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2: 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2: 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "evidence": "https://saam-s-store.vercel.app/_next/static/media/ccee61546c0358b7-s.42l_3z3944ji5.woff2: 17 kB\nhttps://saam-s-store.vercel.app/_next/static/media/ce62453a442c7f35-s.p.0a0h245ktd4x0.woff2: 37 kB\nhttps://saam-s-store.vercel.app/_next/static/media/fad568eea626db0e-s.0fd-fjxmcxcjd.woff2: 36 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
       "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
       "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
       "effort": "quick",

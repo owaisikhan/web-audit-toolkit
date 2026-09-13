@@ -17,14 +17,14 @@ In total: 3 medium and 10 low-severity items, plus 2 observations. Nothing sugge
 
 ## What we measured
 
-- `https://saam-s-store.vercel.app/` (mobile): LCP 2.06 s, CLS 0.001, TBT 179 ms, TTFB 40 ms, 777 kB over 58 requests
-- `https://saam-s-store.vercel.app/` (desktop): LCP 704 ms, CLS 0.001, TBT 0 ms, TTFB 37 ms, 980 kB over 67 requests
-- `https://saam-s-store.vercel.app/shop` (mobile): LCP 1.84 s, CLS 0.000, TBT 202 ms, TTFB 35 ms, 744 kB over 97 requests
-- `https://saam-s-store.vercel.app/shop` (desktop): LCP 1.27 s, CLS 0.000, TBT 0 ms, TTFB 43 ms, 677 kB over 121 requests
-- `https://saam-s-store.vercel.app/products/apple` (mobile): LCP 2.17 s, CLS 0.001, TBT 154 ms, TTFB 38 ms, 371 kB over 47 requests
-- `https://saam-s-store.vercel.app/products/apple` (desktop): LCP 996 ms, CLS 0.000, TBT 0 ms, TTFB 45 ms, 356 kB over 49 requests
-- `https://saam-s-store.vercel.app/cart` (mobile): LCP 2.86 s, CLS 0.000, TBT 162 ms, TTFB 38 ms, 328 kB over 39 requests
-- `https://saam-s-store.vercel.app/cart` (desktop): LCP 924 ms, CLS 0.001, TBT 0 ms, TTFB 36 ms, 324 kB over 39 requests
+- `https://saam-s-store.vercel.app/` (mobile): LCP 2.23 s, CLS 0.003, TBT 163 ms, TTFB 37 ms, 777 kB over 58 requests
+- `https://saam-s-store.vercel.app/` (desktop): LCP 584 ms, CLS 0.001, TBT 0 ms, TTFB 37 ms, 979 kB over 67 requests
+- `https://saam-s-store.vercel.app/shop` (mobile): LCP 1.66 s, CLS 0.000, TBT 173 ms, TTFB 38 ms, 745 kB over 97 requests
+- `https://saam-s-store.vercel.app/shop` (desktop): LCP 1.18 s, CLS 0.000, TBT 0 ms, TTFB 40 ms, 672 kB over 121 requests
+- `https://saam-s-store.vercel.app/products/apple` (mobile): LCP 1.76 s, CLS 0.000, TBT 166 ms, TTFB 36 ms, 371 kB over 47 requests
+- `https://saam-s-store.vercel.app/products/apple` (desktop): LCP 1.14 s, CLS 0.000, TBT 0 ms, TTFB 37 ms, 356 kB over 49 requests
+- `https://saam-s-store.vercel.app/cart` (mobile): LCP 2.69 s, CLS 0.000, TBT 161 ms, TTFB 38 ms, 327 kB over 39 requests
+- `https://saam-s-store.vercel.app/cart` (desktop): LCP 608 ms, CLS 0.001, TBT 0 ms, TTFB 37 ms, 323 kB over 39 requests
 
 ## What is working well
 
@@ -41,15 +41,15 @@ In total: 3 medium and 10 low-severity items, plus 2 observations. Nothing sugge
 
 ## Findings
 
-### Main content takes too long to appear (LCP 2.86 s)  
+### Main content takes too long to appear (LCP 2.69 s)  
 `[Medium · Quick fix]`
 
 **What we found.**
 ```
-LCP 2.86 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for "good" is 2.50 s.
+LCP 2.69 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for "good" is 2.50 s.
 ```
 
-**Why it matters.** On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.86 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.
+**Why it matters.** On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.69 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.
 
 **How to fix it.** Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.
 
@@ -87,9 +87,9 @@ No <h1> found on https://saam-s-store.vercel.app/cart. First heading is an <h3>:
 
 **Next** the fonts. Three font files totalling 89 kB currently hide text while they load, which is why the first moment of each page feels blank on a phone. One line of CSS changes that, and it is the cheapest visible improvement on the list.
 
-**Worth doing, not urgent** the cart's load time on mobile, at 2.86 seconds the one page outside Google's good range; the sharing tags that currently make links posted to WhatsApp or Facebook appear as bare addresses; and the four standard security headers that are not set. None of these is costing customers today.
+**Worth doing, not urgent** the cart's load time on mobile, at 2.69 seconds the one page outside Google's good range; the sharing tags that currently make links posted to WhatsApp or Facebook appear as bare addresses; and the four standard security headers that are not set. None of these is costing customers today.
 
-**What we did not test** only public pages, as an anonymous visitor. We did not sign in, so the account and checkout flows are untested, and that is where most of the code lives. We did not review the source code in this pass. On screen sizes, we measured two: a 412 pixel phone and a 1440 pixel desktop. Tablets and the widths in between were not measured, and the desktop figures assume a fast connection, so they are a best case rather than a typical one. Two limits come from where the audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details our tools recorded were the proxy's and have been removed; and this machine's processor is shared, which inflates one measure of script-blocking time, so four such findings were set aside after confirming the site serves byte-for-byte identical JavaScript to earlier runs today.
+**What we did not test** only public pages, as an anonymous visitor. We did not sign in, so the account and checkout flows are untested, and that is where most of the code lives. We did not review the source code in this pass. On screen sizes, we measured two: a 412 pixel phone and a 1440 pixel desktop. Tablets and the widths in between were not measured, and the desktop figures assume a fast connection, so they are a best case rather than a typical one. Two limits come from where the audit ran rather than from the site: the connection passed through an inspecting proxy, so the certificate details our tools recorded were the proxy's and have been removed; and this machine's processor is shared, which inflates one measure of script-blocking time. Findings of that kind were set aside after measuring the same pages five times against byte-for-byte identical JavaScript and watching the figure swing by a factor of two.
 
 ## Appendix: hygiene
 

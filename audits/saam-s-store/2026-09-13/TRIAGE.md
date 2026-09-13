@@ -13,7 +13,7 @@ could not see three days ago?
 
 | Dropped | Grounds |
 |---|---|
-| `perf-tbt-mobile`, "Page freezes while scripts run" | **Measurement artifact, not a site regression.** TBT roughly doubled against 10 September (155 to 244, 141 to 283, 142 to 252, 136 to 250) while the site served byte-identical JavaScript: same script count, same script bytes, same total transfer on all four pages. LCP, CLS and TTFB are flat across the same interval. Measured four times on 13 September against a byte-identical payload every time, it drifted across a 136-327 ms range and then swung back: the home page read 262, 327, 244 and finally 179; the shop 290, 274, 283 and 202. On the last run only one page crossed the 200 ms threshold at all, and by 2 ms. That is noise, not a trend. Dropped via `--drop perf-tbt-mobile`, per the rule now written into `README.md`. |
+| `perf-tbt-mobile`, "Page freezes while scripts run" | **Measurement artifact, not a site regression. The final run produced none at all, so nothing was dropped from the shipped report.** TBT roughly doubled against 10 September (155 to 244, 141 to 283, 142 to 252, 136 to 250) while the site served byte-identical JavaScript: same script count, same script bytes, same total transfer on all four pages. LCP, CLS and TTFB are flat across the same interval. Measured five times on 13 September against a byte-identical payload every time, it swung by a factor of two. The home page read 262, 327, 244, 179 and 163; the shop 290, 274, 283, 202 and 173, against 155 and 141 on 10 September. The fourth run crossed the 200 ms threshold on one page by 2 ms; the fifth crossed it nowhere. Same site, same JavaScript, same day. That is the machine, not the shop. Dropped via `--drop perf-tbt-mobile`, per the rule now written into `README.md`. |
 | "The HTTPS certificate is valid for another 30 days." | Recorded issuer is `Anthropic`, the sandbox's intercepting proxy, not the site's CA. `README.md` says to discard every certificate and expiry finding when this happens. |
 
 The three contradictory positives this run originally produced, claiming every
@@ -96,6 +96,28 @@ Two things changed as a result:
 
 Nothing else moved: the security findings are unchanged for the third run
 running, and the site's script payload is byte-identical to both earlier runs.
+
+## Seen once, not reported
+
+The phone screenshot of `/products/apple` in an earlier capture showed
+**"Product Not Loading. We couldn't load this product. Please try again."**
+The desktop capture of the same page on the same run rendered the product
+normally, with the price, the stock line and the add-to-cart control.
+
+It does not reproduce. Six deliberate loads of that URL on the same phone
+profile, three throttled to 4x CPU and 4G and three unthrottled, checked at
+three seconds and at twelve: the error appeared in none and the price rendered
+in all six. A further full collection run captured the page normally, and that
+is the screenshot the report carries.
+
+It is not a capture-timing artifact either. The collector waits for `load`,
+then for network idle up to fifteen seconds, then a further 1.5 seconds, so the
+error was genuinely on screen long after the page had settled.
+
+One unreproducible occurrence is not a finding and it is not in the report. It
+is recorded here because an intermittent failure of the product data fetch on a
+shop's product page costs sales silently and shows up in no metric. Worth
+watching on the next run rather than raising now.
 
 ## Method note
 

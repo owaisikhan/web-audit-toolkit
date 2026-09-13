@@ -42,7 +42,7 @@ they load, which is why the first moment of each page feels blank on a phone.
 One line of CSS changes that, and it is the cheapest visible improvement on the
 list.
 
-**Worth doing, not urgent** the cart's load time on mobile, at 2.86 seconds the
+**Worth doing, not urgent** the cart's load time on mobile, at 2.69 seconds the
 one page outside Google's good range; the sharing tags that currently make
 links posted to WhatsApp or Facebook appear as bare addresses; and the four
 standard security headers that are not set. None of these is costing customers
@@ -57,6 +57,6 @@ connection, so they are a best case rather than a typical one. Two limits
 come from where the audit ran rather than from the site: the connection passed
 through an inspecting proxy, so the certificate details our tools recorded were
 the proxy's and have been removed; and this machine's processor is shared,
-which inflates one measure of script-blocking time, so four such findings were
-set aside after confirming the site serves byte-for-byte identical JavaScript
-to earlier runs today.
+which inflates one measure of script-blocking time. Findings of that kind were
+set aside after measuring the same pages five times against byte-for-byte
+identical JavaScript and watching the figure swing by a factor of two.

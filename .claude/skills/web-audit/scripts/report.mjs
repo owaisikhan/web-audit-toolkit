@@ -371,8 +371,8 @@ footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
   letter-spacing:.08em; text-transform:uppercase; color:var(--soft);
   margin:1.5rem 0 .6rem; }
 .shots-client { display:grid; gap:1rem; margin:0 0 .5rem; }
-.shots-client.tall { grid-template-columns:repeat(auto-fill, minmax(138px,1fr)); }
-.shots-client.wide { grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); }
+.shots-client.tall { grid-template-columns:repeat(auto-fill, minmax(124px,1fr)); }
+.shots-client.wide { grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); }
 .shots-client figure { margin:0; break-inside:avoid; }
 .shots-client img { width:100%; display:block; border:1px solid var(--line);
   border-radius:4px; object-fit:cover; object-position:top center; }
