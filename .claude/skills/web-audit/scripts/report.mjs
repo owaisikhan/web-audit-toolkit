@@ -129,15 +129,18 @@ td.num { text-align: right; font-variant-numeric: tabular-nums; white-space: now
 .rate.poor { color: var(--critical); }
 .rate::before { content: "● "; font-size: .8em; }
 
-.shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem; margin-bottom: 1.5rem; }
-.shots figure { margin: 0; }
-.shots img { width: 100%; height: auto; border: 1px solid var(--line); border-radius: 6px;
-  background: var(--panel); display: block; }
-.shots figcaption { font-size: .8rem; color: var(--muted); margin-top: .4rem;
-  word-break: break-word; }
-.shots figcaption span { display: block; font-size: .74rem; text-transform: uppercase;
-  letter-spacing: .05em; }
+.shots-label { font-size: .74rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); font-weight: 600; margin: 1.2rem 0 .5rem; }
+.shots { display: grid; gap: .9rem; margin-bottom: 1.2rem; }
+.shots.tall { grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); }
+.shots.wide { grid-template-columns: repeat(auto-fill, minmax(248px, 1fr)); }
+.shots figure { margin: 0; break-inside: avoid; }
+.shots img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--panel); object-fit: cover; object-position: top center; }
+.shots.tall img { aspect-ratio: 9 / 16; }
+.shots.wide img { aspect-ratio: 16 / 10; }
+.shots figcaption { font-size: .78rem; color: var(--muted); margin-top: .35rem;
+  word-break: break-word; line-height: 1.35; }
 
 .good-list { background: var(--good-bg); border-radius: 10px; padding: 1.1rem 1.4rem 1.1rem 2.6rem;
   margin-bottom: 1.5rem; }
@@ -244,12 +247,34 @@ function screenshots(parts, outDir) {
   return out;
 }
 
-function shotsHtml(shots, cls) {
+/**
+ * One grid per profile, never mixed.
+ *
+ * A phone capture is 412x915 and a desktop one 1440x900. Put them in the same
+ * grid and every tile takes its own aspect ratio, so rows go ragged and the
+ * tall ones leave a column of dead space beside the short ones. Grouping by
+ * profile lets each grid pick a column width and a fixed aspect ratio that
+ * suits its shape, which is what makes the rows line up.
+ *
+ * The images are cropped to that ratio from the top rather than letterboxed:
+ * the top of the page is the part being evidenced, and a uniform tile is
+ * easier to scan than a faithful one.
+ */
+function shotsHtml(shots, prefix = 'shots') {
   if (!shots.length) return '';
-  return `<div class="${cls}">` + shots.map((s) => `<figure>
-  <img src="${s.src}" alt="${esc(s.url)} as it appears on ${esc(s.label)}" loading="lazy">
-  <figcaption>${esc(s.url.replace(/^https?:\/\/[^/]+/, '') || '/')} <span>${esc(s.label)}</span></figcaption>
-</figure>`).join('') + '</div>';
+  const order = ['mobile', 'desktop'];
+  const groups = [...new Set(shots.map((s) => s.profile))]
+    .sort((a, b) => (order.indexOf(a) + 1 || 99) - (order.indexOf(b) + 1 || 99));
+  return groups.map((profile) => {
+    const inGroup = shots.filter((s) => s.profile === profile);
+    const label = inGroup[0].label;
+    const shape = profile === 'mobile' ? 'tall' : 'wide';
+    return `<p class="${prefix}-label">${esc(label)}</p>
+<div class="${prefix} ${shape}">${inGroup.map((s) => `<figure>
+  <img src="${s.src}" alt="${esc(s.url)} as it appeared on ${esc(label)}" loading="lazy">
+  <figcaption>${esc(s.url.replace(/^https?:\/\/[^/]+/, '') || '/')}</figcaption>
+</figure>`).join('')}</div>`;
+  }).join('\n');
 }
 
 /* ------------------------------------------------------- the written parts */
@@ -342,14 +367,19 @@ code { font:.88em ui-monospace,Menlo,Consolas,monospace; background:#f2ede4;
 .plan p { margin-bottom:1.1rem; }
 footer { margin-top:4rem; padding-top:1.5rem; border-top:1px solid var(--line);
   color:var(--soft); font-size:.9rem; }
-.shots-client { display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
-  gap:1.2rem; margin:1.5rem 0 0; }
-.shots-client figure { margin:0; }
-.shots-client img { width:100%; height:auto; border:1px solid var(--line);
-  border-radius:4px; display:block; }
-.shots-client figcaption { font:.85rem/1.4 ui-sans-serif,system-ui,sans-serif;
-  color:var(--soft); margin-top:.45rem; word-break:break-word; }
-.shots-client figcaption span { display:block; font-size:.75rem; }
+.shots-client-label { font:600 .75rem/1 ui-sans-serif,system-ui,sans-serif;
+  letter-spacing:.08em; text-transform:uppercase; color:var(--soft);
+  margin:1.5rem 0 .6rem; }
+.shots-client { display:grid; gap:1rem; margin:0 0 .5rem; }
+.shots-client.tall { grid-template-columns:repeat(auto-fill, minmax(138px,1fr)); }
+.shots-client.wide { grid-template-columns:repeat(auto-fill, minmax(250px,1fr)); }
+.shots-client figure { margin:0; break-inside:avoid; }
+.shots-client img { width:100%; display:block; border:1px solid var(--line);
+  border-radius:4px; object-fit:cover; object-position:top center; }
+.shots-client.tall img { aspect-ratio: 9 / 16; }
+.shots-client.wide img { aspect-ratio: 16 / 10; }
+.shots-client figcaption { font:.8rem/1.35 ui-sans-serif,system-ui,sans-serif;
+  color:var(--soft); margin-top:.4rem; word-break:break-word; }
 @media print { body { background:#fff; } .wrap { padding:0; max-width:none; } h2 { break-after:avoid; } .item { break-inside:avoid; } }
 @media (max-width:480px) { .wrap { padding:2rem 1rem 3rem; } h1 { font-size:1.6rem; } }
 `;
@@ -401,7 +431,11 @@ function main() {
   const shots = screenshots(parts, outDir);
   // The client edition gets the phone view only. It is the one an owner
   // recognises, and two of every page is a slideshow rather than evidence.
-  const clientShots = shots.filter((s) => s.profile === 'mobile');
+  // Both profiles, because the summary says both were tested and showing only
+  // one invites the obvious question. "Moto G-class Android, 4G" is the right
+  // label on your copy and jargon on theirs, so the captions differ.
+  const PLAIN = { mobile: 'On a phone', desktop: 'On a laptop or desktop' };
+  const clientShots = shots.map((s) => ({ ...s, label: PLAIN[s.profile] || s.label }));
 
   const narrative = loadNarrative(outDir);
   const summaryHtml = narrative?.summary.length
