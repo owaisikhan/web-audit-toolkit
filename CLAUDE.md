@@ -99,10 +99,18 @@ them cold.
 
 ## House style
 
-**No em dashes in anything you write or edit.** Restructure the sentence rather
-than swapping the dash for a comma: a colon, a full stop or a subordinate clause
-almost always reads better than the dash did. Numeric ranges take a hyphen
-(`136-155 ms`).
+**Never use an em dash to break a sentence.** This is the one that reads as
+machine-written:
+
+> The site is fast — faster than most shops we see — but nothing links to it.
+
+Restructure instead of swapping the dash for a comma. A colon, a full stop, or
+turning the fragment into a proper clause almost always reads better than the
+dash did.
+
+This is about the em dash (`—`) used mid-sentence, nothing else. En dashes in
+number ranges (`136–155 ms`, `2010–2015`) are correct and stay. So do hyphens
+in compound words, and arrows in a redirect chain.
 
 Enforced today in `CLAUDE.md`, `README.md`, `RUNBOOK.md`, and every string in
 `scripts/` that reaches a report. The reference docs under

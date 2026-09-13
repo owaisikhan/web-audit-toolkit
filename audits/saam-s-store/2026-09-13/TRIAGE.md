@@ -1,8 +1,8 @@
-# Saam's Store — triage notes, 2026-09-13
+# Saam's Store: triage notes, 2026-09-13
 
 Live half only, passive. `collect-perf`, `check-headers` and `check-seo` against
-the same four URLs as the 10 September run. `scan-source` was not re-run — no
-repo in hand this session, so the two source findings from 10 September stand
+the same four URLs as the 10 September run. `scan-source` was not re-run, as no
+repo was in hand this session, so the two source findings from 10 September stand
 unchanged and are not repeated here.
 
 This run exists mainly to answer a question about the toolkit rather than the
@@ -14,11 +14,11 @@ could not see three days ago?
 | Dropped | Grounds |
 |---|---|
 | `perf-tbt-mobile` × 4, "Page freezes while scripts run", 244-283 ms | **Measurement artifact, not a site regression.** TBT roughly doubled against 10 September (155 to 244, 141 to 283, 142 to 252, 136 to 250) while the site served byte-identical JavaScript: same script count, same script bytes, same total transfer on all four pages. LCP, CLS and TTFB are flat across the same interval. Measured three times on 13 September it drifted within a 244-327 band against an identical payload every time (262/327/244, 290/274/283, 250/281/252, 263/272/250), which is noise rather than a trend. Dropped via `--drop perf-tbt-mobile`, per the rule now written into `README.md`. |
-| "The HTTPS certificate is valid for another 30 days." | Recorded issuer is `Anthropic` — the sandbox's intercepting proxy, not the site's CA. `README.md` says to discard every certificate and expiry finding when this happens. |
+| "The HTTPS certificate is valid for another 30 days." | Recorded issuer is `Anthropic`, the sandbox's intercepting proxy, not the site's CA. `README.md` says to discard every certificate and expiry finding when this happens. |
 
-The three contradictory positives this run originally produced — claiming every
+The three contradictory positives this run originally produced, claiming every
 page had a title, a description and one main heading while the findings said
-otherwise — are gone at source. `check-seo.mjs` now computes positives across
+otherwise, are gone at source. `check-seo.mjs` now computes positives across
 the corpus as the absence of the matching failure, so they can no longer
 contradict the findings beside them. Nothing had to be removed by hand this
 time except the certificate line above, which is an environment artifact rather
@@ -39,7 +39,7 @@ one finding: **the home page, `/products/apple` and `/cart` all carry the title
 "Saamj Store" and the same description.** On a shop, a product page that is
 indistinguishable from the cart is a real cost, and it is a template fix.
 
-## Toolkit comparison — 10 Sep vs 13 Sep
+## Toolkit comparison: 10 Sep vs 13 Sep
 
 **Better.**
 
@@ -60,16 +60,16 @@ indistinguishable from the cart is a real cost, and it is a template fix.
 same day; they are recorded because the first pass of this run shipped with
 them, and because the failure modes are worth recognising again.
 
-- Merging positives across collectors in `report.mjs` was the right fix — SEO
-  positives had been silently dropped — but it surfaced a latent bug in
+- Merging positives across collectors in `report.mjs` was the right fix, since
+  SEO positives had been silently dropped, but it surfaced a latent bug in
   `check-seo.mjs`, which gathered positives per page and unioned them while
   findings are per corpus. One passing page emitted a site-wide claim another
   page's failure contradicted. Fixed: positives are now computed across the
   corpus as the absence of the matching failure.
 - `collect-perf.mjs` wrote its reproduction command as
   `--profile ${profiles.join(',')}`, producing `--profile mobile,desktop`,
-  which the same script rejects as `unknown profile` — a command it could not
-  run, printed in the report's "how to reproduce" appendix. The 10 September
+  which the same script rejects as `unknown profile`. It was a command it could
+  not run, printed in the report's "how to reproduce" appendix. The 10 September
   report has it hand-corrected to `--all-profiles`, so this had been hit before
   and patched at the symptom. Fixed at source; verified by feeding the recorded
   command back to the script.

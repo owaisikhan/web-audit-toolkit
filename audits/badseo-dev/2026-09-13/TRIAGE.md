@@ -1,4 +1,4 @@
-# Triage — badseo.dev, 13 September 2026
+# Triage: badseo.dev, 13 September 2026
 
 Passive only. No permission was sought or needed: `check-seo.mjs` and
 `check-headers.mjs` make ordinary visitor requests, and badseo.dev is a public
@@ -14,13 +14,13 @@ engine caught and which it walked past.
 
 | Dropped | Grounds |
 |---|---|
-| "The HTTPS certificate is valid for another 30 days." | The recorded issuer is `Anthropic` — the sandbox's intercepting proxy, not the site's CA. `README.md` says to discard every certificate and expiry finding when this happens. Removed by hand from `report.html` and `report.md`; left intact in `security.json`, which is raw evidence. |
+| "The HTTPS certificate is valid for another 30 days." | The recorded issuer is `Anthropic`, the sandbox's intercepting proxy, not the site's CA. `README.md` says to discard every certificate and expiry finding when this happens. Removed by hand from `report.html` and `report.md`; left intact in `security.json`, which is raw evidence. |
 | "Page titles are present and sized to display fully in search results." | Contradicted by a finding in the same report (`seo-title-missing`, High). |
 | "Pages carry their own search-result descriptions." | Contradicted by `seo-meta-description-missing`. |
 | "Each page has exactly one main heading." | Contradicted by `seo-h1-missing` and `seo-h1-multiple`. |
 | "Every image carries a text alternative." | Contradicted by `seo-images-missing-alt`. |
 
-The last four are one bug, not four judgement calls — see below. Nothing was
+The last four are one bug, not four judgement calls. See below. Nothing was
 dropped from the findings list: every finding in the report was reproduced and
 is true of the page it names.
 
@@ -32,7 +32,7 @@ is true of the page it names.
   dozen words each. Correct, `info`, and flagged `unconfirmed` by the
   collector, which is the right handling.
 - **`Plain HTTP is served without redirecting to HTTPS`** is the one finding
-  here that does not look planted — the fixture's taxonomy is entirely SEO.
+  here that does not look planted, since the fixture's taxonomy is entirely SEO.
   Verified independently: `curl -I http://badseo.dev/` returns `HTTP/1.1 200`
   with no redirect. Kept as High.
 
@@ -54,7 +54,7 @@ triage decisions, and they are the actual product of this run:
    canonical looked like a self-reference.
 3. **HTTP status is collected but never judged.** `collectPage` records
    `status` and it is written to `seo.json`, but no rule in `analysePage` reads
-   it — only `loadError`. `/status/not-found` (404), `/status/server-error`
+   it, only `loadError`. `/status/not-found` (404), `/status/server-error`
    (500) and `/status/blocked` (403) each produced nothing.
 4. **No check exists** for orphan pages, pages with no outgoing links, or
    duplicate body content. `references/seo.md` documents orphan detection as
@@ -68,7 +68,7 @@ then contradicts in the same document.
 And one characterisation worth knowing rather than fixing: **link-checking
 results depend sharply on the input URL list.** Feeding all 33 sitemap URLs left
 only 3 links to follow, because every other candidate was already an input and
-therefore in `seen` — that run found the redirect loop and chain but missed the
+therefore in `seen`. That run found the redirect loop and chain but missed the
 broken internal link. Feeding only two pages found the broken link and missed
 the loop.
 

@@ -21,7 +21,7 @@ defensible; `LCP 5.9 s` is an invitation to be contradicted.
 
 **Cold cache, every run.** The collector uses a fresh browser context per run
 so nothing is served from disk cache. A repeat-visit number is a different,
-also-useful measurement — but it is not the number that describes someone
+also-useful measurement, but it is not the number that describes someone
 arriving from a search result.
 
 **Median of at least three runs.** First-byte time in particular swings by
@@ -40,8 +40,8 @@ One run is an anecdote.
 
 These are the Core Web Vitals thresholds Google uses, which matters twice
 over: it is what the owner will have been told by whoever handles their SEO,
-and a poor LCP genuinely does affect ranking. Say so — it converts a technical
-number into a business consequence without exaggerating.
+and a poor LCP genuinely does affect ranking. Say so, because it converts a
+technical number into a business consequence without exaggerating.
 
 **INP cannot be measured in a lab.** It needs a real user interacting. If a
 report needs it, take it from the owner's own Chrome UX / Search Console data,
@@ -65,14 +65,14 @@ justify any of it. Look for:
   `@mui/material` or `lodash` imported as a namespace rather than per-module
   is worth tens of kilobytes each.
 - A date library with all locales bundled.
-- Analytics, chat widgets and tag managers loaded synchronously — often more
+- Analytics, chat widgets and tag managers loaded synchronously, often more
   than the site's own code, and almost always third-party. Third-party weight
   is a separate line in the report because it is politically easier to remove.
 
 **Images.** The collector flags every image where the file is materially
 larger than the box it is drawn into, and every image served as PNG or JPEG
 where WebP/AVIF would help. The two findings that recur everywhere:
-- **An oversized hero image** — a 2400px-wide JPEG rendered at 700px, often
+- **An oversized hero image**, a 2400px-wide JPEG rendered at 700px, often
   the LCP element. Fixing this one asset frequently moves LCP by seconds.
 - **No dimensions on images**, which is usually the whole of a bad CLS.
   `width`/`height` attributes, or `aspect-ratio`, and the shift disappears.
@@ -90,16 +90,16 @@ families is 400 kB that nobody chose deliberately.
 `public, max-age=31536000, immutable`; if they are not, every repeat visitor
 re-downloads the whole site. Missing or short caching on static assets is a
 "quick" fix with a large effect on returning visitors, and it does not show up
-in a cold-load metric at all — so say which number it improves.
+in a cold-load metric at all, so say which number it improves.
 
 **Compression.** Any text response (HTML, CSS, JS, JSON, SVG) served without
 `content-encoding: gzip|br|zstd` is typically 3–4× larger than it needs to be.
 The collector flags these. It is nearly always a one-setting fix at the CDN or
 server, and it is the highest ratio of "impact" to "effort" in this whole file.
 
-**Redirect chains.** Each hop before the real document costs a full round trip
-— on a 150 ms RTT mobile connection, `http://` → `https://` → `www.` → page is
-most of a second before the server has begun. The collector records the chain.
+**Redirect chains.** Each hop before the real document costs a full round trip.
+On a 150 ms RTT mobile connection, `http://` → `https://` → `www.` → page
+is most of a second before the server has begun. The collector records the chain.
 
 **Server work.** A TTFB above a second on a page that is mostly static means
 either no caching, a cold serverless function, or work happening per-request
@@ -115,7 +115,7 @@ Do this conversion in the report every time:
 | Instead of | Write |
 |---|---|
 | "LCP is 5.9 s" | "On a normal phone, the page takes about six seconds before the main content appears. Google treats anything over 2.5 seconds as poor, and it affects both search ranking and how many visitors leave before the page loads." |
-| "1.4 MB of JavaScript" | "Every visit downloads 1.4 MB of code before the page can be used — roughly the size of a three-minute song, on every page view, mostly for features this page does not use." |
+| "1.4 MB of JavaScript" | "Every visit downloads 1.4 MB of code before the page can be used, roughly the size of a three-minute song, on every page view, mostly for features this page does not use." |
 | "No cache headers on static assets" | "Returning visitors re-download the entire site each time instead of reusing what their browser already has. This is a server setting, not a code change." |
 
 Do not invent revenue figures. "Studies show a 1-second delay costs 7% of

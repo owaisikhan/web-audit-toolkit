@@ -3,8 +3,8 @@
 ## The boundary, stated once, precisely
 
 Testing a computer system you do not own, without authorisation, is a criminal
-offence in most places — the UK Computer Misuse Act, the US CFAA, Pakistan's
-PECA, and equivalents elsewhere. None of them require that you caused damage,
+offence in most places, including the UK Computer Misuse Act, the US CFAA,
+Pakistan's PECA, and equivalents elsewhere. None of them require that you caused damage,
 and "I was going to offer to fix it" is not a defence. This is not a
 liability disclaimer; it is the difference between a business development
 activity and a prosecution.
@@ -12,18 +12,18 @@ activity and a prosecution.
 The line is **whether you are making requests an ordinary visitor's browser
 makes, or requests designed to find a weakness**.
 
-**Passive — safe on any public site, no permission needed.** This is what you
+**Passive, and safe on any public site with no permission needed.** This is what you
 run on a prospect.
 
 - Loading the site's public pages in a browser, as a visitor.
 - Reading the response headers, cookies and TLS certificate the server sends.
 - Reading JavaScript, CSS and source maps the site publicly serves.
-- Fetching `/robots.txt`, `/sitemap.xml`, `/.well-known/security.txt` — files
+- Fetching `/robots.txt`, `/sitemap.xml`, `/.well-known/security.txt`, files
   whose entire purpose is to be fetched.
 - Observing what framework and version the site announces about itself.
 - Checking published CVEs against a version the site itself disclosed.
 
-**Active — requires written permission, naming the scope and the dates.**
+**Active, and requires written permission naming the scope and the dates.**
 
 - Requesting paths you were not linked to, to see what exists. Directory and
   file enumeration, including "just checking if `/admin` is there", and
@@ -42,7 +42,7 @@ a different engagement with a different document at the front of it. Do not
 add an active mode to these scripts to get around this.
 
 When something you find passively *suggests* a serious flaw you cannot confirm
-without an active test, that is still a finding — write it as what you
+without an active test, that is still a finding. Write it as what you
 observed plus what it would mean, explicitly flagged as unconfirmed, and offer
 the test as the first item of paid work. That framing is more honest and sells
 better than a confirmed finding you had no right to obtain.
@@ -52,7 +52,7 @@ better than a confirmed finding you had no right to obtain.
 Disclose it privately and promptly, before any sales conversation. Check
 `/.well-known/security.txt` for a contact. Do not publish it, do not put the
 working details in a document that will be forwarded around, and do not use it
-as leverage — "I found a hole, hire me and I'll tell you what it is" is
+as leverage. "I found a hole, hire me and I'll tell you what it is" is
 extortion-shaped, and it reads that way to the recipient. Tell them what it
 is, tell them how to fix it, and let the goodwill do the selling.
 
@@ -76,8 +76,8 @@ make is which findings matter on this particular site, which is yours.
 
 **Do not report all six as a block of "missing security headers" and call it
 six findings.** That is the signature move of an automated report and the
-technical reviewer will spot it. Group them into one finding — "several
-standard security headers are not set" — with the table, and pull out
+technical reviewer will spot it. Group them into one finding, "several
+standard security headers are not set", with the table, and pull out
 separately only the one or two that actually matter for this site, with the
 reason they matter *here*.
 
@@ -91,13 +91,13 @@ genuine, specific, fixable finding.
 Read every `Set-Cookie`. For any cookie that looks like a session or auth
 token:
 
-- **`HttpOnly` missing** — any script on the page, including a compromised
+- **`HttpOnly` missing.** Any script on the page, including a compromised
   third-party tag, can read the session token. On a session cookie this is
   **High**.
-- **`Secure` missing** — the cookie is sent over plain HTTP if the browser is
+- **`Secure` missing.** The cookie is sent over plain HTTP if the browser is
   ever tricked into one request. **Medium**, High with HSTS also absent.
-- **`SameSite` absent or `None` without cause** — CSRF surface. **Medium**.
-- **A session cookie with a year-long `Max-Age`** — a stolen token stays valid
+- **`SameSite` absent or `None` without cause.** CSRF surface. **Medium**.
+- **A session cookie with a year-long `Max-Age`.** A stolen token stays valid
   forever. Worth a line.
 
 ### TLS
@@ -114,7 +114,7 @@ Check that `http://` redirects to `https://`, and that it does so in one hop.
 
 `Server`, `X-Powered-By`, `X-AspNet-Version`, `X-Generator`, a WordPress
 `readme.html`, a `/wp-json/` response, a Next.js build id, framework-specific
-paths. Version disclosure is **Info** on its own — it is not a vulnerability,
+paths. Version disclosure is **Info** on its own. It is not a vulnerability,
 and reporting it as one is padding.
 
 It becomes a real finding when the disclosed version is **known-vulnerable**.
@@ -136,8 +136,8 @@ from the standard well-known paths.
 - **Secrets in client bundles.** The collector greps served JavaScript for
   key-shaped strings: `sk_live_`, `AKIA…`, Google API keys, JWTs, private key
   headers, `service_role` tokens. **Any secret in client JavaScript is
-  Critical** — it is already public, and the fix starts with rotating it, not
-  with removing it from the code.
+  Critical**, because it is already public, and the fix starts with rotating
+  it rather than with removing it from the code.
   - The trap: plenty of keys in client code are *meant* to be there. A Stripe
     **publishable** key, a Supabase **anon** key, a Google Maps browser key,
     a public analytics id. Reporting one of those as a leaked secret destroys
@@ -145,7 +145,7 @@ from the standard well-known paths.
   - For Supabase specifically: an `anon` key in the browser is correct and by
     design; a `service_role` key in the browser is a total compromise of the
     database, because it bypasses RLS entirely. Both are JWTs and they look
-    alike at a glance — decode the payload and read the `role` claim.
+    alike at a glance, so decode the payload and read the `role` claim.
 - **`/.env`, `/.git/config`, `/config.json`, backups like `db.sql`.** Only
   check these where the site links them or the server directory-lists them.
   Guessing them is enumeration, which is active. In practice you find these
@@ -161,14 +161,14 @@ network log:
 - A form with no CSRF token where the framework does not provide one
   automatically.
 - API endpoints visible in the page's JavaScript that suggest an unauthorised
-  path — note them as things to test **once authorised**, never test now.
+  path. Note them as things to test **once authorised**, never test now.
 
 ---
 
 ## When you have the repository
 
 `scripts/scan-source.mjs` covers the mechanical part. What it finds still
-needs reading in context — a `dangerouslySetInnerHTML` fed by a hard-coded
+needs reading in context. A `dangerouslySetInnerHTML` fed by a hard-coded
 constant is fine, and reporting it is noise.
 
 **Dependencies.** `npm audit --json` is the start, not the finding. A critical
@@ -179,11 +179,11 @@ vulnerable code path is reachable from anything the site serves.
 
 **Secrets in the repository and its history.** `.env` files committed,
 credentials in config, keys in test fixtures. Check the history as well as the
-working tree — a key removed in a later commit is still public forever in an
-open repo, and still needs rotating.
+working tree, because a key removed in a later commit is still public forever
+in an open repo, and still needs rotating.
 
 **Authorisation, not just authentication.** The recurring, high-value bug in
-small business apps is not a missing login — it is a route that checks *that*
+small business apps is not a missing login. It is a route that checks *that*
 you are logged in but not *whether you are allowed*, so any signed-in user can
 read another's data by changing an id. Enumerate every route and every server
 action, and for each one ask what stops user A from reading user B's row. If
@@ -193,15 +193,15 @@ it is usually High or Critical.
 For **Supabase** apps specifically, in order of how often they are wrong:
 1. **RLS not enabled** on a table that the anon key can reach. With RLS off,
    the anon key reads the whole table. Check every table, not the obvious ones.
-2. **A permissive policy** — `using (true)` on a select policy is RLS enabled
+2. **A permissive policy.** `using (true)` on a select policy is RLS enabled
    and doing nothing.
-3. **A `service_role` key reachable from client code** — see above, Critical.
+3. **A `service_role` key reachable from client code.** See above, Critical.
 4. **Server actions and route handlers that trust a client-supplied user id**
    instead of reading the session server-side.
 
 **Injection surface.** Raw SQL built by string concatenation. Shell commands
 built from request data. `eval`, `new Function`, and template rendering of
-user input. Path joins from user input reaching the filesystem — a
+user input. Path joins from user input reaching the filesystem, where a
 `../../` traversal in a file-download route is a classic in exactly this kind
 of app.
 
@@ -238,4 +238,4 @@ vulnerabilities" email from someone selling something. Do not sound like it.
 - **Mark unconfirmed findings as unconfirmed**, in the finding itself, not in a
   disclaimer at the end.
 - **Say what is right, too.** A short list of what the site does correctly
-  makes the rest believable and costs you nothing — you already collected it.
+  makes the rest believable and costs you nothing, since you already collected it.

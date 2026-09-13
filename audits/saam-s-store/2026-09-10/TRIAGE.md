@@ -1,4 +1,4 @@
-# Saam's Store — triage notes, 2026-09-10
+# Saam's Store: triage notes, 2026-09-10
 
 Source half only. The live half (collect-perf, check-headers) did not run:
 this session's egress policy answered 403 to CONNECT for
@@ -28,7 +28,7 @@ a storefront chatbot) and returns `rows` and `sqlUsed` to the caller. The SQL
 is written by Gemini from visitor text, so the delivery vehicle is prompt
 injection, not a crafted request.
 
-SEVERITY DEPENDS ON ONE FACT I COULD NOT ESTABLISH FROM THE REPO — see below.
+SEVERITY DEPENDS ON ONE FACT I COULD NOT ESTABLISH FROM THE REPO. See below.
 
 ### 2. What SELECT grants does chatbot_readonly actually hold? (UNCONFIRMED)
 .env.example and PROJECT_CONTEXT.md both state the safety model is that the
@@ -44,7 +44,7 @@ Verify with one query, as chatbot_readonly:
     ORDER BY table_schema, table_name;
 
 - Grants limited to products/categories/product_images (+ knowledge_base):
-  the bypass is contained by the role. Finding drops to MEDIUM — a
+  the bypass is contained by the role. Finding drops to MEDIUM, being a
   defence-in-depth layer that does not hold, worth fixing, not an emergency.
 - Any SELECT on orders/addresses/profiles/contacts: CRITICAL. Customer names,
   addresses and order history are reachable by an anonymous visitor through
@@ -61,7 +61,7 @@ per-session ceiling. Also a small-pool DoS: pg Pool max is 5 with a 10s
 connection timeout, and `SELECT pg_sleep(30)` passes the guard.
 
 ### 4. executeQuery fetches the whole result, then slices
-app/_lib/chatbot/db.js:29 — `result.rows.slice(0, limitRows)`. The LIMIT is a
+app/_lib/chatbot/db.js:29, `result.rows.slice(0, limitRows)`. The LIMIT is a
 prompt instruction to Gemini, not something enforced in SQL. A query without
 one materialises every row in the function's memory before 20 are kept.
 
@@ -70,7 +70,7 @@ next.config.mjs allows remotePatterns for lh3.googleusercontent.com and
 upload.wikimedia.org with no pathname restriction. lh3.googleusercontent.com
 serves user-uploaded content, so an attacker can choose the bytes that reach
 the image optimizer. sharp is on an advisory for four libvips CVEs. Chain is
-plausible, unproven — flag as unconfirmed, moderate effort to fix by pinning
+plausible but unproven. Flag as unconfirmed, moderate effort to fix by pinning
 pathname prefixes and upgrading sharp.
 
 ## Dropped, and why
@@ -87,7 +87,7 @@ pathname prefixes and upgrading sharp.
   app/admin/layout.js gates admin pages on claims.email === ADMIN_EMAIL, and
   that all 8 mutating server actions in app/_lib/actions.js call
   requireAdmin() which throws. Admin authorisation on this app is sound and
-  the report should say so — it is a credibility deposit.
+  the report should say so, because it is a credibility deposit.
 - **brace-expansion / browserslist / js-yaml / nanoid / postcss advisories.**
   Build-time and transitive. No reachable path from anything the site serves.
   Worth one grouped hygiene line, not five findings.
@@ -101,24 +101,24 @@ pathname prefixes and upgrading sharp.
 
 ---
 
-# Live half — completed 2026-09-10 20:08 UTC
+# Live half, completed 2026-09-10 20:08 UTC
 
 Network policy was changed to Full mid-session and this session picked it up.
 Ran collect-perf (4 pages, 3 runs, mobile+desktop) and check-headers (3 pages).
 
-## Environment caveats — READ BEFORE REUSING THESE NUMBERS
+## Environment caveats: READ BEFORE REUSING THESE NUMBERS
 
 1. **Chromium could not reach any external HTTPS host** through the agent
    proxy: the TLS 1.3 handshake dies (ClientHello out, 39 B back, tunnel
    closed at 6s) while curl through the same proxy succeeds. The first perf
    run produced 8 "Page could not be loaded" findings that were PURE
-   ARTEFACT — that file was discarded, not reported. Worked around with a
+   ARTEFACT. That file was discarded, not reported. Worked around with a
    wrapper at $SCRATCH/pw-shim/chromium/chrome-linux/chrome that adds
    --ssl-version-max=tls1.2 and is found via PLAYWRIGHT_BROWSERS_PATH. No
    change to certificate verification, and no edit to the skill.
 
 2. **The TLS block in security.json is the PROXY's certificate, not
-   Vercel's** — issuer "Anthropic", 30 days remaining. Any TLS/expiry
+   Vercel's**, with issuer "Anthropic" and 30 days remaining. Any TLS/expiry
    finding from this run is invalid. The generator's "certificate is valid
    for another 30 days" line was removed from the report by hand.
 
@@ -132,11 +132,11 @@ All four pages rate "good" on all four Core Web Vitals except /cart mobile
 LCP 2.75 s (threshold 2.50). CLS 0.000-0.001 everywhere. HSTS present with
 preload; brotli on; CSP, X-Content-Type-Options, X-Frame-Options and
 Referrer-Policy absent. Only key-shaped value in the bundles is the Supabase
-anon JWT — public by design, decoded and confirmed, reported as a positive.
+anon JWT, public by design, decoded and confirmed, reported as a positive.
 
 ## Added from the screenshots (nothing else would have found it)
 The chat FAB is fixed bottom-right and covers the round add-to-cart button on
-the bottom-right tile of the 2-up product grid at phone width. /shop only —
+the bottom-right tile of the 2-up product grid at phone width. /shop only:
 the product page's full-width ADD TO CART is clear of it. Reported medium.
 
 ## Report
@@ -146,7 +146,7 @@ a report sent with those in it is worse than no report. Findings dropped from
 the generated scaffold via --drop: perf-fonts (6 near-identical duplicates,
 rewritten as one hygiene entry), sec-key-inspect-* (verified benign),
 src-unguarded-endpoints and src-dependency-vulns (both true but misleading as
-worded — rewritten by hand with the Windows-only and AVIF-only RCEs marked
+worded, so rewritten by hand with the Windows-only and AVIF-only RCEs marked
 not-applicable).
 
 ## Still open

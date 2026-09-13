@@ -1,12 +1,12 @@
 ---
 name: web-audit
-description: Audit a live website or a web app's source for speed, Core Web Vitals, technical SEO, security exposure and code-level risk, then turn the findings into a report a non-technical site owner can act on — a pitch document when you are trying to win the work, or a before/after when you are fixing it. Covers measuring load performance with a real browser (LCP, CLS, TBT, waterfall, transfer sizes, render-blocking assets, image and font waste), technical SEO from the outside (indexability and stray noindex, robots.txt, canonicals, titles and descriptions, heading structure, duplicate tags, broken internal links and redirect chains), passive security checks that are safe to run against a site you do not own (security headers, cookie flags, TLS, framework and version leakage, exposed source maps and secrets in client bundles), source-level review when you have the repo (dependency CVEs, auth guards, injection surface, secrets), triaging what is found by business impact rather than tool score, and writing it up. Use whenever someone asks to audit, scan, benchmark, speed up, optimise, harden, pen-test or "check" a website or web app, asks why a site is slow or why it does not show up in Google, wants an SEO audit, a Lighthouse-style or PageSpeed report, wants to find vulnerabilities or security holes, or wants a report to send a client or prospect. Works on any stack; has extra depth for Next.js and Supabase.
+description: Audit a live website or a web app's source for speed, Core Web Vitals, technical SEO, security exposure and code-level risk, then turn the findings into a report a non-technical site owner can act on: a pitch document when you are trying to win the work, or a before/after when you are fixing it. Covers measuring load performance with a real browser (LCP, CLS, TBT, waterfall, transfer sizes, render-blocking assets, image and font waste), technical SEO from the outside (indexability and stray noindex, robots.txt, canonicals, titles and descriptions, heading structure, duplicate tags, broken internal links and redirect chains), passive security checks that are safe to run against a site you do not own (security headers, cookie flags, TLS, framework and version leakage, exposed source maps and secrets in client bundles), source-level review when you have the repo (dependency CVEs, auth guards, injection surface, secrets), triaging what is found by business impact rather than tool score, and writing it up. Use whenever someone asks to audit, scan, benchmark, speed up, optimise, harden, pen-test or "check" a website or web app, asks why a site is slow or why it does not show up in Google, wants an SEO audit, a Lighthouse-style or PageSpeed report, wants to find vulnerabilities or security holes, or wants a report to send a client or prospect. Works on any stack; has extra depth for Next.js and Supabase.
 ---
 
 # Auditing someone else's website
 
 The output of this work is not a score. It is a decision by a person who owns
-a website — usually someone who does not write code — about whether to spend
+a website, usually someone who does not write code, about whether to spend
 money fixing something. Everything below is in service of that: measure what
 is real, only report what you can prove, and say what it costs them in terms
 they already care about.
@@ -51,7 +51,7 @@ injection payloads, brute-forcing logins and vulnerability scanners are all
 active testing, and running them against a site you have not been authorised
 to test is unlawful in most jurisdictions regardless of intent. `scripts/`
 in this skill are passive by default and refuse to do otherwise without an
-explicit flag — see `references/security.md` for that boundary in detail.
+explicit flag. See `references/security.md` for that boundary in detail.
 
 You can win the work with passive findings alone. Almost every site has real,
 provable problems visible from the outside.
@@ -81,7 +81,7 @@ node $SKILL/scripts/scan-source.mjs /path/to/repo --out $OUT
 ```
 
 Each writes `<out>/<name>.json` and prints a short summary. `collect-perf`
-also writes screenshots at a laptop and a phone width — **look at them**. A
+also writes screenshots at a laptop and a phone width. **Look at them.** A
 site can pass every metric and still be unusable on a phone, and that is a
 finding you can only make with your eyes.
 
@@ -90,7 +90,7 @@ Run the performance collector **more than once**. First loads are noisy;
 edge is not evidence, and you will be asked to reproduce it.
 
 Give `check-seo` the **same list of URLs** as the performance collector, not
-just the homepage — duplicate titles and duplicate descriptions can only be
+just the homepage. Duplicate titles and duplicate descriptions can only be
 found by comparing pages against each other, and they are among the findings a
 client most readily understands. It follows up to 30 same-origin links from
 those pages to check for broken links and redirect loops; `--no-links` turns
@@ -138,7 +138,7 @@ Severities in this skill mean:
 
 | | |
 |---|---|
-| **Critical** | Exploitable now, by anyone, with consequence — data exposure, account takeover, money. |
+| **Critical** | Exploitable now, by anyone, with consequence: data exposure, account takeover, money. |
 | **High** | Real harm, but needs a condition: a logged-in victim, a specific browser, a chained step. Or: the site is unusably slow on the device most visitors use. |
 | **Medium** | Degrades security or speed measurably. Would be a bug in review. |
 | **Low** | Hardening and hygiene. True, worth doing, not urgent. |
@@ -151,7 +151,7 @@ Severities in this skill mean:
 Each finding in the report carries evidence you actually collected:
 
 - A number with its unit and how it was measured (`LCP 5.9 s, median of 3
-  cold loads, Moto G4 profile, 4G throttling`) — never a bare "slow".
+  cold loads, Moto G4 profile, 4G throttling`), never a bare "slow".
 - The request or response that shows it (`Set-Cookie: session=…` with no
   `HttpOnly`), quoted, trimmed to the relevant line.
 - A screenshot when the problem is visual.
@@ -237,12 +237,12 @@ directory is self-contained: copy `.claude/skills/web-audit/` anywhere and it
 works, including into a repo that has no `package.json` of its own.
 
 The only external requirement is Playwright and a Chromium. The scripts find
-both wherever they are — a local `node_modules`, a global install, or the
+both wherever they are, whether a local `node_modules`, a global install, or the
 `PLAYWRIGHT_BROWSERS_PATH` a sandbox sets. **Do not run `playwright install`
 in an environment that already ships a browser**; check the browsers directory
 first.
 
-When it does move, the audits themselves should live with it — one directory
+When it does move, the audits themselves should live with it: one directory
 per client, keeping each `perf.json`, `security.json` and report. Two audits of
 the same site three months apart is the most useful thing you can hand
 somebody, and it costs nothing to keep.

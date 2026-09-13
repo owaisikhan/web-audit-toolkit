@@ -2,7 +2,7 @@
 
 `scripts/check-seo.mjs` reads what a search engine reads: the head tags, the
 heading outline, the indexability directives, and the links a page publishes.
-It is passive in exactly the sense the rest of this skill means — it requests
+It is passive in exactly the sense the rest of this skill means. It requests
 the URLs given, `robots.txt`, and the same-origin links those pages themselves
 publish, honouring `robots.txt` as it goes.
 
@@ -29,31 +29,33 @@ lose the engagement two months in.
 
 Those need Google Search Console (free, but the owner has to grant access) or a
 paid data provider. Say this in the report's limits line. It is honest, and it
-scopes the next conversation — which is where the ongoing work lives.
+scopes the next conversation, which is where the ongoing work lives.
 
 ## Three tiers, and they are not close in value
 
-**Tier 1 — indexability. The site is invisible.** A `noindex` meta tag, an
+**Tier 1, indexability. The site is invisible.** A `noindex` meta tag, an
 `X-Robots-Tag: noindex` header, or `Disallow: /` in robots.txt. Any of these
 means the page is not in Google at all, and will not be, no matter what else is
 fixed. The status line belongs in this tier too: a page that answers 404, 403
 or 500 is not indexed whatever it renders, and a page can look completely
-normal in a browser while answering 500 to everything that reads the header. These are `critical` regardless of what a scoring tool says, and they are
-almost always a mistake rather than a decision — a staging configuration that
-shipped, a pre-launch block nobody removed.
+normal in a browser while answering 500 to everything that reads the header.
+
+These are `critical` regardless of what a scoring tool says, and they are
+almost always a mistake rather than a decision: a staging configuration that
+shipped, or a pre-launch block nobody removed.
 
 This is the finding that pays for the audit. It is worth checking on every site
 you look at, even casually, because when it is present it is the whole
 conversation and it takes one line to fix.
 
-**Tier 2 — what a searcher sees.** Title, description, the heading that says
+**Tier 2, what a searcher sees.** Title, description, the heading that says
 what the page is. These do not decide whether the page is found, but they decide
 whether anyone clicks it. Rank them `low` to `medium` by how commercial the page
 is: a missing title on the shop page matters more than on a privacy policy.
 
-**Tier 3 — hygiene.** Language attribute, heading order, image alternatives,
+**Tier 3, hygiene.** Language attribute, heading order, image alternatives,
 Open Graph tags. True, worth doing, rarely urgent. These belong in the hygiene
-appendix rather than the body of the report — a client who sees ten `low`
+appendix rather than the body of the report. A client who sees ten `low`
 findings in the main list stops reading before reaching the one that matters.
 
 ## Ranking SEO findings against everything else
@@ -75,7 +77,7 @@ change the answer:
 Five minutes of looking, after the collectors run:
 
 - **Search for the business name in Google.** If the site does not come up
-  first, something in tier 1 is wrong — or the site is too new. Either way that
+  first, something in tier 1 is wrong, or the site is too new. Either way that
   is the sentence the owner most wants answered.
 - **Look at the titles as a set.** Individually fine, collectively repetitive
   ("Home | Shop | About — Store") is a template doing the writing.
@@ -91,7 +93,7 @@ Five minutes of looking, after the collectors run:
 - **`alt=""` is correct** for decorative images and the script does not flag it.
   Only a missing attribute is reported. Do not let a tool that flags empty alt
   text talk you into "fixing" it.
-- **A canonical pointing elsewhere is often deliberate** — a print view, a
+- **A canonical pointing elsewhere is often deliberate**: a print view, a
   paginated set, a syndicated post. It is reported `unconfirmed`; verify before
   it goes in the report.
 - **Canonicals can be declared in an HTTP header as well as the HTML**, and the
@@ -111,8 +113,8 @@ Five minutes of looking, after the collectors run:
 - **Orphan pages are found by comparing the sitemap against the link graph**,
   since a page nothing links to cannot be reached by following links. The check
   only runs when at least half the sitemap was reachable from the pages
-  audited — below that the audit has not seen enough of the site to tell an
-  orphan from a page it simply did not visit — and it is always reported
+  audited. Below that the audit has not seen enough of the site to tell an
+  orphan from a page it simply did not visit. It is always reported
   `unconfirmed`. Widen the URL list before believing it.
 - **Duplicate content is matched exactly**, on a hash of the visible text, not
   by a similarity score. Two pages that merely read alike will not be flagged;
