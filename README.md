@@ -1,8 +1,8 @@
 # Website audit toolkit
 
 Everything needed to audit somebody's website — speed, Core Web Vitals,
-passive security exposure, and (when I have the repo) source-level risk — and
-turn it into a report a non-technical owner can act on.
+technical SEO, passive security exposure, and (when I have the repo)
+source-level risk — and turn it into a report a non-technical owner can act on.
 
 The whole toolkit is the skill in `.claude/skills/web-audit/`. Open a Claude
 Code session in this repo, say "audit https://theirsite.com", and the skill

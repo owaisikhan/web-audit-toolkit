@@ -18,7 +18,7 @@ Ask, and do not skip it because the site is public:
 
 | Situation | What may run |
 |---|---|
-| Public site, no permission | `collect-perf` + `check-headers`. Passive only. |
+| Public site, no permission | `collect-perf` + `check-headers` + `check-seo`. Passive only. |
 | Written permission | The above, plus authenticated pages and `scan-source` on their repo. |
 | Our own site and repo | Everything. |
 
@@ -77,6 +77,15 @@ node $SKILL/scripts/collect-perf.mjs \
 
 node $SKILL/scripts/check-headers.mjs \
   https://example.com/ https://example.com/shop https://example.com/cart \
+  --out $OUT
+
+# Same URL list as collect-perf: duplicate titles and descriptions are only
+# visible by comparing pages against each other.
+node $SKILL/scripts/check-seo.mjs \
+  https://example.com/ \
+  https://example.com/shop \
+  https://example.com/products/some-slug \
+  https://example.com/cart \
   --out $OUT
 ```
 

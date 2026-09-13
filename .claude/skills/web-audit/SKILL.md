@@ -1,6 +1,6 @@
 ---
 name: web-audit
-description: Audit a live website or a web app's source for speed, Core Web Vitals, security exposure and code-level risk, then turn the findings into a report a non-technical site owner can act on — a pitch document when you are trying to win the work, or a before/after when you are fixing it. Covers measuring load performance with a real browser (LCP, CLS, TBT, waterfall, transfer sizes, render-blocking assets, image and font waste), passive security checks that are safe to run against a site you do not own (security headers, cookie flags, TLS, framework and version leakage, exposed source maps and secrets in client bundles), source-level review when you have the repo (dependency CVEs, auth guards, injection surface, secrets), triaging what is found by business impact rather than tool score, and writing it up. Use whenever someone asks to audit, scan, benchmark, speed up, optimise, harden, pen-test or "check" a website or web app, asks why a site is slow, wants a Lighthouse-style or PageSpeed report, wants to find vulnerabilities or security holes, or wants a report to send a client or prospect. Works on any stack; has extra depth for Next.js and Supabase.
+description: Audit a live website or a web app's source for speed, Core Web Vitals, technical SEO, security exposure and code-level risk, then turn the findings into a report a non-technical site owner can act on — a pitch document when you are trying to win the work, or a before/after when you are fixing it. Covers measuring load performance with a real browser (LCP, CLS, TBT, waterfall, transfer sizes, render-blocking assets, image and font waste), technical SEO from the outside (indexability and stray noindex, robots.txt, canonicals, titles and descriptions, heading structure, duplicate tags, broken internal links and redirect chains), passive security checks that are safe to run against a site you do not own (security headers, cookie flags, TLS, framework and version leakage, exposed source maps and secrets in client bundles), source-level review when you have the repo (dependency CVEs, auth guards, injection surface, secrets), triaging what is found by business impact rather than tool score, and writing it up. Use whenever someone asks to audit, scan, benchmark, speed up, optimise, harden, pen-test or "check" a website or web app, asks why a site is slow or why it does not show up in Google, wants an SEO audit, a Lighthouse-style or PageSpeed report, wants to find vulnerabilities or security holes, or wants a report to send a client or prospect. Works on any stack; has extra depth for Next.js and Supabase.
 ---
 
 # Auditing someone else's website
@@ -23,6 +23,7 @@ Two audiences, one method:
 |---|---|
 | Measuring speed, Core Web Vitals, bundle and asset waste | `references/performance.md` |
 | Security checks, and what is legal to run on whose site | `references/security.md` |
+| Indexability, head tags, and what SEO claims are honest | `references/seo.md` |
 | Writing the deliverable | `references/reporting.md` |
 
 ---
@@ -72,6 +73,9 @@ node $SKILL/scripts/collect-perf.mjs https://example.com --out $OUT
 # Passive security posture: headers, cookies, TLS, tech and version leakage
 node $SKILL/scripts/check-headers.mjs https://example.com --out $OUT
 
+# Technical SEO: indexability, head tags, headings, internal links
+node $SKILL/scripts/check-seo.mjs https://example.com --out $OUT
+
 # Only when you have the repository:
 node $SKILL/scripts/scan-source.mjs /path/to/repo --out $OUT
 ```
@@ -84,6 +88,15 @@ finding you can only make with your eyes.
 Run the performance collector **more than once**. First loads are noisy;
 `--runs 3` takes the median. A single run that happened to hit a cold CDN
 edge is not evidence, and you will be asked to reproduce it.
+
+Give `check-seo` the **same list of URLs** as the performance collector, not
+just the homepage — duplicate titles and duplicate descriptions can only be
+found by comparing pages against each other, and they are among the findings a
+client most readily understands. It follows up to 30 same-origin links from
+those pages to check for broken links and redirect loops; `--no-links` turns
+that off, `--max-links N` widens it. Read `references/seo.md` before ranking
+anything it emits: a `noindex` on a page the owner hid deliberately is not a
+finding, and reporting one as critical costs you the room.
 
 ### Audit more than the homepage
 

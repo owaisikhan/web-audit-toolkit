@@ -22,9 +22,20 @@ function esc(s = '') {
   return String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 }
 
+/**
+ * Escape, then turn `backticked spans` into real code. Findings are written
+ * with Markdown-ish backticks so the same string serves report.md; left raw in
+ * the HTML they show as literal backticks, which looks unfinished on the PDF a
+ * client actually receives. Escaping happens first, so the span contents stay
+ * escaped.
+ */
+function escInline(s = '') {
+  return esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+}
+
 function load(outDir) {
   const parts = {};
-  for (const name of ['perf', 'security', 'source']) {
+  for (const name of ['perf', 'security', 'seo', 'source']) {
     const f = path.join(outDir, `${name}.json`);
     if (fs.existsSync(f)) parts[name] = JSON.parse(fs.readFileSync(f, 'utf8'));
   }
@@ -104,6 +115,8 @@ pre { background: var(--panel); border: 1px solid var(--line); border-radius: 6p
   padding: .8rem .9rem; overflow-x: auto; font: 12.5px/1.55 ui-monospace, "SF Mono", Menlo, Consolas, monospace;
   margin: 0 0 1rem; white-space: pre-wrap; word-break: break-word; }
 code { font: .9em ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
+p code { background: var(--panel); border: 1px solid var(--line); border-radius: 3px;
+  padding: .05em .3em; word-break: break-word; }
 
 .tablewrap { overflow-x: auto; margin-bottom: 1.5rem; }
 table { border-collapse: collapse; width: 100%; font-size: .88rem; }
@@ -156,9 +169,9 @@ function findingHtml(f) {
   <h4>What we found</h4>
   <pre>${esc(f.evidence)}</pre>
   <h4>Why it matters</h4>
-  <p>${esc(f.impact)}</p>
+  <p>${escInline(f.impact)}</p>
   <h4>How to fix it</h4>
-  <p>${esc(f.fix)}</p>
+  <p>${escInline(f.fix)}</p>
   ${f.url ? `<h4>Where</h4><p><code>${esc(f.url)}</code></p>` : ''}
 </article>`;
 }
@@ -201,8 +214,10 @@ function main() {
 
   const findings = collectFindings(parts, drop);
   const counts = Object.fromEntries(SEVERITIES.map((s) => [s, findings.filter((f) => f.severity === s).length]));
-  const urls = [...new Set([...(parts.perf?.urls || []), ...(parts.security?.urls || [])])];
-  const positives = parts.security?.positives || [];
+  const urls = [...new Set(Object.values(parts).flatMap((p) => p.urls || []))];
+  // Every collector contributes to "what is working well", not just the
+  // security one — a report that only praises the headers reads as grudging.
+  const positives = [...new Set(Object.values(parts).flatMap((p) => p.positives || []))];
   const date = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
   const rows = metricsTable(parts);
   const commands = Object.values(parts).map((p) => p.command).filter(Boolean);
