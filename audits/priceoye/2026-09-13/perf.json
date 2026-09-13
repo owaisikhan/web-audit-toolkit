@@ -1,0 +1,2238 @@
+{
+  "tool": "collect-perf",
+  "collectedAt": "2026-09-13T16:06:43.349Z",
+  "command": "node collect-perf.mjs https://priceoye.pk/ https://priceoye.pk/mobiles https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16 https://priceoye.pk/wireless-earbuds https://priceoye.pk/mobiles/pricelist/budget-4g-phones https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g --runs 3 --all-profiles",
+  "urls": [
+    "https://priceoye.pk/",
+    "https://priceoye.pk/mobiles",
+    "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+    "https://priceoye.pk/wireless-earbuds",
+    "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+    "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g"
+  ],
+  "runs": 3,
+  "profiles": [
+    "mobile",
+    "desktop"
+  ],
+  "pages": [
+    {
+      "url": "https://priceoye.pk/",
+      "profiles": {
+        "mobile": {
+          "findings": [
+            {
+              "id": "perf-unreachable-mobile",
+              "title": "Page could not be loaded (mobile profile)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://priceoye.pk/\", waiting until \"load\"\u001b[22m\n",
+              "impact": "The page did not finish loading within the timeout under a throttled mobile connection. Visitors on slower connections may be seeing the same thing.",
+              "fix": "Reproduce with the same command and profile, then investigate whether the failure is a timeout, a server error or a resource that never resolves.",
+              "effort": "moderate",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            }
+          ],
+          "metrics": null
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 700,
+            "fcp": 540,
+            "ttfb": 341,
+            "tbt": 460,
+            "cls": 0.3137,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "needs-work",
+              "cls": "poor"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 1343279,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 3,
+                "transfer": 169236,
+                "thirdPartyTransfer": 31863
+              },
+              "image": {
+                "count": 238,
+                "transfer": 40805015,
+                "thirdPartyTransfer": 40688301
+              },
+              "script": {
+                "count": 9,
+                "transfer": 2188015,
+                "thirdPartyTransfer": 2188015
+              },
+              "font": {
+                "count": 2,
+                "transfer": 76564,
+                "thirdPartyTransfer": 76564
+              },
+              "other": {
+                "count": 6,
+                "transfer": 612902,
+                "thirdPartyTransfer": 612902
+              },
+              "data": {
+                "count": 5,
+                "transfer": 6695,
+                "thirdPartyTransfer": 721
+              }
+            },
+            "totalRequests": 264,
+            "totalTransfer": 45201706,
+            "thirdPartyTransfer": 43598366,
+            "thirdPartyHosts": [
+              "fonts.googleapis.com",
+              "static.priceoye.pk",
+              "images.priceoye.pk",
+              "fonts.gstatic.com",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "analytics.tiktok.com",
+              "api.priceoye.pk",
+              "analytics-ipv6.tiktokw.us"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-cls-desktop",
+              "title": "Page content shifts while loading (CLS 0.314)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "CLS 0.314, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 0.1.",
+              "impact": "Content moves by 0.314 of the screen after it first appears, which is what makes people tap the wrong thing. Google treats anything over 0.1 as poor.",
+              "fix": "Reserve space for anything that arrives late: width and height attributes (or aspect-ratio) on every image, a fixed height for ad and embed slots, and font-display settings that do not swap in a differently-sized face.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-desktop",
+              "title": "Page freezes while scripts run (TBT 460 ms)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "TBT 460 ms, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 460 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "47 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://priceoye.pk/: 1311 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_home.min.css?id=721: 133 kB, no content-encoding\nhttps://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\n(4545 kB uncompressed in total)",
+              "impact": "Roughly 4545 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "5 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_home.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~585 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2137 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n390 kB  https://static.priceoye.pk/js/home.min.js?id=9aedbd0122a69b3e123ff4fe7783002e  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2137 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2137 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "170 image(s) are far larger than the space they are shown in",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://images.priceoye.pk/km-6330-3-in-1-grooming-kit-pakistan-priceoye-u2l8n.png\n    4096×4096 delivered, drawn at 120×120, 4560 kB\nhttps://images.priceoye.pk/km-6330-3-in-1-grooming-kit-pakistan-priceoye-u2l8n.png\n    4096×4096 delivered, drawn at 120×120, 4560 kB\nhttps://images.priceoye.pk/kemei-km-471-professional-hair-straightener-pakistan-priceoye-2ub45.png\n    4096×4096 delivered, drawn at 120×120, 3704 kB\nhttps://images.priceoye.pk/eyebrow-and-facial-hair-remover-trimmer-pakistan-priceoye-komli.png\n    4096×4096 delivered, drawn at 120×120, 2953 kB\nhttps://images.priceoye.pk/eyebrow-and-facial-hair-remover-trimmer-pakistan-priceoye-komli.png\n    4096×4096 delivered, drawn at 120×120, 2953 kB",
+              "impact": "About 46102 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-image-dimensions",
+              "title": "65 image(s) have no reserved space, so the page jumps",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-4nrn1.webp: no width/height attributes or aspect-ratio\nhttps://images.priceoye.pk/banners/pakistan-priceoye-slider-2v1bv.webp: no width/height attributes or aspect-ratio\nhttps://images.priceoye.pk/banners/pakistan-priceoye-slider-geb51.webp: no width/height attributes or aspect-ratio\nhttps://images.priceoye.pk/banners/pakistan-priceoye-slider-myqem.webp: no width/height attributes or aspect-ratio\nhttps://images.priceoye.pk/banners/pakistan-priceoye-slider-eevm1.webp: no width/height attributes or aspect-ratio\nMeasured layout shift: 0.314 (good is under 0.1).",
+              "impact": "The browser cannot reserve space for an image until it has downloaded, so everything below it moves down when it arrives. This is what makes a visitor tap the wrong link.",
+              "fix": "Add `width` and `height` attributes to every `<img>`, or set `aspect-ratio` in CSS. The values only need the correct ratio, not the display size.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-image-format",
+              "title": "43 large image(s) use an older format",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://images.priceoye.pk/huawei-band-10-pakistan-priceoye-jqn0d.png: image/png, 246 kB\nhttps://images.priceoye.pk/eyebrow-and-facial-hair-remover-trimmer-pakistan-priceoye-komli.png: image/png, 2953 kB\nhttps://images.priceoye.pk/km-6330-3-in-1-grooming-kit-pakistan-priceoye-u2l8n.png: image/png, 4560 kB\nhttps://images.priceoye.pk/dinglong-professional-beard-and-hair-trimmer-rf-609-pakistan-priceoye-bc2d8.png: image/png, 711 kB\nhttps://images.priceoye.pk/hair-styling-comb-straightener-modelling-brush-pakistan-priceoye-fdx6k.png: image/png, 2417 kB",
+              "impact": "WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.",
+              "fix": "Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "2 web font file(s), 75 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2: 48 kB\nhttps://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTUGmu1aB.woff2: 27 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://priceoye.pk/mobiles",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 2568,
+            "fcp": 2568,
+            "ttfb": 278.9000000001397,
+            "tbt": 1488,
+            "cls": 0.0308,
+            "rating": {
+              "lcp": "needs-work",
+              "fcp": "needs-work",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "image": {
+                "count": 90,
+                "transfer": 652866,
+                "thirdPartyTransfer": 645645
+              },
+              "script": {
+                "count": 9,
+                "transfer": 2218601,
+                "thirdPartyTransfer": 2218601
+              },
+              "stylesheet": {
+                "count": 3,
+                "transfer": 126841,
+                "thirdPartyTransfer": 32132
+              },
+              "data": {
+                "count": 3,
+                "transfer": 3541,
+                "thirdPartyTransfer": 721
+              },
+              "font": {
+                "count": 1,
+                "transfer": 43788,
+                "thirdPartyTransfer": 43788
+              },
+              "other": {
+                "count": 5,
+                "transfer": 5670,
+                "thirdPartyTransfer": 5670
+              },
+              "document": {
+                "count": 1,
+                "transfer": 838943,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 112,
+            "totalTransfer": 3890250,
+            "thirdPartyTransfer": 2946557,
+            "thirdPartyHosts": [
+              "static.priceoye.pk",
+              "fonts.googleapis.com",
+              "images.priceoye.pk",
+              "analytics.tiktok.com",
+              "fonts.gstatic.com",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "analytics-ipv6.tiktokw.us",
+              "api.priceoye.pk",
+              "www.facebook.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 2.57 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "LCP 2.57 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.57 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 1.49 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 1.49 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 1.49 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "29 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_category.min.css?id=721: 92 kB, no content-encoding\nhttps://static.priceoye.pk/images/logo.svg: 3 kB, no content-encoding\n(3196 kB uncompressed in total)",
+              "impact": "Roughly 3196 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "5 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_category.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~544 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2167 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n420 kB  https://static.priceoye.pk/js/category.min.js?id=4b13309a3e8df6978a48db36edb4b96b  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2167 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2167 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "17 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-27h78.jpg\n    1097×411 delivered, drawn at 412×154, 156 kB\nhttps://images.priceoye.pk/banners/pakistan-priceoye-slider-0euao.jpg\n    1097×411 delivered, drawn at 412×154, 68 kB\nhttps://images.priceoye.pk/banners/pakistan-priceoye-slider-zbstm.webp\n    1097×411 delivered, drawn at 412×154, 33 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 120×48, 4 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 77×48, 4 kB",
+              "impact": "About 300 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-image-format",
+              "title": "1 large image(s) use an older format",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-27h78.jpg: image/jpeg, 156 kB",
+              "impact": "WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.",
+              "fix": "Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 43 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2: 43 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 600,
+            "fcp": 552,
+            "ttfb": 350.79999999981374,
+            "tbt": 158,
+            "cls": 0.0009,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 838943,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 3,
+                "transfer": 126572,
+                "thirdPartyTransfer": 31863
+              },
+              "script": {
+                "count": 9,
+                "transfer": 2218488,
+                "thirdPartyTransfer": 2218488
+              },
+              "image": {
+                "count": 90,
+                "transfer": 649549,
+                "thirdPartyTransfer": 642328
+              },
+              "font": {
+                "count": 1,
+                "transfer": 49145,
+                "thirdPartyTransfer": 49145
+              },
+              "data": {
+                "count": 3,
+                "transfer": 3541,
+                "thirdPartyTransfer": 721
+              },
+              "other": {
+                "count": 4,
+                "transfer": 4948,
+                "thirdPartyTransfer": 4948
+              }
+            },
+            "totalRequests": 111,
+            "totalTransfer": 3891186,
+            "thirdPartyTransfer": 2947493,
+            "thirdPartyHosts": [
+              "fonts.googleapis.com",
+              "static.priceoye.pk",
+              "images.priceoye.pk",
+              "fonts.gstatic.com",
+              "www.googletagmanager.com",
+              "analytics.tiktok.com",
+              "connect.facebook.net",
+              "api.priceoye.pk",
+              "analytics-ipv6.tiktokw.us"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-no-compression",
+              "title": "29 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://priceoye.pk/mobiles: 818 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\nhttps://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_category.min.css?id=721: 92 kB, no content-encoding\n(3196 kB uncompressed in total)",
+              "impact": "Roughly 3196 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "5 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_category.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~543 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2166 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n420 kB  https://static.priceoye.pk/js/category.min.js?id=4b13309a3e8df6978a48db36edb4b96b  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2166 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2166 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "12 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 130×48, 4 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 78×48, 4 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB",
+              "impact": "About 40 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-image-format",
+              "title": "2 large image(s) use an older format",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-vcj96.jpg: image/jpeg, 156 kB\nhttps://images.priceoye.pk/banners/pakistan-priceoye-slider-9btdo.jpg: image/jpeg, 171 kB",
+              "impact": "WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.",
+              "fix": "Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 48 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2: 48 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 2744,
+            "fcp": 2744,
+            "ttfb": 228.60000000009313,
+            "tbt": 1605,
+            "cls": 0.0046,
+            "rating": {
+              "lcp": "needs-work",
+              "fcp": "needs-work",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "image": {
+                "count": 51,
+                "transfer": 238565,
+                "thirdPartyTransfer": 236514
+              },
+              "script": {
+                "count": 9,
+                "transfer": 2507036,
+                "thirdPartyTransfer": 2507036
+              },
+              "stylesheet": {
+                "count": 3,
+                "transfer": 185672,
+                "thirdPartyTransfer": 31981
+              },
+              "document": {
+                "count": 1,
+                "transfer": 139286,
+                "thirdPartyTransfer": 0
+              },
+              "data": {
+                "count": 3,
+                "transfer": 4063,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 1,
+                "transfer": 43789,
+                "thirdPartyTransfer": 43789
+              },
+              "other": {
+                "count": 7,
+                "transfer": 7126,
+                "thirdPartyTransfer": 7126
+              }
+            },
+            "totalRequests": 75,
+            "totalTransfer": 3125537,
+            "thirdPartyTransfer": 2826446,
+            "thirdPartyHosts": [
+              "static.priceoye.pk",
+              "images.priceoye.pk",
+              "fonts.googleapis.com",
+              "analytics.tiktok.com",
+              "fonts.gstatic.com",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "analytics-ipv6.tiktokw.us",
+              "www.facebook.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 2.74 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "LCP 2.74 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.74 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 1.60 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 1.60 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 1.60 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "25 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\nhttps://static.priceoye.pk/images/product-detail/retailer-po-online-badge.svg: 9 kB, no content-encoding\nhttps://priceoye.pk/mobiles/samsung/samsung-galaxy-a16: 135 kB, no content-encoding\n(2850 kB uncompressed in total)",
+              "impact": "Roughly 2850 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "5 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_product_detail.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~601 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2448 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "701 kB  https://static.priceoye.pk/js/app-client.min.js?id=667334efbcefd4dc6193331b451c6913  (third-party)\n486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2448 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2448 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "19 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://images.priceoye.pk/samsung-galaxy-a25-pakistan-priceoye-eyans-270x270.webp\n    270×270 delivered, drawn at 100×100, 7 kB\nhttps://images.priceoye.pk/awei-ka19-portable-outdoor-bluetooth-speaker-pakistan-priceoye-wpd4n-270x270.webp\n    270×270 delivered, drawn at 100×100, 7 kB\nhttps://images.priceoye.pk/oraimo-watch-5r-smart-watch-osw-820-pakistan-priceoye-s1f35-270x270.webp\n    270×270 delivered, drawn at 100×100, 6 kB\nhttps://images.priceoye.pk/samsung-galaxy-a15-pakistan-priceoye-eaiki-270x270.webp\n    270×270 delivered, drawn at 100×100, 4 kB\nhttps://images.priceoye.pk/toocki-tct1c-jcd01-20w-gan-usb-c-fast-charging-power-adapter-pakistan-priceoye-asz67-270x270.webp\n    270×270 delivered, drawn at 100×100, 4 kB",
+              "impact": "About 61 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 43 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2: 43 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 340,
+            "fcp": 340,
+            "ttfb": 167.5,
+            "tbt": 183,
+            "cls": 0.0006,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 139286,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 3,
+                "transfer": 185554,
+                "thirdPartyTransfer": 31863
+              },
+              "script": {
+                "count": 9,
+                "transfer": 2506542,
+                "thirdPartyTransfer": 2506542
+              },
+              "image": {
+                "count": 58,
+                "transfer": 262850,
+                "thirdPartyTransfer": 260799
+              },
+              "font": {
+                "count": 1,
+                "transfer": 49144,
+                "thirdPartyTransfer": 49144
+              },
+              "data": {
+                "count": 3,
+                "transfer": 4063,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 5,
+                "transfer": 6512,
+                "thirdPartyTransfer": 6512
+              }
+            },
+            "totalRequests": 80,
+            "totalTransfer": 3153951,
+            "thirdPartyTransfer": 2854860,
+            "thirdPartyHosts": [
+              "fonts.googleapis.com",
+              "static.priceoye.pk",
+              "images.priceoye.pk",
+              "fonts.gstatic.com",
+              "www.googletagmanager.com",
+              "analytics.tiktok.com",
+              "connect.facebook.net",
+              "analytics-ipv6.tiktokw.us"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-no-compression",
+              "title": "27 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16: 135 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_product_detail.min.css?id=721: 149 kB, no content-encoding\nhttps://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\n(2861 kB uncompressed in total)",
+              "impact": "Roughly 2861 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "5 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_product_detail.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~601 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2448 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "701 kB  https://static.priceoye.pk/js/app-client.min.js?id=667334efbcefd4dc6193331b451c6913  (third-party)\n486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2448 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2448 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "17 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://images.priceoye.pk/samsung-galaxy-a25-pakistan-priceoye-eyans-270x270.webp\n    270×270 delivered, drawn at 100×100, 7 kB\nhttps://images.priceoye.pk/awei-ka19-portable-outdoor-bluetooth-speaker-pakistan-priceoye-wpd4n-270x270.webp\n    270×270 delivered, drawn at 100×100, 7 kB\nhttps://images.priceoye.pk/oraimo-watch-5r-smart-watch-osw-820-pakistan-priceoye-s1f35-270x270.webp\n    270×270 delivered, drawn at 100×100, 6 kB\nhttps://static.priceoye.pk/images/google-store-badge.webp\n    381×116 delivered, drawn at 160×50, 5 kB\nhttps://images.priceoye.pk/samsung-galaxy-a15-pakistan-priceoye-eaiki-270x270.webp\n    270×270 delivered, drawn at 100×100, 4 kB",
+              "impact": "About 59 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 48 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2: 48 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://priceoye.pk/wireless-earbuds",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 2552,
+            "fcp": 2552,
+            "ttfb": 675.7000000001863,
+            "tbt": 1286,
+            "cls": 0.0236,
+            "rating": {
+              "lcp": "needs-work",
+              "fcp": "needs-work",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "image": {
+                "count": 79,
+                "transfer": 1794564,
+                "thirdPartyTransfer": 1787343
+              },
+              "script": {
+                "count": 9,
+                "transfer": 2218624,
+                "thirdPartyTransfer": 2218624
+              },
+              "stylesheet": {
+                "count": 3,
+                "transfer": 126690,
+                "thirdPartyTransfer": 31981
+              },
+              "data": {
+                "count": 3,
+                "transfer": 3541,
+                "thirdPartyTransfer": 721
+              },
+              "font": {
+                "count": 1,
+                "transfer": 43789,
+                "thirdPartyTransfer": 43789
+              },
+              "other": {
+                "count": 5,
+                "transfer": 6103,
+                "thirdPartyTransfer": 6103
+              },
+              "document": {
+                "count": 1,
+                "transfer": 821860,
+                "thirdPartyTransfer": 0
+              }
+            },
+            "totalRequests": 101,
+            "totalTransfer": 5015171,
+            "thirdPartyTransfer": 4088561,
+            "thirdPartyHosts": [
+              "static.priceoye.pk",
+              "images.priceoye.pk",
+              "fonts.googleapis.com",
+              "analytics.tiktok.com",
+              "fonts.gstatic.com",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "analytics-ipv6.tiktokw.us",
+              "api.priceoye.pk",
+              "www.facebook.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 2.55 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "LCP 2.55 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.55 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 1.29 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 1.29 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 1.29 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "28 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_category.min.css?id=721: 92 kB, no content-encoding\nhttps://static.priceoye.pk/images/logo.svg: 3 kB, no content-encoding\n(4598 kB uncompressed in total)",
+              "impact": "Roughly 4598 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "5 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_category.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~544 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2167 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n420 kB  https://static.priceoye.pk/js/category.min.js?id=4b13309a3e8df6978a48db36edb4b96b  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2167 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2167 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "24 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 120×48, 4 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 77×48, 4 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB",
+              "impact": "About 75 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 43 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2: 43 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 932,
+            "fcp": 932,
+            "ttfb": 747.6000000000931,
+            "tbt": 165,
+            "cls": 0.0004,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "good",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 821860,
+                "thirdPartyTransfer": 0
+              },
+              "stylesheet": {
+                "count": 3,
+                "transfer": 126572,
+                "thirdPartyTransfer": 31863
+              },
+              "image": {
+                "count": 79,
+                "transfer": 1699574,
+                "thirdPartyTransfer": 1692353
+              },
+              "script": {
+                "count": 9,
+                "transfer": 2218724,
+                "thirdPartyTransfer": 2218724
+              },
+              "font": {
+                "count": 1,
+                "transfer": 49145,
+                "thirdPartyTransfer": 49145
+              },
+              "data": {
+                "count": 3,
+                "transfer": 3541,
+                "thirdPartyTransfer": 721
+              },
+              "other": {
+                "count": 4,
+                "transfer": 5169,
+                "thirdPartyTransfer": 5169
+              }
+            },
+            "totalRequests": 100,
+            "totalTransfer": 4924585,
+            "thirdPartyTransfer": 3997975,
+            "thirdPartyHosts": [
+              "fonts.googleapis.com",
+              "static.priceoye.pk",
+              "images.priceoye.pk",
+              "fonts.gstatic.com",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "analytics.tiktok.com",
+              "api.priceoye.pk",
+              "analytics-ipv6.tiktokw.us"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-no-compression",
+              "title": "28 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://priceoye.pk/wireless-earbuds: 802 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_category.min.css?id=721: 92 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\nhttps://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\n(4598 kB uncompressed in total)",
+              "impact": "Roughly 4598 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "5 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_category.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~543 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "2167 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n420 kB  https://static.priceoye.pk/js/category.min.js?id=4b13309a3e8df6978a48db36edb4b96b  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2167 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 2167 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "22 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 130×48, 4 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 78×48, 4 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB",
+              "impact": "About 72 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "1 web font file(s), 48 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2: 48 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/wireless-earbuds",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 12780,
+            "fcp": 7584,
+            "ttfb": 3433.899999999907,
+            "tbt": 1201,
+            "cls": 0.0032,
+            "rating": {
+              "lcp": "poor",
+              "fcp": "poor",
+              "ttfb": "poor",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 2,
+                "transfer": 442231,
+                "thirdPartyTransfer": 0
+              },
+              "image": {
+                "count": 44,
+                "transfer": 174794,
+                "thirdPartyTransfer": 174794
+              },
+              "script": {
+                "count": 9,
+                "transfer": 2029543,
+                "thirdPartyTransfer": 2029543
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 107378,
+                "thirdPartyTransfer": 12898
+              },
+              "data": {
+                "count": 3,
+                "transfer": 3800,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 1,
+                "transfer": 43789,
+                "thirdPartyTransfer": 43789
+              },
+              "other": {
+                "count": 5,
+                "transfer": 5932,
+                "thirdPartyTransfer": 5932
+              }
+            },
+            "totalRequests": 66,
+            "totalTransfer": 2807467,
+            "thirdPartyTransfer": 2266956,
+            "thirdPartyHosts": [
+              "images.priceoye.pk",
+              "static.priceoye.pk",
+              "fonts.googleapis.com",
+              "analytics.tiktok.com",
+              "fonts.gstatic.com",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "analytics-ipv6.tiktokw.us",
+              "www.facebook.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 12.78 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "LCP 12.78 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 12.78 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 1.20 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 1.20 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 1.20 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-ttfb-mobile",
+              "title": "Server is slow to respond (TTFB 3.43 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TTFB 3.43 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 800 ms.",
+              "impact": "The server takes 3.43 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+              "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+              "effort": "moderate",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "22 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_list.min.css?id=721: 91 kB, no content-encoding\nhttps://static.priceoye.pk/images/logo.svg: 3 kB, no content-encoding\nhttps://static.priceoye.pk/icons/ram-icon.svg: 4 kB, no content-encoding\n(2569 kB uncompressed in total)",
+              "impact": "Roughly 2569 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "4 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_list.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n(~525 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "1982 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n235 kB  https://static.priceoye.pk/js/list.min.js?id=140af4a0c0c17a71960285a6a845e183  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n1982 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 1982 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "19 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 119×91, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 50×38, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 50×38, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 50×38, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-1.webp\n    268×206 delivered, drawn at 50×38, 5 kB",
+              "impact": "About 108 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-failed-requests",
+              "title": "1 request(s) on the page fail",
+              "severity": "low",
+              "category": "best-practice",
+              "evidence": "404 https://priceoye.pk/images/blist/mobiles-0.webp",
+              "impact": "Each failed request costs a round trip and may leave something on the page missing or broken. A 404 for an asset is usually a deployment that left a reference behind.",
+              "fix": "Remove or correct the references. Where the file should exist, check whether it is missing from the deployed build.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 10504,
+            "fcp": 10340,
+            "ttfb": 10133.600000000093,
+            "tbt": 94,
+            "cls": 0.0008,
+            "rating": {
+              "lcp": "poor",
+              "fcp": "poor",
+              "ttfb": "poor",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 2,
+                "transfer": 667243,
+                "thirdPartyTransfer": 0
+              },
+              "script": {
+                "count": 9,
+                "transfer": 2029396,
+                "thirdPartyTransfer": 2029396
+              },
+              "stylesheet": {
+                "count": 2,
+                "transfer": 107260,
+                "thirdPartyTransfer": 12780
+              },
+              "image": {
+                "count": 44,
+                "transfer": 174794,
+                "thirdPartyTransfer": 174794
+              },
+              "font": {
+                "count": 1,
+                "transfer": 49145,
+                "thirdPartyTransfer": 49145
+              },
+              "data": {
+                "count": 3,
+                "transfer": 3800,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 4,
+                "transfer": 4967,
+                "thirdPartyTransfer": 4967
+              }
+            },
+            "totalRequests": 65,
+            "totalTransfer": 3036605,
+            "thirdPartyTransfer": 2271082,
+            "thirdPartyHosts": [
+              "static.priceoye.pk",
+              "fonts.googleapis.com",
+              "images.priceoye.pk",
+              "www.googletagmanager.com",
+              "fonts.gstatic.com",
+              "connect.facebook.net",
+              "analytics.tiktok.com",
+              "analytics-ipv6.tiktokw.us"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-desktop",
+              "title": "Main content takes too long to appear (LCP 10.50 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "LCP 10.50 s, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Desktop, unthrottled, the largest thing on screen finishes drawing after 10.50 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-ttfb-desktop",
+              "title": "Server is slow to respond (TTFB 10.13 s)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TTFB 10.13 s, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 800 ms.",
+              "impact": "The server takes 10.13 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+              "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+              "effort": "moderate",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "23 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones: 430 kB, no content-encoding\nhttps://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_list.min.css?id=721: 91 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X: 188 kB, no content-encoding\n(2789 kB uncompressed in total)",
+              "impact": "Roughly 2789 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "4 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_list.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n(~525 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "1982 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n235 kB  https://static.priceoye.pk/js/list.min.js?id=140af4a0c0c17a71960285a6a845e183  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n1982 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 1982 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "18 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 50×38, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 50×38, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 50×38, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-1.webp\n    268×206 delivered, drawn at 50×38, 5 kB\nhttps://static.priceoye.pk/images/blist/mobiles-1.webp\n    268×206 delivered, drawn at 50×38, 5 kB",
+              "impact": "About 98 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-failed-requests",
+              "title": "1 request(s) on the page fail",
+              "severity": "low",
+              "category": "best-practice",
+              "evidence": "404 https://priceoye.pk/images/blist/mobiles-0.webp",
+              "impact": "Each failed request costs a round trip and may leave something on the page missing or broken. A 404 for an asset is usually a deployment that left a reference behind.",
+              "fix": "Remove or correct the references. Where the file should exist, check whether it is missing from the deployed build.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+      "profiles": {
+        "mobile": {
+          "metrics": {
+            "lcp": 3300,
+            "fcp": 3300,
+            "ttfb": 772,
+            "tbt": 917,
+            "cls": 0.0017,
+            "rating": {
+              "lcp": "needs-work",
+              "fcp": "poor",
+              "ttfb": "good",
+              "tbt": "poor",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "mobile",
+            "profileLabel": "Moto G-class Android, 4G"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "font": {
+                "count": 9,
+                "transfer": 219958,
+                "thirdPartyTransfer": 219958
+              },
+              "image": {
+                "count": 24,
+                "transfer": 90530,
+                "thirdPartyTransfer": 89072
+              },
+              "script": {
+                "count": 6,
+                "transfer": 1457337,
+                "thirdPartyTransfer": 1457337
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 103017,
+                "thirdPartyTransfer": 0
+              },
+              "data": {
+                "count": 3,
+                "transfer": 3541,
+                "thirdPartyTransfer": 721
+              },
+              "document": {
+                "count": 1,
+                "transfer": 204372,
+                "thirdPartyTransfer": 0
+              },
+              "other": {
+                "count": 1,
+                "transfer": 544,
+                "thirdPartyTransfer": 544
+              }
+            },
+            "totalRequests": 45,
+            "totalTransfer": 2079299,
+            "thirdPartyTransfer": 1767632,
+            "thirdPartyHosts": [
+              "static.priceoye.pk",
+              "images.priceoye.pk",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "api.priceoye.pk",
+              "www.facebook.com"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-lcp-mobile",
+              "title": "Main content takes too long to appear (LCP 3.30 s)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "LCP 3.30 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+              "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 3.30 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+              "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-tbt-mobile",
+              "title": "Page freezes while scripts run (TBT 917 ms)",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "TBT 917 ms, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+              "impact": "The page is unresponsive to taps and clicks for about 917 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+              "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "14 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_compare.min.css?id=721: 100 kB, no content-encoding\nhttps://static.priceoye.pk/images/logo.svg: 3 kB, no content-encoding\nhttps://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g: 199 kB, no content-encoding\nhttps://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X: 188 kB, no content-encoding\n(1746 kB uncompressed in total)",
+              "impact": "Roughly 1746 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "3 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://priceoye.pk/assets/css/style_compare.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n(~520 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "1423 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n325 kB  https://static.priceoye.pk/js/compare-vue.min.js?id=6c829d9fa12973c68cce50eeae63caa8  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n142 kB  https://www.googletagmanager.com/gtm.js?id=GTM-TBVQKVT  (third-party)\n1423 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 1423 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "4 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 120×48, 4 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 77×48, 4 kB\nhttps://images.priceoye.pk/samsung-galaxy-a37-5g-pakistan-priceoye-y6eu2-270x270.webp\n    270×270 delivered, drawn at 80×80, 3 kB\nhttps://images.priceoye.pk/samsung-galaxy-a57-5g-pakistan-priceoye-ljv2z-270x270.webp\n    270×270 delivered, drawn at 80×80, 3 kB",
+              "impact": "About 13 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "9 web font file(s), 215 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu0SC55K5gw.woff2: 2 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu0SC55K5gw.woff2: 11 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu0SC55K5gw.woff2: 13 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu0SC55K5gw.woff2: 18 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu0SC55K5gw.woff2: 22 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            }
+          ]
+        },
+        "desktop": {
+          "metrics": {
+            "lcp": 1152,
+            "fcp": 1152,
+            "ttfb": 909.5999999996275,
+            "tbt": 22,
+            "cls": 0.0015,
+            "rating": {
+              "lcp": "good",
+              "fcp": "good",
+              "ttfb": "needs-work",
+              "tbt": "good",
+              "cls": "good"
+            },
+            "runs": 3,
+            "profile": "desktop",
+            "profileLabel": "Desktop, unthrottled"
+          },
+          "resourceSummary": {
+            "byKind": {
+              "document": {
+                "count": 1,
+                "transfer": 204372,
+                "thirdPartyTransfer": 0
+              },
+              "font": {
+                "count": 9,
+                "transfer": 219958,
+                "thirdPartyTransfer": 219958
+              },
+              "script": {
+                "count": 6,
+                "transfer": 1457066,
+                "thirdPartyTransfer": 1457066
+              },
+              "image": {
+                "count": 32,
+                "transfer": 104862,
+                "thirdPartyTransfer": 103404
+              },
+              "stylesheet": {
+                "count": 1,
+                "transfer": 103017,
+                "thirdPartyTransfer": 0
+              },
+              "data": {
+                "count": 3,
+                "transfer": 3541,
+                "thirdPartyTransfer": 721
+              }
+            },
+            "totalRequests": 52,
+            "totalTransfer": 2092816,
+            "thirdPartyTransfer": 1781149,
+            "thirdPartyHosts": [
+              "static.priceoye.pk",
+              "images.priceoye.pk",
+              "www.googletagmanager.com",
+              "connect.facebook.net",
+              "api.priceoye.pk"
+            ]
+          },
+          "lcpElement": null,
+          "findings": [
+            {
+              "id": "perf-ttfb-desktop",
+              "title": "Server is slow to respond (TTFB 910 ms)",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "TTFB 910 ms, median of 3 cold loads, Desktop, unthrottled. Threshold for \"good\" is 800 ms.",
+              "impact": "The server takes 910 ms to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+              "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+              "effort": "moderate",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-no-compression",
+              "title": "14 text file(s) are served without compression",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g: 199 kB, no content-encoding\nhttps://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_compare.min.css?id=721: 100 kB, no content-encoding\nhttps://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X: 188 kB, no content-encoding\nhttps://www.googletagmanager.com/gtm.js?id=GTM-TBVQKVT: 142 kB, no content-encoding\n(1745 kB uncompressed in total)",
+              "impact": "Roughly 1745 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+              "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-render-blocking",
+              "title": "3 files block the page from drawing anything",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://priceoye.pk/assets/css/style_compare.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n(~520 kB total, must download and run before the page appears)",
+              "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+              "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-js-weight",
+              "title": "1423 kB of JavaScript downloaded on one page view",
+              "severity": "high",
+              "category": "performance",
+              "evidence": "414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n325 kB  https://static.priceoye.pk/js/compare-vue.min.js?id=6c829d9fa12973c68cce50eeae63caa8  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n142 kB  https://www.googletagmanager.com/gtm.js?id=GTM-TBVQKVT  (third-party)\n1423 kB of the total is third-party code.",
+              "impact": "Every visit downloads, parses and runs 1423 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+              "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+              "effort": "involved",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-oversized-images",
+              "title": "4 image(s) are far larger than the space they are shown in",
+              "severity": "medium",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 130×48, 4 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 78×48, 4 kB\nhttps://images.priceoye.pk/samsung-galaxy-a37-5g-pakistan-priceoye-y6eu2-270x270.webp\n    270×270 delivered, drawn at 100×100, 3 kB\nhttps://images.priceoye.pk/samsung-galaxy-a57-5g-pakistan-priceoye-ljv2z-270x270.webp\n    270×270 delivered, drawn at 100×100, 3 kB",
+              "impact": "About 13 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+              "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            },
+            {
+              "id": "perf-fonts",
+              "title": "9 web font file(s), 215 kB, text hidden while they load",
+              "severity": "low",
+              "category": "performance",
+              "evidence": "https://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu0SC55K5gw.woff2: 22 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu0SC55K5gw.woff2: 13 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu0SC55K5gw.woff2: 18 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu0SC55K5gw.woff2: 11 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu0SC55K5gw.woff2: 2 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+              "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+              "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+              "effort": "quick",
+              "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+              "unconfirmed": false
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "findings": [
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 1.49 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 1.49 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 1.49 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "29 text file(s) are served without compression",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_category.min.css?id=721: 92 kB, no content-encoding\nhttps://static.priceoye.pk/images/logo.svg: 3 kB, no content-encoding\n(3196 kB uncompressed in total)",
+      "impact": "Roughly 3196 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 1.60 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 1.60 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 1.60 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "25 text file(s) are served without compression",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\nhttps://static.priceoye.pk/images/product-detail/retailer-po-online-badge.svg: 9 kB, no content-encoding\nhttps://priceoye.pk/mobiles/samsung/samsung-galaxy-a16: 135 kB, no content-encoding\n(2850 kB uncompressed in total)",
+      "impact": "Roughly 2850 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 1.29 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 1.29 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 1.29 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/wireless-earbuds",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "28 text file(s) are served without compression",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://static.priceoye.pk/js/swiper-bundle.min.css: 18 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_category.min.css?id=721: 92 kB, no content-encoding\nhttps://static.priceoye.pk/images/logo.svg: 3 kB, no content-encoding\n(4598 kB uncompressed in total)",
+      "impact": "Roughly 4598 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/wireless-earbuds",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 12.78 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "LCP 12.78 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 12.78 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 1.20 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 1.20 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 1.20 s while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "22 text file(s) are served without compression",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap: 12 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_list.min.css?id=721: 91 kB, no content-encoding\nhttps://static.priceoye.pk/images/logo.svg: 3 kB, no content-encoding\nhttps://static.priceoye.pk/icons/ram-icon.svg: 4 kB, no content-encoding\n(2569 kB uncompressed in total)",
+      "impact": "Roughly 2569 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-tbt-mobile",
+      "title": "Page freezes while scripts run (TBT 917 ms)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TBT 917 ms, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 200 ms.",
+      "impact": "The page is unresponsive to taps and clicks for about 917 ms while JavaScript runs. On a mid-range phone this reads as the site being broken rather than slow.",
+      "fix": "Reduce and defer JavaScript: split bundles by route, load non-essential third-party scripts after interaction, and move heavy work off the main thread or to the server.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-no-compression",
+      "title": "14 text file(s) are served without compression",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51: 5 kB, no content-encoding\nhttps://priceoye.pk/assets/css/style_compare.min.css?id=721: 100 kB, no content-encoding\nhttps://static.priceoye.pk/images/logo.svg: 3 kB, no content-encoding\nhttps://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g: 199 kB, no content-encoding\nhttps://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X: 188 kB, no content-encoding\n(1746 kB uncompressed in total)",
+      "impact": "Roughly 1746 kB is sent uncompressed on every visit. Text compresses by about three to four times, so most of this is downloaded for nothing. On a mobile connection that is seconds.",
+      "fix": "Enable gzip or Brotli for text content types at the CDN or web server. This is a configuration change with no code impact.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-unreachable-mobile",
+      "title": "Page could not be loaded (mobile profile)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "page.goto: Timeout 60000ms exceeded.\nCall log:\n\u001b[2m  - navigating to \"https://priceoye.pk/\", waiting until \"load\"\u001b[22m\n",
+      "impact": "The page did not finish loading within the timeout under a throttled mobile connection. Visitors on slower connections may be seeing the same thing.",
+      "fix": "Reproduce with the same command and profile, then investigate whether the failure is a timeout, a server error or a resource that never resolves.",
+      "effort": "moderate",
+      "url": "https://priceoye.pk/",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-ttfb-mobile",
+      "title": "Server is slow to respond (TTFB 3.43 s)",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "TTFB 3.43 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 800 ms.",
+      "impact": "The server takes 3.43 s to send the first byte, before the browser can begin any work at all. Everything else on the page is delayed by this amount.",
+      "fix": "Cache the response at the edge where the page allows it, check for per-request database work that could be cached or batched, and check whether a serverless cold start is responsible.",
+      "effort": "moderate",
+      "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "2167 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n420 kB  https://static.priceoye.pk/js/category.min.js?id=4b13309a3e8df6978a48db36edb4b96b  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2167 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 2167 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://priceoye.pk/mobiles",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "2448 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "701 kB  https://static.priceoye.pk/js/app-client.min.js?id=667334efbcefd4dc6193331b451c6913  (third-party)\n486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2448 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 2448 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "2167 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n420 kB  https://static.priceoye.pk/js/category.min.js?id=4b13309a3e8df6978a48db36edb4b96b  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n2167 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 2167 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://priceoye.pk/wireless-earbuds",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "1982 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "486 kB  https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js  (third-party)\n414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n235 kB  https://static.priceoye.pk/js/list.min.js?id=140af4a0c0c17a71960285a6a845e183  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n1982 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 1982 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-js-weight",
+      "title": "1423 kB of JavaScript downloaded on one page view",
+      "severity": "high",
+      "category": "performance",
+      "evidence": "414 kB  https://connect.facebook.net/en_US/fbevents.js  (third-party)\n347 kB  https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&im=1&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184  (third-party)\n325 kB  https://static.priceoye.pk/js/compare-vue.min.js?id=6c829d9fa12973c68cce50eeae63caa8  (third-party)\n189 kB  https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X  (third-party)\n142 kB  https://www.googletagmanager.com/gtm.js?id=GTM-TBVQKVT  (third-party)\n1423 kB of the total is third-party code.",
+      "impact": "Every visit downloads, parses and runs 1423 kB of code before the page is fully usable. On a mid-range phone the parsing alone costs noticeable time, and it is the usual cause of the page feeling frozen.",
+      "fix": "Split the bundle by route so a page only loads its own code, import individual components rather than whole libraries, load charting and editor libraries on demand, and move third-party tags behind a delay or remove the ones nobody reads.",
+      "effort": "involved",
+      "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 2.57 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "LCP 2.57 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.57 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-oversized-images",
+      "title": "17 image(s) are far larger than the space they are shown in",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-27h78.jpg\n    1097×411 delivered, drawn at 412×154, 156 kB\nhttps://images.priceoye.pk/banners/pakistan-priceoye-slider-0euao.jpg\n    1097×411 delivered, drawn at 412×154, 68 kB\nhttps://images.priceoye.pk/banners/pakistan-priceoye-slider-zbstm.webp\n    1097×411 delivered, drawn at 412×154, 33 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 120×48, 4 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 77×48, 4 kB",
+      "impact": "About 300 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+      "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 2.74 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "LCP 2.74 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.74 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-oversized-images",
+      "title": "19 image(s) are far larger than the space they are shown in",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://images.priceoye.pk/samsung-galaxy-a25-pakistan-priceoye-eyans-270x270.webp\n    270×270 delivered, drawn at 100×100, 7 kB\nhttps://images.priceoye.pk/awei-ka19-portable-outdoor-bluetooth-speaker-pakistan-priceoye-wpd4n-270x270.webp\n    270×270 delivered, drawn at 100×100, 7 kB\nhttps://images.priceoye.pk/oraimo-watch-5r-smart-watch-osw-820-pakistan-priceoye-s1f35-270x270.webp\n    270×270 delivered, drawn at 100×100, 6 kB\nhttps://images.priceoye.pk/samsung-galaxy-a15-pakistan-priceoye-eaiki-270x270.webp\n    270×270 delivered, drawn at 100×100, 4 kB\nhttps://images.priceoye.pk/toocki-tct1c-jcd01-20w-gan-usb-c-fast-charging-power-adapter-pakistan-priceoye-asz67-270x270.webp\n    270×270 delivered, drawn at 100×100, 4 kB",
+      "impact": "About 61 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+      "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 2.55 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "LCP 2.55 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 2.55 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/wireless-earbuds",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-oversized-images",
+      "title": "24 image(s) are far larger than the space they are shown in",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 120×48, 4 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 77×48, 4 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB\nhttps://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png\n    90×26 delivered, drawn at 40×12, 3 kB",
+      "impact": "About 75 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+      "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/wireless-earbuds",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-oversized-images",
+      "title": "19 image(s) are far larger than the space they are shown in",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 119×91, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 50×38, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 50×38, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-0.webp\n    269×206 delivered, drawn at 50×38, 11 kB\nhttps://static.priceoye.pk/images/blist/mobiles-1.webp\n    268×206 delivered, drawn at 50×38, 5 kB",
+      "impact": "About 108 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+      "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-lcp-mobile",
+      "title": "Main content takes too long to appear (LCP 3.30 s)",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "LCP 3.30 s, median of 3 cold loads, Moto G-class Android, 4G. Threshold for \"good\" is 2.50 s.",
+      "impact": "On Moto G-class Android, 4G, the largest thing on screen finishes drawing after 3.30 s. Google treats anything over 2.5 seconds as poor; it affects both search ranking and how many visitors leave before the page is usable.",
+      "fix": "Identify the LCP element (recorded in perf.json as `lcpElement`) and shorten its path: serve it at the size it is displayed, in a modern format, without waiting on JavaScript or a render-blocking stylesheet.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-oversized-images",
+      "title": "4 image(s) are far larger than the space they are shown in",
+      "severity": "medium",
+      "category": "performance",
+      "evidence": "https://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 120×48, 4 kB\nhttps://static.priceoye.pk/images/logo.svg\n    300×63 delivered, drawn at 77×48, 4 kB\nhttps://images.priceoye.pk/samsung-galaxy-a37-5g-pakistan-priceoye-y6eu2-270x270.webp\n    270×270 delivered, drawn at 80×80, 3 kB\nhttps://images.priceoye.pk/samsung-galaxy-a57-5g-pakistan-priceoye-ljv2z-270x270.webp\n    270×270 delivered, drawn at 80×80, 3 kB",
+      "impact": "About 13 kB is downloaded and then thrown away by the browser scaling it down. Where one of these is the main image on the page, it is usually most of the delay before anything appears.",
+      "fix": "Serve each image at the size it is displayed (with 2× variants for high-density screens) in WebP or AVIF. In a Next.js codebase this is usually replacing an `<img>` with `next/image`, which does the resizing and format selection automatically.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "5 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_category.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~544 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-image-format",
+      "title": "1 large image(s) use an older format",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-27h78.jpg: image/jpeg, 156 kB",
+      "impact": "WebP and AVIF typically produce the same visible quality at a quarter to a half of the file size. Every browser in use today supports WebP.",
+      "fix": "Convert these to WebP (or AVIF with a WebP fallback), or serve them through an image CDN that negotiates the format per browser.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "1 web font file(s), 43 kB, text hidden while they load",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2: 43 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "5 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_product_detail.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~601 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "1 web font file(s), 43 kB, text hidden while they load",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2: 43 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "5 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_category.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n<link> https://static.priceoye.pk/js/swiper-bundle.min.css\n(~544 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/wireless-earbuds",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "1 web font file(s), 43 kB, text hidden while they load",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-mu0SC55I.woff2: 43 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/wireless-earbuds",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "4 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap\n<link> https://priceoye.pk/assets/css/style_list.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n(~525 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-failed-requests",
+      "title": "1 request(s) on the page fail",
+      "severity": "low",
+      "category": "best-practice",
+      "evidence": "404 https://priceoye.pk/images/blist/mobiles-0.webp",
+      "impact": "Each failed request costs a round trip and may leave something on the page missing or broken. A 404 for an asset is usually a deployment that left a reference behind.",
+      "fix": "Remove or correct the references. Where the file should exist, check whether it is missing from the deployed build.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/pricelist/budget-4g-phones",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-render-blocking",
+      "title": "3 files block the page from drawing anything",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "<script> https://connect.facebook.net/en_US/fbevents.js\n<link> https://priceoye.pk/assets/css/style_compare.min.css?id=721\n<script> https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51\n(~520 kB total, must download and run before the page appears)",
+      "impact": "The browser will not show anything until all of these have downloaded and been processed. On a slow connection this is the whole of the time the visitor spends looking at a blank page.",
+      "fix": "Add `defer` to scripts that are not needed for first paint, inline the small amount of CSS the top of the page needs and load the rest asynchronously, and move third-party tags out of the critical path.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+      "unconfirmed": false
+    },
+    {
+      "id": "perf-fonts",
+      "title": "9 web font file(s), 215 kB, text hidden while they load",
+      "severity": "low",
+      "category": "performance",
+      "evidence": "https://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSOmu0SC55K5gw.woff2: 2 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSCmu0SC55K5gw.woff2: 11 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS2mu0SC55K5gw.woff2: 13 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSymu0SC55K5gw.woff2: 18 kB\nhttps://static.priceoye.pk//fonts/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTSumu0SC55K5gw.woff2: 22 kB\n1 font face(s) use font-display: auto, which hides text until the font arrives.",
+      "impact": "Each font weight is a separate download on the critical path. Where font-display is not set to swap, the browser shows nothing where the text should be, for up to three seconds on a slow connection.",
+      "fix": "Set `font-display: swap`, self-host rather than loading from a third-party origin, preload only the one or two faces used above the fold, and drop weights the design does not actually use.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/mobiles/compare/samsung-galaxy-a37-5g-vs-samsung-galaxy-a57-5g",
+      "unconfirmed": false
+    }
+  ]
+}

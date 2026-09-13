@@ -1,0 +1,2278 @@
+{
+  "tool": "check-headers",
+  "mode": "passive",
+  "collectedAt": "2026-09-13T15:55:28.703Z",
+  "command": "node check-headers.mjs https://priceoye.pk/ https://priceoye.pk/mobiles https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+  "urls": [
+    "https://priceoye.pk/",
+    "https://priceoye.pk/mobiles",
+    "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16"
+  ],
+  "pages": [
+    {
+      "url": "https://priceoye.pk/",
+      "navError": null,
+      "status": 200,
+      "headers": {
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "cache-control": "no-cache, private",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a3a855d05a712881-ORD",
+        "content-type": "text/html; charset=UTF-8",
+        "date": "Sun, 13 Sep 2026 15:55:16 GMT",
+        "server": "cloudflare",
+        "set-cookie": "po_cart=[redacted]; expires=[redacted], 13 Oct 2026 15:55:16 GMT; Max-Age=[redacted]; path=[redacted]; domain=[redacted]; secure; httponly; samesite=[redacted]",
+        "strict-transport-security": "max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains",
+        "vary": "Accept-Encoding,X-Inertia",
+        "via": "1.1 526ddfcc2e220ebd3c3d7757fa93b1e2.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "12c2h4-MIu6BbKuoMFbhMP9wrdh1deAGiqi4-d_oZpfSk4V7tED4Eg==",
+        "x-amz-cf-pop": "ORD56-P11",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff, nosniff",
+        "x-frame-options": "SAMEORIGIN, SAMEORIGIN",
+        "x-xss-protection": "1; mode=block"
+      },
+      "allResponses": [
+        {
+          "url": "https://priceoye.pk/",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/assets/css/style_home.min.css?id=721",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/js/swiper-bundle.min.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/bar.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/close-box.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/logo.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/mic-blue.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-hair-straightners-curlers-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/power-banks.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/badges/fast-delivery.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/sale/sale-home-desk.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/product-placeholder.gif",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/wireless-earbuds.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/smart-watches.webp",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-TBVQKVT",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/js/home.min.js?id=9aedbd0122a69b3e123ff4fe7783002e",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/mobiles.webp",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTUGmu1aB.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/mobile-chargers.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/stars.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/tablets.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/trimmers-shaver.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/sale/sale-home-mb.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/verified-user.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-4nrn1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-geb51.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/bluetooth-speakers.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-2v1bv.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-eevm1.webp",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/assets/images/bnpl_banner/static-banner-wb-bnpl-v10.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/product-placeholder.gif",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/official-retailer-badge.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/nothing-cmf-watch-3-pro-pakistan-priceoye-oni26.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/order-packaging.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/extended-warranty.svg",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/meta/event",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/feature-shipping.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/easy_instalment.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/nothing-cmf-clip-pro-pakistan-priceoye-qfxr6.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-myqem.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/approved-feature.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/order-packaging/static-order-packaging-mb2.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/video-shooting-camera.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-earbuds-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://connect.facebook.net/en_US/fbevents.js",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a17-pakistan-priceoye-idgtd.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/warranty-feature.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home/laptops.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/order-packaging/static-order-packaging-web2.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/shipping-feature.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-thnsh.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-smart-watches-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a27-fiveg-pakistan-priceoye-mt3vp.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-tablet-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-mobiles-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-laptop-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-trimmers-shaver-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-bluetooth-speakers-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-mobile-chargers-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a07-pakistan-priceoye-xv6ut.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-1o1v2.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/sale-campaign-banner-wqlil.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/categories/section-power-banks-bg-md.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-8kocv.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/sale-campaign-banner-t8yu5.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-jdzq6.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/samsung-az6v0.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-ackxj.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/infinix-gn1ip.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/nothing-w0elp.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/vivo-svnd6.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/oppo-11l8m.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/honor-32olp.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/xiaomi-vypan.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/tecno-1iq96.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/apple-wtkf2.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/nokia-hsejy.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/zte-w3607.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/realme-scnhp.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/sego-xhmky.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-i9ua7.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/11629/3500641-350oo-270x270.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/6159/3444156-hj93q-270x270.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/16269/3500299-6aegl-270x270.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/8498/3502022-ef86z-270x270.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/11643/3477140-v8ejf-270x270.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/11939/3502603-nhm2t-270x270.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/16055/3502791-tvpnu-270x270.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/itel-zqykn.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/13972/3481664-ljspf-270x270.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/5485/3465348-nr2to-270x270.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/review/7497/3497316-9b2hm-270x270.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/mobiles-3.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/faywa-dpowq.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/smart_watches.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/wireless_earbuds-3.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/air-purifiers.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/Mobile-Accessories.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/blutooth_speaker.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/gfive-6ts5e.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/motorola-swq0h.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/power-bank.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/qmobile-yezba.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/kxd-e9plu.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/villaon-p40ay.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/user-dashboard/tracker.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/personal-cares.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/product-placeholder.gif",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/placeholder-product-mobile.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=D72FKKRC77U3C1V0Q3J0&lib=ttq",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/user-dashboard/complaint-white.svg",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/shoppers/shopper_nav_stats?__amp_source_origin=https://priceoye.pk",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/tablets.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/laptop-mac-outline.svg",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/authorization",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/haino-teko-germany-air-5-bluetooth-wireless-earphone-pakistan-priceoye-gn6cq.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/apple-watch-series-11-pakistan-priceoye-nz3j7.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/auto.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home-appliances.svg",
+          "status": 200
+        },
+        {
+          "url": "https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/dinglong-professional-beard-and-hair-trimmer-rf-609-pakistan-priceoye-bc2d8.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/kemei-km-471-professional-hair-straightener-pakistan-priceoye-2ub45.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/soundpeats-q3-pro-anc-wireless-earbuds-pakistan-priceoye-0gnbc.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/authorization?__amp_source_origin=https://priceoye.pk",
+          "status": 200
+        },
+        {
+          "url": "https://api.priceoye.pk/api/search_trending",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/hair-dryer-5-in-1-multifunctional-styling-kit-pakistan-priceoye-i15rg.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/eyebrow-and-facial-hair-remover-trimmer-pakistan-priceoye-komli.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/m04-tws-wireless-bluetooth-earbuds-pakistan-priceoye-38ley.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/kemei-km-329-professional-hair-straightener-pakistan-priceoye-13t8n.png",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/hair-styling-comb-straightener-modelling-brush-pakistan-priceoye-fdx6k.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/km-6330-3-in-1-grooming-kit-pakistan-priceoye-u2l8n.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/infinix-buds-xeo4-pakistan-priceoye-5zk5q.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/audionic-airbud-550-pakistan-priceoye-o6fve.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/infinix-xw3gt-smart-watch-pakistan-priceoye-tgfic.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/airox-e5-wireless-earbuds-pakistan-priceoye-30e7u.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/airox-w3-curve-led-smart-watch-pakistan-priceoye-u6vhn.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/zero-ignite-smart-watch-pakistan-priceoye-lv398.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/zero-carbon-earbuds-pakistan-priceoye-zdxbp.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/t900-ultra-2-smart-watch-pakistan-priceoye-yxl3w.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/ultra-10-smart-watch-pakistan-priceoye-apwso.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/ultra-smart-watch-7-in-1-pakistan-priceoye-3ybh3.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a37-5g-pakistan-priceoye-y6eu2.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/m10-tws-wireless-bluetooth-earbuds-pakistan-priceoye-4m9kq.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/one-step-3-in-1-hair-dryer-and-styler-pakistan-priceoye-2rgy3.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/apple-17-pro-max-pakistan-priceoye-5srcg.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/hk10-pro-max-smartwatch-pakistan-priceoye-et8xq.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/huawei-band-10-pakistan-priceoye-jqn0d.png",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/i18n/pixel/static/identify_2a73ddc0.js",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/realme-air-2-wireless-earbuds-pakistan-priceoye-kwfyo.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/soundpeats-t3-pro-bluetooth-earbuds-pakistan-priceoye-kyhqi.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/philip-satinelle-essential-corded-compact-epilator-bre225-01-pakistan-priceoye-ewc5e.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/boli-razor-chargeable-shaver-machine-rscw-8008-pakistan-priceoye-2ty7i.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/ronin-pebble-r-7130-wireless-earbuds-pakistan-priceoye-by1vw.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/redmi-buds-6-active-wireless-earbuds-pakistan-priceoye-h6kkk.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/i20-ultra-smart-watch-with-earbuds-and-7-straps-pakistan-priceoye-spj3o.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-redmi-watch-5-active-pakistan-priceoye-n4ewq.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/airox-hp-03-headphones-pakistan-priceoye-40shp.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/a58-plus-smart-watch-pakistan-priceoye-ijpzj.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://analytics-ipv6.tiktokw.us/ipv6/enrich_ipv6",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/login-l-107-prism-smart-watch-pakistan-priceoye-334n9.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/zw10-ladies-smart-watch-pakistan-priceoye-iivje.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/infinix-smart-20-pakistan-priceoye-0s4x3.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/motorola-edge-70-fusion-pakistan-priceoye-eq8o1.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/infinix-note-edge-pakistan-priceoye-x4pn1.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/honor-x8d-pakistan-priceoye-fhwli.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/nothing-cmf-phone-1-pakistan-priceoye-6mo6r.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-redmi-15c-pakistan-priceoye-c4z95.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/nova-portable-hair-dryer-foldable-pakistan-priceoye-jc9j8.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/marske-6222-3in1-electric-hair-removal-epilator-pakistan-priceoye-ofbq8.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/vivo-y05-pakistan-priceoye-035r8.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/sego-epicx-pakistan-priceoye-cp81e.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/oppo-a6-pakistan-priceoye-2b09q.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/tecno-spark-50-pakistan-priceoye-lykqb.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/realme-c100i-pakistan-priceoye-m0x3n.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-smart-air-purifier-4-pakistan-priceoye-9crdl.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel/act",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/infinix-air-purifier-xp02-pakistan-priceoye-ybqz2.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-smart-air-purifier-4-lite-pakistan-priceoye-3dz6e.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/beurer-lr-310-air-purifier-pakistan-priceoye-8duuu.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-smart-air-purifier-4-pro-pakistan-priceoye-p9x1o.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-smart-air-purifier-elite-pakistan-priceoye-wc4pk.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/beurer-lr-210-air-purifier-pakistan-priceoye-4ymk7.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-smart-air-purifier-4-compact-pakistan-priceoye-72y9e.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/zero-thunder-pro-bluetooth-speaker-pakistan-priceoye-8whqq.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/homage-hap-403dwb-air-purifier-pakistan-priceoye-k7py1.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/beurer-lr-lr-401-air-purifier-pakistan-priceoye-zkryh.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/gree-ga-170w1-air-purifier-pakistan-priceoye-7giei.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/m3-mini-wireless-bluetooth-speaker-memory-card-supported-pakistan-priceoye-3okmb.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/homage-hap-251dwb-air-purifier-pakistan-priceoye-rmj58.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/airox-sp-30-bluetooth-speaker-pakistan-priceoye-0187m.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/audionic-roar-pro-2-1-channel-speaker-pakistan-priceoye-z304l.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/airox-sp12-retro-wireless-speaker-pakistan-priceoye-dl73z.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/audionic-classic-masti-85-bluetooth-speaker-pakistan-priceoye-3cbvh.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/ronin-r-3020-majestik-audio-pro-pakistan-priceoye-p3gaz.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/bluks-bx-191-wireless-speaker-pakistan-priceoye-t78go.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/bluks-bx-192-portable-tws-speaker-pakistan-priceoye-173nh.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/bluks-bx-193-beat-max-powerful-sound-pakistan-priceoye-gzhv5.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/ronin-r-3030-reverb-bluetooth-speaker-pakistan-priceoye-fu8cq.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-redmi-pad-2-8-256-wifi-1-year-warranty-pakistan-priceoye-82efz.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/ronin-r-3035-retro-bluetooth-speaker-pakistan-priceoye-oqb9b.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-redmi-pad-2-4g-8-256-pakistan-priceoye-nsmp0.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/apple-ipad-11-a16-pakistan-priceoye-h9c34.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/itel-vista-tab-10-mini-pakistan-priceoye-93w8p.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a11-plus-wifi-tab-pakistan-priceoye-lzxbc.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/zentality-pad9-pakistan-priceoye-ba6jw.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-pad-7-with-pad-cover-pakistan-priceoye-ced9f.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/redmi-pad-2-9-7-4g-pakistan-priceoye-4skxl.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/apple-ipad-pro-11-m2-128gb-wifi-pakistan-priceoye-1edav.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-redmi-pad-2-pro-pakistan-priceoye-oj7sh.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/black-shark-pad-7-wifi-pakistan-priceoye-y4l5v.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/apple-macbook-mrxw3-m3-chip-pakistan-priceoye-5xc31.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a11-wifi-tab-1-year-brand-warranty-pakistan-priceoye-raby5.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/dell-15-dc15250-ci5-1334u-8gb-512gb-ssd-pakistan-priceoye-c5jeg.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/lenovo-thinkpad-e16-g3-ultra-5-225h-8gb-512gb-ssd-pakistan-priceoye-gy8gx.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/hp-probook-460-g11-notebook-pc-intel-core-ultra-7-processor-155u-pakistan-priceoye-aiga9.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/lenovo-ideapad-slim-3-core-i5-13th-gen-8gb-512gb-pakistan-priceoye-fj0u7.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/lenovo-thinkpad-e16-gen-2-intel-core-ultra-5-8gb-512gb-pakistan-priceoye-e9phj.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/lenovo-v15-g4-core-i5-13th-gen-8gb-512gb-pakistan-priceoye-n57ef.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/hp-probook-460-g11-intel-core-ultra-5-125u-8gb-512gb-pakistan-priceoye-l4lpa.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/lenovo-thinkpad-e16-g3-ultra-7-255h-16gb-512gb-ssd-pakistan-priceoye-9z7u0.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/lenovo-thinkbook-15-g2-15-6-inches-11th-gen-cor-i7-8gb-256gb-pakistan-priceoye-ajg0a.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/acer-nitro-v15-ci7-13620h-16gb-512gb-ssd-rtx-5050-8gb-pakistan-priceoye-odsqu.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-ep-t2510-25w-energy-efficiency-latest-version-power-adapter-pakistan-priceoye-zvr08.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/anker-zolo-20w-mini-charger-a2699j11-pakistan-priceoye-lkvbu.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/anker-zolo-30w-2-pin-mini-charger-a2698j11-pakistan-priceoye-l0m66.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/lenovo-thinkpad-e14-g4-14-inches-12th-gen-core-i5-8gb-512gb-pakistan-priceoye-b4wv6.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-3-pin-fast-charging-adopter-pakistan-priceoye-5emtl.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/apple-type-c-power-adapter-20w-pakistan-priceoye-07pr3.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/beclad-45w-type-c-adapter-pakistan-priceoye-0qr3p.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-45w-3-pin-power-adapter-1-8m-c2c-pakistan-priceoye-ridim.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-50w-3pin-pd-duo-power-adapter-pakistan-priceoye-zszgi.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-travel-adapter-45w-pakistan-priceoye-dbzut.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-3-pin-25w-travel-adapter-pakistan-priceoye-9abv2.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/airox-fast-charging-40w-pd-adapter-ae113-pakistan-priceoye-w0t3g.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-ep-t2510-25w-2-pin-low-standby-energy-efficiency-super-fast-charging-power-adapter-pakistan-priceoye-im0j5.jpeg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/mi-5-blade-electric-shaver-pakistan-priceoye-bd88p.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/remington-pilot-personal-groomer-kit-pg180-pakistan-priceoye-i31xi.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/remington-delicates-body-hair-trimmer-bht250-pakistan-priceoye-kou9z.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/remington-g4-graphite-series-multi-grooming-kit-pg4000-pakistan-priceoye-9nbmc.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/t9-vintage-professional-trimmer-pakistan-priceoye-1j6bi.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/remington-mb320-trimmer-chargeable-pakistan-priceoye-h0xy3.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/dingling-professional-rf-608b-pakistan-priceoye-47iad.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/km-6332-3in1-grooming-kit-pakistan-priceoye-ef1vp.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/kemei-7-in-1-grooming-kit-shaving-machine-set-km-580-pakistan-priceoye-xu1d2.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/mirror-dq-cdb1005-power-bank-20000-mah-pakistan-priceoye-4qmms.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/oarmio-mxq-m184a-22-5w-20000mah-power-bank-pakistan-priceoye-lkb44.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/yihao-gonglu-10000mah-fast-charging-pd-power-bank-pakistan-priceoye-ij9ox.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/ronin-pulse-r-4065-power-bank-10000-mah-pakistan-priceoye-pdjfx.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-mi-pb100dzm-22-5w-10000mah-power-bank-pakistan-priceoye-wuq67.png",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/joyroom-ultra-fast-charging-power-bank-jr-qp193-30000mah-pakistan-priceoye-m49dw.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/airox-pb35-power-bank-22-5w-10000-mah-pakistan-priceoye-7bo8l.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/ronin-r-4030-neutron-10000-mah-power-bank-pakistan-priceoye-n9i6p.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/baseus-22-5w-comet-series-dual-cable-digital-display-power-bank-pakistan-priceoye-k9atc.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/airox-pb19-18-000-mah-fast-charge-power-bank-pakistan-priceoye-o85p9.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/anker-nano-power-bank-12w-built-in-lightning-connector-pakistan-priceoye-z92kw.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/favicon/favicon-32x32.png",
+          "status": 200
+        }
+      ],
+      "cookies": [
+        {
+          "name": "po_cart",
+          "raw": "po_cart=[redacted]; expires=Tue, 13 Oct 2026 15:55:16 GMT; Max-Age=2592000; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 2592000
+        },
+        {
+          "name": "AWSALBCORS",
+          "raw": "AWSALBCORS=[redacted]; Expires=Sat, 05 Sep 2026 11:11:31 GMT; Path=/; SameSite=None; Secure",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": null
+        },
+        {
+          "name": "AWSALBCORS",
+          "raw": "AWSALBCORS=[redacted]; Expires=Thu, 27 Aug 2026 11:56:43 GMT; Path=/; SameSite=None; Secure",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": null
+        },
+        {
+          "name": "po_session",
+          "raw": "po_session=[redacted]; expires=Sun, 13 Sep 2026 17:55:16 GMT; Max-Age=7200; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 7200
+        },
+        {
+          "name": "_ttp",
+          "raw": "_ttp=[redacted]; Path=/; Domain=tiktok.com; Max-Age=33696000; Secure; SameSite=None",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": 33696000
+        },
+        {
+          "name": "po_session",
+          "raw": "po_session=[redacted]; expires=Sun, 13 Sep 2026 17:55:17 GMT; Max-Age=7200; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 7200
+        },
+        {
+          "name": "po_session",
+          "raw": "po_session=[redacted]; expires=Sun, 13 Sep 2026 17:55:17 GMT; Max-Age=7200; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 7200
+        },
+        {
+          "name": "po_session",
+          "raw": "po_session=[redacted]; expires=Sun, 13 Sep 2026 17:55:17 GMT; Max-Age=7200; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 7200
+        },
+        {
+          "name": "AWSALBCORS",
+          "raw": "AWSALBCORS=[redacted]; Expires=Sun, 20 Sep 2026 15:55:17 GMT; Path=/; SameSite=None; Secure",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": null
+        }
+      ],
+      "forms": [
+        {
+          "action": "https://priceoye.pk/search",
+          "method": "get",
+          "hasPassword": false,
+          "fieldNames": [
+            "q"
+          ]
+        }
+      ],
+      "generator": null,
+      "bundles": [],
+      "wellKnown": {
+        "/robots.txt": {
+          "status": 200,
+          "body": "# As a condition of accessing this website, you agree to abide by the following\n# content signals:\n\n# (a)  If a Content-Signal = yes, you may collect content for the corresponding\n#      use.\n# (b)  If a Content-Signal = no, you may not collect content for the\n#      corresponding use.\n# (c)  If the website operator does not include a Content-Signal for a\n#      corresponding use, the website operator neither grants nor restricts\n#      permission via Content-Signal with respect to the corresponding use.\n\n# The content signals and their meanings are:\n\n# search:   building a search index and providing search results (e.g., returning\n#           hyperlinks and short excerpts from your website's contents). Search does not\n#           include providing AI-generated search summaries.\n# ai-input: inputting content into one or more AI models (e.g., retrieval\n#           augmented generation, grounding, or other real-time taking of content for\n#           generative AI search answers).\n# ai-train: training or fine-tuning AI models.\n# use:      how AI systems may consume the content (immediate, reference, or full).\n\n# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF\n# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT\n# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.\n\n# BEGIN Cloudflare Managed content\n\nUser-agent: *\nContent-Signal: search=yes,ai-train=no,use=reference\nAllow: /\n\nUser-agent: Amazonbot\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: Bytespider\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: CloudflareBrowserRenderingCrawler\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: meta-externalagent\nDisallow: /\n\n# END Cloudflare Managed Content\n\nUser-agent: Alexibot\nUser-agent: Apache-HttpClient\nUser-agent: Aqua_Products\nUser-agent: archive.org_bot\nUser-agent: asterias\nUser-agent: b2w/0.1\nUser-agent: BackDo"
+        },
+        "/sitemap.xml": {
+          "status": 404,
+          "body": null
+        },
+        "/.well-known/security.txt": {
+          "status": 404,
+          "body": null
+        }
+      },
+      "httpUpgrade": {
+        "finalUrl": "https://priceoye.pk/",
+        "secure": true,
+        "status": 200
+      },
+      "tls": {
+        "subject": "priceoye.pk",
+        "issuer": "Anthropic",
+        "validFrom": "Sep 13 15:54:15 2026 GMT",
+        "validTo": "Oct 13 15:55:15 2026 GMT",
+        "daysRemaining": 30,
+        "protocol": "TLSv1.3",
+        "altNames": "DNS:priceoye.pk",
+        "authorized": true,
+        "authorizationError": null
+      },
+      "hasAuth": true
+    },
+    {
+      "url": "https://priceoye.pk/mobiles",
+      "navError": null,
+      "status": 200,
+      "headers": {
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "cache-control": "no-cache, private",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a3a855f3fe83eac3-ORD",
+        "content-type": "text/html; charset=UTF-8",
+        "date": "Sun, 13 Sep 2026 15:55:21 GMT",
+        "server": "cloudflare",
+        "set-cookie": "po_cart=[redacted]; expires=[redacted], 13 Oct 2026 15:55:21 GMT; Max-Age=[redacted]; path=[redacted]; domain=[redacted]; secure; httponly; samesite=[redacted]",
+        "strict-transport-security": "max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains",
+        "vary": "Accept-Encoding,X-Inertia",
+        "via": "1.1 0ca9e6171ff8ee1bfbbaee63c1553bcc.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "GnXRwlONSct1vRCsdBbTlhIlHFT9vz7X12JuWe0GSwXsP_j4fMKwdw==",
+        "x-amz-cf-pop": "ORD56-P11",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff, nosniff",
+        "x-frame-options": "SAMEORIGIN, SAMEORIGIN",
+        "x-xss-protection": "1; mode=block"
+      },
+      "allResponses": [
+        {
+          "url": "https://priceoye.pk/mobiles",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/js/swiper-bundle.min.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/assets/css/style_category.min.css?id=721",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-n57tv.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/filterbar/topup.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-vcj96.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/bar.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/banners/pakistan-priceoye-slider-9btdo.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/infinix-smart-20-pakistan-priceoye-0s4x3-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/logo.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/back-arrow.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/b_dropdown.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/b_filter_icon.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/badges/priceoye-sale-20260908-lp0gh.png",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/not-available.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/motorola-edge-70-fusion-pakistan-priceoye-eq8o1-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/arrow.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/honor-x8d-pakistan-priceoye-fhwli-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/infinix-note-edge-pakistan-priceoye-x4pn1-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/express_delivery.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/price_asc.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/popularity_desc.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/price_desc.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/inStock.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/tecno-1iq96.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/infinix-gn1ip.svg",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/assets/images/badges/fast-delivery.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/xiaomi-vypan.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/nothing-w0elp.svg",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/close-box.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/honor-32olp.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/stars.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/js/category.min.js?id=4b13309a3e8df6978a48db36edb4b96b",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/vivo-svnd6.svg",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-TBVQKVT",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/oppo-11l8m.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/nothing-cmf-phone-1-pakistan-priceoye-6mo6r-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xiaomi-redmi-15c-pakistan-priceoye-c4z95-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/brands/samsung-az6v0.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/vivo-y05-pakistan-priceoye-035r8-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/realme-c100i-pakistan-priceoye-m0x3n-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/oppo-a6-pakistan-priceoye-2b09q-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/apple-17-pro-max-pakistan-priceoye-5srcg-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/tecno-spark-50-pakistan-priceoye-lykqb-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/vgo-tel-i252-pakistan-priceoye-q22vl-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/sego-epicx-pakistan-priceoye-cp81e-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/qmobile-e1000-party-2021-pakistan-priceoye-jlrj6-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/me-mobile-power-bold-pakistan-priceoye-ifv3v-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/gresso-4sim-pakistan-priceoye-n0u5j-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/vgo-tel-smart-hi-fi-pakistan-priceoye-dyu4r-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xmobile-x2-pakistan-priceoye-ulet8-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xmobile-dabang-plus-pakistan-priceoye-mmznu-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xmobile-x1000-music-pakistan-priceoye-xz29a-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/mic-blue.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/faywa-f4-pakistan-priceoye-gb0db-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xmobile-champion-pakistan-priceoye-h6jxs-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xmobile-x3-pakistan-priceoye-blhie-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/nokia-110-2023-pakistan-priceoye-credt-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/user-dashboard/tracker.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xmobile-d4-ultra-pakistan-priceoye-hyphw-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/user-dashboard/complaint-white.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xmobile-platinum-1000-pakistan-priceoye-vcqt9-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/qmobile-guru-plus-pakistan-priceoye-awfm7-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/qmobile-q150s-pakistan-priceoye-vfljr-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/qmobile-q150-pakistan-priceoye-odffh-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/mobiles-3.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/smart_watches.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/xmobile-g3-plus-pakistan-priceoye-561tj-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/wireless_earbuds-3.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/air-purifiers.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/itel-it2166-pakistan-priceoye-j7ttn-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/product-placeholder.gif",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/placeholder-product-mobile.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/meta/event",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=D72FKKRC77U3C1V0Q3J0&lib=ttq",
+          "status": 200
+        },
+        {
+          "url": "https://connect.facebook.net/en_US/fbevents.js",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/gresso-a10-pakistan-priceoye-ci7vw-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/vgo-tel-i15-pakistan-priceoye-fnaw4-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/gresso-silk-slim-pakistan-priceoye-47b19-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/personal-cares.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/Mobile-Accessories.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/power-bank.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/vgo-tel-beauty-max-pakistan-priceoye-3pypt-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/blutooth_speaker.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/qmobile-qhero-pakistan-priceoye-0vt62-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/laptop-mac-outline.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/tablets.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/camera.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home-appliances.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/ram.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/auto.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/storage.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/4glte.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/screen.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/5g.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/3g.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk//images/filterbar/nfc.svg",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/authorization",
+          "status": 200
+        },
+        {
+          "url": "https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184",
+          "status": 200
+        },
+        {
+          "url": "https://api.priceoye.pk/api/search_trending",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/i18n/pixel/static/identify_2a73ddc0.js",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/favicon/favicon-32x32.png",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel",
+          "status": 200
+        },
+        {
+          "url": "https://analytics-ipv6.tiktokw.us/ipv6/enrich_ipv6",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel/act",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel",
+          "status": 200
+        }
+      ],
+      "cookies": [
+        {
+          "name": "po_cart",
+          "raw": "po_cart=[redacted]; expires=Tue, 13 Oct 2026 15:55:21 GMT; Max-Age=2592000; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 2592000
+        },
+        {
+          "name": "AWSALBCORS",
+          "raw": "AWSALBCORS=[redacted]; Expires=Sat, 05 Sep 2026 09:46:19 GMT; Path=/; SameSite=None; Secure",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": null
+        },
+        {
+          "name": "AWSALBCORS",
+          "raw": "AWSALBCORS=[redacted]; Expires=Wed, 07 Jan 2026 21:27:48 GMT; Path=/; SameSite=None; Secure",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": null
+        },
+        {
+          "name": "po_session",
+          "raw": "po_session=[redacted]; expires=Sun, 13 Sep 2026 17:55:22 GMT; Max-Age=7200; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 7200
+        },
+        {
+          "name": "_ttp",
+          "raw": "_ttp=[redacted]; Path=/; Domain=tiktok.com; Max-Age=33696000; Secure; SameSite=None",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": 33696000
+        },
+        {
+          "name": "po_session",
+          "raw": "po_session=[redacted]; expires=Sun, 13 Sep 2026 17:55:22 GMT; Max-Age=7200; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 7200
+        },
+        {
+          "name": "AWSALBCORS",
+          "raw": "AWSALBCORS=[redacted]; Expires=Sun, 20 Sep 2026 15:55:22 GMT; Path=/; SameSite=None; Secure",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": null
+        }
+      ],
+      "forms": [
+        {
+          "action": "https://priceoye.pk/search",
+          "method": "get",
+          "hasPassword": false,
+          "fieldNames": [
+            "q"
+          ]
+        },
+        {
+          "action": "https://priceoye.pk/search",
+          "method": "get",
+          "hasPassword": false,
+          "fieldNames": [
+            "q"
+          ]
+        }
+      ],
+      "generator": null,
+      "bundles": [],
+      "wellKnown": {
+        "/robots.txt": {
+          "status": 200,
+          "body": "# As a condition of accessing this website, you agree to abide by the following\n# content signals:\n\n# (a)  If a Content-Signal = yes, you may collect content for the corresponding\n#      use.\n# (b)  If a Content-Signal = no, you may not collect content for the\n#      corresponding use.\n# (c)  If the website operator does not include a Content-Signal for a\n#      corresponding use, the website operator neither grants nor restricts\n#      permission via Content-Signal with respect to the corresponding use.\n\n# The content signals and their meanings are:\n\n# search:   building a search index and providing search results (e.g., returning\n#           hyperlinks and short excerpts from your website's contents). Search does not\n#           include providing AI-generated search summaries.\n# ai-input: inputting content into one or more AI models (e.g., retrieval\n#           augmented generation, grounding, or other real-time taking of content for\n#           generative AI search answers).\n# ai-train: training or fine-tuning AI models.\n# use:      how AI systems may consume the content (immediate, reference, or full).\n\n# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF\n# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT\n# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.\n\n# BEGIN Cloudflare Managed content\n\nUser-agent: *\nContent-Signal: search=yes,ai-train=no,use=reference\nAllow: /\n\nUser-agent: Amazonbot\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: Bytespider\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: CloudflareBrowserRenderingCrawler\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: meta-externalagent\nDisallow: /\n\n# END Cloudflare Managed Content\n\nUser-agent: Alexibot\nUser-agent: Apache-HttpClient\nUser-agent: Aqua_Products\nUser-agent: archive.org_bot\nUser-agent: asterias\nUser-agent: b2w/0.1\nUser-agent: BackDo"
+        },
+        "/sitemap.xml": {
+          "status": 404,
+          "body": null
+        },
+        "/.well-known/security.txt": {
+          "status": 404,
+          "body": null
+        }
+      },
+      "httpUpgrade": {
+        "finalUrl": "https://priceoye.pk/mobiles",
+        "secure": true,
+        "status": 200
+      },
+      "tls": {
+        "subject": "priceoye.pk",
+        "issuer": "Anthropic",
+        "validFrom": "Sep 13 15:54:15 2026 GMT",
+        "validTo": "Oct 13 15:55:15 2026 GMT",
+        "daysRemaining": 30,
+        "protocol": "TLSv1.3",
+        "altNames": "DNS:priceoye.pk",
+        "authorized": true,
+        "authorizationError": null
+      },
+      "hasAuth": true
+    },
+    {
+      "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+      "navError": null,
+      "status": 200,
+      "headers": {
+        "connection": "keep-alive",
+        "keep-alive": "timeout=5",
+        "transfer-encoding": "chunked",
+        "cache-control": "no-cache, private",
+        "cf-cache-status": "DYNAMIC",
+        "cf-ray": "a3a8560b390d2881-ORD",
+        "content-type": "text/html; charset=UTF-8",
+        "date": "Sun, 13 Sep 2026 15:55:25 GMT",
+        "server": "cloudflare",
+        "set-cookie": "po_cart=[redacted]; expires=[redacted], 13 Oct 2026 15:55:25 GMT; Max-Age=[redacted]; path=[redacted]; domain=[redacted]; secure; httponly; samesite=[redacted]",
+        "strict-transport-security": "max-age=31536000; includeSubDomains, max-age=31536000; includeSubDomains",
+        "vary": "Accept-Encoding,X-Inertia",
+        "via": "1.1 526ddfcc2e220ebd3c3d7757fa93b1e2.cloudfront.net (CloudFront)",
+        "x-amz-cf-id": "8pcZs5ZiIFiuU6tzKWkjdSaHRBWiUbmZT6eAJlo5fsrSwpaqnQoBCw==",
+        "x-amz-cf-pop": "ORD56-P11",
+        "x-cache": "Miss from cloudfront",
+        "x-content-type-options": "nosniff, nosniff",
+        "x-frame-options": "SAMEORIGIN, SAMEORIGIN",
+        "x-xss-protection": "1; mode=block"
+      },
+      "allResponses": [
+        {
+          "url": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/js/swiper-bundle.min.css",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/js/mpq.min.js?id=df30d93eb970e5ec71cb430f0f7a5c51",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a16-pakistan-priceoye-t80oz.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a16-pakistan-priceoye-t80oz-500x500.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/filterbar/topup.svg",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/assets/css/style_product_detail.min.css?id=721",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a16-pakistan-priceoye-8l0ws-500x500.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/product-detail/retailer-po-online-badge.svg",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtag/js?id=G-L7EN9V4W2X",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/placeholder-product-mobile.jpg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a16-pakistan-priceoye-24hkq-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a16-pakistan-priceoye-t80oz-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/logo.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a16-pakistan-priceoye-24hkq-500x500.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a16-pakistan-priceoye-8l0ws-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/bar.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/stars.svg",
+          "status": 200
+        },
+        {
+          "url": "https://www.googletagmanager.com/gtm.js?id=GTM-TBVQKVT",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/lightstar.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/product-placeholder.gif",
+          "status": 200
+        },
+        {
+          "url": "https://fonts.gstatic.com/s/opensans/v44/memvYaGs126MiZpBA-UvWbX2vVnXBbObj2OVTS-muw.woff2",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/js/app-client.min.js?id=667334efbcefd4dc6193331b451c6913",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a16-pakistan-priceoye-ppyz0-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a16-pakistan-priceoye-v7l1c-100x100.webp",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/assets/icons/social-share-icons/share-icon.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/mic-blue.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/user-dashboard/complaint-white.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/close-box.svg",
+          "status": 200
+        },
+        {
+          "url": "https://connect.facebook.net/en_US/fbevents.js",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/i18n/pixel/events.js?sdkid=D72FKKRC77U3C1V0Q3J0&lib=ttq",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/review.webp",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/meta/event",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a17-pakistan-priceoye-idgtd-270x270.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a35-5g-pakistan-priceoye-u69sg-270x270.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a15-pakistan-priceoye-eaiki-270x270.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/user-dashboard/tracker.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/samsung-galaxy-a25-pakistan-priceoye-eyans-270x270.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/specs.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/compare.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/awei-ka19-portable-outdoor-bluetooth-speaker-pakistan-priceoye-wpd4n-270x270.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/smart_watches.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/mobiles-3.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/oraimo-watch-5r-smart-watch-osw-820-pakistan-priceoye-s1f35-270x270.webp",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/toocki-tct1c-jcd01-20w-gan-usb-c-fast-charging-power-adapter-pakistan-priceoye-asz67-270x270.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/video-shooting-camera.svg",
+          "status": 200
+        },
+        {
+          "url": "https://images.priceoye.pk/daling-dl-9266-3-in-1-rechargeable-hair-pakistan-priceoye-x8qfj-270x270.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/approved-feature.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/warranty-feature.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/wireless_earbuds-3.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/shipping-feature.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/air-purifiers.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/blutooth_speaker.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/power-bank.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/Mobile-Accessories.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/personal-cares.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/tablets.svg",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/authorization",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/laptop-mac-outline.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/home-appliances.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/auto.svg",
+          "status": 200
+        },
+        {
+          "url": "https://connect.facebook.net/signals/config/1146551214285965?v=2.9.398&r=stable&domain=priceoye.pk&hme=457e068698591ac437afb4b2e5fbe0266b08712615b8792436a91385ebda0da3&ex_m=115%2C227%2C166%2C26%2C80%2C81%2C158%2C76%2C75%2C11%2C176%2C100%2C20%2C150%2C138%2C45%2C83%2C88%2C146%2C171%2C178%2C31%2C17%2C30%2C18%2C32%2C33%2C34%2C36%2C54%2C159%2C85%2C123%2C22%2C24%2C50%2C46%2C48%2C47%2C93%2C102%2C106%2C121%2C157%2C160%2C52%2C122%2C28%2C25%2C130%2C77%2C42%2C162%2C161%2C163%2C154%2C152%2C29%2C41%2C65%2C120%2C173%2C78%2C21%2C125%2C91%2C74%2C23%2C95%2C96%2C127%2C94%2C148%2C147%2C151%2C107%2C172%2C175%2C40%2C55%2C124%2C53%2C8%2C4%2C5%2C7%2C6%2C3%2C101%2C112%2C180%2C179%2C194%2C241%2C82%2C255%2C254%2C253%2C14%2C27%2C39%2C61%2C114%2C67%2C10%2C71%2C108%2C109%2C110%2C116%2C141%2C37%2C35%2C143%2C144%2C145%2C140%2C139%2C167%2C84%2C170%2C168%2C169%2C56%2C66%2C134%2C19%2C174%2C51%2C305%2C306%2C307%2C304%2C320%2C344%2C234%2C223%2C68%2C224%2C222%2C347%2C338%2C58%2C235%2C118%2C142%2C90%2C132%2C60%2C131%2C137%2C136%2C64%2C72%2C70%2C164%2C86%2C87%2C126%2C43%2C38%2C59%2C62%2C111%2C177%2C1%2C135%2C16%2C133%2C12%2C2%2C63%2C103%2C15%2C73%2C69%2C129%2C99%2C98%2C182%2C183%2C104%2C105%2C9%2C113%2C181%2C57%2C155%2C97%2C89%2C79%2C128%2C117%2C49%2C156%2C0%2C92%2C149%2C153%2C165%2C44%2C119%2C13%2C184",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/google-store-badge.webp",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/payment_method.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/icons/po-footer-logo-white.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/social-youtube.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/social-fb.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/tiktok.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/linkedin.svg",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/images/social-instagram.svg",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/i18n/pixel/static/main.MWRhY2RiNmFkMQ.js",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/i18n/pixel/static/identify_2a73ddc0.js",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel",
+          "status": 200
+        },
+        {
+          "url": "https://static.priceoye.pk/favicon/favicon-32x32.png",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel",
+          "status": 200
+        },
+        {
+          "url": "https://analytics-ipv6.tiktokw.us/ipv6/enrich_ipv6",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel",
+          "status": 200
+        },
+        {
+          "url": "https://priceoye.pk/meta/event",
+          "status": 200
+        },
+        {
+          "url": "https://analytics.tiktok.com/api/v2/pixel/act",
+          "status": 200
+        }
+      ],
+      "cookies": [
+        {
+          "name": "po_cart",
+          "raw": "po_cart=[redacted]; expires=Tue, 13 Oct 2026 15:55:25 GMT; Max-Age=2592000; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 2592000
+        },
+        {
+          "name": "AWSALBCORS",
+          "raw": "AWSALBCORS=[redacted]; Expires=Sat, 05 Sep 2026 09:46:03 GMT; Path=/; SameSite=None; Secure",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": null
+        },
+        {
+          "name": "AWSALBCORS",
+          "raw": "AWSALBCORS=[redacted]; Expires=Thu, 19 Feb 2026 13:26:38 GMT; Path=/; SameSite=None; Secure",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": null
+        },
+        {
+          "name": "_ttp",
+          "raw": "_ttp=[redacted]; Path=/; Domain=tiktok.com; Max-Age=33696000; Secure; SameSite=None",
+          "httpOnly": false,
+          "secure": true,
+          "sameSite": "None",
+          "maxAge": 33696000
+        },
+        {
+          "name": "po_session",
+          "raw": "po_session=[redacted]; expires=Sun, 13 Sep 2026 17:55:25 GMT; Max-Age=7200; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 7200
+        },
+        {
+          "name": "po_session",
+          "raw": "po_session=[redacted]; expires=Sun, 13 Sep 2026 17:55:25 GMT; Max-Age=7200; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 7200
+        },
+        {
+          "name": "po_session",
+          "raw": "po_session=[redacted]; expires=Sun, 13 Sep 2026 17:55:26 GMT; Max-Age=7200; path=/; domain=.priceoye.pk; secure; httponly; samesite=lax",
+          "httpOnly": true,
+          "secure": true,
+          "sameSite": "lax",
+          "maxAge": 7200
+        }
+      ],
+      "forms": [
+        {
+          "action": "https://priceoye.pk/search",
+          "method": "get",
+          "hasPassword": false,
+          "fieldNames": [
+            "q"
+          ]
+        }
+      ],
+      "generator": null,
+      "bundles": [],
+      "wellKnown": {
+        "/robots.txt": {
+          "status": 200,
+          "body": "# As a condition of accessing this website, you agree to abide by the following\n# content signals:\n\n# (a)  If a Content-Signal = yes, you may collect content for the corresponding\n#      use.\n# (b)  If a Content-Signal = no, you may not collect content for the\n#      corresponding use.\n# (c)  If the website operator does not include a Content-Signal for a\n#      corresponding use, the website operator neither grants nor restricts\n#      permission via Content-Signal with respect to the corresponding use.\n\n# The content signals and their meanings are:\n\n# search:   building a search index and providing search results (e.g., returning\n#           hyperlinks and short excerpts from your website's contents). Search does not\n#           include providing AI-generated search summaries.\n# ai-input: inputting content into one or more AI models (e.g., retrieval\n#           augmented generation, grounding, or other real-time taking of content for\n#           generative AI search answers).\n# ai-train: training or fine-tuning AI models.\n# use:      how AI systems may consume the content (immediate, reference, or full).\n\n# ANY RESTRICTIONS EXPRESSED VIA CONTENT SIGNALS ARE EXPRESS RESERVATIONS OF\n# RIGHTS UNDER ARTICLE 4 OF THE EUROPEAN UNION DIRECTIVE 2019/790 ON COPYRIGHT\n# AND RELATED RIGHTS IN THE DIGITAL SINGLE MARKET.\n\n# BEGIN Cloudflare Managed content\n\nUser-agent: *\nContent-Signal: search=yes,ai-train=no,use=reference\nAllow: /\n\nUser-agent: Amazonbot\nDisallow: /\n\nUser-agent: Applebot-Extended\nDisallow: /\n\nUser-agent: Bytespider\nDisallow: /\n\nUser-agent: CCBot\nDisallow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n\nUser-agent: CloudflareBrowserRenderingCrawler\nDisallow: /\n\nUser-agent: Google-Extended\nDisallow: /\n\nUser-agent: GPTBot\nDisallow: /\n\nUser-agent: meta-externalagent\nDisallow: /\n\n# END Cloudflare Managed Content\n\nUser-agent: Alexibot\nUser-agent: Apache-HttpClient\nUser-agent: Aqua_Products\nUser-agent: archive.org_bot\nUser-agent: asterias\nUser-agent: b2w/0.1\nUser-agent: BackDo"
+        },
+        "/sitemap.xml": {
+          "status": 404,
+          "body": null
+        },
+        "/.well-known/security.txt": {
+          "status": 404,
+          "body": null
+        }
+      },
+      "httpUpgrade": {
+        "finalUrl": "https://priceoye.pk/mobiles/samsung/samsung-galaxy-a16",
+        "secure": true,
+        "status": 200
+      },
+      "tls": {
+        "subject": "priceoye.pk",
+        "issuer": "Anthropic",
+        "validFrom": "Sep 13 15:54:15 2026 GMT",
+        "validTo": "Oct 13 15:55:15 2026 GMT",
+        "daysRemaining": 30,
+        "protocol": "TLSv1.3",
+        "altNames": "DNS:priceoye.pk",
+        "authorized": true,
+        "authorizationError": null
+      },
+      "hasAuth": true
+    }
+  ],
+  "findings": [
+    {
+      "id": "sec-header-content-security-policy",
+      "title": "Content-Security-Policy is not set, and the site has signed-in users",
+      "severity": "medium",
+      "category": "security",
+      "evidence": "Response headers for https://priceoye.pk/ contain no `content-security-policy`.\nThe site has a login form or session cookie, which is what raises this above hygiene.",
+      "impact": "There is no second line of defence if a cross-site scripting bug is ever introduced: any injected script runs with full access to the page.",
+      "fix": "Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/",
+      "unconfirmed": false
+    },
+    {
+      "id": "sec-headers-missing",
+      "title": "2 standard security header(s) are not set",
+      "severity": "low",
+      "category": "security",
+      "evidence": "Content-Security-Policy: not present\nReferrer-Policy: not present\n\nPresent: HSTS, X-Content-Type-Options, X-Frame-Options / frame-ancestors",
+      "impact": "These headers are the browser-side defences a site opts into. Individually none of them is a vulnerability; together their absence means a bug elsewhere has nothing standing in its way.",
+      "fix": "Set them once at the edge or in middleware so every response carries them: Start with a report-only policy to find what the site actually loads, then enforce a policy that names the script sources you trust. Send `Referrer-Policy: strict-origin-when-cross-origin`.",
+      "effort": "quick",
+      "url": "https://priceoye.pk/",
+      "unconfirmed": false
+    }
+  ],
+  "positives": [
+    "The site is served over HTTPS.",
+    "Plain HTTP correctly redirects to HTTPS.",
+    "HSTS is configured.",
+    "The HTTPS certificate is valid for another 30 days.",
+    "No credentials were found in the JavaScript served to visitors.",
+    "Session cookies are set HttpOnly and Secure."
+  ]
+}
